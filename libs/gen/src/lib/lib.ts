@@ -1,13 +1,7 @@
-import {
-  addProjectConfiguration,
-  extractLayoutDirectory,
-  formatFiles,
-  generateFiles,
-  names,
-  Tree,
-} from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
+import { formatFiles, generateFiles, names } from '@nx/devkit';
 import * as path from 'path';
-import { LibGeneratorSchema } from './schema.js';
+import type { LibGeneratorSchema } from './schema.js';
 
 export async function libGenerator(tree: Tree, options: LibGeneratorSchema) {
   const { directory } = options;

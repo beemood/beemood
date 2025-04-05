@@ -124,6 +124,15 @@ importers:
         specifier: ~0.5.11
         version: 0.5.15
 
+  libs/is:
+    dependencies:
+      '@bmod/types':
+        specifier: workspace:^
+        version: link:../types
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.15
+
   libs/types:
     dependencies:
       '@swc/helpers':
