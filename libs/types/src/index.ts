@@ -7,6 +7,11 @@ export * from './lib/functions/function-type.js';
 export * from './lib/functions/handler.js';
 export * from './lib/functions/map-handler.js';
 export * from './lib/functions/value-handler.js';
+export * from './lib/number/decimal-string.js';
+export * from './lib/number/percent.js';
+export * from './lib/number/rate-template.js';
 export * from './lib/objects/key-of.js';
 export * from './lib/objects/keys.js';
+export * from './lib/string/templates.js';
+export * from './lib/types/class-type.js';
 

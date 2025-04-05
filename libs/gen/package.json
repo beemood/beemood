@@ -32,17 +32,7 @@
           "main": "libs/gen/src/index.ts",
           "tsConfig": "libs/gen/tsconfig.lib.json",
           "skipTypeCheck": true,
-          "stripLeadingPaths": true,
-          "assets": [
-            {
-              "input": "*.d.ts",
-              "glob": "."
-            },
-            {
-              "input": "schema.json",
-              "glob": "."
-            }
-          ]
+          "stripLeadingPaths": true
         }
       }
     }
