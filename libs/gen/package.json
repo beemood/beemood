@@ -31,8 +31,20 @@
           "outputPath": "libs/gen/dist",
           "main": "libs/gen/src/index.ts",
           "tsConfig": "libs/gen/tsconfig.lib.json",
-          "skipTypeCheck": true,
-          "stripLeadingPaths": true
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "libs/gen/src",
+              "glob": "**/*.json",
+              "output": "/"
+            },
+            {
+              "input": "libs/gen/src",
+              "glob": "**/*.d.ts",
+              "output": "/"
+            }
+          ]
         }
       }
     }
