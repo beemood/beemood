@@ -4,6 +4,11 @@
       "factory": "./dist/lib/lib",
       "schema": "./dist/lib/schema.json",
       "description": "lib generator"
+    },
+    "cli": {
+      "factory": "./dist/cli/cli",
+      "schema": "./dist/cli/schema.json",
+      "description": "cli generator"
     }
   }
 }

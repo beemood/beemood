@@ -1,0 +1,15 @@
+# <%- fileName %>
+
+CLI tool
+
+## Install
+
+```bash
+pnpm add -g @bmod/<%- fileName %>
+```
+
+## Usage
+
+```bash
+<%- fileName %> <%- fileName %> -n Robert # Output: <%- className %>, Robert
+```

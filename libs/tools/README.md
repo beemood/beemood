@@ -1,9 +1,15 @@
 # tools
 
-- [ ] add description to the tools
+CLI tool
 
 ## Install
 
 ```bash
-pnpm add @bmod/tools
+pnpm add -g @bmod/tools
+```
+
+## Usage
+
+```bash
+tools hello -n Robert # Output: Hello, Robert
 ```

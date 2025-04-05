@@ -1,0 +1,14 @@
+import type { Command } from 'commander';
+import { <%- fileName %> } from './<%- fileName %>.js';
+
+/**
+ * Configure the <%- fileName %> command
+ * @param command commander instance
+ */
+export function <%- fileName %>Command(command: Command) {
+  command
+    .command('<%- fileName %>')
+    .description('Say <%- fileName %>')
+    .option('-n, --name <string>', 'What is your name?')
+    .action(<%- fileName %>);
+}

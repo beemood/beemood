@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/gen",
+  "name": "@bmod/<%- fileName %>",
   "version": "0.0.1",
+  "description": "Useful cli <%- fileName %> to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
-  "description": "Project, component, and asset generators",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "generator"
+    "<%- fileName %>"
   ],
   "repository": {
-    "directory": "libs/gen",
+    "directory": "<%- directory %>",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/gen",
+  "homepage": "https://beemood.github.io/beemood/<%- fileName %>",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,11 +38,14 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/gen/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/<%- directory %>/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "<%- fileName %>": "./bin/<%- fileName %>.js"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -54,11 +57,11 @@
   },
   "files": [
     "dist",
-    "generators.json",
+    "bin",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/gen/src",
+    "sourceRoot": "<%- directory %>/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -66,39 +69,20 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/gen/dist",
-          "main": "libs/gen/src/index.ts",
-          "tsConfig": "libs/gen/tsconfig.lib.json",
+          "outputPath": "<%- directory %>/dist",
+          "main": "<%- directory %>/src/index.ts",
+          "tsConfig": "<%- directory %>/tsconfig.lib.json",
           "skipTypeCheck": false,
-          "stripLeadingPaths": true,
-          "assets": [
-            {
-              "input": "libs/gen/src",
-              "glob": "**/*.json",
-              "output": "/"
-            },
-            {
-              "input": "libs/gen/src",
-              "glob": "**/*.d.ts",
-              "output": "/"
-            },
-            {
-              "input": "libs/gen/src",
-              "glob": "**/files/**/*",
-              "output": "/"
-            }
-          ]
+          "stripLeadingPaths": true
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/gen/src/index.ts --out public/libs/gen --tsconfig libs/gen/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %> --tsconfig <%- directory %>/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
-    "@nx/devkit": "20.7.1",
-    "@bmod/is": "0.0.1",
-    "@swc/helpers": "~0.5.11"
-  },
-  "generators": "./generators.json"
+    "@swc/helpers": "^0.5.15",
+    "commander": "^13.1.0"
+  }
 }

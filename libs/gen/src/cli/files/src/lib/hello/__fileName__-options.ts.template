@@ -1,0 +1,6 @@
+/**
+ * <%- className %> options
+ */
+export class <%- className %>Options {
+  name: string;
+}
