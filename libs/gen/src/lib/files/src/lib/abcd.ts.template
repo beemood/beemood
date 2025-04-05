@@ -1,0 +1,4 @@
+export function <%- propertyName %>(): string {
+  const value = '<%- fileName %>';
+  return value;
+}

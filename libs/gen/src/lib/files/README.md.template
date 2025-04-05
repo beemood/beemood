@@ -1,0 +1,9 @@
+# <%- fileName %>
+
+- [ ] add description to the <%- fileName %>
+
+## Install
+
+```bash
+pnpm add @bmod/<%- fileName %>
+```

@@ -16,7 +16,8 @@
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "generators.json"
   ],
   "nx": {
     "sourceRoot": "libs/gen/src",
@@ -31,12 +32,24 @@
           "main": "libs/gen/src/index.ts",
           "tsConfig": "libs/gen/tsconfig.lib.json",
           "skipTypeCheck": true,
-          "stripLeadingPaths": true
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "*.d.ts",
+              "glob": "."
+            },
+            {
+              "input": "schema.json",
+              "glob": "."
+            }
+          ]
         }
       }
     }
   },
   "dependencies": {
+    "@nx/devkit": "20.7.1",
     "@swc/helpers": "~0.5.11"
-  }
+  },
+  "generators": "./generators.json"
 }

@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/abcd",
+  "name": "@bmod/<%- fileName %>",
   "version": "0.0.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
-  "description": "- [ ] add description to abcd",
+  "description": "- [ ] add description to <%- fileName %>",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "- [ ] add keywords to abcd"
+    "- [ ] add keywords to <%- fileName %>"
   ],
   "repository": {
-    "directory": "libs/abcd",
+    "directory": "<%- directory %>",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/abcd",
+  "homepage": "https://beemood.github.io/beemood/<%- fileName %>",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,7 +38,7 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/abcd/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/<%- directory %>/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -57,7 +57,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/abcd/src",
+    "sourceRoot": "<%- directory %>/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -65,15 +65,15 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/abcd/dist",
-          "main": "libs/abcd/src/index.ts",
-          "tsConfig": "libs/abcd/tsconfig.lib.json",
+          "outputPath": "<%- directory %>/dist",
+          "main": "<%- directory %>/src/index.ts",
+          "tsConfig": "<%- directory %>/tsconfig.lib.json",
           "skipTypeCheck": true,
           "stripLeadingPaths": true
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/abcd/src/index.ts --out public/libs/abcd --tsconfig libs/abcd/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %> --tsconfig <%- directory %>/tsconfig.lib.json"
       }
     }
   },
