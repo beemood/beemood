@@ -1,0 +1,83 @@
+{
+  "name": "@bmod/msgs",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "- [ ] add description to msgs",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "- [ ] add keywords to msgs"
+  ],
+  "repository": {
+    "directory": "libs/msgs",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://beemood.github.io/beemood/msgs",
+  "bugs": {
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "categories": [
+    "AI"
+  ],
+  "contributors": [
+    {
+      "email": "robert.brightline@gmail.com",
+      "name": "Robert Brightline",
+      "url": "https://beemood.github.io"
+    }
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/msgs/favicon.png",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/msgs/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/msgs/dist",
+          "main": "libs/msgs/src/index.ts",
+          "tsConfig": "libs/msgs/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints libs/msgs/src/index.ts --out public/libs/msgs --tsconfig libs/msgs/tsconfig.lib.json"
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "^0.5.15"
+  }
+}

@@ -1,6 +1,44 @@
 {
   "name": "@bmod/is",
   "version": "0.0.1",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "Common type and flow utilities",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "utility"
+  ],
+  "repository": {
+    "directory": "libs/is",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://beemood.github.io/beemood/is",
+  "bugs": {
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "categories": [
+    "AI"
+  ],
+  "contributors": [
+    {
+      "email": "robert.brightline@gmail.com",
+      "name": "Robert Brightline",
+      "url": "https://beemood.github.io"
+    }
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/is/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -33,11 +71,13 @@
           "skipTypeCheck": true,
           "stripLeadingPaths": true
         }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints libs/is/src/index.ts --out public/libs/is --tsconfig libs/is/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
-    "@bmod/types": "workspace:^",
-    "@swc/helpers": "~0.5.11"
+    "@swc/helpers": "^0.5.15"
   }
 }

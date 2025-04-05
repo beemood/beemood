@@ -1,0 +1,83 @@
+{
+  "name": "@bmod/tools",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "Useful cli tools to use accrosss the projects",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "tools"
+  ],
+  "repository": {
+    "directory": "libs/tools",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://beemood.github.io/beemood/tools",
+  "bugs": {
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "categories": [
+    "AI"
+  ],
+  "contributors": [
+    {
+      "email": "robert.brightline@gmail.com",
+      "name": "Robert Brightline",
+      "url": "https://beemood.github.io"
+    }
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/tools/favicon.png",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/tools/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/tools/dist",
+          "main": "libs/tools/src/index.ts",
+          "tsConfig": "libs/tools/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints libs/tools/src/index.ts --out public/libs/tools --tsconfig libs/tools/tsconfig.lib.json"
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "^0.5.15"
+  }
+}

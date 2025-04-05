@@ -6,26 +6,24 @@
     "access": "public",
     "tag": "latest"
   },
-  "description": "- [ ] add description to types",
+  "description": "Common types used accross the projects",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
-    "url": "https://rbrightline.github.io"
+    "url": "https://beemood.github.io"
   },
   "keywords": [
-    "type",
-    "model",
-    "type-utility"
+    "types"
   ],
   "repository": {
-    "directory": "libs/type",
-    "url": "https://github.com/rbrightline/puq/tree/main",
+    "directory": "libs/types",
+    "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://rbrightline.github.io/puq/type",
+  "homepage": "https://beemood.github.io/beemood/type",
   "bugs": {
     "email": "robert.brightline@gmail.com",
-    "url": "https://rbrightline.github.io"
+    "url": "https://beemood.github.io"
   },
   "categories": [
     "Other"
@@ -34,13 +32,13 @@
     {
       "email": "robert.brightline@gmail.com",
       "name": "Robert Brightline",
-      "url": "https://rbrightline.github.io"
+      "url": "https://beemood.github.io"
     }
   ],
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/rbrightline/puq/refs/heads/main/libs/type/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/types/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -73,6 +71,9 @@
           "skipTypeCheck": true,
           "stripLeadingPaths": true
         }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints libs/types/src/index.ts --out public/libs/types --tsconfig libs/types/tsconfig.lib.json"
       }
     }
   },

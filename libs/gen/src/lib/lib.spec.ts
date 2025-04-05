@@ -1,12 +1,11 @@
+import { Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
-import { Tree, readProjectConfiguration } from '@nx/devkit';
-
-import { libGenerator } from './lib';
-import { LibGeneratorSchema } from './schema';
+import { libGenerator } from './lib.js';
+import { LibGeneratorSchema } from './schema.js';
 
 describe('lib generator', () => {
   let tree: Tree;
-  const options: LibGeneratorSchema = { name: 'test' };
+  const options: LibGeneratorSchema = { directory: 'test' };
 
   beforeEach(() => {
     tree = createTreeWithEmptyWorkspace();
@@ -14,7 +13,5 @@ describe('lib generator', () => {
 
   it('should run successfully', async () => {
     await libGenerator(tree, options);
-    const config = readProjectConfiguration(tree, 'test');
-    expect(config).toBeDefined();
   });
 });

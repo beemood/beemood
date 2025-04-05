@@ -1,6 +1,45 @@
+
 {
   "name": "@bmod/gen",
   "version": "0.0.1",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "Project, component, and asset generators",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "generator"
+  ],
+  "repository": {
+    "directory": "libs/gen",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://beemood.github.io/beemood/gen",
+  "bugs": {
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "categories": [
+    "AI"
+  ],
+  "contributors": [
+    {
+      "email": "robert.brightline@gmail.com",
+      "name": "Robert Brightline",
+      "url": "https://beemood.github.io"
+    }
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/gen/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -16,8 +55,8 @@
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo",
-    "generators.json"
+    "generators.json",
+    "!**/*.tsbuildinfo"
   ],
   "nx": {
     "sourceRoot": "libs/gen/src",
@@ -43,13 +82,22 @@
               "input": "libs/gen/src",
               "glob": "**/*.d.ts",
               "output": "/"
+            },
+            {
+              "input": "libs/gen/src",
+              "glob": "**/files/**/*",
+              "output": "/"
             }
           ]
         }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints libs/gen/src/index.ts --out public/libs/gen --tsconfig libs/gen/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
+    "@bmod/is": "0.0.1",
     "@nx/devkit": "20.7.1",
     "@swc/helpers": "~0.5.11"
   },

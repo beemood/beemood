@@ -115,5 +115,6 @@ export default [
   'sm',
   'xsm',
   'autodocs',
-  'zod'
+  'zod', 
+  'msg'
 ];
