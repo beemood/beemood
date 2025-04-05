@@ -4,10 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/beemood-e2e"
+      "path": "./libs/types"
     },
     {
-      "path": "./apps/beemood"
+      "path": "./libs/gen"
+    },
+    {
+      "path": "./libs/abcd"
     }
   ]
 }

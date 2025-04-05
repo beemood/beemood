@@ -1,2 +1,9 @@
-packages: 
-  - "apps/*"
+packages:
+  - libs/*
+  - services/*
+  - apps/*
+onlyBuiltDependencies:
+  - '@swc/core'
+  - core-js
+  - esbuild
+  - nx

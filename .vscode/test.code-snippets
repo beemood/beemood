@@ -1,0 +1,172 @@
+{
+  "Vitest test block": {
+    "scope": "typescript",
+    "prefix": "vitest test",
+    "body": ["test('$1', () => {", "  $2", "});"],
+    "description": "Creates a Vitest test block."
+  },
+  "Vitest describe block": {
+    "scope": "typescript",
+    "prefix": "vitest describe",
+    "body": ["describe('$1', () => {", "  $2", "});"],
+    "description": "Creates a Vitest describe block."
+  },
+  "Vitest it block": {
+    "scope": "typescript",
+    "prefix": "vitest it",
+    "body": ["it('$1', () => {", "  $2", "});"],
+    "description": "Creates a Vitest it block."
+  },
+  "Vitest before all hook": {
+    "scope": "typescript",
+    "prefix": "vitest before all",
+    "body": ["beforeAll(() => {", "  $1", "});"],
+    "description": "Creates a Vitest beforeAll hook."
+  },
+  "Vitest after all hook": {
+    "scope": "typescript",
+    "prefix": "vitest after all",
+    "body": ["afterAll(() => {", "  $1", "});"],
+    "description": "Creates a Vitest afterAll hook."
+  },
+  "Vitest before each hook": {
+    "scope": "typescript",
+    "prefix": "vitest before each",
+    "body": ["beforeEach(() => {", "  $1", "});"],
+    "description": "Creates a Vitest beforeEach hook."
+  },
+  "Vitest after each hook": {
+    "scope": "typescript",
+    "prefix": "vitest after each",
+    "body": ["afterEach(() => {", "  $1", "});"],
+    "description": "Creates a Vitest afterEach hook."
+  },
+  "Vitest expect to be": {
+    "scope": "typescript",
+    "prefix": "expect to be",
+    "body": ["expect($1).toBe($2);"],
+    "description": "Vitest expect to be assertion."
+  },
+  "Vitest expect to equal": {
+    "scope": "typescript",
+    "prefix": "expect to equal",
+    "body": ["expect($1).toEqual($2);"],
+    "description": "Vitest expect to equal assertion."
+  },
+  "Vitest expect to throw": {
+    "scope": "typescript",
+    "prefix": "expect to throw",
+    "body": ["expect(() => $1).toThrow($2);"],
+    "description": "Vitest expect to throw assertion."
+  },
+  "Vitest expect to resolve": {
+    "scope": "typescript",
+    "prefix": "expect to resolve",
+    "body": ["await expect($1).resolves.toBe($2);"],
+    "description": "Vitest expect to resolve assertion."
+  },
+  "Vitest expect to reject": {
+    "scope": "typescript",
+    "prefix": "expect to reject",
+    "body": ["await expect($1).rejects.toBe($2);"],
+    "description": "Vitest expect to reject assertion."
+  },
+  "Vitest expect to contain": {
+    "scope": "typescript",
+    "prefix": "expect to contain",
+    "body": ["expect($1).toContain($2);"],
+    "description": "Vitest expect to contain assertion."
+  },
+  "Vitest expect to match object": {
+    "scope": "typescript",
+    "prefix": "expect to match object",
+    "body": ["expect($1).toMatchObject($2);"],
+    "description": "Vitest expect to match object assertion."
+  },
+  "Vitest expect to be truthy": {
+    "scope": "typescript",
+    "prefix": "expect to be truthy",
+    "body": ["expect($1).toBeTruthy();"],
+    "description": "Vitest expect to be truthy assertion."
+  },
+  "Vitest expect to be falsy": {
+    "scope": "typescript",
+    "prefix": "expect to be falsy",
+    "body": ["expect($1).toBeFalsy();"],
+    "description": "Vitest expect to be falsy assertion."
+  },
+  "Vitest expect to be greater than": {
+    "scope": "typescript",
+    "prefix": "expect to be greater than",
+    "body": ["expect($1).toBeGreaterThan($2);"],
+    "description": "Vitest expect to be greater than assertion."
+  },
+  "Vitest expect to be less than": {
+    "scope": "typescript",
+    "prefix": "expect to be less than",
+    "body": ["expect($1).toBeLessThan($2);"],
+    "description": "Vitest expect to be less than assertion."
+  },
+  "Vitest expect to have length": {
+    "scope": "typescript",
+    "prefix": "expect to have length",
+    "body": ["expect($1).toHaveLength($2);"],
+    "description": "Vitest expect to have length assertion."
+  },
+  "Vitest mock function": {
+    "scope": "typescript",
+    "prefix": "vitest mock function",
+    "body": ["const $1 = vi.fn();"],
+    "description": "Creates a Vitest mock function."
+  },
+  "Vitest mock module": {
+    "scope": "typescript",
+    "prefix": "vitest mock module",
+    "body": [
+      "vi.mock('$1', () => ({",
+      "  $2:vi.fn()",
+      "}));",
+      " const $2Mock = vi.mocked($2);"
+    ],
+    "description": "Creates a Vitest mock module."
+  },
+  "Vitest typed mock module": {
+    "scope": "typescript",
+    "prefix": "vitest typed mock module",
+    "body": [
+      "vi.mock('$1', async (importOriginal) => {",
+      "  const mod = await importOriginal<typeof import('$1')>();",
+      "  return {",
+      "    ...mod,",
+      "    $2: vi.fn(),",
+      "  };",
+      "});",
+      "const mock$2 = vi.mocked($2);"
+    ],
+    "description": "Creates a Vitest typed mock module."
+  },
+  "Vitest spy on function": {
+    "scope": "typescript",
+    "prefix": "vitest spy on function",
+    "body": ["const $1Spy = vi.spyOn($2, '$3');"],
+    "description": "Creates a Vitest spy on function."
+  },
+  "Vitest assert called once": {
+    "scope": "typescript",
+    "prefix": "vitest assert called once",
+    "body": ["expect($1).toHaveBeenCalledTimes(1);"],
+    "description": "Vitest assert called once."
+  },
+  "Vitest assert called with": {
+    "scope": "typescript",
+    "prefix": "vitest assert called with",
+    "body": ["expect($1).toHaveBeenCalledWith($2);"],
+    "description": "Vitest assert called with."
+  },
+  "Vitest assert not called": {
+    "scope": "typescript",
+    "prefix": "vitest assert not called",
+    "body": ["expect($1).not.toHaveBeenCalled();"],
+    "description": "Vitest assert not called."
+  }
+}
