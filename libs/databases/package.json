@@ -1,28 +1,26 @@
 {
-  "name": "@bmod/validation",
-  "version": "0.5.0",
+  "name": "@bmod/databases",
+  "version": "0.1.0",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
-  "description": "Validation library",
+  "description": "- [ ] add description to databases",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "validation",
-    "class-validator",
-    "class-transformer"
+    "- [ ] add keywords to databases"
   ],
   "repository": {
-    "directory": "libs/validation",
+    "directory": "libs/databases",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/validation",
+  "homepage": "https://beemood.github.io/beemood/databases",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -40,7 +38,7 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/validation/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/databases/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -55,11 +53,12 @@
     }
   },
   "files": [
+    "generators.json",
     "dist",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/validation/src",
+    "sourceRoot": "libs/databases/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -67,26 +66,36 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/validation/dist",
-          "main": "libs/validation/src/index.ts",
-          "tsConfig": "libs/validation/tsconfig.lib.json",
+          "outputPath": "libs/databases/dist",
+          "main": "libs/databases/src/index.ts",
+          "tsConfig": "libs/databases/tsconfig.lib.json",
           "skipTypeCheck": true,
-          "stripLeadingPaths": true
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "libs/databases/src",
+              "glob": "**/*.json",
+              "output": "/"
+            },
+            {
+              "input": "libs/databases/src",
+              "glob": "**/*.d.ts",
+              "output": "/"
+            },
+            {
+              "input": "libs/databases/src",
+              "glob": "**/files/**/*",
+              "output": "/"
+            }
+          ]
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/validation/src/index.ts --out public/libs/validation --tsconfig libs/validation/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints libs/databases/src/index.ts --out public/libs/databases --tsconfig libs/databases/tsconfig.lib.json"
       }
     }
   },
-  "peerDependencies": {
-    "@nestjs/swagger": "^11.1.1",
-    "class-validator": "^0.14.1",
-    "class-transformer": "^0.5.1"
-  },
   "dependencies": {
-    "@swc/helpers": "^0.5.15",
-    "@bmod/is": "0.5.0",
-    "@bmod/types": "0.5.0"
+    "@swc/helpers": "^0.5.15"
   }
 }

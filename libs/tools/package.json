@@ -1,6 +1,6 @@
 {
   "name": "@bmod/tools",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Useful cli tools to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {
@@ -82,7 +82,7 @@
     }
   },
   "dependencies": {
-    "@bmod/is": "0.4.1",
+    "@bmod/is": "0.5.0",
     "@swc/helpers": "^0.5.15",
     "commander": "^13.1.0"
   }
