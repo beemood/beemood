@@ -1,3 +1,15 @@
+## 0.4.1 (2025-04-06)
+
+### 🚀 Features
+
+- create rename function. ([d378d10](https://github.com/beemood/beemood/commit/d378d10))
+- created replace-file-content function ([f03d76f](https://github.com/beemood/beemood/commit/f03d76f))
+- linter update ([980e385](https://github.com/beemood/beemood/commit/980e385))
+
+### ❤️ Thank You
+
+- Robert Brightline @beemood
+
 ## 0.4.0 (2025-04-06)
 
 This was a version bump only, there were no code changes.

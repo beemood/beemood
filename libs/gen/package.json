@@ -1,6 +1,6 @@
 {
   "name": "@bmod/gen",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -96,7 +96,7 @@
     }
   },
   "dependencies": {
-    "@bmod/is": "0.4.0",
+    "@bmod/is": "0.4.1",
     "@nx/devkit": "20.7.1",
     "@swc/helpers": "^0.5.15"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@bmod/validation",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -86,7 +86,7 @@
   },
   "dependencies": {
     "@swc/helpers": "^0.5.15",
-    "@bmod/is": "0.4.0",
-    "@bmod/types": "0.4.0"
+    "@bmod/is": "0.4.1",
+    "@bmod/types": "0.4.1"
   }
 }
