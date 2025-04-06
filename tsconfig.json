@@ -25,7 +25,7 @@
       "path": "./apps/hello-app"
     },
     {
-      "path": "./db/pms-db"
+      "path": "./libs/validation"
     }
   ]
 }

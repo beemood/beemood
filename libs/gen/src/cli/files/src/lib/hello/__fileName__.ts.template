@@ -1,5 +1,5 @@
 import type { <%- className %>Options } from './<%- fileName %>-options.js';
 
-export function <%- fileName %>(options: <%- className %>Options) {
+export function <%- propertyName %>(options: <%- className %>Options) {
   console.log(`<%- className %>, ${options.name}`);
 }

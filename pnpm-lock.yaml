@@ -163,6 +163,15 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
 
+  db/pms-db:
+    dependencies:
+      '@swc/helpers':
+        specifier: ^0.5.15
+        version: 0.5.15
+      commander:
+        specifier: ^13.1.0
+        version: 13.1.0
+
   libs/abcd:
     dependencies:
       '@swc/helpers':

@@ -1,6 +1,6 @@
 import type { Command } from 'commander';
 import { program } from 'commander';
-import { <%- fileName %>Command } from './<%- fileName %>/<%- fileName %>.command.js';
+import { <%- propertyName %>Command } from './<%- fileName %>/<%- fileName %>.command.js';
 
 async function boot(...commands: ((command: Command) => void)[]) {
   program
@@ -22,6 +22,6 @@ async function boot(...commands: ((command: Command) => void)[]) {
 }
 
 boot(
-  <%- fileName %>Command
+  <%- propertyName %>Command
   // Add other commands here
 );

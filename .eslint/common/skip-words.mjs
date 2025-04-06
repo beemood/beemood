@@ -127,4 +127,7 @@ export default [
   'issn',
   'taxid',
   'vo',
+  'pms',
+  'ims',
+  'auth',
 ];

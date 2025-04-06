@@ -1,9 +1,9 @@
-import { <%- fileName %> } from './<%- fileName %>.js';
+import { <%- propertyName %> } from './<%- fileName %>.js';
 
 describe('<%- fileName %>', () => {
   it('should <%- fileName %>', () => {
     const log = vi.spyOn(console, 'log');
-    <%- fileName %>({ name: 'some' });
+    <%- propertyName %>({ name: 'some' });
     expect(log).toHaveBeenCalledWith('<%- className %>, some');
     log.mockRestore();
   });
