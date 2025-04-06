@@ -1,22 +1,22 @@
 {
   "generators": {
     "lib": {
-      "factory": "./dist/lib/lib",
+      "factory": "./dist/lib/lib.js",
       "schema": "./dist/lib/schema.json",
       "description": "lib generator"
     },
     "cli": {
-      "factory": "./dist/cli/cli",
+      "factory": "./dist/cli/cli.js",
       "schema": "./dist/cli/schema.json",
       "description": "cli generator"
     },
     "api": {
-      "factory": "./dist/api/api",
+      "factory": "./dist/api/api.js",
       "schema": "./dist/api/schema.json",
       "description": "api generator"
     },
     "generator": {
-      "factory": "./dist/generator/generator",
+      "factory": "./dist/generator/generator.js",
       "schema": "./dist/generator/schema.json",
       "description": "generator generator"
     }

@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/condition/defined.js';
 export * from './lib/condition/optional.js';
 export * from './lib/condition/undefined.js';
 export * from './lib/functions/any-function.js';
@@ -6,6 +7,7 @@ export * from './lib/functions/each-handler.js';
 export * from './lib/functions/function-type.js';
 export * from './lib/functions/handler.js';
 export * from './lib/functions/map-handler.js';
+export * from './lib/functions/property-handler.js';
 export * from './lib/functions/value-handler.js';
 export * from './lib/model/id.model.js';
 export * from './lib/model/timestamp.model.js';

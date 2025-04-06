@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/is",
-  "version": "0.4.0",
+  "name": "@bmod/fs",
+  "version": "0.0.1",
+  "description": "Useful cli fs to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
-  "description": "Common type and flow utilities",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "utility"
+    "fs"
   ],
   "repository": {
-    "directory": "libs/is",
+    "directory": "libs/fs",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/is",
+  "homepage": "https://beemood.github.io/beemood/fs",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,11 +38,14 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/is/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/fs/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "fs": "./bin/fs.js"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -54,10 +57,11 @@
   },
   "files": [
     "dist",
+    "bin",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/is/src",
+    "sourceRoot": "libs/fs/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -65,20 +69,22 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/is/dist",
-          "main": "libs/is/src/index.ts",
-          "tsConfig": "libs/is/tsconfig.lib.json",
-          "skipTypeCheck": true,
+          "outputPath": "libs/fs/dist",
+          "main": "libs/fs/src/index.ts",
+          "tsConfig": "libs/fs/tsconfig.lib.json",
+          "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/is/src/index.ts --out public/libs/is --tsconfig libs/is/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints libs/fs/src/index.ts --out public/libs/fs --tsconfig libs/fs/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
-    "@bmod/types": "workspace:^",
-    "@swc/helpers": "^0.5.15"
+    "@bmod/is": "workspace:0.4.0",
+    "@bmod/types": "workspace:0.4.0",
+    "@swc/helpers": "^0.5.15",
+    "commander": "^13.1.0"
   }
 }

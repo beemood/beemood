@@ -1,4 +1,4 @@
-import type { KeyOf, ValueHandler } from '@bmod/types';
+import type { Defined, KeyOf, PropertyHandler } from '@bmod/types';
 import { isDefined } from '../checks/is-defined.js';
 
 export class PropertyCase<T extends object> {
@@ -6,11 +6,11 @@ export class PropertyCase<T extends object> {
 
   def<K extends KeyOf<T>, R extends PropertyCase<Omit<T, K>>>(
     key: K,
-    handler: ValueHandler<T[K], void>
+    handler: PropertyHandler<T, Defined<T[K]>>
   ): R {
     const pValue = this.value[key];
     if (isDefined(pValue)) {
-      handler(pValue);
+      handler(pValue as Defined<T[K]>, this.value);
     }
     return this as unknown as R;
   }
