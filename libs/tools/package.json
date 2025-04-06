@@ -82,6 +82,7 @@
     }
   },
   "dependencies": {
+    "@bmod/is": "workspace:^",
     "@swc/helpers": "^0.5.15",
     "commander": "^13.1.0"
   }

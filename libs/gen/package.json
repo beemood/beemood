@@ -96,8 +96,8 @@
     }
   },
   "dependencies": {
+    "@bmod/is": "workspace:^",
     "@nx/devkit": "20.7.1",
-    "@bmod/is": "0.1.0",
     "@swc/helpers": "~0.5.11"
   },
   "generators": "./generators.json"
