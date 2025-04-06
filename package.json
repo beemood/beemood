@@ -6,6 +6,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "@bmod/gen": "^0.1.0",
     "@eslint/js": "^9.8.0",
     "@nx/esbuild": "20.7.1",
     "@nx/eslint": "20.7.1",
@@ -52,5 +53,6 @@
         }
       }
     }
-  }
+  },
+  "dependencies": {}
 }

@@ -1,0 +1,130 @@
+{
+  "name": "@bmod/hello-app",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "- [ ] add description to hello-app",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "- [ ] add keywords to hello-app"
+  ],
+  "repository": {
+    "directory": "apps/hello-app",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://beemood.github.io/beemood/hello-app",
+  "bugs": {
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "categories": [
+    "AI"
+  ],
+  "contributors": [
+    {
+      "email": "robert.brightline@gmail.com",
+      "name": "Robert Brightline",
+      "url": "https://beemood.github.io"
+    }
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/hello-app/favicon.png",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "hello-app": "./bin/hello-app.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apps/hello-app/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "apps/hello-app/dist",
+          "main": "apps/hello-app/src/index.ts",
+          "tsConfig": "apps/hello-app/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints apps/hello-app/src/index.ts --out public/apps/hello-app --tsconfig apps/hello-app/tsconfig.lib.json"
+      },
+      "build-watch": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "apps/hello-app/dist",
+          "main": "apps/hello-app/src/index.ts",
+          "tsConfig": "apps/hello-app/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true,
+          "watch": true
+        }
+      },
+      "start": {
+        "command": "node --watch --watch-path=src ./dist/run-dev.js ",
+        "options": {
+          "cwd": "apps/hello-app"
+        }
+      },
+      "serve": {
+        "dependsOn": [
+          "build-watch",
+          "start"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "@fastify/static": "^8.1.1",
+    "@nestjs/common": "^11.0.13",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.0.13",
+    "@nestjs/platform-fastify": "^11.0.13",
+    "@nestjs/swagger": "^11.1.1",
+    "@swc/helpers": "^0.5.15",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "commander": "^13.1.0",
+    "helmet": "^8.1.0",
+    "pg": "^8.14.1",
+    "typeorm": "^0.3.22"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.0.13",
+    "@types/helmet": "^4.0.0",
+    "chokidar": "^4.0.3"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@bmod/tools",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Useful cli tools to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {

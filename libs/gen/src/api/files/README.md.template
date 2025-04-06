@@ -1,0 +1,24 @@
+# <%- fileName %>
+
+- [ ] add description to the <%- fileName %>
+
+## Install
+
+```bash
+pnpm add @bmod/<%- fileName %>
+pnpm add -g @bmod/<%- fileName %>
+```
+
+## Run with cli too
+
+```bash
+<%- fileName %> run --port 3000 --prefix api --profile some-profile
+```
+
+## Integrate with your own app
+
+```typescript
+import { <%- className  %>Module } from '@bmod/<%- fileName %>';
+
+// ...
+```

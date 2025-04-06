@@ -9,6 +9,11 @@
       "factory": "./dist/cli/cli",
       "schema": "./dist/cli/schema.json",
       "description": "cli generator"
+    },
+    "api": {
+      "factory": "./dist/api/api",
+      "schema": "./dist/api/schema.json",
+      "description": "api generator"
     }
   }
 }

@@ -1,0 +1,11 @@
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { <%- className  %>Controller } from './<%- fileName %>.controller.js';
+import { <%- className  %>Service } from './<%- fileName %>.service.js';
+
+@Module({
+  imports: [ConfigModule.forRoot()],
+  controllers: [<%- className  %>Controller],
+  providers: [<%- className  %>Service],
+})
+export class <%- className  %>Module {}

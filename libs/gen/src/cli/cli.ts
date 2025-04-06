@@ -20,7 +20,6 @@ export async function cliGenerator(tree: Tree, options: CliGeneratorSchema) {
   const target = directory;
   const source = join(__dirname, 'files');
   const name = isDefinedOrThrow(directory.split('/').pop());
-
   generateFiles(tree, source, target, { ...names(name), directory });
 
   await formatFiles(tree);

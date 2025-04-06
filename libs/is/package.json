@@ -1,6 +1,6 @@
 {
   "name": "@bmod/is",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -78,6 +78,7 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "^0.5.15"
+    "@swc/helpers": "^0.5.15",
+    "@bmod/types": "0.1.0"
   }
 }

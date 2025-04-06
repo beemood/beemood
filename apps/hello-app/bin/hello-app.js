@@ -1,0 +1,2 @@
+import '../dist/program.js';
+

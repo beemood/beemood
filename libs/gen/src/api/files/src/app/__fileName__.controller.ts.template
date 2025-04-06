@@ -1,0 +1,17 @@
+import { Body, Controller, Post } from '@nestjs/common';
+import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import type { <%- className  %>Dto } from './<%- fileName %>.dto.js';
+import { <%- className  %>ResponseDto } from './<%- fileName %>.response.js';
+import type { <%- className  %>Service } from './<%- fileName %>.service.js';
+
+@Controller()
+export class <%- className  %>Controller {
+  constructor(protected readonly service: <%- className  %>Service) {}
+
+  @ApiOkResponse({ type: <%- className  %>ResponseDto })
+  @ApiOperation({ summary: 'Say <%- propertyName  %>' })
+  @Post('<%- propertyName  %>')
+  <%- propertyName  %>(@Body() <%- propertyName  %>Dto: <%- className  %>Dto) {
+    return this.service.<%- propertyName  %>(<%- propertyName  %>Dto);
+  }
+}

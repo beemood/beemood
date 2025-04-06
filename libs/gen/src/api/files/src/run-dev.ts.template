@@ -1,0 +1,6 @@
+import { bootstrap } from './bootstrap.js';
+
+/**
+ * Run <%- fileName %> in dev server
+ */
+bootstrap();
