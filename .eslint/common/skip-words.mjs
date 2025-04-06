@@ -115,6 +115,16 @@ export default [
   'sm',
   'xsm',
   'autodocs',
-  'zod', 
-  'msg'
+  'zod',
+  'msg',
+  'uri',
+  'ean',
+  'hsl',
+  'hexcolor',
+  'iban',
+  'isin',
+  'isbn',
+  'issn',
+  'taxid',
+  'vo',
 ];

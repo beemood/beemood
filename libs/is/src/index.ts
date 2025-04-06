@@ -7,6 +7,7 @@ export * from './lib/object/deep-clone.js';
 export * from './lib/string/trim.js';
 export * from './lib/workflows/is-not-then.js';
 export * from './lib/workflows/is-then.js';
+export * from './lib/workflows/is-true-then.js';
 export * from './lib/workflows/property-case.js';
 export * from './lib/workflows/switch-case.js';
 

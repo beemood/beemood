@@ -1,6 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { Property } from '@bmod/validation';
 
 export class HelloResponseDto {
-  @ApiProperty({ type: 'string' })
+  @Property({ type: 'string' })
   message: string;
 }

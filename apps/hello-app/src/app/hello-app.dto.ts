@@ -1,12 +1,7 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { Exclude, Expose } from 'class-transformer';
-import { IsString, MinLength } from 'class-validator';
+import { Dto, Property } from '@bmod/validation';
 
-@Exclude()
+@Dto()
 export class HelloDto {
-  @ApiProperty({ type: 'string', description: 'What is your name' })
-  @Expose()
-  @MinLength(3)
-  @IsString()
+  @Property({ type: 'string', minLength: 3 })
   name: string;
 }
