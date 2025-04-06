@@ -1,6 +1,7 @@
 packages:
   - libs/*
   - apps/*
+  - dbs/*
 onlyBuiltDependencies:
   - '@nestjs/core'
   - '@swc/core'

@@ -1,0 +1,137 @@
+{
+  "Prisma Model Definition": {
+    "scope": "prisma",
+    "prefix": "prisma model",
+    "body": [
+      "model ${1:ModelName} {",
+      "  id        Int      @id @default(autoincrement())$2",
+      "  createdAt DateTime @default(now())",
+      "  updatedAt DateTime @updatedAt",
+      "  deletedAt  DateTime?",
+      "}"
+    ],
+    "description": "Creates a basic Prisma model definition."
+  },
+  "Prisma String Field": {
+    "scope": "prisma",
+    "prefix": "prisma string",
+    "body": ["${1:fieldName} String"],
+    "description": "Creates a Prisma String field."
+  },
+  "Prisma Int Field": {
+    "scope": "prisma",
+    "prefix": "prisma int",
+    "body": ["${1:fieldName} Int"],
+    "description": "Creates a Prisma Int field."
+  },
+  "Prisma Boolean Field": {
+    "scope": "prisma",
+    "prefix": "prisma boolean",
+    "body": ["${1:fieldName} Boolean"],
+    "description": "Creates a Prisma Boolean field."
+  },
+  "Prisma DateTime Field": {
+    "scope": "prisma",
+    "prefix": "prisma datetime",
+    "body": ["${1:fieldName} DateTime"],
+    "description": "Creates a Prisma DateTime field."
+  },
+  "Prisma Decimal Field": {
+    "scope": "prisma",
+    "prefix": "prisma decimal",
+    "body": ["${1:fieldName} Decimal"],
+    "description": "Creates a Prisma Decimal field."
+  },
+  "Prisma BigInt Field": {
+    "scope": "prisma",
+    "prefix": "prisma bigint",
+    "body": ["${1:fieldName} BigInt"],
+    "description": "Creates a Prisma BigInt field."
+  },
+  "Prisma Bytes Field": {
+    "scope": "prisma",
+    "prefix": "prisma bytes",
+    "body": ["${1:fieldName} Bytes"],
+    "description": "Creates a Prisma Bytes field."
+  },
+  "Prisma Json Field": {
+    "scope": "prisma",
+    "prefix": "prisma json",
+    "body": ["${1:fieldName} Json"],
+    "description": "Creates a Prisma Json field."
+  },
+  "Prisma Unique Field": {
+    "scope": "prisma",
+    "prefix": "prisma unique",
+    "body": ["${1:fieldName} ${2:FieldType} @unique"],
+    "description": "Creates a Prisma field with the @unique attribute."
+  },
+  "Prisma Optional Field": {
+    "scope": "prisma",
+    "prefix": "prisma optional",
+    "body": ["${1:fieldName} ${2:FieldType}?"],
+    "description": "Creates a Prisma optional field."
+  },
+  "Prisma Relation Field": {
+    "scope": "prisma",
+    "prefix": "prisma relation",
+    "body": [
+      "${1:fieldName} ${2:RelatedModel} @relation(fields: [${3:relatedFieldId}], references: [id])",
+      "${3:relatedFieldId} Int"
+    ],
+    "description": "Creates a Prisma relation field."
+  },
+  "Prisma Relation Field (One to Many)": {
+    "scope": "prisma",
+    "prefix": "prisma relation one to many",
+    "body": ["${1:fieldName} ${2:RelatedModel}[]"],
+    "description": "Creates a Prisma one-to-many relation field."
+  },
+  "Prisma Enum Definition": {
+    "scope": "prisma",
+    "prefix": "prisma enum",
+    "body": ["enum ${1:EnumName} {", "  ${2:VALUE_1}", "  ${3:VALUE_2}", "}"],
+    "description": "Creates a Prisma enum definition."
+  },
+  "Prisma @@id Compound Key": {
+    "scope": "prisma",
+    "prefix": "prisma compound id",
+    "body": ["@@id([${1:field1}, ${2:field2}])"],
+    "description": "Creates a Prisma compound primary key."
+  },
+  "Prisma @@unique Compound Unique": {
+    "scope": "prisma",
+    "prefix": "prisma compound unique",
+    "body": ["@@unique([${1:field1}, ${2:field2}])"],
+    "description": "Creates a Prisma compound unique constraint."
+  },
+  "Prisma datasource db": {
+    "scope": "prisma",
+    "prefix": "prisma datasource db",
+    "body": [
+      "datasource db {",
+      "  provider = \"postgresql\"",
+      "  url      = env(\"DATABASE_URL\")",
+      "}"
+    ],
+    "description": "Creates a Prisma datasource block for PostgreSQL."
+  },
+  "Prisma generator client": {
+    "scope": "prisma",
+    "prefix": "prisma generator client",
+    "body": ["generator client {", "  provider = \"prisma-client-js\"", "}"],
+    "description": "Creates a Prisma generator block for the Prisma Client."
+  },
+  "Prisma @@map table name": {
+    "scope": "prisma",
+    "prefix": "prisma map table",
+    "body": ["@@map(\"${1:table_name}\")"],
+    "description": "Creates a prisma map to rename table name in database"
+  },
+  "Prisma @@index index name": {
+    "scope": "prisma",
+    "prefix": "prisma index",
+    "body": ["@@index([${1:field1}, ${2:field2}], name:\"${3:indexName}\")"],
+    "description": "Creates a prisma index"
+  }
+}

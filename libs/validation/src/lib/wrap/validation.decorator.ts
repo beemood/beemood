@@ -16,6 +16,7 @@ export function Validation(
     const type = options.type;
     const vo = validationOptions;
     CommonValidation(options, vo)(...args);
+
     switch (type) {
       case 'string':
         StringValidation(options, vo)(...args);

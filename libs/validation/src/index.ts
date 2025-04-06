@@ -11,6 +11,7 @@ export * from './lib/custom/not-starts-with.validation.js';
 export * from './lib/custom/not-with-properties.validation.js';
 export * from './lib/custom/starts-with.validation.js';
 export * from './lib/dto.decorator.js';
+export * from './lib/helpers/to-api-property-options.js';
 export * from './lib/integer-validation.decorator.js';
 export * from './lib/number-format.validation.decorator.js';
 export * from './lib/number-validation.decorator.js';
