@@ -5,6 +5,7 @@ import { dirname, join } from 'path';
 import type { ForEachFileValue } from '../iterators/for-each-file.js';
 import { forEachFile } from '../iterators/for-each-file.js';
 import { lastSegment } from '../path/filename.js';
+
 export type RenameOptions = {
   filepath: string;
   expressions?: string[];

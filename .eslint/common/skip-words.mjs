@@ -130,4 +130,5 @@ export default [
   'pms',
   'ims',
   'auth',
+  'fs'
 ];
