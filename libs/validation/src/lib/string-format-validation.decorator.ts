@@ -28,6 +28,7 @@ import {
   IsTaxId,
   IsUUID,
   IsUrl,
+  MaxLength,
 } from 'class-validator';
 
 export function StringFormatValidation(
@@ -122,6 +123,19 @@ export function StringFormatValidation(
         case 'taxid':
           IsTaxId(undefined, vo)(...args);
           break;
+
+        case 'name': {
+          MaxLength(50)(...args);
+          break;
+        }
+        case 'description': {
+          MaxLength(400)(...args);
+          break;
+        }
+        case 'article': {
+          MaxLength(1000)(...args);
+          break;
+        }
         default:
           throw new Error(
             `The format, ${format}, does not match any defined format `

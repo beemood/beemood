@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-
+import type { KeyOf } from '@bmod/types';
 import { BaseDto, Dto, Property } from '@bmod/validation';
 import { PartialType } from '@nestjs/swagger';
 import type { Project } from '@prisma/pms';
@@ -27,6 +27,14 @@ export class QueryProjectDto {
   @Property({ type: 'string' }) name?: string;
   @Property({ type: 'string' }) description?: string;
 
-  @Property({ type: 'integer', minimum: 1, defaultValue: 100 }) take?: number;
-  @Property({ type: 'integer', minimum: 0 }) skip?: number;
+  @Property({ type: 'integer', minimum: 1, defaultValue: 100, transform: true })
+  take?: number;
+
+  @Property({ type: 'integer', minimum: 0, transform: true }) skip?: number;
+
+  @Property({
+    type: 'array',
+    items: { type: 'string' },
+  })
+  select: Partial<Record<KeyOf<Project>, boolean>>;
 }

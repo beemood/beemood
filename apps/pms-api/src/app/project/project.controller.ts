@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { RestBuilder } from '@bmod/rest';
-import { Body, Param, ParseIntPipe, Query } from '@nestjs/common';
-import type { PrismaClient } from '@prisma/pms';
+import { Body, Inject, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { PrismaClient } from '@prisma/pms';
 import {
   CreateProjectDto,
   ProjectDto,
@@ -18,7 +18,9 @@ const R = new RestBuilder({
 
 @R.Controller('projects')
 export class ProjectController {
-  constructor(protected readonly repository: PrismaClient) {}
+  constructor(
+    @Inject(PrismaClient) protected readonly repository: PrismaClient
+  ) {}
 
   @R.Create()
   create(@Body() dto: CreateProjectDto) {
@@ -36,6 +38,7 @@ export class ProjectController {
           contains: query.description,
         },
       },
+      select: query.select
     });
   }
 

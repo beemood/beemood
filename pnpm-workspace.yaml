@@ -1,10 +1,13 @@
 packages:
   - libs/*
   - apps/*
-  - db/*
 onlyBuiltDependencies:
   - '@nestjs/core'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@scarf/scarf'
   - '@swc/core'
   - core-js
   - esbuild
   - nx
+  - prisma

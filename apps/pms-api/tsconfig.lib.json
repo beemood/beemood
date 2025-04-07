@@ -9,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },
+  "references": [],
   "include": ["src/**/*.ts"],
   "exclude": ["vite.config.ts", "src/**/*.spec.ts"]
 }

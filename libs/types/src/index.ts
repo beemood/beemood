@@ -16,6 +16,7 @@ export * from './lib/number/percent.js';
 export * from './lib/number/rate-template.js';
 export * from './lib/objects/key-of.js';
 export * from './lib/objects/keys.js';
+export * from './lib/objects/select-property.js';
 export * from './lib/schema/array/array-options.js';
 export * from './lib/schema/boolean/boolean-options.js';
 export * from './lib/schema/common/common-options.js';
