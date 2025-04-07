@@ -109,7 +109,7 @@
     }
   },
   "scripts": {
-    "postinstall": "npx prisma migrate dev --name init"
+    "postinstall": "# npx prisma migrate dev --name init"
   },
   "dependencies": {
     "@bmod/rest": "1.0.0",

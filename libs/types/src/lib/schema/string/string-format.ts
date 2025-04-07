@@ -25,4 +25,7 @@ export type StringFormat =
   | 'isin'
   | 'isbn'
   | 'issn'
-  | 'taxid';
+  | 'taxid'
+  | 'name'
+  | 'description'
+  | 'article';

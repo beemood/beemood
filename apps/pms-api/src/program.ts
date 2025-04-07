@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import type { BootstrapOptions } from './bootstrap-options.js';
+import type { BootstrapOptions } from './bootstrap.js';
 import { bootstrap } from './bootstrap.js';
 
 program.name('pms-api cli').description('pms-api cli').version('0.0.1');

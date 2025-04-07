@@ -6,7 +6,12 @@ import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { PmsApiModule } from './app/pms-api.module.js';
-import type { BootstrapOptions } from './bootstrap-options.js';
+
+export type BootstrapOptions = {
+  port: number;
+  prefix: string;
+  profile?: string;
+};
 
 /**
  * Bootstrap the sample service

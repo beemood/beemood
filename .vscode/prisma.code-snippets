@@ -8,6 +8,7 @@
       "  createdAt DateTime @default(now())",
       "  updatedAt DateTime @updatedAt",
       "  deletedAt  DateTime?",
+      "  name       String",
       "}"
     ],
     "description": "Creates a basic Prisma model definition."

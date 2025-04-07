@@ -15,9 +15,82 @@ datasource db {
 }
 
 model Project {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  name        String
+  description String
+}
+
+model Category {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
   name      String
+
+  tasks Task[]
+}
+
+model Tag {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String
+}
+
+model Sprint {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  title       String
+  description String @default("")
+
+  startDate DateTime?
+  endDate   DateTime?
+
+  tasks Task[]
+}
+
+model Task {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  title       String
+  description String
+  status      String
+  priority    String
+
+  due DateTime
+
+  assignedTo Int[]
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  sprint   Sprint? @relation(fields: [sprintId], references: [id])
+  sprintId Int?
+
+  comments Comment[]
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  comment String
+
+  createdBy Int
+
+  task   Task @relation(fields: [taskId], references: [id])
+  taskId Int
 }

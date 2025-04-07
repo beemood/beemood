@@ -130,5 +130,8 @@ export default [
   'pms',
   'ims',
   'auth',
-  'fs'
+  'fs',
+  'dto',
+  'dtos',
+  'datasource',
 ];
