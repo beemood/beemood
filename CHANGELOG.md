@@ -1,3 +1,13 @@
+# 1.0.0 (2025-04-07)
+
+### 🚀 Features
+
+- created the service template and integration with prisma. ([6d6a437](https://github.com/beemood/beemood/commit/6d6a437))
+
+### ❤️ Thank You
+
+- Robert Brightline @beemood
+
 ## 0.6.0 (2025-04-07)
 
 This was a version bump only, there were no code changes.

@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/fs",
+  "name": "@bmod/prisma",
   "version": "1.0.0",
-  "description": "Useful cli fs to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
+  "description": "- [ ] add description to prisma",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "fs"
+    "- [ ] add keywords to prisma"
   ],
   "repository": {
-    "directory": "libs/fs",
+    "directory": "libs/prisma",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/fs",
+  "homepage": "https://beemood.github.io/beemood/prisma",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,14 +38,11 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/fs/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/prisma/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "fs": "./bin/fs.js"
-  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -57,11 +54,10 @@
   },
   "files": [
     "dist",
-    "bin",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/fs/src",
+    "sourceRoot": "libs/prisma/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -69,22 +65,23 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/fs/dist",
-          "main": "libs/fs/src/index.ts",
-          "tsConfig": "libs/fs/tsconfig.lib.json",
-          "skipTypeCheck": false,
+          "outputPath": "libs/prisma/dist",
+          "main": "libs/prisma/src/index.ts",
+          "tsConfig": "libs/prisma/tsconfig.lib.json",
+          "skipTypeCheck": true,
           "stripLeadingPaths": true
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/fs/src/index.ts --out public/libs/fs --tsconfig libs/fs/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints libs/prisma/src/index.ts --out public/libs/prisma --tsconfig libs/prisma/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
-    "@bmod/is": "1.0.0",
-    "@bmod/types": "1.0.0",
-    "@swc/helpers": "^0.5.15",
-    "commander": "^13.1.0"
+    "@nestjs/common": "^11.0.13",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.0.13",
+    "@prisma/client": "^6.5.0",
+    "@swc/helpers": "^0.5.15"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@bmod/hello-app",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -108,7 +108,7 @@
     }
   },
   "dependencies": {
-    "@bmod/validation": "0.6.0",
+    "@bmod/validation": "1.0.0",
     "@nestjs/common": "^11.0.13",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.13",
