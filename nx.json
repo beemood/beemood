@@ -59,7 +59,7 @@
   },
   "targetDefaults": {
     "@nx/js:swc": {
-      "cache": false,
+      "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },

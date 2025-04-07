@@ -10,5 +10,10 @@
     "types": ["node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["vite.config.ts", "src/**/*.spec.ts"]
+  "exclude": ["vite.config.ts", "src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "../types/tsconfig.lib.json"
+    }
+  ]
 }

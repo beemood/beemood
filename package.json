@@ -1,11 +1,12 @@
 {
-  "name": "@beemood/source",
+  "name": "@bmod/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {},
   "private": true,
   "type": "module",
   "devDependencies": {
+    "@bmod/gen": "workspace:^",
     "@eslint/js": "^9.8.0",
     "@nx/esbuild": "20.7.1",
     "@nx/eslint": "20.7.1",
@@ -52,8 +53,5 @@
         }
       }
     }
-  },
-  "dependencies": {
-    "@bmod/gen": "workspace:^"
   }
 }

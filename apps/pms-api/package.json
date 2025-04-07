@@ -1,6 +1,6 @@
 {
   "name": "@bmod/pms-api",
-  "version": "0.1.0",
+  "version": "0.1.6",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
@@ -58,6 +58,7 @@
   "files": [
     "bin",
     "dist",
+    "prisma",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
@@ -124,6 +125,7 @@
     "commander": "^13.1.0",
     "helmet": "^8.1.0",
     "pg": "^8.14.1",
+    "prisma": "^6.5.0",
     "typeorm": "^0.3.22"
   },
   "devDependencies": {

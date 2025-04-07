@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/databases",
-  "version": "0.1.0",
+  "name": "@bmod/<%- fileName %>",
+  "version": "0.4.4",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
-  "description": "- [ ] add description to databases",
+  "description": "Project, component, and asset <%- fileName %>erators",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "- [ ] add keywords to databases"
+    "<%- fileName %>erator"
   ],
   "repository": {
-    "directory": "libs/databases",
+    "directory": "<%- directory %>",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/databases",
+  "homepage": "https://beemood.github.io/beemood/<%- fileName %>",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,7 +38,7 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/databases/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/<%- directory %>/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -53,12 +53,12 @@
     }
   },
   "files": [
-    "generators.json",
     "dist",
+    "<%- fileName %>erators.json",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/databases/src",
+    "sourceRoot": "<%- directory %>/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -66,24 +66,24 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/databases/dist",
-          "main": "libs/databases/src/index.ts",
-          "tsConfig": "libs/databases/tsconfig.lib.json",
-          "skipTypeCheck": true,
+          "outputPath": "<%- directory %>/dist",
+          "main": "<%- directory %>/src/index.ts",
+          "tsConfig": "<%- directory %>/tsconfig.lib.json",
+          "skipTypeCheck": false,
           "stripLeadingPaths": true,
           "assets": [
             {
-              "input": "libs/databases/src",
+              "input": "<%- directory %>/src",
               "glob": "**/*.json",
               "output": "/"
             },
             {
-              "input": "libs/databases/src",
+              "input": "<%- directory %>/src",
               "glob": "**/*.d.ts",
               "output": "/"
             },
             {
-              "input": "libs/databases/src",
+              "input": "<%- directory %>/src",
               "glob": "**/files/**/*",
               "output": "/"
             }
@@ -91,11 +91,15 @@
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/databases/src/index.ts --out public/libs/databases --tsconfig libs/databases/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %> --tsconfig <%- directory %>/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
+    "@bmod/fs": "workspace:^",
+    "@bmod/is": "0.3.5",
+    "@nx/devkit": "20.7.1",
     "@swc/helpers": "^0.5.15"
-  }
+  },
+  "<%- fileName %>erators": "./<%- fileName %>erators.json"
 }

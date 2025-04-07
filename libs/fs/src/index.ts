@@ -9,6 +9,7 @@ export * from './lib/json/read-json-file.js';
 export * from './lib/json/update-json-file.js';
 export * from './lib/json/write-json-file.js';
 export * from './lib/path/filename.js';
+export * from './lib/text/append-text-file.js';
 export * from './lib/text/read-text-file.js';
 export * from './lib/text/replace-text-file.js';
 export * from './lib/text/write-text-file.js';

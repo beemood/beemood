@@ -51,7 +51,10 @@ export async function bootstrap(options?: BootstrapOptions) {
         .setDescription('This is a sample app')
         .build(),
       {}
-    )
+    ),
+    {
+      explorer: true,
+    }
   );
 
   // Start the app

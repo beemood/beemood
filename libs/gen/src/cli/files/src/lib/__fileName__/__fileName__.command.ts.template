@@ -10,5 +10,5 @@ export function <%- propertyName %>Command(command: Command) {
     .command('<%- fileName %>')
     .description('Say <%- fileName %>')
     .option('-n, --name <string>', 'What is your name?')
-    .action(<%- fileName %>);
+    .action(<%- propertyName %>);
 }

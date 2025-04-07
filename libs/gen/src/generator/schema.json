@@ -12,7 +12,16 @@
         "index": 0
       },
       "x-prompt": "What directory would you like to use?"
+    },
+    "project": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What project would you like to use?"
     }
   },
-  "required": ["directory"]
+  "required": ["directory", "project"]
 }

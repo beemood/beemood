@@ -7,4 +7,6 @@ export * from './generator/generator.js';
 export * from './generator/schema.d.js';
 export * from './lib/lib.js';
 export * from './lib/schema.d.js';
+export * from './plugin/plugin.js';
+export * from './plugin/schema.d.js';
 

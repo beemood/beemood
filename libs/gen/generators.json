@@ -19,6 +19,11 @@
       "factory": "./dist/generator/generator.js",
       "schema": "./dist/generator/schema.json",
       "description": "generator generator"
+    },
+    "plugin": {
+      "factory": "./dist/plugin/plugin.js",
+      "schema": "./dist/plugin/schema.json",
+      "description": "plugin generator"
     }
   }
 }
