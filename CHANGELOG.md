@@ -1,3 +1,13 @@
+## 1.0.3 (2025-04-07)
+
+### 🚀 Features
+
+- working query dto ([d8645e2](https://github.com/beemood/beemood/commit/d8645e2))
+
+### ❤️ Thank You
+
+- Robert Brightline @beemood
+
 ## 1.0.2 (2025-04-07)
 
 This was a version bump only, there were no code changes.
