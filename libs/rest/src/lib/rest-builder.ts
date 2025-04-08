@@ -5,7 +5,7 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiTags
+  ApiTags,
 } from '@nestjs/swagger';
 
 export type RestBuilderOptions = {

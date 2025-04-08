@@ -1,1 +1,1 @@
-export type Undefined = undefined | null;
+export type Undefined = undefined;

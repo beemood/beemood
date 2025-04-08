@@ -1,25 +1,35 @@
+import { ArrayValue, StringValue } from '@bmod/types';
 import { Dto } from '../dto.decorator.js';
 import { Property } from '../wrap/property.decorator.js';
 
 @Dto()
 export class DateQueryDto {
-  @Property({ type: 'string', format: 'date' }) equals?: Date;
-  @Property({ type: 'string', format: 'date' }) gt?: Date;
-  @Property({ type: 'string', format: 'date' }) gte?: Date;
-  @Property({
-    type: 'array',
-    items: { type: 'string', format: 'date' },
-    transform: true,
-  })
-  in?: Date[];
+  @Property({ type: 'string', format: 'date' }) equals? = StringValue();
 
-  @Property({ type: 'string', format: 'date', transform: true }) lt?: Date;
-  @Property({ type: 'string', format: 'date', transform: true }) lte?: Date;
-  @Property({ type: 'string', format: 'date', transform: true }) not?: Date;
+  @Property({ type: 'string', format: 'date' }) gt? = StringValue();
+
+  @Property({ type: 'string', format: 'date' }) gte? = StringValue();
+
   @Property({
     type: 'array',
     items: { type: 'string', format: 'date' },
     transform: true,
   })
-  notIn?: Date[];
+  in? = ArrayValue<string>();
+
+  @Property({ type: 'string', format: 'date', transform: true }) lt? =
+    StringValue();
+
+  @Property({ type: 'string', format: 'date', transform: true }) lte? =
+    StringValue();
+
+  @Property({ type: 'string', format: 'date', transform: true }) not? =
+    StringValue();
+
+  @Property({
+    type: 'array',
+    items: { type: 'string', format: 'date' },
+    transform: true,
+  })
+  notIn? = ArrayValue<string>();
 }

@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import type { NestFastifyApplication } from '@nestjs/platform-fastify';
@@ -32,14 +32,6 @@ export async function bootstrap(options?: BootstrapOptions) {
   app.setGlobalPrefix(PREFIX);
 
   app.enableCors({ origin: '*' });
-
-  // // Add global pipes
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true,
-      transformOptions: { exposeUnsetFields: false },
-    })
-  );
 
   // Configure helmet
   app.use(helmet());

@@ -1,11 +1,10 @@
-import { RestBuilder } from '@bmod/rest';
-import { Body, Inject, Param, ParseIntPipe, Query } from '@nestjs/common';
+import { Body, ParamId, Query, RestBuilder } from '@bmod/rest';
+import { Inject } from '@nestjs/common';
 import { PrismaClient } from '@prisma/pms';
-import type { ProjectQueryDto } from './project.dto.js';
 import {
   CreateProjectDto,
   ProjectDto,
-  ProjectWhereDto,
+  ProjectQueryDto,
   UpdateProjectDto,
 } from './project.dto.js';
 
@@ -13,7 +12,7 @@ const R = new RestBuilder({
   dto: ProjectDto,
   createDto: CreateProjectDto,
   updateDto: UpdateProjectDto,
-  queryDto: ProjectWhereDto,
+  queryDto: ProjectQueryDto,
 });
 
 @R.Controller('projects')
@@ -29,32 +28,29 @@ export class ProjectController {
 
   @R.Read()
   read(@Query() query: ProjectQueryDto) {
-    console.log(query);
     return this.repository.project.findMany({ ...query });
   }
 
   @R.ReadById()
-  readById(@Param('id', ParseIntPipe) id: number) {
+  readById(@ParamId() id: number) {
     return this.repository.project.findUnique({ where: { id } });
   }
 
   @R.UpdateById()
-  updateById(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateProjectDto
-  ) {
+  updateById(@ParamId() id: number, @Body() dto: UpdateProjectDto) {
     return this.repository.project.update({
       where: { id },
-      data: dto,
+      data: { ...dto, updatedAt: new Date() },
       select: { id: true },
     });
   }
 
   @R.DeleteById()
-  deleteById(@Param('id', ParseIntPipe) id: number) {
+  deleteById(@ParamId() id: number) {
+    const timestamp = new Date();
     return this.repository.project.update({
       where: { id },
-      data: { updatedAt: new Date() },
+      data: { updatedAt: timestamp, deletedAt: timestamp },
       select: { id: true },
     });
   }
