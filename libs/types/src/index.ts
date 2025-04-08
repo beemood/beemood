@@ -17,6 +17,9 @@ export * from './lib/number/rate-template.js';
 export * from './lib/objects/key-of.js';
 export * from './lib/objects/keys.js';
 export * from './lib/objects/select-property.js';
+export * from './lib/query/order-direction.js';
+export * from './lib/query/query-query-type.js';
+export * from './lib/query/select-query-type.js';
 export * from './lib/schema/array/array-options.js';
 export * from './lib/schema/boolean/boolean-options.js';
 export * from './lib/schema/common/common-options.js';
@@ -28,4 +31,5 @@ export * from './lib/schema/string/string-format.js';
 export * from './lib/schema/string/string.options.js';
 export * from './lib/string/templates.js';
 export * from './lib/types/class-type.js';
+export * from './lib/types/single-type.js';
 

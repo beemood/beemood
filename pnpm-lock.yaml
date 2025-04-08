@@ -111,7 +111,7 @@ importers:
   apps/hello-app:
     dependencies:
       '@bmod/validation':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../../libs/validation
       '@nestjs/common':
         specifier: ^11.0.13
@@ -154,13 +154,13 @@ importers:
   apps/pms-api:
     dependencies:
       '@bmod/rest':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../../libs/rest
       '@bmod/types':
-        specifier: workspace:1.0.2
+        specifier: 1.0.3
         version: link:../../libs/types
       '@bmod/validation':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../../libs/validation
       '@fastify/static':
         specifier: ^8.1.1
@@ -227,10 +227,10 @@ importers:
   libs/fs:
     dependencies:
       '@bmod/is':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../is
       '@bmod/types':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../types
       '@swc/helpers':
         specifier: ^0.5.15
@@ -242,10 +242,10 @@ importers:
   libs/gen:
     dependencies:
       '@bmod/fs':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../fs
       '@bmod/is':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../is
       '@nx/devkit':
         specifier: 20.7.1
@@ -257,7 +257,7 @@ importers:
   libs/is:
     dependencies:
       '@bmod/types':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../types
       '@swc/helpers':
         specifier: ^0.5.15
@@ -290,7 +290,7 @@ importers:
   libs/rest:
     dependencies:
       '@bmod/types':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../types
       '@nestjs/common':
         specifier: ^11.0.13
@@ -308,7 +308,7 @@ importers:
   libs/tools:
     dependencies:
       '@bmod/is':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../is
       '@swc/helpers':
         specifier: ^0.5.15
@@ -326,10 +326,10 @@ importers:
   libs/validation:
     dependencies:
       '@bmod/is':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../is
       '@bmod/types':
-        specifier: 1.0.2
+        specifier: 1.0.3
         version: link:../types
       '@nestjs/swagger':
         specifier: ^11.1.1

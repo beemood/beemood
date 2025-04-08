@@ -2,12 +2,10 @@ import type { Type } from '@nestjs/common';
 import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import {
   ApiBearerAuth,
-  ApiBody,
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiQuery,
-  ApiTags,
+  ApiTags
 } from '@nestjs/swagger';
 
 export type RestBuilderOptions = {
@@ -32,7 +30,6 @@ export class RestBuilder {
     return (...args) => {
       ApiOperation({ summary: `Create ${this.options.dto.name}` })(...args);
       ApiCreatedResponse({ type: this.options.dto })(...args);
-      ApiBody({ type: this.options.createDto })(...args);
       Post()(...args);
     };
   }
@@ -41,7 +38,6 @@ export class RestBuilder {
     return (...args) => {
       ApiOperation({ summary: `Find all ${this.options.dto.name}` })(...args);
       ApiOkResponse({ type: this.options.dto, isArray: true })(...args);
-      ApiQuery({ type: this.options.queryDto })(...args);
       Get()(...args);
     };
   }
@@ -70,7 +66,6 @@ export class RestBuilder {
         ...args
       );
       ApiOkResponse({ type: this.options.dto })(...args);
-      ApiBody({ type: this.options.updateDto })(...args);
       Put(':id')(...args);
     };
   }

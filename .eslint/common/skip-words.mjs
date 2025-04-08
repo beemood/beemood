@@ -134,4 +134,12 @@ export default [
   'dto',
   'dtos',
   'datasource',
+  'equals',
+  'gt',
+  'gte',
+  'in',
+  'lt',
+  'lte',
+  'not',
+  'notIn',
 ];

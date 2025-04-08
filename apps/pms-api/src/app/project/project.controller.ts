@@ -1,11 +1,11 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import { RestBuilder } from '@bmod/rest';
 import { Body, Inject, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { PrismaClient } from '@prisma/pms';
+import type { ProjectQueryDto } from './project.dto.js';
 import {
   CreateProjectDto,
   ProjectDto,
-  QueryProjectDto,
+  ProjectWhereDto,
   UpdateProjectDto,
 } from './project.dto.js';
 
@@ -13,7 +13,7 @@ const R = new RestBuilder({
   dto: ProjectDto,
   createDto: CreateProjectDto,
   updateDto: UpdateProjectDto,
-  queryDto: QueryProjectDto,
+  queryDto: ProjectWhereDto,
 });
 
 @R.Controller('projects')
@@ -28,18 +28,9 @@ export class ProjectController {
   }
 
   @R.Read()
-  read(@Query() query: QueryProjectDto) {
-    return this.repository.project.findMany({
-      where: {
-        name: {
-          contains: query.name,
-        },
-        description: {
-          contains: query.description,
-        },
-      },
-      select: query.select
-    });
+  read(@Query() query: ProjectQueryDto) {
+    console.log(query);
+    return this.repository.project.findMany({ ...query });
   }
 
   @R.ReadById()

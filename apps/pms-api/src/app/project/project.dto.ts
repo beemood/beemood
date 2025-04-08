@@ -1,6 +1,22 @@
-/* eslint-disable @nx/enforce-module-boundaries */
-import type { KeyOf } from '@bmod/types';
-import { BaseDto, Dto, Property } from '@bmod/validation';
+import type {
+  KeyOf,
+  OrderDirection,
+  OrderQueryType,
+  SelectQueryType,
+  SingleType,
+} from '@bmod/types';
+import type { StringQueryDto } from '@bmod/validation';
+import {
+  BaseDto,
+  BaseOrderDto,
+  BaseQueryDto,
+  BaseSelectDto,
+  BaseWhereQueryDto,
+  Dto,
+  OrderQueryProperty,
+  Property,
+  StringQueryProperty,
+} from '@bmod/validation';
 import { PartialType } from '@nestjs/swagger';
 import type { Project } from '@prisma/pms';
 
@@ -11,7 +27,7 @@ export class ProjectDto extends BaseDto<Date> implements Project {
 }
 
 @Dto()
-export class CreateProjectDto implements Pick<Project, 'name'> {
+export class CreateProjectDto implements Pick<Project, 'name' | 'description'> {
   @Property({ type: 'string', required: true, stringFormat: 'name' })
   name: string;
 
@@ -23,18 +39,43 @@ export class CreateProjectDto implements Pick<Project, 'name'> {
 export class UpdateProjectDto extends PartialType(CreateProjectDto) {}
 
 @Dto()
-export class QueryProjectDto {
-  @Property({ type: 'string' }) name?: string;
-  @Property({ type: 'string' }) description?: string;
+export class ProjectWhereDto
+  extends BaseWhereQueryDto
+  implements SingleType<Project, any>
+{
+  @StringQueryProperty() name?: StringQueryDto | string;
+  @StringQueryProperty() description?: StringQueryDto | string;
+}
 
-  @Property({ type: 'integer', minimum: 1, defaultValue: 100, transform: true })
-  take?: number;
+@Dto()
+export class ProjectOrderDto
+  extends BaseOrderDto
+  implements OrderQueryType<Project>
+{
+  @OrderQueryProperty() name?: OrderDirection;
+  @OrderQueryProperty() description?: OrderDirection;
+}
 
-  @Property({ type: 'integer', minimum: 0, transform: true }) skip?: number;
+@Dto()
+export class ProjectSelectDto
+  extends BaseSelectDto
+  implements SelectQueryType<Project>
+{
+  @Property({ type: 'boolean', transform: true }) name?: boolean;
+  @Property({ type: 'boolean', transform: true }) description?: boolean;
+}
 
-  @Property({
-    type: 'array',
-    items: { type: 'string' },
-  })
-  select: Partial<Record<KeyOf<Project>, boolean>>;
+@Dto()
+export class ProjectQueryDto extends BaseQueryDto {
+  @Property({ type: 'string', isIn: Object.keys(ProjectDto), transform: true })
+  distinct: KeyOf<Project>;
+
+  @Property({ type: 'object', target: () => ProjectSelectDto, transform: true })
+  select: ProjectSelectDto;
+
+  @Property({ type: 'object', target: () => ProjectOrderDto, transform: true })
+  orderBy: ProjectOrderDto;
+
+  @Property({ type: 'object', target: () => ProjectWhereDto, transform: true })
+  where: ProjectWhereDto;
 }
