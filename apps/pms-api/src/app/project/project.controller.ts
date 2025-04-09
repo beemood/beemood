@@ -9,6 +9,7 @@ import {
 } from './project.dto.js';
 
 const R = new RestBuilder({
+  resourceName: 'project',
   dto: ProjectDto,
   createDto: CreateProjectDto,
   updateDto: UpdateProjectDto,

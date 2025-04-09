@@ -78,7 +78,10 @@
     }
   },
   "dependencies": {
+    "@bmod/rest": "workspace:1.1.0",
+    "@bmod/validation": "workspace:1.1.0",
     "@nestjs/common": "^11.0.13",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.13",
     "@nestjs/jwt": "^11.0.0",
     "@swc/helpers": "^0.5.15"

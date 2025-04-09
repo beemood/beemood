@@ -112,6 +112,7 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
+    "@bmod/auth": "workspace:^",
     "@bmod/rest": "1.1.0",
     "@bmod/types": "1.1.0",
     "@bmod/validation": "1.1.0",
@@ -128,8 +129,7 @@
     "commander": "^13.1.0",
     "helmet": "^8.1.0",
     "pg": "^8.14.1",
-    "prisma": "^6.5.0",
-    "typeorm": "^0.3.22"
+    "prisma": "^6.5.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^11.0.13",

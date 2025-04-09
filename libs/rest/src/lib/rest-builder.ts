@@ -7,8 +7,10 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { Operation, OperationName, Resource } from './metadata.js';
 
 export type RestBuilderOptions = {
+  resourceName: string;
   dto: Type;
   createDto: Type;
   updateDto: Type;
@@ -20,9 +22,10 @@ export class RestBuilder {
 
   Controller(path: string): ClassDecorator {
     return (...args) => {
-      Controller(path)(...args);
       ApiTags(this.options.dto.name + 'Controller')(...args);
       ApiBearerAuth()(...args);
+      Resource(this.options.resourceName);
+      Controller(path)(...args);
     };
   }
 
@@ -30,6 +33,7 @@ export class RestBuilder {
     return (...args) => {
       ApiOperation({ summary: `Create ${this.options.dto.name}` })(...args);
       ApiCreatedResponse({ type: this.options.dto })(...args);
+      Operation(OperationName.WRITE_ONE)(...args);
       Post()(...args);
     };
   }
@@ -38,6 +42,7 @@ export class RestBuilder {
     return (...args) => {
       ApiOperation({ summary: `Find all ${this.options.dto.name}` })(...args);
       ApiOkResponse({ type: this.options.dto, isArray: true })(...args);
+      Operation(OperationName.READ)(...args);
       Get()(...args);
     };
   }
@@ -46,6 +51,7 @@ export class RestBuilder {
     return (...args) => {
       ApiOperation({ summary: `Find ${this.options.dto.name} by id` })(...args);
       ApiOkResponse({ type: this.options.dto })(...args);
+      Operation(OperationName.READ_ONE)(...args);
       Get(':id')(...args);
     };
   }
@@ -55,6 +61,7 @@ export class RestBuilder {
       ApiOperation({ summary: `Delete ${this.options.dto.name} by id` })(
         ...args
       );
+      Operation(OperationName.DELETE_ONE)(...args);
       ApiOkResponse({ type: this.options.dto })(...args);
       Delete(':id')(...args);
     };
@@ -66,6 +73,7 @@ export class RestBuilder {
         ...args
       );
       ApiOkResponse({ type: this.options.dto })(...args);
+      Operation(OperationName.UPDATE_ONE)(...args);
       Put(':id')(...args);
     };
   }

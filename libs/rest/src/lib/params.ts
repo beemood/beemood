@@ -1,9 +1,10 @@
 import {
-    Body as __Body,
-    Param as __Param,
-    Query as __Query,
-    ParseIntPipe,
-    ValidationPipe,
+  Body as __Body,
+  Param as __Param,
+  Query as __Query,
+  createParamDecorator,
+  ParseIntPipe,
+  ValidationPipe,
 } from '@nestjs/common';
 
 export function Body(): ParameterDecorator {
@@ -52,3 +53,11 @@ export function Param(): ParameterDecorator {
     )(...args);
   };
 }
+
+export const UserId = createParamDecorator((data, context) => {
+  return context.switchToHttp().getRequest().userId;
+});
+
+export const BearerToken = createParamDecorator((data, context) => {
+  return context.switchToHttp().getRequest().bearer;
+});

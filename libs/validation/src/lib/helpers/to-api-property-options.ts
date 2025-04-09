@@ -81,7 +81,7 @@ export function toApiPropertyOptions(options: PropertyOptions): any {
       const { required, description, defaultValue, example, examples } =
         options;
       return {
-        type: options.target,
+        type: options.target(),
         required: required === true,
         nullable: required !== true,
         description,

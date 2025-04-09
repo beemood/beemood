@@ -1,5 +1,4 @@
 import { Exclude } from 'class-transformer';
-
 /**
  * Class decorator for dto classes
  * @returns class decorator

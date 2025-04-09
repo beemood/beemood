@@ -19,7 +19,7 @@ export type BootstrapOptions = {
 export async function bootstrap(options?: BootstrapOptions) {
   const app = await NestFactory.create<NestFastifyApplication>(
     PmsApiModule,
-    new FastifyAdapter()
+    new FastifyAdapter({ requestTimeout: 5000 })
   );
 
   const config = app.get(ConfigService);
@@ -48,8 +48,7 @@ export async function bootstrap(options?: BootstrapOptions) {
         .setDescription('This is a sample app')
         .build(),
       {}
-    ),
-    { explorer: true }
+    )
   );
 
   // Start the app
