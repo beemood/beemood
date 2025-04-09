@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/<%- fileName %>",
+  "name": "@bmod/auth-api",
   "version": "0.0.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
-  "description": "- [ ] add description to <%- fileName %>",
+  "description": "- [ ] add description to auth-api",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "- [ ] add keywords to <%- fileName %>"
+    "- [ ] add keywords to auth-api"
   ],
   "repository": {
-    "directory": "<%- directory %>",
+    "directory": "apps/auth-api",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/<%- fileName %>",
+  "homepage": "https://beemood.github.io/beemood/auth-api",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,7 +38,7 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/<%- directory %>/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/auth-api/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -53,7 +53,7 @@
     }
   },
   "bin": {
-    "<%- fileName %>": "./bin/<%- fileName %>.js"
+    "auth-api": "./bin/auth-api.js"
   },
   "files": [
     "bin",
@@ -64,7 +64,7 @@
     "postinstall": "npx prisma generate"
   },
   "nx": {
-    "sourceRoot": "<%- directory %>/src",
+    "sourceRoot": "apps/auth-api/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -72,15 +72,15 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "<%- directory %>/dist",
-          "main": "<%- directory %>/src/index.ts",
-          "tsConfig": "<%- directory %>/tsconfig.lib.json",
+          "outputPath": "apps/auth-api/dist",
+          "main": "apps/auth-api/src/index.ts",
+          "tsConfig": "apps/auth-api/tsconfig.lib.json",
           "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints <%- directory %>/src/index.ts --out public/<%- directory %> --tsconfig <%- directory %>/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints apps/auth-api/src/index.ts --out public/apps/auth-api --tsconfig apps/auth-api/tsconfig.lib.json"
       },
       "build-watch": {
         "executor": "@nx/js:swc",
@@ -88,9 +88,9 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "<%- directory %>/dist",
-          "main": "<%- directory %>/src/index.ts",
-          "tsConfig": "<%- directory %>/tsconfig.lib.json",
+          "outputPath": "apps/auth-api/dist",
+          "main": "apps/auth-api/src/index.ts",
+          "tsConfig": "apps/auth-api/tsconfig.lib.json",
           "skipTypeCheck": true,
           "stripLeadingPaths": true,
           "watch": true
@@ -99,7 +99,7 @@
       "start": {
         "command": "node --watch --watch-path=src ./dist/run-dev.js ",
         "options": {
-          "cwd": "<%- directory %>"
+          "cwd": "apps/auth-api"
         }
       },
       "serve": {
@@ -127,7 +127,9 @@
   },
   "devDependencies": {
     "@nestjs/testing": "^11.0.13",
+    "@prisma/client": "6.6.0",
     "@types/helmet": "^4.0.0",
-    "chokidar": "^4.0.3"
+    "chokidar": "^4.0.3",
+    "prisma": "^6.5.0"
   }
 }

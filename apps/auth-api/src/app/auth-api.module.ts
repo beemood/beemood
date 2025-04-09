@@ -12,4 +12,4 @@ import { APP_GUARD } from '@nestjs/core';
     },
   ],
 })
-export class <%- className %>Module {}
+export class AuthApiModule {}

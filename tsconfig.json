@@ -13,19 +13,10 @@
       "path": "./libs/gen"
     },
     {
-      "path": "./libs/msgs"
-    },
-    {
       "path": "./libs/tools"
     },
     {
-      "path": "./libs/abcd"
-    },
-    {
       "path": "./libs/is"
-    },
-    {
-      "path": "./apps/hello-app"
     },
     {
       "path": "./apps/pms-api"

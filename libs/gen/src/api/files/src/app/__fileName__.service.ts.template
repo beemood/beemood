@@ -1,9 +1,0 @@
-import { Injectable } from '@nestjs/common';
-import type { <%- className  %>Dto } from './<%- fileName %>.dto.js';
-
-@Injectable()
-export class <%- className  %>Service {
-  <%- propertyName  %>(<%- propertyName  %>Dto: <%- className  %>Dto) {
-    return { message: `<%- className  %>, ${<%- propertyName  %>Dto.name}` };
-  }
-}
