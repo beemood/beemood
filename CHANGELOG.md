@@ -1,3 +1,16 @@
+## 1.2.0 (2025-04-09)
+
+### 🚀 Features
+
+- tested the resource module and working on auth service . ([60479c1](https://github.com/beemood/beemood/commit/60479c1))
+- working on auth-api ([7e45ab2](https://github.com/beemood/beemood/commit/7e45ab2))
+- created prisma module that provides injectors and providers. ([360daaa](https://github.com/beemood/beemood/commit/360daaa))
+- fixed prisma module ([87670e6](https://github.com/beemood/beemood/commit/87670e6))
+
+### ❤️ Thank You
+
+- Robert Brightline @beemood
+
 ## 1.1.0 (2025-04-09)
 
 ### 🚀 Features

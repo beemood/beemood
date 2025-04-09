@@ -1,6 +1,6 @@
 {
   "name": "@bmod/fs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Useful cli fs to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {
@@ -82,8 +82,8 @@
     }
   },
   "dependencies": {
-    "@bmod/is": "1.1.0",
-    "@bmod/types": "1.1.0",
+    "@bmod/is": "1.2.0",
+    "@bmod/types": "1.2.0",
     "@swc/helpers": "^0.5.15",
     "commander": "^13.1.0"
   }
