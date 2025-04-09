@@ -1,26 +1,26 @@
 {
-  "name": "@bmod/tools",
+  "name": "@bmod/auth",
   "version": "1.1.0",
-  "description": "Useful cli tools to use accrosss the projects",
   "license": "MIT",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
+  "description": "- [ ] add description to auth",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
     "url": "https://beemood.github.io"
   },
   "keywords": [
-    "tools"
+    "- [ ] add keywords to auth"
   ],
   "repository": {
-    "directory": "libs/tools",
+    "directory": "libs/auth",
     "url": "https://github.com/beemood/beemood/tree/main",
     "type": "github"
   },
-  "homepage": "https://beemood.github.io/beemood/tools",
+  "homepage": "https://beemood.github.io/beemood/auth",
   "bugs": {
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
@@ -38,14 +38,11 @@
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/tools/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/auth/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "tools": "./bin/tools.js"
-  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -57,11 +54,10 @@
   },
   "files": [
     "dist",
-    "bin",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/tools/src",
+    "sourceRoot": "libs/auth/src",
     "targets": {
       "build": {
         "executor": "@nx/js:swc",
@@ -69,21 +65,22 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/tools/dist",
-          "main": "libs/tools/src/index.ts",
-          "tsConfig": "libs/tools/tsconfig.lib.json",
-          "skipTypeCheck": false,
+          "outputPath": "libs/auth/dist",
+          "main": "libs/auth/src/index.ts",
+          "tsConfig": "libs/auth/tsconfig.lib.json",
+          "skipTypeCheck": true,
           "stripLeadingPaths": true
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints libs/tools/src/index.ts --out public/libs/tools --tsconfig libs/tools/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints libs/auth/src/index.ts --out public/libs/auth --tsconfig libs/auth/tsconfig.lib.json"
       }
     }
   },
   "dependencies": {
-    "@bmod/is": "1.1.0",
-    "@swc/helpers": "^0.5.15",
-    "commander": "^13.1.0"
+    "@nestjs/common": "^11.0.13",
+    "@nestjs/core": "^11.0.13",
+    "@nestjs/jwt": "^11.0.0",
+    "@swc/helpers": "^0.5.15"
   }
 }

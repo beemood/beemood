@@ -1,3 +1,14 @@
+## 1.1.0 (2025-04-09)
+
+### 🚀 Features
+
+- imp. query dtos ([dc4d53a](https://github.com/beemood/beemood/commit/dc4d53a))
+- created the project controller, uqery operation, and tested. ([7dbc39b](https://github.com/beemood/beemood/commit/7dbc39b))
+
+### ❤️ Thank You
+
+- Robert Brightline @beemood
+
 ## 1.0.4 (2025-04-08)
 
 This was a version bump only, there were no code changes.
