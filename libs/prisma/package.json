@@ -1,0 +1,87 @@
+{
+  "name": "@bmod/prisma",
+  "version": "1.1.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "- [ ] add description to prisma",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "- [ ] add keywords to prisma"
+  ],
+  "repository": {
+    "directory": "libs/prisma",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://beemood.github.io/beemood/prisma",
+  "bugs": {
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "categories": [
+    "AI"
+  ],
+  "contributors": [
+    {
+      "email": "robert.brightline@gmail.com",
+      "name": "Robert Brightline",
+      "url": "https://beemood.github.io"
+    }
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/prisma/favicon.png",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/prisma/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/prisma/dist",
+          "main": "libs/prisma/src/index.ts",
+          "tsConfig": "libs/prisma/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints libs/prisma/src/index.ts --out public/libs/prisma --tsconfig libs/prisma/tsconfig.lib.json"
+      }
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.13",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.0.13",
+    "@prisma/client": "^6.6.0",
+    "@swc/helpers": "^0.5.15"
+  }
+}

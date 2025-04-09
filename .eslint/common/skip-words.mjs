@@ -142,4 +142,5 @@ export default [
   'lte',
   'not',
   'notIn',
+  'repo',
 ];

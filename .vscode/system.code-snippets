@@ -14,5 +14,20 @@
       "  return dirname(filename);",
       "})();"
     ]
+  },
+
+  "Switch Statement": {
+    "prefix": "my-switch",
+    "body": [
+      "switch (${1:expression}) {",
+      "\tcase ${2:value}:",
+      "\t\t${3:// code to execute when value matches}",
+      "\t\tbreak;",
+      "$4",
+      "\tdefault:",
+      "\t\t${5:// default code}",
+      "}"
+    ],
+    "description": "Basic switch statement"
   }
 }

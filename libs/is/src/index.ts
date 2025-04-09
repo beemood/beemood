@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/array/unique-array.js';
 export * from './lib/checks/is-defined-or-throw.js';
 export * from './lib/checks/is-defined.js';
 export * from './lib/checks/is-function.js';

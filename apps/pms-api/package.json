@@ -113,6 +113,8 @@
   },
   "dependencies": {
     "@bmod/auth": "workspace:^",
+    "@bmod/is": "workspace:1.1.0",
+    "@bmod/prisma": "workspace:^",
     "@bmod/rest": "1.1.0",
     "@bmod/types": "1.1.0",
     "@bmod/validation": "1.1.0",
