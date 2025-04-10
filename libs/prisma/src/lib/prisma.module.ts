@@ -8,9 +8,9 @@ import {
   providePrismaDelegate,
 } from './provide-prisma-delegate.js';
 
-export type PrismaModuleOptions<T extends string> = {
-  prismaClient: Type<PrismaClient>;
-  resources: Array<T>;
+export type PrismaModuleOptions<T extends Record<string, string>> = {
+  client: Type<PrismaClient>;
+  models: T;
 };
 
 @Global()
@@ -18,14 +18,16 @@ export type PrismaModuleOptions<T extends string> = {
   imports: [ConfigModule],
 })
 export class PrismaModule {
-  static configure<T extends string>(
+  static configure<T extends Record<string, string>>(
     options: PrismaModuleOptions<T>
   ): DynamicModule {
-    const delegateProviders = options.resources.map((delegateName) => {
-      return providePrismaDelegate(delegateName.toString());
-    });
+    const delegateProviders = Object.keys(options.models).map(
+      (delegateName) => {
+        return providePrismaDelegate(delegateName.toString());
+      }
+    );
 
-    const delegateTokens = options.resources.map((e) => {
+    const delegateTokens = Object.keys(options.models).map((e) => {
       return getPrismaDelegateToken(e);
     });
 
@@ -33,7 +35,7 @@ export class PrismaModule {
       global: true,
       module: PrismaModule,
       providers: [
-        providePrismaClient({ prismaClient: options.prismaClient }),
+        providePrismaClient({ prismaClient: options.client }),
         ...delegateProviders,
       ],
       exports: [PrismaClient, ...delegateTokens],

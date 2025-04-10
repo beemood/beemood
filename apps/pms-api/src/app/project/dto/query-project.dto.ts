@@ -3,9 +3,9 @@ import { ArrayValue, ObjectValue } from '@bmod/types';
 import { BaseQueryDto, Dto, Property } from '@bmod/validation';
 import type { Project } from '@prisma/pms';
 import { OrderProjectDto } from './order-project.dto.js';
-import { ProjectWhereDto } from './project-where.dto.js';
 import { ReadProjectDto } from './read-project.dto.js';
 import { SelectProjectDto } from './select-project.dto.js';
+import { WhereProjectDto } from './where-project.dto.js';
 
 @Dto()
 export class QueryProjectDto extends BaseQueryDto {
@@ -22,6 +22,6 @@ export class QueryProjectDto extends BaseQueryDto {
   @Property({ type: 'object', target: () => OrderProjectDto, transform: true })
   orderBy = ObjectValue<OrderProjectDto>();
 
-  @Property({ type: 'object', target: () => ProjectWhereDto, transform: true })
-  where = ObjectValue<ProjectWhereDto>();
+  @Property({ type: 'object', target: () => WhereProjectDto, transform: true })
+  where = ObjectValue<WhereProjectDto>();
 }

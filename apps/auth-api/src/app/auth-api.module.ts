@@ -1,15 +1,12 @@
-import { HttpAuthGuard } from '@bmod/auth-api';
+import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
+import { Prisma, PrismaClient } from '@prisma/auth-api';
 
 @Module({
-  imports: [ConfigModule.forRoot()],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: HttpAuthGuard,
-    },
+  imports: [
+    ConfigModule.forRoot(),
+    PrismaModule.configure({ client: PrismaClient, models: Prisma.ModelName }),
   ],
 })
 export class AuthApiModule {}

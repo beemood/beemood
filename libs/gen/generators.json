@@ -24,6 +24,11 @@
       "factory": "./dist/plugin/plugin.js",
       "schema": "./dist/plugin/schema.json",
       "description": "plugin generator"
+    },
+    "controller": {
+      "factory": "./dist/controller/controller.js",
+      "schema": "./dist/controller/schema.json",
+      "description": "controller generator"
     }
   }
 }

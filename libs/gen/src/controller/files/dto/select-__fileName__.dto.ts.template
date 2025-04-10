@@ -1,0 +1,13 @@
+import type { SelectQueryType } from '@bmod/types';
+import { BooleanValue } from '@bmod/types';
+import { BaseSelectDto, Dto, Property } from '@bmod/validation';
+import type { <%- className %> } from '@prisma/pms';
+
+@Dto()
+export class Select<%- className %>Dto
+  extends BaseSelectDto
+  implements SelectQueryType<<%- className %>>
+{
+  @Property({ type: 'boolean', transform: true }) name = BooleanValue();
+  @Property({ type: 'boolean', transform: true }) description = BooleanValue();
+}

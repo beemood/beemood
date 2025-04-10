@@ -1,0 +1,27 @@
+import type { KeyOf } from '@bmod/types';
+import { ArrayValue, ObjectValue } from '@bmod/types';
+import { BaseQueryDto, Dto, Property } from '@bmod/validation';
+import type { <%- className %> } from '@prisma/pms';
+import { Order<%- className %>Dto } from './order-<%- fileName %>.dto.js';
+import { Read<%- className %>Dto } from './read-<%- fileName %>.dto.js';
+import { Select<%- className %>Dto } from './select-<%- fileName %>.dto.js';
+import { Where<%- className %>Dto } from './where-<%- fileName %>.dto.js';
+
+@Dto()
+export class Query<%- className %>Dto extends BaseQueryDto {
+  @Property({
+    type: 'array',
+    items: { type: 'string', isIn: Object.keys(new Read<%- className %>Dto()) },
+    transform: true,
+  })
+  distinct = ArrayValue<KeyOf<<%- className %>>>();
+
+  @Property({ type: 'object', target: () => Select<%- className %>Dto, transform: true })
+  select = ObjectValue<Select<%- className %>Dto>();
+
+  @Property({ type: 'object', target: () => Order<%- className %>Dto, transform: true })
+  orderBy = ObjectValue<Order<%- className %>Dto>();
+
+  @Property({ type: 'object', target: () => Where<%- className %>Dto, transform: true })
+  where = ObjectValue<Where<%- className %>Dto>();
+}

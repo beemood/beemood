@@ -1,0 +1,13 @@
+import { RestBuilder } from '@bmod/rest';
+import { Create<%- className %>Dto } from './dto/create-<%- fileName %>.dto.js';
+import { Query<%- className %>Dto } from './dto/query-<%- fileName %>.dto.js';
+import { Read<%- className %>Dto } from './dto/read-<%- fileName %>.dto.js';
+import { Update<%- className %>Dto } from './dto/update-<%- fileName %>.dto.js';
+
+export const <%- className %>Rest = new RestBuilder({
+  resourceName: '<%- propertyName %>',
+  dto: Read<%- className %>Dto,
+  createDto: Create<%- className %>Dto,
+  updateDto: Update<%- className %>Dto,
+  queryDto: Query<%- className %>Dto,
+});

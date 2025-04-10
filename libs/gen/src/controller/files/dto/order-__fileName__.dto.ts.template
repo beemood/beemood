@@ -1,0 +1,13 @@
+import type { OrderDirection, OrderQueryType } from '@bmod/types';
+import { StringValue } from '@bmod/types';
+import { BaseOrderDto, Dto, OrderQueryProperty } from '@bmod/validation';
+import type { <%- className %> } from '@prisma/pms';
+
+@Dto()
+export class Order<%- className %>Dto
+  extends BaseOrderDto
+  implements OrderQueryType<<%- className %>>
+{
+  @OrderQueryProperty() name? = StringValue<OrderDirection>();
+  @OrderQueryProperty() description? = StringValue<OrderDirection>();
+}

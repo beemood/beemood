@@ -1,0 +1,14 @@
+import type { SingleType } from '@bmod/types';
+import { ObjectValue } from '@bmod/types';
+import type { StringQueryDto } from '@bmod/validation';
+import { BaseWhereQueryDto, Dto, StringQueryProperty } from '@bmod/validation';
+import type { <%- className %> } from '@prisma/pms';
+
+@Dto()
+export class Where<%- className %>Dto
+  extends BaseWhereQueryDto
+  implements SingleType<<%- className %>>
+{
+  @StringQueryProperty() name? = ObjectValue<StringQueryDto>();
+  @StringQueryProperty() description? = ObjectValue<StringQueryDto>();
+}

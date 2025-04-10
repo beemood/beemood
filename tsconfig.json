@@ -4,6 +4,12 @@
   "files": [],
   "references": [
     {
+      "path": "./apps/pms-api"
+    },
+    {
+      "path": "./apps/auth-api"
+    },
+    {
       "path": "./libs/auth"
     },
     {
@@ -18,9 +24,7 @@
     {
       "path": "./libs/is"
     },
-    {
-      "path": "./apps/pms-api"
-    },
+
     {
       "path": "./libs/validation"
     },

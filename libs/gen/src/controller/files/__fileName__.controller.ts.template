@@ -1,0 +1,49 @@
+import { InjectDelegate } from '@bmod/prisma';
+import { Body, ParamId, Query } from '@bmod/rest';
+import type { Prisma } from '@prisma/pms-api';
+import type { Create<%- className %>Dto } from './dto/create-<%- fileName %>.dto.js';
+import type { Query<%- className %>Dto } from './dto/query-<%- fileName %>.dto.js';
+import type { Update<%- className %>Dto } from './dto/update-<%- fileName %>.dto.js';
+import { <%- className %>Rest as R } from './<%- fileName %>.rest.js';
+
+@R.Controller('<%- propertyName %>s')
+export class <%- className %>Controller {
+  constructor(
+    @InjectDelegate('<%- propertyName %>')
+    protected readonly repo: Prisma.<%- propertyName %>Delegate
+  ) {}
+
+  @R.Create()
+  create(@Body() dto: Create<%- className %>Dto) {
+    return this.repo.create({ data: dto, select: { id: true } });
+  }
+
+  @R.Read()
+  read(@Query() query: Query<%- className %>Dto) {
+    return this.repo.findMany({ ...query });
+  }
+
+  @R.ReadById()
+  readById(@ParamId() id: number) {
+    return this.repo.findUnique({ where: { id } });
+  }
+
+  @R.UpdateById()
+  updateById(@ParamId() id: number, @Body() dto: Update<%- className %>Dto) {
+    return this.repo.update({
+      where: { id },
+      data: { ...dto, updatedAt: new Date() },
+      select: { id: true },
+    });
+  }
+
+  @R.DeleteById()
+  deleteById(@ParamId() id: number) {
+    const timestamp = new Date();
+    return this.repo.update({
+      where: { id },
+      data: { updatedAt: timestamp, deletedAt: timestamp },
+      select: { id: true },
+    });
+  }
+}

@@ -5,7 +5,7 @@ import { BaseWhereQueryDto, Dto, StringQueryProperty } from '@bmod/validation';
 import type { Project } from '@prisma/pms';
 
 @Dto()
-export class ProjectWhereDto
+export class WhereProjectDto
   extends BaseWhereQueryDto
   implements SingleType<Project>
 {
