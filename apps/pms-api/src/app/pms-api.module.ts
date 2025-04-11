@@ -1,8 +1,6 @@
-import { HttpAuthGuard } from '@bmod/auth';
 import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
 import { Prisma, PrismaClient } from '@prisma/pms-api';
 import { ProjectModule } from './project/project.module.js';
 
@@ -15,11 +13,6 @@ import { ProjectModule } from './project/project.module.js';
     }),
     ProjectModule,
   ],
-  providers: [
-    {
-      provide: APP_GUARD,
-      useClass: HttpAuthGuard,
-    },
-  ],
+  providers: [],
 })
 export class PmsApiModule {}

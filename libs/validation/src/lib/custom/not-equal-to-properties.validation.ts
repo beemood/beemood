@@ -25,7 +25,7 @@ export class NotEqualToPropertiesConstraint
 
   defaultMessage(args: ValidationArguments) {
     const [propertyNames] = args.constraints;
-    return `${args.property} depends on ${propertyNames}`;
+    return `${args.property} must not equal to the properties ${propertyNames}`;
   }
 }
 

@@ -143,4 +143,5 @@ export default [
   'not',
   'notIn',
   'repo',
+  'rej',
 ];

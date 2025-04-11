@@ -10,6 +10,7 @@ export type CommonOptions<T> = {
   dependsOnProperties?: string[];
   notEqualToProperties?: string[];
   notWithProperties?: string[];
+  equalToProperty?: string;
 
   readable?: boolean;
   writable?: boolean;
@@ -18,7 +19,6 @@ export type CommonOptions<T> = {
   expose?: boolean;
   tags?: string[];
 
-  //
   notEqual?: T;
   isIn?: T[];
   isNotIn?: T[];

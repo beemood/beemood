@@ -8,7 +8,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model permission {
+model Permission {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -16,24 +16,38 @@ model permission {
 
   resource String
   action   String
+
+  AccessTokenPermission AccessTokenPermission[]
+
+  @@unique([resource, action])
 }
 
-model role {
+model Role {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  name      String
+
+  name String @unique
+
+  isAdmin Boolean @default(false)
+
+  UserRole UserRole[]
 }
 
-model rolepermission {
+model App {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
+
+  name String @unique
+
+  AccessToken AccessToken[]
+  AppSession  AppSession[]
 }
 
-model user {
+model User {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -42,47 +56,84 @@ model user {
   username String @unique
   password String
 
-  opt String
+  otp String?
+
+  UserRole    UserRole[]
+  UserSession UserSession[]
 }
 
-model profile {
+model UserRole {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  firstName String
-  lastName  String
+  User   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  Role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
 }
 
-model app {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  name      String
-}
-
-model apitoken {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-  token     String
-}
-
-model apitokens {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-}
-
-model session {
+model AccessToken {
   id        Int       @id @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   token String
+
+  App   App @relation(fields: [appId], references: [id])
+  appId Int
+
+  AccessTokenPermission AccessTokenPermission[]
+}
+
+model AccessTokenPermission {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  AccessToken   AccessToken @relation(fields: [accessTokenId], references: [id])
+  accessTokenId Int
+
+  Permission   Permission @relation(fields: [permissionId], references: [id])
+  permissionId Int
+}
+
+model UserSession {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  expiration DateTime
+
+  User   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model AppSession {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  expiration DateTime
+
+  App   App @relation(fields: [appId], references: [id])
+  appId Int
+}
+
+model Subscription {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  firstName        String
+  lastName         String
+  email            String
+  subscriptionType String
 }

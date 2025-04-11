@@ -23,12 +23,12 @@ export class PrismaModule {
   ): DynamicModule {
     const delegateProviders = Object.keys(options.models).map(
       (delegateName) => {
-        return providePrismaDelegate(delegateName.toString());
+        return providePrismaDelegate(delegateName);
       }
     );
 
-    const delegateTokens = Object.keys(options.models).map((e) => {
-      return getPrismaDelegateToken(e);
+    const delegateTokens = Object.keys(options.models).map((delegateName) => {
+      return getPrismaDelegateToken(delegateName);
     });
 
     return {

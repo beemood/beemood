@@ -5,6 +5,7 @@ export * from './lib/common-number-validation.decorator.js';
 export * from './lib/common-validation.decorator.js';
 export * from './lib/custom/depends-on-properties.validation.js';
 export * from './lib/custom/ends-with.validation.js';
+export * from './lib/custom/equal-to-property.validation.js';
 export * from './lib/custom/not-ends-with.validation.js';
 export * from './lib/custom/not-equal-to-properties.validation.js';
 export * from './lib/custom/not-starts-with.validation.js';

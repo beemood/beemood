@@ -10,7 +10,12 @@ export function providePrismaDelegate(delegateName: string): Provider {
     inject: [PrismaClient],
     provide: getPrismaDelegateToken(delegateName),
     useFactory(client: PrismaClient) {
-      return client[delegateName];
+      return client[
+        delegateName
+          .split('')
+          .map((v, i) => (i === 0 ? v.toLowerCase() : v))
+          .join('')
+      ];
     },
   };
 }

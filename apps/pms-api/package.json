@@ -112,7 +112,6 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
-    "@bmod/auth": "1.3.0",
     "@bmod/is": "1.3.0",
     "@bmod/prisma": "1.3.0",
     "@bmod/rest": "1.3.0",

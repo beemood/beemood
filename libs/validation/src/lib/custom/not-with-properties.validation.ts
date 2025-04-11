@@ -23,7 +23,7 @@ export class NotWithConstraint implements ValidatorConstraintInterface {
 
   defaultMessage(args: ValidationArguments) {
     const [propertyNames] = args.constraints;
-    return `${args.property} depends on ${propertyNames}`;
+    return `${args.property} cannot be used with ${propertyNames}`;
   }
 }
 

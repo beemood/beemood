@@ -58,6 +58,10 @@ export const UserId = createParamDecorator((data, context) => {
   return context.switchToHttp().getRequest().userId;
 });
 
+export const SessionId = createParamDecorator((data, context) => {
+  return context.switchToHttp().getRequest().sessionId;
+});
+
 export const BearerToken = createParamDecorator((data, context) => {
   return context.switchToHttp().getRequest().bearer;
 });

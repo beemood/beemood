@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/libs/auth',
+  cacheDir: '../../node_modules/.vite/libs/crypto',
   test: {
     watch: false,
     globals: true,

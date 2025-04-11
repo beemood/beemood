@@ -7,9 +7,10 @@ import {
   IsNotEmpty,
   IsNotIn,
   IsOptional,
-  NotEquals,
+  NotEquals
 } from 'class-validator';
 import { DependsOnProperties } from './custom/depends-on-properties.validation.js';
+import { EqualToProperty } from './custom/equal-to-property.validation.js';
 import { NotEqualToPropertiesProperties } from './custom/not-equal-to-properties.validation.js';
 import { NotWithProperties } from './custom/not-with-properties.validation.js';
 
@@ -45,5 +46,7 @@ export function CommonValidation(
     isThen(options.isIn, (v) => IsIn(v, vo)(...args));
     isThen(options.isNotIn, (v) => IsNotIn(v, vo)(...args));
     isThen(options.notEqual, (v) => NotEquals(v, vo)(...args));
+
+    isThen(options.equalToProperty, (v) => EqualToProperty(v, vo)(...args));
   };
 }
