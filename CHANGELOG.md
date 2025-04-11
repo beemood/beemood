@@ -1,3 +1,14 @@
+## 1.4.0 (2025-04-11)
+
+### 🚀 Features
+
+- working on auth-api service ([85f9786](https://github.com/beemood/beemood/commit/85f9786))
+- working on the auth service ([b467c79](https://github.com/beemood/beemood/commit/b467c79))
+
+### ❤️ Thank You
+
+- Robert Brightline @beemood
+
 ## 1.3.0 (2025-04-10)
 
 This was a version bump only, there were no code changes.
