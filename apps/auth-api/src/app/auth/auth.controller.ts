@@ -1,12 +1,23 @@
 import { Body, SessionId, UserId } from '@bmod/rest';
 import { Inject } from '@nestjs/common';
-import { AuthRest as R } from './auth.rest.js';
 import { AuthService } from './auth.service.js';
-import type { ForgotPasswordDto } from './dto/forgot-password.dto.js';
-import type { LoginOtpDto } from './dto/login-otp.js';
-import type { LoginDto } from './dto/login.dto.js';
-import type { ResetPasswordDto } from './dto/reset-password..js';
-import type { SignupDto } from './dto/signup.dto.js';
+import { ForgotPasswordDto } from './dto/forgot-password.dto.js';
+import { LoginOtpDto } from './dto/login-otp.js';
+import { LoginDto } from './dto/login.dto.js';
+import { ResetPasswordDto } from './dto/reset-password..js';
+import { SignupDto } from './dto/signup.dto.js';
+
+import { RestAuthBuilder } from '@bmod/rest';
+import { LoginResponseDto } from './dto/login-response.js';
+
+export const R = new RestAuthBuilder({
+  forgotPasswordDto: ForgotPasswordDto,
+  loginDto: LoginDto,
+  loginResponseDto: LoginResponseDto,
+  loginWithOpt: LoginOtpDto,
+  resetPasswordDto: ResetPasswordDto,
+  signupDto: SignupDto,
+});
 
 @R.Controller()
 export class AuthController {

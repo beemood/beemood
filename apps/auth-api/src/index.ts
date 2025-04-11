@@ -2,7 +2,6 @@
 export * from './app/auth-api.module.js';
 export * from './app/auth/auth.controller.js';
 export * from './app/auth/auth.module.js';
-export * from './app/auth/auth.rest.js';
 export * from './app/auth/auth.service.js';
 export * from './app/auth/dto/forgot-password.dto.js';
 export * from './app/auth/dto/login-otp.js';
