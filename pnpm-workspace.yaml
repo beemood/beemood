@@ -3,6 +3,7 @@ packages:
   - libs/*
 
 onlyBuiltDependencies:
+  - '@scarf/scarf'
   - '@swc/core'
   - core-js
   - esbuild

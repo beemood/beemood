@@ -1,0 +1,34 @@
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './lib/app.module.js';
+import { ConfigService } from '@nestjs/config';
+import { Config } from '@bmod/types';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import helmet from 'helmet';
+import { Logger } from '@nestjs/common';
+
+export async function main() {
+  const app = await NestFactory.create(AppModule, { logger: ['log'] });
+
+  const config = app.get(ConfigService);
+  const PORT = config.getOrThrow(Config.PORT);
+  const APP_NAME = config.getOrThrow(Config.APP_NAME);
+  const APP_DESCRIPTION = config.getOrThrow(Config.APP_DESCRIPTION);
+  const GLOBAL_PREFIX = config.getOrThrow(Config.GLOBAL_PREFIX);
+
+  app.use(helmet());
+
+  app.setGlobalPrefix(GLOBAL_PREFIX);
+
+  const swagggerDoc = new DocumentBuilder()
+    .setTitle(APP_NAME)
+    .setDescription(APP_DESCRIPTION)
+    .addBearerAuth()
+    .build();
+
+  const swaggerDoc = await SwaggerModule.createDocument(app, swagggerDoc, {});
+  SwaggerModule.setup(GLOBAL_PREFIX, app, swaggerDoc);
+
+  await app.listen(PORT);
+
+  Logger.log(`🚀 ${APP_NAME} is up and running at port ${PORT}.`);
+}
