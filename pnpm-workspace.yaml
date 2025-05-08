@@ -3,5 +3,7 @@ packages:
   - libs/*
 
 onlyBuiltDependencies:
+  - '@swc/core'
   - core-js
   - esbuild
+  - nx
