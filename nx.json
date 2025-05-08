@@ -49,20 +49,7 @@
       }
     }
   ],
-  "targetDefaults": {
-    "@nx/esbuild:esbuild": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
-    "@nx/js:swc": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
-    },
-    "test": {
-      "dependsOn": ["^build"]
-    },
+  "targets": {
     "typedoc": {
       "executor": "nx:run-commands",
       "options": {
@@ -76,6 +63,21 @@
       ],
       "outputs": ["public/libs/{projectName}"],
       "cache": true
+    }
+  },
+  "targetDefaults": {
+    "@nx/esbuild:esbuild": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "@nx/js:swc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
     }
   },
   "generators": {
