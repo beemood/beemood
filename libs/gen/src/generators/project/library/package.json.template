@@ -1,10 +1,34 @@
 {
   "name": "@bmod/<%- fileName %>",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "license": "MIT",
+  "description": "- [ ] Add project description for <%- fileName %>",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "beemood",
+  ],
+  "repository": {
+    "directory": "<%- directory %>",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://rbrightline.github.io/beemood/<%- fileName %>",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/<%- directory %>/favicon.png",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -30,7 +54,7 @@
           "outputPath": "<%- directory %>/dist",
           "main": "<%- directory %>/src/index.ts",
           "tsConfig": "<%- directory %>/tsconfig.lib.json",
-          "skipTypeCheck": true,
+          "skipTypeCheck": false,
           "stripLeadingPaths": true
         }
       }

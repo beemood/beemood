@@ -9,6 +9,28 @@
     "access": "public",
     "tag": "latest"
   },
+  "license": "MIT",
+  "description": "Types and interfaces",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "beemood",
+    "types",
+    "interfaces"
+  ],
+  "repository": {
+    "directory": "libs/types",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://rbrightline.github.io/beemood/types",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/types/favicon.png",
   "exports": {
     "./package.json": "./package.json",
     ".": {

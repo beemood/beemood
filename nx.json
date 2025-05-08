@@ -62,6 +62,20 @@
     },
     "test": {
       "dependsOn": ["^build"]
+    },
+    "doc": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx typedoc --tsconfig {projectRoot}/tsconfig.lib.json --entryPoints {projectRoot}/src/index.ts --out public/libs/{projectName}",
+        "cwd": "{workspaceRoot}"
+      },
+      "inputs": [
+        "default",
+        "{projectRoot}/tsconfig.lib.json",
+        "{projectRoot}/src/**/*.ts"
+      ],
+      "outputs": ["public/libs/{projectName}"],
+      "cache": true
     }
   },
   "generators": {
