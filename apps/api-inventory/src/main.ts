@@ -25,7 +25,9 @@ export async function main() {
     .addBearerAuth()
     .build();
 
-  const swaggerDoc = await SwaggerModule.createDocument(app, swagggerDoc, {});
+  const swaggerDoc = await SwaggerModule.createDocument(app, swagggerDoc, {
+    autoTagControllers: true,
+  });
   SwaggerModule.setup(GLOBAL_PREFIX, app, swaggerDoc);
 
   await app.listen(PORT);

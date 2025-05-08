@@ -6,7 +6,7 @@
 
 ## Summary
 
-- [ ] Add project summary for nest
+Nestjs decorators
 
 ## Install
 
