@@ -10,6 +10,9 @@
       "path": "./libs/gen"
     },
     {
+      "path": "./libs/nest"
+    },
+    {
       "path": "./apps/api-inventory"
     }
   ]
