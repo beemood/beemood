@@ -1,42 +1,45 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Body,
-  Controller,
-  Get,
-  Inject,
-  Param,
-  ParseIntPipe,
-  Post,
-  Put,
-} from '@nestjs/common';
-import { ProductService } from './product.service.js';
+  CreateOne,
+  DeleteOneById,
+  FindAll,
+  FindOneById,
+  ParamId,
+  Query,
+  ResourceController,
+  UpdateOneById,
+} from '@bmod/nest';
+import type { CreateProductDto } from './dto/create-product.dto.js';
+import { Product } from './dto/product.dto.js';
+import type { QueryProductDto } from './dto/query-product.dto.js';
 
-@Controller('products')
+@ResourceController('products')
 export class ProductController {
-  constructor(
-    @Inject(ProductService) protected readonly product: ProductService
-  ) {}
-
-  @Post()
-  createProduct(@Body() body: any) {
+  @CreateOne({ responseType: () => Product })
+  createOne(@Body() body: CreateProductDto) {
     return {
       some: 'Some goes here',
       body,
     };
   }
 
-  @Get()
-  findProducts() {
-    return [];
+  @FindAll({ responseType: () => Product })
+  findAll(@Query() query: QueryProductDto) {
+    return [query];
   }
 
-  @Get(':id')
-  findProductById(@Param('id', ParseIntPipe) id: number) {
-    return { id };
+  @FindOneById({ responseType: () => Product })
+  findOneById(@ParamId() id: number, @Query() query: QueryProductDto) {
+    return { id, query };
   }
 
-  @Put(':id')
-  updateProduct(@Param('id', ParseIntPipe) id: number) {
-    return { id };
+  @UpdateOneById({ responseType: () => Product })
+  updateOneById(@ParamId() id: number, @Query() query: QueryProductDto) {
+    return { id, query };
+  }
+
+  @DeleteOneById({ responseType: () => Product })
+  deleteOneById(@ParamId() id: number, @Query() query: QueryProductDto) {
+    return { id, query };
   }
 }

@@ -4,6 +4,8 @@
     "source.sortImports": "always",
     "source.removeUnusedImports": "always",
     "source.organizeImports": "always",
-    "source.addMissingImports.ts": "always"
+    "source.addMissingImports.ts": "always",
+    "source.fixAll.eslint": "always",
+    "source.fixAll.ts": "always"
   }
 }
