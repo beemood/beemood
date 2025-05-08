@@ -1,6 +1,6 @@
 {
   "name": "@bmod/gen",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -39,12 +39,12 @@
           "stripLeadingPaths": true,
           "assets": [
             {
-              "input": "./libs/gen/src",
+              "input": ".libs/gen/src",
               "glob": "**/!(*.ts)",
               "output": "."
             },
             {
-              "input": "./libs/gen/src",
+              "input": "libs/gen/src",
               "glob": "**/*.d.ts",
               "output": "."
             }
