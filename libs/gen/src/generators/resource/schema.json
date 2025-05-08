@@ -4,15 +4,25 @@
   "title": "",
   "type": "object",
   "properties": {
-    "name": {
+    "directory": {
       "type": "string",
       "description": "",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "x-prompt": "What directory would you like to use?"
+    },
+    "type": {
+      "type": "string",
+      "description": "Project type",
+      "enum": ["rest-resource"],
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What resource would you like to generate?"
     }
   },
-  "required": ["name"]
+  "required": ["directory", "type"]
 }
