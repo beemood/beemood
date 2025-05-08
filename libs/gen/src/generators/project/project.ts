@@ -14,7 +14,12 @@ export async function projectGenerator(
   const segments = directory.split('/');
   const name = segments[segments.length - 1];
   const source = join(__dirname, type);
-  generateFiles(tree, source, directory, { ...names(name), directory });
+  const target = segments.slice(0, -1).join('/');
+
+  generateFiles(tree, source, target, {
+    ...names(name),
+    directory,
+  });
   await formatFiles(tree);
 }
 
