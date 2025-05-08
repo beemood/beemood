@@ -1,5 +1,6 @@
 import { Get, Type } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ReadOperation } from '../metadata/set-operation-name.js';
 
 export type FindAllMethodOptions = {
   responseType: () => Type;
@@ -12,6 +13,7 @@ export function FindAll(options: FindAllMethodOptions): MethodDecorator {
   return (...args) => {
     ApiOperation({ summary: 'Find all' })(...args);
     ApiOkResponse({ type: options.responseType(), isArray: true })(...args);
+    ReadOperation()(...args);
     Get()(...args);
   };
 }

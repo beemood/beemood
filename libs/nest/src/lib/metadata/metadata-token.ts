@@ -1,0 +1,8 @@
+/**
+ * Metdata tokens used by metdata setters
+ */
+export enum MetadataToken {
+  PUBLIC_RESOURCE = 'PUBLIC_RESOURCE_METADATA_TOKEN',
+  RESOURCE_NAME = 'RESOURCE_NAME_METADA_TOKEN',
+  OPERATION_NAME = 'OPERATION_NAME_METADATA_TOKEN',
+}

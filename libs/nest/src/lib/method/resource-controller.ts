@@ -1,14 +1,16 @@
 import { Controller } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { SetResourceName } from '../metadata/set-resource-name.js';
 
 /**
  * Api resource class decorator
- * @param pluralPath plural api resource path
+ * @param pluralName kebab-case plural name e.g products, categories.
  * @returns ClassDecorator
  */
-export function ResourceController(pluralPath: string): ClassDecorator {
+export function ResourceController(pluralName: string): ClassDecorator {
   return (...args) => {
-    Controller(pluralPath)(...args);
+    Controller(pluralName)(...args);
     ApiBearerAuth()(...args);
+    SetResourceName(pluralName)(...args);
   };
 }

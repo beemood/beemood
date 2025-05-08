@@ -1,6 +1,6 @@
 {
   "name": "@bmod/nest",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -68,6 +68,7 @@
     }
   },
   "peerDependencies": {
+    "@nestjs/core": "^11.1.0",
     "@nestjs/common": "^11.1.0",
     "@nestjs/swagger": "^11.2.0"
   },

@@ -1,5 +1,6 @@
 import { Delete, Type } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { DeleteOperation } from '../metadata/set-operation-name.js';
 
 export type DeleteOneByIdMethodOptions = {
   responseType: () => Type;
@@ -15,6 +16,7 @@ export function DeleteOneById(
   return (...args) => {
     ApiOperation({ summary: 'Delete one item by id' })(...args);
     ApiOkResponse({ type: options.responseType() })(...args);
+    DeleteOperation()(...args);
     Delete(':id')(...args);
   };
 }

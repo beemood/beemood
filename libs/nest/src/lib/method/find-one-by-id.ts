@@ -1,5 +1,6 @@
 import { Get, Type } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ReadOperation } from '../metadata/set-operation-name.js';
 
 export type FindOneByIdMethodOptions = {
   responseType: () => Type;
@@ -15,6 +16,7 @@ export function FindOneById(
   return (...args) => {
     ApiOperation({ summary: 'Find one by id' })(...args);
     ApiOkResponse({ type: options.responseType() })(...args);
+    ReadOperation()(...args);
     Get(':id')(...args);
   };
 }
