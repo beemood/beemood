@@ -161,10 +161,6 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3
 
-  apps/beemood: {}
-
-  apps/beemood-e2e: {}
-
   libs/gen:
     dependencies:
       '@nx/devkit':
