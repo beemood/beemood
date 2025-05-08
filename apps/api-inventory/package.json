@@ -1,6 +1,6 @@
 {
   "name": "@bmod/api-inventory",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -29,6 +29,9 @@
     "https://cash.app/$puqlib"
   ],
   "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-inventory/favicon.png",
+  "bin": {
+    "api-inventory": "./bin/api-inventory.js"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {
