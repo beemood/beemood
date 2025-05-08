@@ -1,82 +1,46 @@
-# Beemood
+# 👋 Hi there\!
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+Welcome to BeeMood! This space serves as a central hub for my open-source projects, contributions, and explorations in the world of software development. We are passionate about building scalable, efficient, and user-friendly applications.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## 🛠️ Technologies & Tools
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+We have experience working with a variety of technologies and tools, including:
 
-## Finish your CI setup
+### Backend Development
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/wjbJM8QBFv)
+- **Node.js:** [](https://nodejs.org/) A JavaScript runtime built on Chrome's V8 JavaScript engine.
+- **NestJS:** [](https://nestjs.com/) A progressive Node.js framework for building efficient and scalable server-side applications.
 
+### Frontend Development
 
-## Run tasks
+- **Angular:** [](https://angular.io/) A comprehensive platform for building mobile and desktop web applications.
+- **Angular Material:** [](https://material.angular.dev//) Angular UI component library
 
-To run the dev server for your app, use:
+### Monorepo Management
 
-```sh
-npx nx serve beemood
-```
+- **Nx Workspace:** [](https://nx.dev/) A smart, extensible build framework to help you architect, test, and build at any scale — all as one integrated experience.
 
-To create a production bundle:
+### Testing
 
-```sh
-npx nx build beemood
-```
+- **Playwright:** [](https://playwright.dev/) A framework for reliable end-to-end testing for modern web apps.
+- **StoryBook:** [](https://storybook.js.org/docs/) UI testing library
 
-To see all available targets to run for a project, run:
+### Other Technologies & Tools
 
-```sh
-npx nx show project beemood
-```
+- TypeScript
+- JavaScript
+- Git
+- Docker
+- CI/CD pipelines (e.g., GitHub Actions)
+- Databases (e.g., PostgreSQL, MongoDB)
+- Cloud platforms (e.g., AWS, Google Cloud, Azure)
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## 🤝 Let's Connect
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- robert.brightline@gmail.com
 
-## Add new projects
+We are always open to connecting with other developers, discussing interesting projects, and exploring new technologies. Feel free to reach out!
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+---
 
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/node:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/node:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/node?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Thank you for visiting our profile\! Happy coding\! 🚀
