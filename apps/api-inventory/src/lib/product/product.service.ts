@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ProductService {
-  constructor() {}
-
   create(entity: any) {
-    return {};
+    return {
+      entity,
+    };
   }
 
   find(query: any) {
-    return [];
+    return [query];
   }
 
   findOneById(id: number, query: any) {
@@ -17,7 +18,7 @@ export class ProductService {
   }
 
   update(id: number, body: any) {
-    return { id };
+    return { id, body };
   }
 
   delete(id: number, query: any) {

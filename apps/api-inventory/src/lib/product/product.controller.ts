@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Body,
   Controller,
@@ -19,7 +20,8 @@ export class ProductController {
   @Post()
   createProduct(@Body() body: any) {
     return {
-      body: 'Some goes here',
+      some: 'Some goes here',
+      body,
     };
   }
 
