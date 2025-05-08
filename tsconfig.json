@@ -8,6 +8,9 @@
     },
     {
       "path": "./apps/beemood"
+    },
+    {
+      "path": "./libs/types"
     }
   ]
 }
