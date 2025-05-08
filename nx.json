@@ -56,7 +56,7 @@
       "inputs": ["production", "^production"]
     },
     "@nx/js:swc": {
-      "cache": false,
+      "cache": true,
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
