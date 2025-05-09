@@ -15,7 +15,6 @@ import type {
   OrderDirection,
   StringFilter,
 } from '@bmod/types';
-import { ApiProperty } from '@nestjs/swagger';
 import type { Product } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 
@@ -71,7 +70,7 @@ export class ProductOrderDto
 
 @Model()
 export class ProductSelectArgsDto {
-  @ApiProperty({ type: ProductSelectDto })
+  @Property({ type: 'object', target: () => ProductSelectDto })
   select?: ProductSelectDto;
 
   @Property({ type: 'object', target: () => ProductSelectDto })
