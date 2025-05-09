@@ -2,7 +2,7 @@
 import type { PropertyOptions } from '@bmod/types';
 import { ApiProperty as __ApiProperty } from '@nestjs/swagger';
 import type { ValidationOptions } from 'class-validator';
-import { toApiPropertyOptions } from './transformers/to-api-property-options.js';
+import { toApiPropertyOptions } from '../transformers/to-api-property-options.js';
 
 export function ApiProperty(
   options: PropertyOptions,

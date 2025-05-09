@@ -1,8 +1,8 @@
 import type { StringPropertyOptions } from '@bmod/types';
 import type { ValidationOptions } from 'class-validator';
 import { IsString, MaxLength, MinLength } from 'class-validator';
+import { TrimTransformer } from '../transformers/trim-transformer.js';
 import { CommonProperty } from './common-property.js';
-import { TrimTransformer } from './transformers/trim-transformer.js';
 /**
  * Dto model property decorator ( use Property decorator instead )
  * @param options PropertyOptions

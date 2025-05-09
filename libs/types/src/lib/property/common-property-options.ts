@@ -7,4 +7,10 @@ export type CommonPropertyOptions<DefaultValue = any> = {
   transform?: boolean;
   defaultValue?: DefaultValue;
   expose?: boolean;
+  isIn?: DefaultValue[];
+  isNotIn?: DefaultValue[];
+  notEqualToProperties?: string[];
+  equalToProperty?: string;
+  notWithProperties?: string;
+  dependsOnProperties?: string[];
 };

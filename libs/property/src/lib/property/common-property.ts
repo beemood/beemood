@@ -2,7 +2,7 @@ import type { CommonPropertyOptions } from '@bmod/types';
 import { Expose } from 'class-transformer';
 import type { ValidationOptions } from 'class-validator';
 import { IsNotEmpty, IsOptional } from 'class-validator';
-import { JSONTransformer } from './transformers/json-transformer.js';
+import { JSONTransformer } from '../transformers/json-transformer.js';
 
 /**
  * Common property decorator that covers the common options
