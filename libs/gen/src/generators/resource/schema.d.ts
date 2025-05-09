@@ -1,4 +1,5 @@
 export interface ResourceGeneratorSchema {
-  directory: string;
-  type: 'rest-resource';
+  name: string;
+  project: string;
+  type: 'rest' | 'controller' | 'module' | 'dto';
 }

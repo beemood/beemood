@@ -1,5 +1,10 @@
 import type { Tree } from '@nx/devkit';
-import { formatFiles, generateFiles, names } from '@nx/devkit';
+import {
+  formatFiles,
+  generateFiles,
+  names,
+  readProjectConfiguration,
+} from '@nx/devkit';
 import { join } from 'path';
 import type { ResourceGeneratorSchema } from './schema.js';
 
@@ -7,13 +12,44 @@ export async function resourceGenerator(
   tree: Tree,
   options: ResourceGeneratorSchema
 ) {
-  const { type, directory } = options;
-  const segments = directory.split('/');
-  const name = segments[segments.length - 1];
+  const { name, type, project } = options;
+  const segments = project.split('/');
+
   const source = join(__dirname, type);
   const target = segments.slice(0, -1).join('/');
+  const projectConfig = readProjectConfiguration(tree, project);
 
-  generateFiles(tree, source, target, { ...names(name), directory });
+  console.log(projectConfig.root);
+  console.log(projectConfig.sourceRoot);
+
+  switch (type) {
+    case 'controller': {
+      generateFiles(tree, source, projectConfig.sourceRoot!, {
+        ...names(name),
+      });
+      break;
+    }
+    case 'module': {
+      generateFiles(tree, source, projectConfig.sourceRoot!, {
+        ...names(name),
+      });
+      break;
+    }
+    case 'dto': {
+      generateFiles(tree, source, projectConfig.sourceRoot!, {
+        ...names(name),
+      });
+      break;
+    }
+    case 'rest': {
+      await resourceGenerator(tree, { ...options, type: 'controller' });
+      await resourceGenerator(tree, { ...options, type: 'module' });
+      await resourceGenerator(tree, { ...options, type: 'dto' });
+      break;
+    }
+  }
+
+  // generateFiles(tree, source, projectConfig.sourceRoot, { ...names(name) });
   await formatFiles(tree);
 }
 
