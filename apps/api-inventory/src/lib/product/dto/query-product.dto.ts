@@ -19,7 +19,6 @@ import type {
 } from '@bmod/types';
 import type { Product } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
-import type { DefaultArgs } from '@prisma/client/runtime/library';
 
 @Model()
 export class ProductWhereDto implements P.ProductWhereInput {
@@ -85,7 +84,6 @@ export class ProductFindManyArgsDto
   extends ProductSelectArgsDto
   implements P.ProductFindManyArgs
 {
-  include?: P.ProductInclude<DefaultArgs> | null | undefined;
   @QryTake() take: number;
   @QrySkip() skip: number;
   @QryObj(() => ProductOrderDto) orderBy?: ProductOrderDto;
