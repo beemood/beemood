@@ -11,7 +11,7 @@ export function ApiProperty(
   return (...args) => {
     if (validationOptions?.each == true) {
       if (options.type === 'object') {
-        __ApiProperty({ type: options.target, isArray: true })(...args);
+        __ApiProperty({ type: options.target(), isArray: true })(...args);
       } else {
         __ApiProperty({
           type: 'array',
@@ -20,7 +20,7 @@ export function ApiProperty(
       }
     } else {
       if (options.type == 'object') {
-        __ApiProperty({ type: options.target, isArray: true })(...args);
+        __ApiProperty({ type: options.target(), isArray: true })(...args);
       }
       __ApiProperty(toApiPropertyOptions(options))(...args);
     }
