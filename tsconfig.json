@@ -13,6 +13,9 @@
       "path": "./libs/nest"
     },
     {
+      "path": "./libs/property"
+    },
+    {
       "path": "./apps/api-inventory"
     }
   ]

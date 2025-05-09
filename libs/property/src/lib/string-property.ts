@@ -1,0 +1,31 @@
+import type { StringPropertyOptions } from '@bmod/types';
+import type { ValidationOptions } from 'class-validator';
+import { IsString, MaxLength, MinLength } from 'class-validator';
+import { CommonProperty } from './common-property.js';
+import { TrimTransformer } from './transformers/trim-transformer.js';
+/**
+ * Dto model property decorator ( use Property decorator instead )
+ * @param options PropertyOptions
+ * @param validationOptions ValidationOptions
+ * @returns PropertyDecorator
+ */
+export function StringProperty(
+  options: StringPropertyOptions,
+  validationOptions?: ValidationOptions
+): PropertyDecorator {
+  return (...args) => {
+    CommonProperty(options, validationOptions)(...args);
+    IsString(validationOptions)(...args);
+
+    const { minLength, maxLength } = options;
+
+    if (minLength != undefined)
+      MinLength(minLength, validationOptions)(...args);
+    if (maxLength != undefined)
+      MaxLength(maxLength, validationOptions)(...args);
+
+    if (options.trim == true) {
+      TrimTransformer()(...args);
+    }
+  };
+}
