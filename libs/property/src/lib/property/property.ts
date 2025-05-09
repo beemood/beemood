@@ -14,13 +14,14 @@ import { StringProperty } from './string-property.js';
  * @returns PropertyDecorator
  */
 export function Property<T extends PropertyOptions<T>>(
-  options: PropertyOptions<T>,
+  options: T,
   validationOptions?: ValidationOptions
 ): PropertyDecorator {
   return (...args) => {
     const { type } = options;
 
-    ApiProperty(options, validationOptions)(...args);
+    if (!validationOptions) ApiProperty(options)(...args);
+
     switch (type) {
       case 'string': {
         StringProperty(options, validationOptions)(...args);

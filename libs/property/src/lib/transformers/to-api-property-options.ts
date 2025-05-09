@@ -10,71 +10,50 @@ import type { ApiPropertyOptions } from '@nestjs/swagger';
 export function toApiPropertyOptions(
   options: PropertyOptions
 ): ApiPropertyOptions {
-  const { required: __required, defaultValue, description } = options;
+  const { type, required: __required, defaultValue, description } = options;
 
-  const required = __required == true;
-  const nullable = __required != true;
+  // - [ ] add example fields
+  const common: ApiPropertyOptions = {
+    type,
+    required: __required == true,
+    nullable: __required != true,
+    description,
+    default: defaultValue,
+  } as ApiPropertyOptions;
 
   switch (options.type) {
     case 'string': {
       const { minLength, maxLength } = options;
       return {
-        type: 'string',
         minLength,
         maxLength,
-        required,
-        default: defaultValue,
-        nullable,
-
-        description,
+        ...common,
       };
     }
+
+    case 'integer':
     case 'number': {
       const { minimum, maximum } = options;
       return {
-        type: 'number',
+        ...common,
         minimum,
         maximum,
-        required,
-        default: defaultValue,
-        nullable,
-        description,
-      };
-    }
-    case 'integer': {
-      const { minimum, maximum } = options;
-      return {
-        type: 'integer',
-        minimum,
-        maximum,
-        required,
-        default: defaultValue,
-        nullable,
-        description,
       };
     }
     case 'boolean': {
-      return { type: 'boolean', required, default: defaultValue, nullable };
+      return { ...common };
     }
-
     case 'object': {
       return {
-        type: options.target,
-        required,
-        default: defaultValue,
-        nullable,
-        description,
-      };
+        ...common,
+        type: options.target(),
+      } as ApiPropertyOptions;
     }
 
     case 'array': {
       return {
-        type: 'array',
+        ...common,
         items: toApiPropertyOptions(options.items) as any,
-        required,
-        default: defaultValue,
-        nullable,
-        description,
       };
     }
     default:

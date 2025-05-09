@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@bmod/nest": "^0.2.16",
-    "@bmod/property": "workspace:^",
+    "@bmod/property": "^0.2.16",
     "@bmod/types": "workspace:^",
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.2",
