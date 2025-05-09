@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import {
   Model,
   Prop,
@@ -20,9 +19,10 @@ import type {
 } from '@bmod/types';
 import type { Product } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
+import type { DefaultArgs } from '@prisma/client/runtime/library';
 
 @Model()
-export class ProductWhereDto implements Required<P.ProductWhereInput> {
+export class ProductWhereDto implements P.ProductWhereInput {
   @QryObj(() => ProductWhereDto) AND: ProductWhereDto[];
   @QryObj(() => ProductWhereDto) OR: ProductWhereDto[];
   @QryObj(() => ProductWhereDto) NOT: ProductWhereDto[];
@@ -32,6 +32,7 @@ export class ProductWhereDto implements Required<P.ProductWhereInput> {
   @QryDate() deletedAt: DateTimeFilter;
   @QryStr() name: StringFilter;
   @QryStr() description: StringFilter;
+  @QryNum() categoryId: IntFilter;
 }
 
 @Model()
@@ -42,6 +43,7 @@ export class ProductWhereUniqueDto implements Product {
   @Prop({ type: 'string', format: 'date' }) deletedAt: Date;
   @Prop({ type: 'string' }) name: string;
   @Prop({ type: 'string' }) description: string;
+  @Prop({ type: 'integer' }) categoryId: number;
 }
 
 @Model()
@@ -52,6 +54,8 @@ export class ProductSelectDto implements P.ProductSelect {
   @QrySelect() createdAt?: boolean;
   @QrySelect() updatedAt?: boolean;
   @QrySelect() deletedAt?: boolean;
+  @QrySelect() categoryId?: boolean;
+  @QrySelect() category?: boolean;
 }
 
 @Model()
@@ -62,6 +66,7 @@ export class ProductOrderDto implements P.ProductOrderByWithRelationInput {
   @QryOrd() deletedAt?: OrderDirection;
   @QryOrd() name?: OrderDirection;
   @QryOrd() description?: OrderDirection;
+  @QryOrd() categoryId?: OrderDirection;
 }
 
 @Model()
@@ -80,6 +85,7 @@ export class ProductFindManyArgsDto
   extends ProductSelectArgsDto
   implements P.ProductFindManyArgs
 {
+  include?: P.ProductInclude<DefaultArgs> | null | undefined;
   @QryTake() take: number;
   @QrySkip() skip: number;
   @QryObj(() => ProductOrderDto) orderBy?: ProductOrderDto;

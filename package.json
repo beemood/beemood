@@ -9,7 +9,7 @@
     "axios": "^1.6.0"
   },
   "devDependencies": {
-    "@bmod/gen": "^0.2.16",
+    "@bmod/gen": "^0.3.0",
     "@eslint/js": "^9.8.0",
     "@nx/esbuild": "21.0.2",
     "@nx/eslint": "21.0.2",

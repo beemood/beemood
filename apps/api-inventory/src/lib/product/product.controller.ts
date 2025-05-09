@@ -35,18 +35,18 @@ export class ProductController {
     createDto: () => CreateProductDto,
   })
   async createOne(
-    @Body() body: CreateProductDto,
+    @Body() data: CreateProductDto,
     @Query() query: ProductSelectArgsDto
   ) {
-    return await this.repository.create({ ...query, data: body });
+    return await this.repository.create({ ...query, data });
   }
 
   @FindAll({
     responseType: () => ReadProductDto,
     queryDto: () => ProductFindManyArgsDto,
   })
-  findAll(@Query() findManyArgs: ProductFindManyArgsDto) {
-    return this.repository.findMany(findManyArgs);
+  findAll(@Query() query: ProductFindManyArgsDto) {
+    return this.repository.findMany(query);
   }
 
   @FindOneById({

@@ -6,7 +6,7 @@ import {
   IsString,
   IsStrongPassword,
   MaxLength,
-  MinLength
+  MinLength,
 } from 'class-validator';
 import { TrimTransformer } from '../transformers/trim-transformer.js';
 import { CommonProperty } from './common-property.js';
