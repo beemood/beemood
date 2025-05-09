@@ -8,19 +8,6 @@ datasource db {
   relationMode = "foreignKeys"
 }
 
-model Product {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  name        String  @unique
-  description String?
-
-  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId Int?
-}
-
 model Category {
   id        Int       @id @unique @default(autoincrement())
   createdAt DateTime  @default(now())
@@ -29,5 +16,187 @@ model Category {
 
   name String @unique
 
-  products Product[]
+  Product Product[]
+}
+
+model Product {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name        String  @unique
+  barcode     String  @unique
+  description String?
+
+  Category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId Int?
+
+  ProductVariant ProductVariant[]
+}
+
+model ProductAttribute {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  key   String
+  value String
+
+  ProductVariant   ProductVariant? @relation(fields: [productVariantId], references: [id])
+  productVariantId Int?
+
+  @@unique([key, value, productVariantId])
+}
+
+model ProductVariant {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  sku     String @unique
+  barcode String @unique
+
+  trackSerialNumber Boolean?
+
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productId Int
+
+  ProductAttribute ProductAttribute[]
+  Price            Price[]
+  Quantity         Quantity[]
+  SerialNumber     SerialNumber[]
+  Purchase         Purchase[]
+  Order            Order[]
+}
+
+model PriceLevel {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name    String  @unique
+  taxrate Decimal @default(0)
+
+  Price Price[]
+  Store Store[]
+}
+
+model Price {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  cost  Decimal
+  price Decimal
+
+  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
+  productVariantId Int
+
+  PriceLevel   PriceLevel @relation(fields: [priceLevelId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  priceLevelId Int
+}
+
+model Store {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  PriceLevel   PriceLevel @relation(fields: [priceLevelId], references: [id])
+  priceLevelId Int
+
+  Quantity     Quantity[]
+  SerialNumber SerialNumber[]
+  Cart         Cart[]
+}
+
+model Quantity {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  quantity Int
+
+  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
+  productVariantId Int
+
+  Store   Store @relation(fields: [storeId], references: [id])
+  storeId Int
+}
+
+model SerialNumber {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  serial String @unique
+
+  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
+  productVariantId Int
+
+  Store   Store @relation(fields: [storeId], references: [id])
+  storeId Int
+}
+
+model Purchase {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  orderedAt  DateTime?
+  receivedAt DateTime?
+
+  expectedReceivingDate DateTime?
+
+  approved Boolean @default(false)
+
+  quantity Int
+
+  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
+  productVariantId Int
+
+  employeeId Int
+}
+
+model Order {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  quantity Int
+
+  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
+  productVariantId Int
+
+  Cart   Cart? @relation(fields: [cartId], references: [id])
+  cartId Int?
+}
+
+model Cart {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  shippedAt DateTime?
+  orderedAt DateTime?
+
+  customerId Int
+  employeeId Int?
+
+  Store   Store @relation(fields: [storeId], references: [id])
+  storeId Int
+
+  Order Order[]
 }

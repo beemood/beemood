@@ -13,32 +13,22 @@ export async function resourceGenerator(
   options: ResourceGeneratorSchema
 ) {
   const { name, type, project } = options;
-  const segments = project.split('/');
-
   const source = join(__dirname, type);
-  const target = segments.slice(0, -1).join('/');
   const projectConfig = readProjectConfiguration(tree, project);
 
-  console.log(projectConfig.root);
-  console.log(projectConfig.sourceRoot);
+  const target = projectConfig.sourceRoot + '/lib';
 
   switch (type) {
     case 'controller': {
-      generateFiles(tree, source, projectConfig.sourceRoot!, {
-        ...names(name),
-      });
+      generateFiles(tree, source, target, { ...names(name) });
       break;
     }
     case 'module': {
-      generateFiles(tree, source, projectConfig.sourceRoot!, {
-        ...names(name),
-      });
+      generateFiles(tree, source, target, { ...names(name) });
       break;
     }
     case 'dto': {
-      generateFiles(tree, source, projectConfig.sourceRoot!, {
-        ...names(name),
-      });
+      generateFiles(tree, source, target, { ...names(name) });
       break;
     }
     case 'rest': {
