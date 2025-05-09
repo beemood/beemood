@@ -1,23 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { Property } from '../property/property.js';
-import { WhereNumberDto, WhereStringDto } from './where-dtos.js';
+import type { ClassType, NumberPropertyOptions } from '@bmod/types';
+import { Prop } from '../property/property.js';
+import { WhereDateDto, WhereNumberDto, WhereStringDto } from './where-dtos.js';
 
 /**
  * Used for sort dto properties
  * @returns PropertyDecorator
  */
-export function OrderProperty(): PropertyDecorator {
+export function QryOrd(): PropertyDecorator {
   return (...args) => {
-    Property({ type: 'string', isIn: ['asc', 'desc'] })(...args);
+    Prop({ type: 'string', isIn: ['asc', 'desc'] })(...args);
   };
 }
 
 /**
  * @returns PropertyDecorator
  */
-export function WhereStringProperty(): PropertyDecorator {
+export function QryStr(): PropertyDecorator {
   return (...args) => {
-    Property({ type: 'object', target: () => WhereStringDto })(...args);
+    Prop({ type: 'object', target: () => WhereStringDto })(...args);
   };
 }
 
@@ -25,9 +25,9 @@ export function WhereStringProperty(): PropertyDecorator {
  * - [ ] create filter dto for WhereDateProperty
  * @returns PropertyDecorator
  */
-export function WhereDateProperty(): PropertyDecorator {
+export function QryDate(): PropertyDecorator {
   return (...args) => {
-    Property({ type: 'object', target: () => WhereStringDto })(...args);
+    Prop({ type: 'object', target: () => WhereDateDto })(...args);
   };
 }
 
@@ -35,29 +35,30 @@ export function WhereDateProperty(): PropertyDecorator {
  * - [ ] create filter dto for WhereNumberProperty
  * @returns PropertyDecorator
  */
-export function WhereNumberProperty(): PropertyDecorator {
+export function QryNum(): PropertyDecorator {
   return (...args) => {
-    Property({ type: 'object', target: () => WhereNumberDto })(...args);
+    Prop({ type: 'object', target: () => WhereNumberDto })(...args);
   };
 }
 
 /**
  * @returns PropertyDecorator
  */
-export function WhereBooleanProperty(): PropertyDecorator {
+export function QryBool(): PropertyDecorator {
   return (...args) => {
-    Property({ type: 'boolean' })(...args);
+    Prop({ type: 'boolean', transform: true })(...args);
   };
 }
 
 /**
  * @returns PropertyDecorator
  */
-export function WhereDtoProperty(): PropertyDecorator {
+export function QryObj(target: () => ClassType<object>): PropertyDecorator {
   return (...args) => {
-    Property({
-      type: 'array',
-      items: { type: 'object', target: () => args[0] as any },
+    Prop({
+      type: 'object',
+      target,
+      transform: true,
     })(...args);
   };
 }
@@ -65,8 +66,47 @@ export function WhereDtoProperty(): PropertyDecorator {
 /**
  * @returns PropertyDecorator
  */
-export function SelectProperty(): PropertyDecorator {
+export function QrySelect(): PropertyDecorator {
   return (...args) => {
-    Property({ type: 'boolean' })(...args);
+    Prop({ type: 'boolean', transform: true })(...args);
+  };
+}
+
+/**
+ * @returns PropertyDecorator
+ */
+export function QryEnum(
+  scalarFields: Record<string, string>
+): PropertyDecorator {
+  return (...args) => {
+    Prop({
+      type: 'array',
+      items: {
+        type: 'string',
+        isIn: Object.values(scalarFields),
+      },
+      transform: true,
+    })(...args);
+  };
+}
+
+export function QryTake(
+  options?: Pick<NumberPropertyOptions, 'maximum'>
+): PropertyDecorator {
+  return (...args) => {
+    Prop({
+      type: 'integer',
+      minimum: 0,
+      defaultValue: 20,
+      maximum: options?.maximum,
+      transform: true,
+    })(...args);
+  };
+}
+export function QrySkip(): PropertyDecorator {
+  return (...args) => {
+    Prop({ type: 'integer', minimum: 0, defaultValue: 0, transform: true })(
+      ...args
+    );
   };
 }

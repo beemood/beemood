@@ -23,10 +23,11 @@ export function toApiPropertyOptions(
 
   switch (options.type) {
     case 'string': {
-      const { minLength, maxLength } = options;
+      const { minLength, maxLength, format } = options;
       return {
         minLength,
         maxLength,
+        format,
         ...common,
       };
     }

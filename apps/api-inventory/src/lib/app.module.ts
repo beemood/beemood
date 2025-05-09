@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { InventoryModule } from './inventory.module.js';
 import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { InventoryModule } from './inventory.module.js';
 
 @Module({
   imports: [

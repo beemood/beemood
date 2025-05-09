@@ -9,7 +9,8 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import { PrismaClient } from '@prisma/client';
+import { InjectRepository } from '@bmod/prisma';
+import type { Prisma } from '@prisma/client';
 import {
   CreateProductDto,
   ReadProductDto,
@@ -23,10 +24,10 @@ import {
 
 @ResourceController('products')
 export class ProductController {
-  client = new PrismaClient({
-    datasourceUrl:
-      'postgresql://testuser:password@localhost:5432/inventory?schema=public',
-  });
+  constructor(
+    @InjectRepository('product')
+    protected readonly repository: Prisma.ProductDelegate
+  ) {}
 
   @CreateOne({
     responseType: () => ReadProductDto,
@@ -37,15 +38,15 @@ export class ProductController {
     @Body() body: CreateProductDto,
     @Query() query: ProductSelectArgsDto
   ) {
-    return await this.client.product.create({ ...query, data: body });
+    return await this.repository.create({ ...query, data: body });
   }
 
   @FindAll({
     responseType: () => ReadProductDto,
     queryDto: () => ProductFindManyArgsDto,
   })
-  findAll(@Query() query: ProductFindManyArgsDto) {
-    return this.client.product.findMany({ ...query });
+  findAll(@Query() findManyArgs: ProductFindManyArgsDto) {
+    return this.repository.findMany(findManyArgs);
   }
 
   @FindOneById({
@@ -53,7 +54,10 @@ export class ProductController {
     queryDto: () => ProductFindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
-    return this.client.product.findUnique({ ...query });
+    return this.repository.findUnique({
+      ...query,
+      where: { ...query.where, id },
+    });
   }
 
   @UpdateOneById({
@@ -63,10 +67,14 @@ export class ProductController {
   })
   updateOneById(
     @ParamId() id: number,
-    @Body() body: UpdateProductDto,
+    @Body() data: UpdateProductDto,
     @Query() query: ProductFindOneArgsDto
   ) {
-    return this.client.product.update({ ...query, data: { ...body } });
+    return this.repository.update({
+      ...query,
+      where: { ...query.where, id },
+      data,
+    });
   }
 
   @DeleteOneById({
@@ -74,7 +82,7 @@ export class ProductController {
     queryDto: () => ProductFindOneArgsDto,
   })
   deleteOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
-    return this.client.product.delete({
+    return this.repository.delete({
       ...query,
       where: { ...query.where, id },
     });

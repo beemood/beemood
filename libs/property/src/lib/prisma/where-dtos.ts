@@ -1,39 +1,49 @@
-import type { IntFilter, QueryMode, StringFilter } from '@bmod/types';
+import type {
+  DateTimeFilter,
+  IntFilter,
+  QueryMode,
+  StringFilter,
+} from '@bmod/types';
 import { Model } from '../property/model.js';
-import { Property } from '../property/property.js';
+import { Prop } from '../property/property.js';
 
 @Model()
 export class WhereStringDto implements StringFilter {
-  @Property({ type: 'string' }) equals?: string;
-  @Property({ type: 'array', items: { type: 'string' } }) in?: string[];
-  @Property({ type: 'array', items: { type: 'string' } }) notIn?: string[];
-  @Property({ type: 'string' }) lt?: string;
-  @Property({ type: 'string' }) lte?: string;
-  @Property({ type: 'string' }) gt?: string;
-  @Property({ type: 'string' }) gte?: string;
-  @Property({ type: 'string' }) contains?: string;
-  @Property({ type: 'string' }) startsWith?: string;
-  @Property({ type: 'string' }) endsWith?: string;
-  @Property({ type: 'string', isIn: ['default', 'insensitive'] })
+  @Prop({ type: 'string' }) equals?: string;
+  @Prop({ type: 'array', items: { type: 'string' } }) in?: string[];
+  @Prop({ type: 'array', items: { type: 'string' } }) notIn?: string[];
+  @Prop({ type: 'string' }) lt?: string;
+  @Prop({ type: 'string' }) lte?: string;
+  @Prop({ type: 'string' }) gt?: string;
+  @Prop({ type: 'string' }) gte?: string;
+  @Prop({ type: 'string' }) contains?: string;
+  @Prop({ type: 'string' }) startsWith?: string;
+  @Prop({ type: 'string' }) endsWith?: string;
+  @Prop({ type: 'string', isIn: ['default', 'insensitive'] })
   mode?: QueryMode;
-  @Property({ type: 'string' }) not?: string;
+  @Prop({ type: 'string' }) not?: string;
 }
 
 @Model()
 export class WhereNumberDto implements IntFilter {
-  @Property({ type: 'number' }) equals?: number;
-  @Property({ type: 'array', items: { type: 'number' } }) in?: number[];
-  @Property({ type: 'array', items: { type: 'number' } }) notIn?: number[];
-  @Property({ type: 'number' }) lt?: number;
-  @Property({ type: 'number' }) lte?: number;
-  @Property({ type: 'number' }) gt?: number;
-  @Property({ type: 'number' }) gte?: number;
-  @Property({ type: 'number' }) not?: number;
+  @Prop({ type: 'number' }) equals?: number;
+  @Prop({ type: 'array', items: { type: 'number' } }) in?: number[];
+  @Prop({ type: 'array', items: { type: 'number' } }) notIn?: number[];
+  @Prop({ type: 'number' }) lt?: number;
+  @Prop({ type: 'number' }) lte?: number;
+  @Prop({ type: 'number' }) gt?: number;
+  @Prop({ type: 'number' }) gte?: number;
+  @Prop({ type: 'number' }) not?: number;
 }
 
 @Model()
-export class PaginatorDto {
-  @Property({ type: 'integer', minimum: 0 }) take: number;
-
-  @Property({ type: 'integer', minimum: 0 }) skip: number;
+export class WhereDateDto implements DateTimeFilter {
+  @Prop({ type: 'string', format: 'date' }) equals?: string;
+  @Prop({ type: 'array', items: { type: 'string' } }) in?: string[];
+  @Prop({ type: 'array', items: { type: 'string' } }) notIn?: string[];
+  @Prop({ type: 'string', format: 'date' }) lt?: string;
+  @Prop({ type: 'string', format: 'date' }) lte?: string;
+  @Prop({ type: 'string', format: 'date' }) gt?: string;
+  @Prop({ type: 'string', format: 'date' }) gte?: string;
+  @Prop({ type: 'string', format: 'date' }) not?: string;
 }

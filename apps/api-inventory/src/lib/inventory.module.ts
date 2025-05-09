@@ -1,9 +1,15 @@
+import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ProductModule } from './product/product.module.js';
 
 @Module({
-  imports: [ConfigModule, EventEmitterModule, ProductModule],
+  imports: [
+    ConfigModule,
+    EventEmitterModule,
+    PrismaModule.forRoot(),
+    ProductModule,
+  ],
 })
 export class InventoryModule {}

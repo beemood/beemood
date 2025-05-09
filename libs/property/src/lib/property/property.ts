@@ -13,8 +13,8 @@ import { StringProperty } from './string-property.js';
  * @param validationOptions ValidationOptions
  * @returns PropertyDecorator
  */
-export function Property<T extends PropertyOptions<T>>(
-  options: T,
+export function Prop<T extends PropertyOptions<T>>(
+  options: PropertyOptions,
   validationOptions?: ValidationOptions
 ): PropertyDecorator {
   return (...args) => {
@@ -45,8 +45,8 @@ export function Property<T extends PropertyOptions<T>>(
         break;
       }
       case 'array': {
-        ArrayProperty<T>(options, validationOptions)(...args);
-        Property(options.items, { ...validationOptions, each: true })(...args);
+        ArrayProperty(options, validationOptions)(...args);
+        Prop(options.items, { ...validationOptions, each: true })(...args);
         break;
       }
     }

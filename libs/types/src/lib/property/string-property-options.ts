@@ -7,4 +7,5 @@ export type StringPropertyOptions = {
   stringFormat?: string;
   defaultValue?: string;
   trim?: boolean;
+  format?: string;
 } & CommonPropertyOptions<string>;

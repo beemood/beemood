@@ -3,7 +3,7 @@ import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import 'reflect-metadata';
 import { Model } from './model.js';
-import { Property } from './property.js';
+import { Prop } from './property.js';
 
 describe('StringProperty', () => {
   describe('Valid string property', () => {
@@ -21,7 +21,7 @@ describe('StringProperty', () => {
       ({ options, value, transformed }) => {
         @Model()
         class Sample {
-          @Property(options) value: string;
+          @Prop(options) value: string;
         }
 
         const instance = plainToInstance(Sample, value);
@@ -45,7 +45,7 @@ describe('StringProperty', () => {
       ({ options, value, expectedErrors }) => {
         @Model()
         class Sample {
-          @Property(options) value: string;
+          @Prop(options) value: string;
         }
 
         const instance = plainToInstance(Sample, value);

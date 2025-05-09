@@ -102,8 +102,9 @@
     }
   },
   "dependencies": {
-    "@bmod/nest": "^0.2.16",
-    "@bmod/property": "^0.2.16",
+    "@bmod/nest": "workspace:^",
+    "@bmod/prisma": "workspace:*",
+    "@bmod/property": "workspace:^",
     "@bmod/types": "workspace:^",
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.2",
@@ -117,6 +118,7 @@
     "helmet": "^8.1.0"
   },
   "devDependencies": {
+    "@nestjs/testing": "^11.1.0",
     "@types/helmet": "^4.0.0",
     "chokidar": "^4.0.3",
     "prisma": "6.7.0"

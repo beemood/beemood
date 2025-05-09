@@ -1,10 +1,9 @@
+import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
 import { ProductController } from './product.controller.js';
-import { ProductService } from './product.service.js';
 
 @Module({
-  imports: [],
+  imports: [PrismaModule.forFeature({ resources: ['product'] })],
   controllers: [ProductController],
-  providers: [ProductService],
 })
 export class ProductModule {}
