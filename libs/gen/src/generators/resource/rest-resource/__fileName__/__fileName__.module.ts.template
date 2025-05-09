@@ -1,0 +1,19 @@
+import { InjectRepository, PrismaModule } from '@bmod/prisma';
+import type { OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
+import type { Prisma } from '@prisma/client';
+import { <%- className %>Controller } from './<%- fileName %>.controller.js';
+
+@Module({
+  imports: [PrismaModule.forFeature({ resources: ['<%- propertyName %>', 'category'] })],
+  controllers: [<%- className %>Controller],
+})
+export class <%- className %>Module implements OnModuleInit {
+  constructor(
+    @InjectRepository('<%- fileName %>')
+    protected readonly repo: Prisma.<%- className %>Delegate
+  ) {}
+  onModuleInit() {
+    // Seeding
+  }
+}
