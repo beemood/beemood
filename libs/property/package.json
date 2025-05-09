@@ -1,6 +1,6 @@
 {
   "name": "@bmod/property",
-  "version": "0.2.17",
+  "version": "0.3.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -74,7 +74,7 @@
     "class-transformer": "^0.5.1"
   },
   "dependencies": {
-    "@bmod/types": "0.2.17",
+    "@bmod/types": "0.3.0",
     "@swc/helpers": "~0.5.11"
   }
 }
