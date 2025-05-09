@@ -1,6 +1,6 @@
 {
   "name": "@bmod/api-inventory",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -102,7 +102,7 @@
     }
   },
   "dependencies": {
-    "@bmod/nest": "^0.2.15",
+    "@bmod/nest": "^0.2.16",
     "@bmod/property": "workspace:^",
     "@bmod/types": "workspace:^",
     "@nestjs/common": "^11.1.0",
