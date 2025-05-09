@@ -1,8 +1,11 @@
-import { Put, Type } from '@nestjs/common';
+import type { Type } from '@nestjs/common';
+import { Put } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 
 export type UpdateOneByIdMethodOptions = {
   responseType: () => Type;
+  updateDto?: () => Type;
+  queryDto?: () => Type;
 };
 
 /**

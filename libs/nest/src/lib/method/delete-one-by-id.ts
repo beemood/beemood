@@ -1,9 +1,11 @@
-import { Delete, Type } from '@nestjs/common';
+import type { Type } from '@nestjs/common';
+import { Delete } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { DeleteOperation } from '../metadata/set-operation-name.js';
 
 export type DeleteOneByIdMethodOptions = {
   responseType: () => Type;
+  queryDto?: () => Type;
 };
 
 /**

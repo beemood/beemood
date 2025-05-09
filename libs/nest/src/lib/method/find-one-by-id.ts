@@ -1,9 +1,11 @@
-import { Get, Type } from '@nestjs/common';
+import type { Type } from '@nestjs/common';
+import { Get } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
 import { ReadOperation } from '../metadata/set-operation-name.js';
 
 export type FindOneByIdMethodOptions = {
   responseType: () => Type;
+  queryDto?: () => Type;
 };
 
 /**

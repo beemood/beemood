@@ -9,13 +9,15 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import type { CreateProductDto } from './dto/create-product.dto.js';
+import { ApiBody } from '@nestjs/swagger';
+import { CreateProductDto } from './dto/create-product.dto.js';
 import { Product } from './dto/product.dto.js';
 import type { QueryProductDto } from './dto/query-product.dto.js';
 
 @ResourceController('products')
 export class ProductController {
   @CreateOne({ responseType: () => Product })
+  @ApiBody({ type: () => CreateProductDto })
   createOne(@Body() body: CreateProductDto) {
     return {
       some: 'Some goes here',
