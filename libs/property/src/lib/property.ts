@@ -1,14 +1,12 @@
 import type { PropertyOptions } from '@bmod/types';
-import { ApiProperty } from '@nestjs/swagger';
 import type { ValidationOptions } from 'class-validator';
+import { ApiProperty } from './api-property.js';
 import { ArrayProperty } from './array-property.js';
 import { BooleanProperty } from './boolean-property.js';
 import { IntegerProperty } from './integer-property.js';
 import { NumberProperty } from './number-property.js';
 import { ObjectProperty } from './object-property.js';
 import { StringProperty } from './string-property.js';
-import { toApiPropertyOptions } from './transformers/to-api-property-options.js';
-
 /**
  * Dto model property decorator
  * @param options PropertyOptions
@@ -22,10 +20,7 @@ export function Property<T extends PropertyOptions<T>>(
   return (...args) => {
     const { type } = options;
 
-    if (validationOptions?.each != true) {
-      ApiProperty(toApiPropertyOptions(options))(...args);
-    }
-
+    ApiProperty(options, validationOptions)(...args);
     switch (type) {
       case 'string': {
         StringProperty(options, validationOptions)(...args);
@@ -49,7 +44,6 @@ export function Property<T extends PropertyOptions<T>>(
         break;
       }
       case 'array': {
-        ApiProperty(toApiPropertyOptions(options))(...args);
         ArrayProperty<T>(options, validationOptions)(...args);
         Property(options.items, { ...validationOptions, each: true })(...args);
         break;

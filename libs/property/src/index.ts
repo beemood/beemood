@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/api-property.js';
 export * from './lib/array-property.js';
 export * from './lib/boolean-property.js';
 export * from './lib/common-number-property.js';

@@ -1,6 +1,6 @@
 {
   "name": "@bmod/gen",
-  "version": "0.2.10",
+  "version": "0.2.12",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

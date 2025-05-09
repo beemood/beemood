@@ -1,3 +1,5 @@
+/* eslint-disable @nx/enforce-module-boundaries */
+import { PrismaClient } from '@bmod/inventory-db';
 import {
   Body,
   CreateOne,
@@ -9,38 +11,53 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import { ApiBody } from '@nestjs/swagger';
 import { CreateProductDto } from './dto/create-product.dto.js';
-import { Product } from './dto/product.dto.js';
-import type { QueryProductDto } from './dto/query-product.dto.js';
+import { QueryProductDto } from './dto/query-product.dto.js';
+import { ReadProductDto } from './dto/read-product.dto.js';
 
 @ResourceController('products')
 export class ProductController {
-  @CreateOne({ responseType: () => Product })
-  @ApiBody({ type: () => CreateProductDto })
-  createOne(@Body() body: CreateProductDto) {
-    return {
-      some: 'Some goes here',
-      body,
-    };
+  client = new PrismaClient({
+    datasourceUrl:
+      'postgresql://testuser:password@localhost:5432/inventory?schema=public',
+  });
+  @CreateOne({
+    responseType: () => ReadProductDto,
+    queryDto: () => QueryProductDto,
+    createDto: () => CreateProductDto,
+  })
+  async createOne(@Body() body: CreateProductDto) {
+    return await this.client.product.create({ data: body });
   }
 
-  @FindAll({ responseType: () => Product })
+  @FindAll({
+    responseType: () => ReadProductDto,
+    queryDto: () => QueryProductDto,
+  })
   findAll(@Query() query: QueryProductDto) {
-    return [query];
+    return this.client.product.findMany({ ...query });
   }
 
-  @FindOneById({ responseType: () => Product })
+  @FindOneById({
+    responseType: () => ReadProductDto,
+    queryDto: () => QueryProductDto,
+  })
   findOneById(@ParamId() id: number, @Query() query: QueryProductDto) {
     return { id, query };
   }
 
-  @UpdateOneById({ responseType: () => Product })
+  @UpdateOneById({
+    responseType: () => ReadProductDto,
+    queryDto: () => QueryProductDto,
+  })
   updateOneById(@ParamId() id: number, @Query() query: QueryProductDto) {
     return { id, query };
   }
 
-  @DeleteOneById({ responseType: () => Product })
+  @DeleteOneById({
+    responseType: () => ReadProductDto,
+    queryDto: () => QueryProductDto,
+  })
   deleteOneById(@ParamId() id: number, @Query() query: QueryProductDto) {
     return { id, query };
   }

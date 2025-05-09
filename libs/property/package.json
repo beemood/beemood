@@ -1,6 +1,6 @@
 {
   "name": "@bmod/property",
-  "version": "0.2.10",
+  "version": "0.2.12",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -76,7 +76,7 @@
     "class-validator": "^0.14.2"
   },
   "dependencies": {
-    "@bmod/types": "0.2.10",
+    "@bmod/types": "0.2.12",
     "@swc/helpers": "~0.5.11"
   }
 }

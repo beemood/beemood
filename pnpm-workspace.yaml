@@ -3,6 +3,7 @@ packages:
   - libs/*
 
 onlyBuiltDependencies:
+  - '@prisma/client'
   - '@scarf/scarf'
   - '@swc/core'
   - core-js
