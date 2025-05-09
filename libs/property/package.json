@@ -1,6 +1,6 @@
 {
   "name": "@bmod/property",
-  "version": "0.2.16",
+  "version": "0.2.17",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -71,12 +71,10 @@
   },
   "peerDependencies": {
     "@nestjs/swagger": "^11.2.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.2",
-    "reflect-metadata": "^0.2.2"
+    "class-transformer": "^0.5.1"
   },
   "dependencies": {
-    "@bmod/types": "workspace:^",
+    "@bmod/types": "0.2.17",
     "@swc/helpers": "~0.5.11"
   }
 }
