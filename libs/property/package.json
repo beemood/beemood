@@ -1,6 +1,6 @@
 {
   "name": "@bmod/property",
-  "version": "0.2.13",
+  "version": "0.2.14",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -76,7 +76,7 @@
     "reflect-metadata": "^0.2.2"
   },
   "dependencies": {
-    "@bmod/types": "^0.2.13",
+    "@bmod/types": "^0.2.14",
     "@swc/helpers": "~0.5.11"
   }
 }

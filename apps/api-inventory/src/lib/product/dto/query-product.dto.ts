@@ -1,80 +1,118 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Model, Property } from '@bmod/property';
-import type { Prisma } from '@prisma/client';
+import {
+  Model,
+  OrderProperty,
+  Property,
+  SelectProperty,
+  WhereDateProperty,
+  WhereDtoProperty,
+  WhereNumberProperty,
+  WhereStringProperty,
+} from '@bmod/property';
+import type {
+  DateTimeFilter,
+  IntFilter,
+  OrderDirection,
+  StringFilter,
+} from '@bmod/types';
+import type { Product } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 @Model()
 export class ProductWhereDto implements Required<Prisma.ProductWhereInput> {
-  @Property({
-    type: 'array',
-    items: { type: 'object', target: () => ProductWhereDto },
-  })
-  AND: ProductWhereDto[];
+  @WhereDtoProperty() AND: ProductWhereDto[];
+  @WhereDtoProperty() OR: ProductWhereDto[];
+  @WhereDtoProperty() NOT: ProductWhereDto[];
 
-  @Property({
-    type: 'array',
-    items: { type: 'object', target: () => ProductWhereDto },
-  })
-  OR: ProductWhereDto[];
+  @WhereNumberProperty() id: IntFilter;
 
-  @Property({
-    type: 'array',
-    items: { type: 'object', target: () => ProductWhereDto },
-  })
-  NOT: ProductWhereDto[];
+  @WhereDateProperty() createdAt: DateTimeFilter;
+  @WhereDateProperty() updatedAt: DateTimeFilter;
+  @WhereDateProperty() deletedAt: DateTimeFilter;
 
-  @Property({ type: 'object', target: () => class Filter {} }) id: any;
-  @Property({ type: 'object', target: () => class Filter {} }) createdAt: any;
-  @Property({ type: 'object', target: () => class Filter {} }) updatedAt: any;
-  @Property({ type: 'object', target: () => class Filter {} }) deletedAt: any;
-  @Property({ type: 'object', target: () => class Filter {} }) name: string;
-  @Property({ type: 'object', target: () => class Filter {} })
-  description: string;
+  @WhereStringProperty() name: StringFilter;
+  @WhereStringProperty() description: StringFilter;
+}
+
+@Model()
+export class ProductWhereUniqueDto implements Product {
+  @Property({ type: 'integer' }) id: number;
+
+  @Property({ type: 'string' }) createdAt: Date;
+  @Property({ type: 'string' }) updatedAt: Date;
+  @Property({ type: 'string' }) deletedAt: Date;
+
+  @Property({ type: 'string' }) name: string;
+  @Property({ type: 'string' }) description: string;
 }
 
 @Model()
 export class ProductSelectDto implements Prisma.ProductSelect {
-  @Property({ type: 'boolean', transform: true }) id?: boolean;
-  @Property({ type: 'boolean', transform: true }) name?: boolean;
-  @Property({ type: 'boolean', transform: true }) description?: boolean;
-  @Property({ type: 'boolean', transform: true }) createdAt?: boolean;
-  @Property({ type: 'boolean', transform: true }) updatedAt?: boolean;
-  @Property({ type: 'boolean', transform: true }) deletedAt?: boolean;
+  @SelectProperty() id?: boolean;
+  @SelectProperty() name?: boolean;
+  @SelectProperty() description?: boolean;
+  @SelectProperty() createdAt?: boolean;
+  @SelectProperty() updatedAt?: boolean;
+  @SelectProperty() deletedAt?: boolean;
 }
 
 @Model()
 export class ProductOrderDto
   implements Required<Prisma.ProductOrderByWithRelationInput>
 {
-  @Property({ type: 'string' }) id: Prisma.SortOrder;
-  @Property({ type: 'string' }) createdAt: Prisma.SortOrder;
-  @Property({ type: 'string' }) updatedAt: Prisma.SortOrder;
-  @Property({ type: 'string' }) deletedAt: Prisma.SortOrder;
-  @Property({ type: 'string' }) name: Prisma.SortOrder;
-  @Property({ type: 'string' }) description: Prisma.SortOrder;
+  @OrderProperty() id: OrderDirection;
+  @OrderProperty() createdAt: OrderDirection;
+  @OrderProperty() updatedAt: OrderDirection;
+  @OrderProperty() deletedAt: OrderDirection;
+  @OrderProperty() name: OrderDirection;
+  @OrderProperty() description: OrderDirection;
 }
 
 @Model()
-export class ProductFindManyArgsDto implements Prisma.ProductFindManyArgs {
+export class ProductSelectArgsDto {
   @Property({ type: 'object', target: () => ProductSelectDto })
   select?: ProductSelectDto;
 
   @Property({ type: 'object', target: () => ProductSelectDto })
-  omit: ProductSelectDto;
+  omit?: ProductSelectDto;
+}
 
+@Model()
+export class ProductFindOneArgsDto extends ProductSelectArgsDto {
+  @Property({
+    type: 'object',
+    required: true,
+    target: () => ProductWhereUniqueDto,
+  })
+  where: ProductWhereUniqueDto;
+}
+
+@Model()
+export class ProductFindManyArgsDto
+  extends ProductSelectArgsDto
+  implements Prisma.ProductFindManyArgs
+{
   @Property({ type: 'object', target: () => ProductOrderDto })
-  orderBy: ProductOrderDto;
+  orderBy?: ProductOrderDto;
 
   @Property({ type: 'object', target: () => ProductWhereDto })
-  cursor: ProductWhereDto;
+  cursor?: Prisma.ProductWhereUniqueInput;
 
-  @Property({ type: 'integer', minimum: 0 }) take: number;
+  @Property({ type: 'integer', minimum: 0, defaultValue: 20, maximum: 10000 })
+  take: number;
 
-  @Property({ type: 'integer', minimum: 0 }) skip: number;
+  @Property({ type: 'integer', minimum: 0, defaultValue: 0 })
+  skip: number;
 
-  @Property({ type: 'array', items: { type: 'string' } })
-  distinct: Prisma.ProductScalarFieldEnum[];
+  @Property({
+    type: 'array',
+    items: {
+      type: 'string',
+      isIn: Object.values(Prisma.ProductScalarFieldEnum),
+    },
+  })
+  distinct?: Prisma.ProductScalarFieldEnum[];
 
   @Property({ type: 'object', target: () => ProductWhereDto })
-  where: ProductWhereDto;
+  where?: ProductWhereDto;
 }

@@ -1,4 +1,4 @@
-import type { IntFilter, QueryMode, StringFilter, } from '@bmod/types';
+import type { IntFilter, QueryMode, StringFilter } from '@bmod/types';
 import { Model } from '../property/model.js';
 import { Property } from '../property/property.js';
 
@@ -29,4 +29,11 @@ export class WhereNumberDto implements IntFilter {
   @Property({ type: 'number' }) gt?: number;
   @Property({ type: 'number' }) gte?: number;
   @Property({ type: 'number' }) not?: number;
+}
+
+@Model()
+export class PaginatorDto {
+  @Property({ type: 'integer', minimum: 0 }) take: number;
+
+  @Property({ type: 'integer', minimum: 0 }) skip: number;
 }

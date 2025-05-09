@@ -1,3 +1,5 @@
+export type OrderDirection = 'asc' | 'desc';
+
 export type IntFilter = {
   equals?: number;
   in?: number[];

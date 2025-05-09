@@ -10,8 +10,16 @@ import {
   UpdateOneById,
 } from '@bmod/nest';
 import { PrismaClient } from '@prisma/client';
-import { CreateProductDto, ReadProductDto } from './dto/product.dto.js';
-import { ProductFindManyArgsDto } from './dto/query-product.dto.js';
+import {
+  CreateProductDto,
+  ReadProductDto,
+  UpdateProductDto,
+} from './dto/product.dto.js';
+import {
+  ProductFindManyArgsDto,
+  ProductFindOneArgsDto,
+  ProductSelectArgsDto,
+} from './dto/query-product.dto.js';
 
 @ResourceController('products')
 export class ProductController {
@@ -19,13 +27,17 @@ export class ProductController {
     datasourceUrl:
       'postgresql://testuser:password@localhost:5432/inventory?schema=public',
   });
+
   @CreateOne({
     responseType: () => ReadProductDto,
-    queryDto: () => ProductFindManyArgsDto,
+    queryDto: () => ProductSelectArgsDto,
     createDto: () => CreateProductDto,
   })
-  async createOne(@Body() body: CreateProductDto) {
-    return await this.client.product.create({ data: body });
+  async createOne(
+    @Body() body: CreateProductDto,
+    @Query() query: ProductSelectArgsDto
+  ) {
+    return await this.client.product.create({ ...query, data: body });
   }
 
   @FindAll({
@@ -38,25 +50,33 @@ export class ProductController {
 
   @FindOneById({
     responseType: () => ReadProductDto,
-    queryDto: () => ProductFindManyArgsDto,
+    queryDto: () => ProductFindOneArgsDto,
   })
-  findOneById(@ParamId() id: number, @Query() query: ProductFindManyArgsDto) {
-    return { id, query };
+  findOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
+    return this.client.product.findUnique({ ...query });
   }
 
   @UpdateOneById({
     responseType: () => ReadProductDto,
+    updateDto: () => UpdateProductDto,
     queryDto: () => ProductFindManyArgsDto,
   })
-  updateOneById(@ParamId() id: number, @Query() query: ProductFindManyArgsDto) {
-    return { id, query };
+  updateOneById(
+    @ParamId() id: number,
+    @Body() body: UpdateProductDto,
+    @Query() query: ProductFindOneArgsDto
+  ) {
+    return this.client.product.update({ ...query, data: { ...body } });
   }
 
   @DeleteOneById({
     responseType: () => ReadProductDto,
-    queryDto: () => ProductFindManyArgsDto,
+    queryDto: () => ProductFindOneArgsDto,
   })
-  deleteOneById(@ParamId() id: number, @Query() query: ProductFindManyArgsDto) {
-    return { id, query };
+  deleteOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
+    return this.client.product.delete({
+      ...query,
+      where: { ...query.where, id },
+    });
   }
 }
