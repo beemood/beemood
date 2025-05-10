@@ -1,6 +1,6 @@
 {
   "name": "@bmod/api-inventory",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -10,7 +10,7 @@
     "tag": "latest"
   },
   "license": "MIT",
-  "description": "- [ ] Add project description for api-inventory",
+  "description": "Inventory api",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
@@ -117,10 +117,10 @@
     }
   },
   "dependencies": {
-    "@bmod/nest": "^0.3.2",
-    "@bmod/prisma": "^0.3.2",
-    "@bmod/property": "^0.3.2",
-    "@bmod/types": "^0.3.2",
+    "@bmod/nest": "0.3.2",
+    "@bmod/prisma": "0.3.2",
+    "@bmod/property": "0.3.2",
+    "@bmod/types": "0.3.2",
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.0",

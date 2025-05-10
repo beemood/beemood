@@ -15,10 +15,9 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'npx nx serve @bmod/api-inventory',
+    command: 'npx nx serve @bmod/api-<%- fileName %>',
     cwd: workspaceRoot,
     port: 3000,
   },
-  testDir: './e2e',
   tsconfig: './tsconfig.e2e.json',
 });

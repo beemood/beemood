@@ -1,6 +1,6 @@
 {
   "name": "@bmod/prisma",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -73,7 +73,7 @@
     "@prisma/client": "^6.7.0"
   },
   "dependencies": {
-    "@bmod/types": "^0.3.2",
+    "@bmod/types": "^0.3.3",
     "@swc/helpers": "~0.5.11"
   }
 }
