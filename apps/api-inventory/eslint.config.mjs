@@ -26,4 +26,9 @@ export default [
     // Override or add rules here
     rules: {},
   },
+  {
+    files: ['**/*.ts', '**/*.js'],
+    // Override or add rules here
+    rules: {},
+  },
 ];

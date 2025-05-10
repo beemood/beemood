@@ -67,6 +67,7 @@
           "{options.outputPath}"
         ],
         "options": {
+          "clean": false,
           "outputPath": "{projectRoot}/dist",
           "main": "{projectRoot}/src/boot.ts",
           "tsConfig": "{projectRoot}/tsconfig.app.json",
@@ -77,17 +78,14 @@
         "executor": "nx:run-commands",
         "options": {
           "command": "node --watch --watch-path {projectRoot}/src {projectRoot}/dist/src/boot.js",
-          "cwd": "{workspaceRoot}",
-          "parallel": true
-        },
-        "dependsOn": [
-          "build"
-        ]
+          "cwd": "{workspaceRoot}"
+        }
       },
       "serve": {
         "dependsOn": [
-          "start",
-          "build-watch"
+          "build",
+          "build-watch",
+          "start"
         ]
       },
       "e2e": {
@@ -132,7 +130,10 @@
     "@nestjs/throttler": "^6.4.0",
     "@prisma/client": "^6.7.0",
     "@swc/helpers": "~0.5.11",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "@nx/devkit": "21.0.3",
+    "@nx/playwright": "^21.0.3",
+    "@playwright/test": "^1.36.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^11.1.0",
