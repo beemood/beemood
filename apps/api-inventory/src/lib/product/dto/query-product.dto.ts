@@ -25,34 +25,47 @@ export class ProductWhereDto implements P.ProductWhereInput {
   @QryObj(() => ProductWhereDto) AND: ProductWhereDto[];
   @QryObj(() => ProductWhereDto) OR: ProductWhereDto[];
   @QryObj(() => ProductWhereDto) NOT: ProductWhereDto[];
+
   @QryNum() id: IntFilter;
+
   @QryDate() createdAt: DateTimeFilter;
   @QryDate() updatedAt: DateTimeFilter;
   @QryDate() deletedAt: DateTimeFilter;
+
   @QryStr() name: StringFilter;
+  @QryStr() barcode: StringFilter;
   @QryStr() description: StringFilter;
+
   @QryNum() categoryId: IntFilter;
 }
 
 @Model()
 export class ProductWhereUniqueDto implements Product {
   @Prop({ type: 'integer' }) id: number;
+
   @Prop({ type: 'string', format: 'date' }) createdAt: Date;
   @Prop({ type: 'string', format: 'date' }) updatedAt: Date;
   @Prop({ type: 'string', format: 'date' }) deletedAt: Date;
+
   @Prop({ type: 'string' }) name: string;
+  @Prop({ type: 'string' }) barcode: string;
   @Prop({ type: 'string' }) description: string;
+
   @Prop({ type: 'integer' }) categoryId: number;
 }
 
 @Model()
 export class ProductSelectDto implements P.ProductSelect {
   @QrySelect() id?: boolean;
-  @QrySelect() name?: boolean;
-  @QrySelect() description?: boolean;
+
   @QrySelect() createdAt?: boolean;
   @QrySelect() updatedAt?: boolean;
   @QrySelect() deletedAt?: boolean;
+
+  @QrySelect() name?: boolean;
+  @QrySelect() barcode?: boolean;
+  @QrySelect() description?: boolean;
+
   @QrySelect() categoryId?: boolean;
   @QrySelect() category?: boolean;
 }
@@ -60,11 +73,15 @@ export class ProductSelectDto implements P.ProductSelect {
 @Model()
 export class ProductOrderDto implements P.ProductOrderByWithRelationInput {
   @QryOrd() id?: OrderDirection;
+
   @QryOrd() createdAt?: OrderDirection;
   @QryOrd() updatedAt?: OrderDirection;
   @QryOrd() deletedAt?: OrderDirection;
+
   @QryOrd() name?: OrderDirection;
+  @QryOrd() barcode?: OrderDirection;
   @QryOrd() description?: OrderDirection;
+
   @QryOrd() categoryId?: OrderDirection;
 }
 

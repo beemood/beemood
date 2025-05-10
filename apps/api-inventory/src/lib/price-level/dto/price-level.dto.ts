@@ -13,7 +13,7 @@ export class ReadPriceLevelDto implements Partial<PriceLevel> {
 }
 
 @Model()
-export class CreatePriceLevelDto implements P.PriceLevelCreateInput {
+export class CreatePriceLevelDto implements P.PriceLevelUncheckedCreateInput {
   @Prop({ type: 'string' }) name: string;
   @Prop({ type: 'number' }) taxrate?: P.Decimal;
 }

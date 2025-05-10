@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
-import { AppModule } from './lib/app.module.js';
+import { AppModule } from './index.js';
 
 export async function main() {
   const app = await NestFactory.create(AppModule, { logger: ['log'] });

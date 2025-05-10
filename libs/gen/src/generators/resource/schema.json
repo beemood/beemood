@@ -17,7 +17,7 @@
     "type": {
       "type": "string",
       "description": "Project type",
-      "enum": ["rest"],
+      "enum": ["rest", "dto", "controller", "module"],
       "$default": {
         "$source": "argv",
         "index": 1

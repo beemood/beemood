@@ -5,18 +5,22 @@ import type { Prisma as P, <%- className %> } from '@prisma/client';
 @Model()
 export class Read<%- className %>Dto implements Partial<<%- className %>> {
   @Prop({ type: 'integer' }) id?: number;
+  
   @Prop({ type: 'string' }) createdAt?: Date;
   @Prop({ type: 'string' }) updatedAt?: Date;
   @Prop({ type: 'string' }) deletedAt?: Date;
+
   @Prop({ type: 'string' }) name?: string;
   @Prop({ type: 'string' }) description?: string;
+
   @Prop({ type: 'string' }) categoryId?: number;
 }
 
 @Model()
-export class Create<%- className %>Dto implements P.<%- className %>CreateInput {
+export class Create<%- className %>Dto implements P.<%- className %>UncheckedCreateInput {
   @Prop({ type: 'string' }) name: string;
   @Prop({ type: 'string' }) description?: string;
+  
   @Prop({ type: 'integer' }) categoryId?: number;
 }
 

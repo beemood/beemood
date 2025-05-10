@@ -1,25 +1,26 @@
 import { Model, Prop } from '@bmod/property';
 import { PartialType } from '@nestjs/swagger';
-import type { Prisma as P, Product } from '@prisma/client';
+import type { Prisma as P, Store } from '@prisma/client';
 
 @Model()
-export class ReadProductDto implements Partial<Product> {
+export class ReadStoreDto implements Partial<Store> {
   @Prop({ type: 'integer' }) id?: number;
+
   @Prop({ type: 'string' }) createdAt?: Date;
   @Prop({ type: 'string' }) updatedAt?: Date;
   @Prop({ type: 'string' }) deletedAt?: Date;
+
   @Prop({ type: 'string' }) name?: string;
-  @Prop({ type: 'string' }) barcode?: string;
   @Prop({ type: 'string' }) description?: string;
   @Prop({ type: 'string' }) categoryId?: number;
 }
 
 @Model()
-export class CreateProductDto implements P.ProductUncheckedCreateInput {
+export class CreateStoreDto implements P.StoreUncheckedCreateInput {
   @Prop({ type: 'string' }) name: string;
   @Prop({ type: 'string' }) description?: string;
-  @Prop({ type: 'integer' }) categoryId?: number;
+  @Prop({ type: 'integer' }) priceLevelId: number;
 }
 
 @Model()
-export class UpdateProductDto extends PartialType(CreateProductDto) {}
+export class UpdateStoreDto extends PartialType(CreateStoreDto) {}

@@ -13,4 +13,8 @@ export * from './lib/product/dto/product.dto.js';
 export * from './lib/product/dto/query-product.dto.js';
 export * from './lib/product/product.controller.js';
 export * from './lib/product/product.module.js';
+export * from './lib/store/dto/query-store.dto.js';
+export * from './lib/store/dto/store.dto.js';
+export * from './lib/store/store.controller.js';
+export * from './lib/store/store.module.js';
 

@@ -4,16 +4,19 @@
   "files": [],
   "references": [
     {
-      "path": "./libs/types"
-    },
-    {
       "path": "./libs/gen"
     },
     {
       "path": "./libs/nest"
     },
     {
+      "path": "./libs/prisma"
+    },
+    {
       "path": "./libs/property"
+    },
+    {
+      "path": "./libs/types"
     },
     {
       "path": "./apps/api-inventory"
