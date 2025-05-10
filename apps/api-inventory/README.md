@@ -6,7 +6,7 @@
 
 ## Summary
 
-- [ ] Add project summary for api-inventory
+Inventory api
 
 ## Install
 

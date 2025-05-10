@@ -1,6 +1,9 @@
 import nx from '@nx/eslint-plugin';
 
 export default [
+  ...nx.configs['flat/base'],
+  ...nx.configs['flat/typescript'],
+  ...nx.configs['flat/javascript'],
   {
     files: ['**/*.json'],
     // Override or add rules here
@@ -9,14 +12,13 @@ export default [
       parser: await import('jsonc-eslint-parser'),
     },
   },
-  ...nx.configs['flat/base'],
-  ...nx.configs['flat/typescript'],
-  ...nx.configs['flat/javascript'],
+
   {
     ignores: [
       '**/dist',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
+      '**/test-output',
     ],
   },
   {
@@ -37,7 +39,6 @@ export default [
       ],
     },
   },
-
   {
     files: ['**/*.ts'],
     rules: {
@@ -62,6 +63,11 @@ export default [
       '**/*.cjs',
       '**/*.mjs',
     ],
+    // Override or add rules here
+    rules: {},
+  },
+  {
+    files: ['**/*.ts', '**/*.js'],
     // Override or add rules here
     rules: {},
   },

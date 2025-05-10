@@ -77,14 +77,25 @@
         "executor": "nx:run-commands",
         "options": {
           "command": "node --watch --watch-path {projectRoot}/src {projectRoot}/dist/src/boot.js",
-          "cwd": "{workspaceRoot}"
-        }
+          "cwd": "{workspaceRoot}",
+          "parallel": true
+        },
+        "dependsOn": [
+          "build"
+        ]
       },
       "serve": {
         "dependsOn": [
-          "build-watch",
-          "start"
+          "start",
+          "build-watch"
         ]
+      },
+      "e2e": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx playwright test",
+          "cwd": "{projectRoot}"
+        }
       },
       "db-migrate": {
         "command": "npx prisma migrate dev --name updated",
@@ -125,6 +136,8 @@
   },
   "devDependencies": {
     "@nestjs/testing": "^11.1.0",
+    "@nx/devkit": "^21.0.3",
+    "@playwright/test": "^1.52.0",
     "@types/helmet": "^4.0.0",
     "@types/supertest": "^6.0.3",
     "chokidar": "^4.0.3",
