@@ -43,6 +43,7 @@
   },
   "files": [
     "dist",
+    "prisma",
     "!**/*.tsbuildinfo"
   ],
   "nx": {

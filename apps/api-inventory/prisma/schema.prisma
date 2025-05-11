@@ -20,19 +20,27 @@ model Category {
   Product Product[]
 }
 
-model ProductSupplier {
+model Department {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  Product Product[]
+}
+
+model Tag {
   id Int @id @default(autoincrement())
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  supplierId Int
-
-  Product   Product @relation(fields: [productId], references: [id])
-  productId Int
-
-  @@unique([supplierId, productId])
+  name    String
+  Product Product[]
 }
 
 model Product {
@@ -46,11 +54,18 @@ model Product {
   description String @default("Product does not have a description!")
   barcode     String @unique @default(uuid())
 
+  brand String?
+
+  Department   Department? @relation(fields: [departmentId], references: [id])
+  departmentId Int?
+
   Category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId Int?
 
-  ProductVariant  ProductVariant[]
-  ProductSupplier ProductSupplier[]
+  Tag   Tag? @relation(fields: [tagId], references: [id])
+  tagId Int?
+
+  ProductVariant ProductVariant[]
 }
 
 model ProductAttribute {
@@ -88,8 +103,6 @@ model ProductVariant {
   Price            Price[]
   Quantity         Quantity[]
   SerialNumber     SerialNumber[]
-  Purchase         Purchase[]
-  Order            Order[]
 }
 
 model PriceLevel {
@@ -121,29 +134,15 @@ model Price {
   priceLevelId Int
 }
 
-model Store {
-  id        Int       @id @unique @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  name String @unique
-
-  PriceLevel   PriceLevel @relation(fields: [priceLevelId], references: [id])
-  priceLevelId Int
-
-  Quantity     Quantity[]
-  SerialNumber SerialNumber[]
-  Cart         Cart[]
-}
-
 model Quantity {
-  id        Int       @id @unique @default(autoincrement())
+  id Int @id @unique @default(autoincrement())
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  quantity Int
+  quantity        Int
+  minumumQuantity Int? @default(0)
 
   ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
   productVariantId Int
@@ -159,7 +158,7 @@ model SerialNumber {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  serial String @unique
+  serialNumber String @unique
 
   ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
   productVariantId Int
@@ -168,59 +167,17 @@ model SerialNumber {
   storeId Int
 }
 
-model Purchase {
-  id Int @id @unique @default(autoincrement())
-
+model Store {
+  id        Int       @id @unique @default(autoincrement())
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  orderedAt  DateTime?
-  receivedAt DateTime?
+  name String @unique
 
-  expectedReceivingDate DateTime?
+  PriceLevel   PriceLevel @relation(fields: [priceLevelId], references: [id])
+  priceLevelId Int
 
-  approved Boolean @default(false)
-
-  quantity Int
-
-  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
-  productVariantId Int
-
-  employeeId Int
-}
-
-model Order {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  quantity Int
-
-  ProductVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
-  productVariantId Int
-
-  Cart   Cart? @relation(fields: [cartId], references: [id])
-  cartId Int?
-}
-
-model Cart {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  shippedAt DateTime?
-  orderedAt DateTime?
-
-  customerId Int
-  employeeId Int?
-
-  Store   Store @relation(fields: [storeId], references: [id])
-  storeId Int
-
-  Order Order[]
+  Quantity     Quantity[]
+  SerialNumber SerialNumber[]
 }
