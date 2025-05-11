@@ -27,7 +27,8 @@ export function providePrismaClient(datasourceName = 'default'): Provider {
     provide: getPrismaClientToken(datasourceName),
     useFactory(config: ConfigService) {
       const datasourceUrl = config.getOrThrow(Config.DATABASE_URL);
-      return new PrismaClient({ datasourceUrl });
+      const client = new PrismaClient({ datasourceUrl });
+      return client;
     },
   };
 }

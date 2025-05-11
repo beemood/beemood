@@ -20,6 +20,21 @@ model Category {
   Product Product[]
 }
 
+model ProductSupplier {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  supplierId Int
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  @@unique([supplierId, productId])
+}
+
 model Product {
   id Int @id @default(autoincrement())
 
@@ -27,14 +42,15 @@ model Product {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name        String  @unique
-  barcode     String  @unique @default(uuid())
-  description String?
+  name        String @unique
+  description String @default("Product does not have a description!")
+  barcode     String @unique @default(uuid())
 
   Category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId Int?
 
-  ProductVariant ProductVariant[]
+  ProductVariant  ProductVariant[]
+  ProductSupplier ProductSupplier[]
 }
 
 model ProductAttribute {

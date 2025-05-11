@@ -1,11 +1,17 @@
-import { InjectRepository, PrismaModule } from '@bmod/prisma';
+import {
+  InjectRepository,
+  PrismaModule
+} from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import type { Prisma } from '@prisma/client';
+import { productData } from './product-data.js';
 import { ProductController } from './product.controller.js';
 
 @Module({
-  imports: [PrismaModule.forFeature({ resources: ['product', 'category'] })],
+  imports: [
+    PrismaModule.forFeature({ resources: ['product', 'productVariant'] }),
+  ],
   controllers: [ProductController],
 })
 export class ProductModule implements OnModuleInit {
@@ -13,7 +19,8 @@ export class ProductModule implements OnModuleInit {
     @InjectRepository('product')
     protected readonly repo: Prisma.ProductDelegate
   ) {}
-  onModuleInit() {
-    // Seeding
+
+  async onModuleInit() {
+    await this.repo.createMany({ data: productData, skipDuplicates: true });
   }
 }

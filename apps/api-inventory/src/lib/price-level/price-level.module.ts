@@ -2,6 +2,7 @@ import { InjectRepository, PrismaModule } from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import type { Prisma } from '@prisma/client';
+import { priceLevelData } from './price-level-data.js';
 import { PriceLevelController } from './price-level.controller.js';
 
 @Module({
@@ -13,7 +14,8 @@ export class PriceLevelModule implements OnModuleInit {
     @InjectRepository('priceLevel')
     protected readonly repo: Prisma.PriceLevelDelegate
   ) {}
-  onModuleInit() {
-    // Seeding
+
+  async onModuleInit() {
+    await this.repo.createMany({ data: priceLevelData, skipDuplicates: true });
   }
 }

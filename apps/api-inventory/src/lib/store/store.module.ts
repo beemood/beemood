@@ -13,7 +13,12 @@ export class StoreModule implements OnModuleInit {
     @InjectRepository('store')
     protected readonly repo: Prisma.StoreDelegate
   ) {}
-  onModuleInit() {
-    // Seed database
+
+  async onModuleInit() {
+    const data: Prisma.StoreUncheckedCreateInput[] = [
+      { name: 'Houston Stroe', priceLevelId: 1 },
+    ];
+
+    await this.repo.createMany({ data });
   }
 }

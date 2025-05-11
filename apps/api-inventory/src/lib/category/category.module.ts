@@ -2,6 +2,7 @@ import { InjectRepository, PrismaModule } from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import type { Prisma } from '@prisma/client';
+import { categoryData } from './category-data.js';
 import { CategoryController } from './category.controller.js';
 
 @Module({
@@ -13,7 +14,7 @@ export class CategoryModule implements OnModuleInit {
     @InjectRepository('category')
     protected readonly repo: Prisma.ProductDelegate
   ) {}
-  onModuleInit() {
-    // Seeding
+  async onModuleInit() {
+    await this.repo.createMany({ data: categoryData, skipDuplicates: true });
   }
 }
