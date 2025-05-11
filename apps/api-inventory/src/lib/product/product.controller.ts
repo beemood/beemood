@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import {
   Body,
   CreateOne,
@@ -55,7 +54,7 @@ export class ProductController {
     queryDto: () => ProductFindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
-    return this.repository.findUnique({
+    return this.repository.findFirst({
       ...query,
       where: { ...query.where, id },
     });

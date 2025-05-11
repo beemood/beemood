@@ -54,7 +54,7 @@ export class DepartmentController {
     queryDto: () => DepartmentFindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: DepartmentFindOneArgsDto) {
-    return this.repository.findUnique({
+    return this.repository.findFirst({
       ...query,
       where: { ...query.where, id },
     });

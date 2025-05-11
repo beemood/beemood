@@ -11,6 +11,7 @@ import { ProductVariantModule } from './product-variant/product-variant.module.j
 import { ProductModule } from './product/product.module.js';
 import { QuantityModule } from './quantity/quantity.module.js';
 import { StoreModule } from './store/store.module.js';
+import { TagModule } from './tag/tag.module.js';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { StoreModule } from './store/store.module.js';
     ProductVariantModule,
     QuantityModule,
     StoreModule,
+    TagModule,
   ],
 })
 export class InventoryModule implements OnModuleInit {

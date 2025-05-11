@@ -6,9 +6,7 @@ import { productData } from './product-data.js';
 import { ProductController } from './product.controller.js';
 
 @Module({
-  imports: [
-    PrismaModule.forFeature({ resources: ['product', 'productVariant'] }),
-  ],
+  imports: [PrismaModule.forFeature({ resources: ['product'] })],
   controllers: [ProductController],
 })
 export class ProductModule implements OnModuleInit {

@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import {
   Body,
   CreateOne,
@@ -23,7 +22,7 @@ import {
   CategorySelectArgsDto,
 } from './dto/query-category.dto.js';
 
-@ResourceController('categories')
+@ResourceController('categries')
 export class CategoryController {
   constructor(
     @InjectRepository('category')
@@ -46,8 +45,8 @@ export class CategoryController {
     responseType: () => ReadCategoryDto,
     queryDto: () => CategoryFindManyArgsDto,
   })
-  findAll(@Query() findManyArgs: CategoryFindManyArgsDto) {
-    return this.repository.findMany(findManyArgs);
+  findAll(@Query() query: CategoryFindManyArgsDto) {
+    return this.repository.findMany(query);
   }
 
   @FindOneById({

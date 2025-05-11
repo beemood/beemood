@@ -5,7 +5,7 @@ import type { Prisma } from '@prisma/client';
 import { PriceController } from './price.controller.js';
 
 @Module({
-  imports: [PrismaModule.forFeature({ resources: ['price', 'category'] })],
+  imports: [PrismaModule.forFeature({ resources: ['price'] })],
   controllers: [PriceController],
 })
 export class PriceModule implements OnModuleInit {

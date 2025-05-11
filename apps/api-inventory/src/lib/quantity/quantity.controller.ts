@@ -22,7 +22,7 @@ import {
   QuantitySelectArgsDto,
 } from './dto/query-quantity.dto.js';
 
-@ResourceController('quantitys')
+@ResourceController('quantities')
 export class QuantityController {
   constructor(
     @InjectRepository('quantity')
@@ -54,7 +54,7 @@ export class QuantityController {
     queryDto: () => QuantityFindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: QuantityFindOneArgsDto) {
-    return this.repository.findUnique({
+    return this.repository.findFirst({
       ...query,
       where: { ...query.where, id },
     });

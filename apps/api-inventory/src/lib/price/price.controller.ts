@@ -54,7 +54,7 @@ export class PriceController {
     queryDto: () => PriceFindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: PriceFindOneArgsDto) {
-    return this.repository.findUnique({
+    return this.repository.findFirst({
       ...query,
       where: { ...query.where, id },
     });

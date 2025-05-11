@@ -5,9 +5,7 @@ import type { Prisma } from '@prisma/client';
 import { ProductVariantController } from './product-variant.controller.js';
 
 @Module({
-  imports: [
-    PrismaModule.forFeature({ resources: ['productVariant', 'category'] }),
-  ],
+  imports: [PrismaModule.forFeature({ resources: ['productVariant'] })],
   controllers: [ProductVariantController],
 })
 export class ProductVariantModule implements OnModuleInit {
