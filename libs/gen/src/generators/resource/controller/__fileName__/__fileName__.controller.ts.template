@@ -54,7 +54,7 @@ export class <%- className %>Controller {
     queryDto: () => <%- className %>FindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: <%- className %>FindOneArgsDto) {
-    return this.repository.findUnique({
+    return this.repository.findFirst({
       ...query,
       where: { ...query.where, id },
     });

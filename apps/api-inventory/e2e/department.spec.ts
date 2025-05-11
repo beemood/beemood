@@ -1,16 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { describe } from 'node:test';
 
-describe('/api/products', () => {
+describe('/api/departments', () => {
   const timestamp = new Date().getTime().toString();
-  const fake = (suffix = '') => ({
-    name: `some ${timestamp}${suffix}`,
-    barcode: `${timestamp}`,
-    categoryId: 1,
-  });
+  const fake = (suffix = '') => ({ name: `some ${timestamp}${suffix}` });
 
   function route(...args: string[]) {
-    return ['/api/products', ...args].join('/');
+    return ['/api/departments', ...args].join('/');
   }
 
   test('POST /', async ({ request }) => {

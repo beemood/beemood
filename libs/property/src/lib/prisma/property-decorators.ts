@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ClassType, NumberPropertyOptions } from '@bmod/types';
 import { Prop } from '../property/property.js';
 import { WhereDateDto, WhereNumberDto, WhereStringDto } from './where-dtos.js';
@@ -63,6 +64,30 @@ export function QryObj(target: () => ClassType<object>): PropertyDecorator {
   };
 }
 
+export function QryAndWhereProp(): PropertyDecorator {
+  return (...args) => {
+    Prop({
+      type: 'array',
+      items: {
+        type: 'object',
+        target: () => args[0].constructor as any,
+      },
+      transform: true,
+    })(...args);
+  };
+}
+
+export function QryOrWhereProp(): PropertyDecorator {
+  return (...args) => {
+    QryAndWhereProp()(...args);
+  };
+}
+
+export function QryNotWhereProp(): PropertyDecorator {
+  return (...args) => {
+    QryAndWhereProp()(...args);
+  };
+}
 /**
  * @returns PropertyDecorator
  */

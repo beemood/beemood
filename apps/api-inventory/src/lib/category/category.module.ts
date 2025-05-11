@@ -15,6 +15,10 @@ export class CategoryModule implements OnModuleInit {
     protected readonly repo: Prisma.ProductDelegate
   ) {}
   async onModuleInit() {
-    await this.repo.createMany({ data: categoryData, skipDuplicates: true });
+    try {
+      await this.repo.createMany({ data: categoryData });
+    } catch {
+      //
+    }
   }
 }

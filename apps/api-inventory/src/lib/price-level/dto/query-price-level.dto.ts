@@ -1,7 +1,12 @@
+/* eslint-disable @nx/enforce-module-boundaries */
+import type { WhereNumberDto, WhereStringDto } from '@bmod/property';
 import {
+  BaseOrderDto,
+  BaseSelectDto,
+  BaseUniqueWhereDto,
+  BaseWhereDto,
   Model,
   Prop,
-  QryDate,
   QryEnum,
   QryNum,
   QryObj,
@@ -11,57 +16,42 @@ import {
   QryStr,
   QryTake,
 } from '@bmod/property';
-import type {
-  DateTimeFilter,
-  IntFilter,
-  OrderDirection,
-  StringFilter,
-} from '@bmod/types';
+import type { OrderDirection } from '@bmod/types';
 import type { PriceLevel } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
 
 @Model()
-export class PriceLevelWhereDto implements P.PriceLevelWhereInput {
-  @QryObj(() => PriceLevelWhereDto) AND: PriceLevelWhereDto[];
-  @QryObj(() => PriceLevelWhereDto) OR: PriceLevelWhereDto[];
-  @QryObj(() => PriceLevelWhereDto) NOT: PriceLevelWhereDto[];
-  @QryNum() id: IntFilter;
-  @QryDate() createdAt: DateTimeFilter;
-  @QryDate() updatedAt: DateTimeFilter;
-  @QryDate() deletedAt: DateTimeFilter;
-  @QryStr() name: StringFilter;
-  @QryStr() description: StringFilter;
-  @QryNum() categoryId: IntFilter;
+export class PriceLevelWhereDto
+  extends BaseWhereDto
+  implements P.PriceLevelWhereInput
+{
+  @QryStr() name?: WhereStringDto;
+  @QryNum() taxrate?: WhereNumberDto;
 }
 
 @Model()
-export class PriceLevelWhereUniqueDto implements PriceLevel {
-  @Prop({ type: 'integer' }) id: number;
-  @Prop({ type: 'string', format: 'date' }) createdAt: Date;
-  @Prop({ type: 'string', format: 'date' }) updatedAt: Date;
-  @Prop({ type: 'string', format: 'date' }) deletedAt: Date;
-  @Prop({ type: 'string' }) name: string;
-  @Prop({ type: 'string' }) taxrate: P.Decimal;
+export class PriceLevelWhereUniqueDto
+  extends BaseUniqueWhereDto
+  implements Partial<PriceLevel>
+{
+  @Prop({ type: 'string' }) name?: string;
+  @Prop({ type: 'number' }) taxrate?: P.Decimal;
 }
 
 @Model()
-export class PriceLevelSelectDto implements P.PriceLevelSelect {
-  @QrySelect() id?: boolean;
-  @QrySelect() createdAt?: boolean;
-  @QrySelect() updatedAt?: boolean;
-  @QrySelect() deletedAt?: boolean;
+export class PriceLevelSelectDto
+  extends BaseSelectDto
+  implements P.PriceLevelSelect
+{
   @QrySelect() name?: boolean;
   @QrySelect() taxrate?: boolean;
 }
 
 @Model()
 export class PriceLevelOrderDto
+  extends BaseOrderDto
   implements P.PriceLevelOrderByWithRelationInput
 {
-  @QryOrd() id?: OrderDirection;
-  @QryOrd() createdAt?: OrderDirection;
-  @QryOrd() updatedAt?: OrderDirection;
-  @QryOrd() deletedAt?: OrderDirection;
   @QryOrd() name?: OrderDirection;
   @QryOrd() taxrate?: OrderDirection;
 }

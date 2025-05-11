@@ -1,29 +1,9 @@
 import type { Prisma } from '@prisma/client';
+import { departmentCategoryList } from '../department/department-data-raw.js';
 
-export const categoryData: Prisma.CategoryUncheckedCreateInput[] = [
-  { name: 'Electronics' },
-  { name: 'Clothing & Apparel' },
-  { name: 'Home Goods & Decor' },
-  { name: 'Beauty & Personal Care' },
-  { name: 'Books & Media' },
-  { name: 'Sports & Outdoors' },
-  { name: 'Toys & Games' },
-  { name: 'Automotive' },
-  { name: 'Food & Beverages' },
-  { name: 'Health & Wellness' },
-  { name: 'Jewelry & Accessories' },
-  { name: 'Pet Supplies' },
-  { name: 'Baby & Kids' },
-  { name: 'Tools & Home Improvement' },
-  { name: 'Garden & Outdoor Living' },
-  { name: 'Arts & Crafts' },
-  { name: 'Office Supplies' },
-  { name: 'Musical Instruments' },
-  { name: 'Travel & Luggage' },
-  { name: 'Software' },
-  { name: 'Furniture' },
-  { name: 'Groceries' },
-  { name: 'Handmade Products' },
-  { name: 'Digital Products' },
-  { name: 'Services' },
-];
+export const categoryData: Prisma.CategoryUncheckedCreateInput[] =
+  departmentCategoryList
+    .map((e) => {
+      return e.subcategories;
+    })
+    .flat();

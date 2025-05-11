@@ -1,7 +1,11 @@
+import type { WhereNumberDto, WhereStringDto } from '@bmod/property';
 import {
+  BaseOrderDto,
+  BaseSelectDto,
+  BaseUniqueWhereDto,
+  BaseWhereDto,
   Model,
   Prop,
-  QryDate,
   QryEnum,
   QryNum,
   QryObj,
@@ -11,78 +15,63 @@ import {
   QryStr,
   QryTake,
 } from '@bmod/property';
-import type {
-  DateTimeFilter,
-  IntFilter,
-  OrderDirection,
-  StringFilter,
-} from '@bmod/types';
+import type { OrderDirection } from '@bmod/types';
 import type { Product } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
 
 @Model()
-export class ProductWhereDto implements P.ProductWhereInput {
-  @QryObj(() => ProductWhereDto) AND: ProductWhereDto[];
-  @QryObj(() => ProductWhereDto) OR: ProductWhereDto[];
-  @QryObj(() => ProductWhereDto) NOT: ProductWhereDto[];
+export class ProductWhereDto
+  extends BaseWhereDto
+  implements P.ProductWhereInput
+{
+  @QryStr() name: WhereStringDto;
+  @QryStr() description: WhereStringDto;
+  @QryStr() barcode: WhereStringDto;
+  @QryStr() brand: WhereStringDto;
 
-  @QryNum() id: IntFilter;
-
-  @QryDate() createdAt: DateTimeFilter;
-  @QryDate() updatedAt: DateTimeFilter;
-  @QryDate() deletedAt: DateTimeFilter;
-
-  @QryStr() name: StringFilter;
-  @QryStr() barcode: StringFilter;
-  @QryStr() description: StringFilter;
-
-  @QryNum() categoryId: IntFilter;
+  @QryNum() departmentId: WhereNumberDto;
+  @QryNum() categoryId: WhereNumberDto;
+  @QryNum() tagId: WhereNumberDto;
 }
 
 @Model()
-export class ProductWhereUniqueDto implements Product {
-  @Prop({ type: 'integer' }) id: number;
+export class ProductWhereUniqueDto
+  extends BaseUniqueWhereDto
+  implements Partial<Product>
+{
+  @Prop({ type: 'string' }) name?: string;
+  @Prop({ type: 'string' }) description?: string;
+  @Prop({ type: 'string' }) barcode?: string;
+  @Prop({ type: 'string' }) brand?: string;
 
-  @Prop({ type: 'string', format: 'date' }) createdAt: Date;
-  @Prop({ type: 'string', format: 'date' }) updatedAt: Date;
-  @Prop({ type: 'string', format: 'date' }) deletedAt: Date;
-
-  @Prop({ type: 'string' }) name: string;
-  @Prop({ type: 'string' }) barcode: string;
-  @Prop({ type: 'string' }) description: string;
-
-  @Prop({ type: 'integer' }) categoryId: number;
+  @Prop({ type: 'string' }) departmentId?: number;
+  @Prop({ type: 'string' }) categoryId?: number;
+  @Prop({ type: 'string' }) tagId?: number;
 }
 
 @Model()
-export class ProductSelectDto implements P.ProductSelect {
-  @QrySelect() id?: boolean;
-
-  @QrySelect() createdAt?: boolean;
-  @QrySelect() updatedAt?: boolean;
-  @QrySelect() deletedAt?: boolean;
-
+export class ProductSelectDto extends BaseSelectDto implements P.ProductSelect {
   @QrySelect() name?: boolean;
-  @QrySelect() barcode?: boolean;
   @QrySelect() description?: boolean;
-
+  @QrySelect() barcode?: boolean;
+  @QrySelect() brand?: boolean;
+  @QrySelect() departmentId?: boolean;
   @QrySelect() categoryId?: boolean;
-  @QrySelect() category?: boolean;
+  @QrySelect() tagId?: boolean;
 }
 
 @Model()
-export class ProductOrderDto implements P.ProductOrderByWithRelationInput {
-  @QryOrd() id?: OrderDirection;
-
-  @QryOrd() createdAt?: OrderDirection;
-  @QryOrd() updatedAt?: OrderDirection;
-  @QryOrd() deletedAt?: OrderDirection;
-
+export class ProductOrderDto
+  extends BaseOrderDto
+  implements P.ProductOrderByWithRelationInput
+{
   @QryOrd() name?: OrderDirection;
-  @QryOrd() barcode?: OrderDirection;
   @QryOrd() description?: OrderDirection;
-
+  @QryOrd() barcode?: OrderDirection;
+  @QryOrd() brand?: OrderDirection;
+  @QryOrd() departmentId?: OrderDirection;
   @QryOrd() categoryId?: OrderDirection;
+  @QryOrd() tagId?: OrderDirection;
 }
 
 @Model()
@@ -106,5 +95,6 @@ export class ProductFindManyArgsDto
   @QryObj(() => ProductOrderDto) orderBy?: ProductOrderDto;
   @QryObj(() => ProductWhereDto) where?: ProductWhereDto;
   @QryObj(() => ProductWhereDto) cursor?: P.ProductWhereUniqueInput;
-  @QryEnum(P.ProductScalarFieldEnum) distinct?: P.ProductScalarFieldEnum[];
+  @QryEnum(P.ProductScalarFieldEnum)
+  distinct?: P.ProductScalarFieldEnum[];
 }

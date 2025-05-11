@@ -1,7 +1,11 @@
+import type { WhereNumberDto, WhereStringDto } from '@bmod/property';
 import {
+  BaseOrderDto,
+  BaseSelectDto,
+  BaseUniqueWhereDto,
+  BaseWhereDto,
   Model,
   Prop,
-  QryDate,
   QryEnum,
   QryNum,
   QryObj,
@@ -11,73 +15,37 @@ import {
   QryStr,
   QryTake,
 } from '@bmod/property';
-import type {
-  DateTimeFilter,
-  IntFilter,
-  OrderDirection,
-  StringFilter,
-} from '@bmod/types';
+import type { OrderDirection } from '@bmod/types';
 import type { <%- className %> } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
 
 @Model()
-export class <%- className %>WhereDto implements P.<%- className %>WhereInput {
-  @QryObj(() => <%- className %>WhereDto) AND: <%- className %>WhereDto[];
-  @QryObj(() => <%- className %>WhereDto) OR: <%- className %>WhereDto[];
-  @QryObj(() => <%- className %>WhereDto) NOT: <%- className %>WhereDto[];
-  
-  @QryNum() id: IntFilter;
-
-  @QryDate() createdAt: DateTimeFilter;
-  @QryDate() updatedAt: DateTimeFilter;
-  @QryDate() deletedAt: DateTimeFilter;
-
-  @QryStr() name: StringFilter;
-  @QryStr() description: StringFilter;
-  @QryNum() categoryId: IntFilter;
+export class <%- className %>WhereDto
+  extends BaseWhereDto
+  implements P.<%- className %>WhereInput
+{
+  @QryStr() name: WhereStringDto;
 }
 
 @Model()
-export class <%- className %>WhereUniqueDto implements <%- className %> {
-  @Prop({ type: 'integer' }) id: number;
-
-  @Prop({ type: 'string', format: 'date' }) createdAt: Date;
-  @Prop({ type: 'string', format: 'date' }) updatedAt: Date;
-  @Prop({ type: 'string', format: 'date' }) deletedAt: Date;
-
-  @Prop({ type: 'string' }) name: string;
-  @Prop({ type: 'string' }) description: string;
-
-  @Prop({ type: 'integer' }) categoryId: number;
+export class <%- className %>WhereUniqueDto
+  extends BaseUniqueWhereDto
+  implements Partial<<%- className %>>
+{
+  @Prop({ type: 'string' }) name?: string;
 }
 
 @Model()
-export class <%- className %>SelectDto implements P.<%- className %>Select {
-  @QrySelect() id?: boolean;
-  
-  @QrySelect() createdAt?: boolean;
-  @QrySelect() updatedAt?: boolean;
-  @QrySelect() deletedAt?: boolean;
-  
+export class <%- className %>SelectDto extends BaseSelectDto implements P.<%- className %>Select {
   @QrySelect() name?: boolean;
-  @QrySelect() description?: boolean;
-
-  @QrySelect() categoryId?: boolean;
-  @QrySelect() category?: boolean;
 }
 
 @Model()
-export class <%- className %>OrderDto implements P.<%- className %>OrderByWithRelationInput {
-  @QryOrd() id?: OrderDirection;
-  
-  @QryOrd() createdAt?: OrderDirection;
-  @QryOrd() updatedAt?: OrderDirection;
-  @QryOrd() deletedAt?: OrderDirection;
-
+export class <%- className %>OrderDto
+  extends BaseOrderDto
+  implements P.<%- className %>OrderByWithRelationInput
+{
   @QryOrd() name?: OrderDirection;
-  @QryOrd() description?: OrderDirection;
-  
-  @QryOrd() categoryId?: OrderDirection;
 }
 
 @Model()
@@ -98,10 +66,9 @@ export class <%- className %>FindManyArgsDto
 {
   @QryTake() take: number;
   @QrySkip() skip: number;
-
   @QryObj(() => <%- className %>OrderDto) orderBy?: <%- className %>OrderDto;
   @QryObj(() => <%- className %>WhereDto) where?: <%- className %>WhereDto;
-  @QryEnum(P.<%- className %>ScalarFieldEnum) distinct?: P.<%- className %>ScalarFieldEnum[];
-
   @QryObj(() => <%- className %>WhereDto) cursor?: P.<%- className %>WhereUniqueInput;
+  @QryEnum(P.<%- className %>ScalarFieldEnum)
+  distinct?: P.<%- className %>ScalarFieldEnum[];
 }

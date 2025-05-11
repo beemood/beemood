@@ -1,9 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { describe } from 'node:test';
 
-describe('StoreModule', () => {
+describe('/api/stores', () => {
   const timestamp = new Date().getTime().toString();
-  const fake = (suffix = '') => ({ name: `some ${timestamp}${suffix}` });
+  const fake = (suffix = '') => ({
+    name: `some ${timestamp}${suffix}`,
+    priceLevelId: 1,
+  });
 
   function route(...args: string[]) {
     return ['/api/stores', ...args].join('/');
@@ -33,6 +36,14 @@ describe('StoreModule', () => {
 
   test('GET /:id', async ({ request }) => {
     const res = await request.get(route('1'));
+    const body = await res.json();
+    expect(res.ok()).toEqual(true);
+    expect(res.status()).toEqual(200);
+    expect(body).toHaveProperty('id');
+  });
+
+  test('DELETE /:id', async ({ request }) => {
+    const res = await request.delete(route('1'));
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);

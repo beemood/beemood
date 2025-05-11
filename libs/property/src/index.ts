@@ -1,4 +1,5 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts'], f => `export * from '${f.path}.js'`)
+export * from './lib/prisma/base-dto.js';
 export * from './lib/prisma/property-decorators.js';
 export * from './lib/prisma/where-dtos.js';
 export * from './lib/property/api-property.js';

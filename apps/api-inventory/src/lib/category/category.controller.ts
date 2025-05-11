@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   Body,
   CreateOne,
@@ -54,7 +55,7 @@ export class CategoryController {
     queryDto: () => CategoryFindOneArgsDto,
   })
   findOneById(@ParamId() id: number, @Query() query: CategoryFindOneArgsDto) {
-    return this.repository.findUnique({
+    return this.repository.findFirst({
       ...query,
       where: { ...query.where, id },
     });

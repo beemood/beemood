@@ -1,27 +1,16 @@
-import { Model, Prop } from '@bmod/property';
+import { BaseReadDto, Model, Prop } from '@bmod/property';
 import { PartialType } from '@nestjs/swagger';
-import type { Prisma as P, <%- className %> } from '@prisma/client';
+import type { <%- className %>, Prisma as P } from '@prisma/client';
 
 @Model()
-export class Read<%- className %>Dto implements Partial<<%- className %>> {
-  @Prop({ type: 'integer' }) id?: number;
-  
-  @Prop({ type: 'string' }) createdAt?: Date;
-  @Prop({ type: 'string' }) updatedAt?: Date;
-  @Prop({ type: 'string' }) deletedAt?: Date;
-
-  @Prop({ type: 'string' }) name?: string;
-  @Prop({ type: 'string' }) description?: string;
-
-  @Prop({ type: 'string' }) categoryId?: number;
+export class Read<%- className %>Dto extends BaseReadDto implements <%- className %> {
+  @Prop({ type: 'string' }) name: string;
 }
 
 @Model()
 export class Create<%- className %>Dto implements P.<%- className %>UncheckedCreateInput {
-  @Prop({ type: 'string' }) name: string;
-  @Prop({ type: 'string' }) description?: string;
-  
-  @Prop({ type: 'integer' }) categoryId?: number;
+  @Prop({ type: 'string', required: true, unique: true, maxLength: 100 })
+  name: string;
 }
 
 @Model()

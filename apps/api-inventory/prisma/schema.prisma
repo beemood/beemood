@@ -39,7 +39,8 @@ model Tag {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name    String
+  name String
+
   Product Product[]
 }
 
@@ -62,10 +63,9 @@ model Product {
   Category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId Int?
 
-  Tag   Tag? @relation(fields: [tagId], references: [id])
-  tagId Int?
-
   ProductVariant ProductVariant[]
+
+  Tag Tag[]
 }
 
 model ProductAttribute {

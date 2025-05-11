@@ -18,7 +18,10 @@ export class StoreModule implements OnModuleInit {
     const data: Prisma.StoreUncheckedCreateInput[] = [
       { name: 'Houston Stroe', priceLevelId: 1 },
     ];
-
-    await this.repo.createMany({ data });
+    try {
+      await this.repo.createMany({ data });
+    } catch (err) {
+      //
+    }
   }
 }

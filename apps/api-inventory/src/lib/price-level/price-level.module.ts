@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { InjectRepository, PrismaModule } from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
@@ -16,6 +17,10 @@ export class PriceLevelModule implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    await this.repo.createMany({ data: priceLevelData, skipDuplicates: true });
+    try {
+      await this.repo.createMany({ data: priceLevelData });
+    } catch {
+      //
+    }
   }
 }

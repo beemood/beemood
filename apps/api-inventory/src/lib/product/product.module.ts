@@ -1,7 +1,4 @@
-import {
-  InjectRepository,
-  PrismaModule
-} from '@bmod/prisma';
+import { InjectRepository, PrismaModule } from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import type { Prisma } from '@prisma/client';
@@ -21,6 +18,10 @@ export class ProductModule implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    await this.repo.createMany({ data: productData, skipDuplicates: true });
+    try {
+      await this.repo.createMany({ data: productData });
+    } catch (err) {
+      //
+    }
   }
 }

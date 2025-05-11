@@ -1,9 +1,11 @@
 import {
+  BaseOrderDto,
+  BaseSelectDto,
+  BaseUniqueWhereDto,
+  BaseWhereDto,
   Model,
   Prop,
-  QryDate,
   QryEnum,
-  QryNum,
   QryObj,
   QryOrd,
   QrySelect,
@@ -11,54 +13,42 @@ import {
   QryStr,
   QryTake,
 } from '@bmod/property';
-import type {
-  DateTimeFilter,
-  IntFilter,
-  OrderDirection,
-  StringFilter,
-} from '@bmod/types';
+import type { OrderDirection, StringFilter } from '@bmod/types';
 import type { Category } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
 import { ProductSelectArgsDto } from '../../product/dto/query-product.dto.js';
 
 @Model()
-export class CategoryWhereDto implements P.CategoryWhereInput {
-  @QryObj(() => CategoryWhereDto) AND: CategoryWhereDto[];
-  @QryObj(() => CategoryWhereDto) OR: CategoryWhereDto[];
-  @QryObj(() => CategoryWhereDto) NOT: CategoryWhereDto[];
-  @QryNum() id: IntFilter;
-  @QryDate() createdAt: DateTimeFilter;
-  @QryDate() updatedAt: DateTimeFilter;
-  @QryDate() deletedAt: DateTimeFilter;
+export class CategoryWhereDto
+  extends BaseWhereDto
+  implements P.CategoryWhereInput
+{
   @QryStr() name: StringFilter;
 }
 
 @Model()
-export class CategoryWhereUniqueDto implements Category {
-  categoryId: number | null;
-  @Prop({ type: 'integer' }) id: number;
-  @Prop({ type: 'string', format: 'date' }) createdAt: Date;
-  @Prop({ type: 'string', format: 'date' }) updatedAt: Date;
-  @Prop({ type: 'string', format: 'date' }) deletedAt: Date;
+export class CategoryWhereUniqueDto
+  extends BaseUniqueWhereDto
+  implements Category
+{
   @Prop({ type: 'string' }) name: string;
 }
 
 @Model()
-export class CategorySelectDto implements P.CategorySelect {
-  @QrySelect() id?: boolean;
-  @QrySelect() createdAt?: boolean;
-  @QrySelect() updatedAt?: boolean;
-  @QrySelect() deletedAt?: boolean;
+export class CategorySelectDto
+  extends BaseSelectDto
+  implements P.CategorySelect
+{
   @QrySelect() name?: boolean;
-  @QryObj(() => ProductSelectArgsDto) products?: ProductSelectArgsDto;
+
+  @QryObj(() => ProductSelectArgsDto) Product?: ProductSelectArgsDto;
 }
 
 @Model()
-export class CategoryOrderDto implements P.CategoryOrderByWithRelationInput {
-  @QryOrd() id?: OrderDirection;
-  @QryOrd() createdAt?: OrderDirection;
-  @QryOrd() updatedAt?: OrderDirection;
-  @QryOrd() deletedAt?: OrderDirection;
+export class CategoryOrderDto
+  extends BaseOrderDto
+  implements P.CategoryOrderByWithRelationInput
+{
   @QryOrd() name?: OrderDirection;
 }
 
