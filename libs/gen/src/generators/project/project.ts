@@ -1,7 +1,8 @@
-import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
-import { ProjectGeneratorSchema } from './schema.js';
-import { fileURLToPath } from 'url';
+import type { Tree } from '@nx/devkit';
+import { formatFiles, generateFiles, names } from '@nx/devkit';
 import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import type { ProjectGeneratorSchema } from './schema.js';
 
 const filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(filename);
@@ -10,16 +11,16 @@ export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema
 ) {
-  const { type, directory } = options;
-  const segments = directory.split('/');
-  const name = segments[segments.length - 1];
+  const { type, name } = options;
   const source = join(__dirname, type);
-  const target = segments.slice(0, -1).join('/');
+  const target = type === 'api' || type === 'client' ? 'apps' : 'libs';
 
-  generateFiles(tree, source, target, {
-    ...names(name),
-    directory,
-  });
+  const directory =
+    type === 'api' || type === 'client'
+      ? `apps/${type}-${name}`
+      : `libs/${name}`;
+
+  generateFiles(tree, source, target, { ...names(name), directory });
   await formatFiles(tree);
 }
 

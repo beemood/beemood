@@ -1,4 +1,4 @@
 export interface ProjectGeneratorSchema {
-  directory: string;
+  name: string;
   type: 'library' | 'cli' | 'api' | 'client';
 }
