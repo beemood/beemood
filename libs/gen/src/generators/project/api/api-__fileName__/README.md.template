@@ -1,67 +1,22 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-<%- fileName %>/favicon.png" alt="Logo" />
+  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-inventory/favicon.png" alt="Logo" />
 </p>
 
-# @bmod/api-<%- fileName %>
+# @bmod/api-inventory
 
 ## Summary
 
-- [ ] Add project summary for api-<%- fileName %>
+Inventory api
 
 ## Install
 
 ```bash
-  pnpm add @bmod/api-<%- fileName %>
-```
-## Commands 
-
-Serve api-<%- fileName %> service
-
-```bash
-  npx nx serve api-<%- fileName %>
-```
-
-Build api-<%- fileName %> service
-
-```bash
-  npx nx build api-<%- fileName %>
-```
-
-Test api-<%- fileName %> service
-
-```bash
-  npx nx test api-<%- fileName %>
-```
-
-End to end test api-<%- fileName %> service
-
-```bash
-  npx nx e2e api-<%- fileName %>
-```
-
-Migrate api-<%- fileName %> database
-
-```bash
-  npx nx db-migrate api-<%- fileName %>
-```
-
-Generate prisma client api-<%- fileName %> database
-
-```bash
-  npx nx db-generate api-<%- fileName %>
-```
-
-## Run 
-```bash 
- # Global installation
- pnpm add -g @bmod/api-<%- fileName %>
- # Run the <%- fileName %> service
- api-<%- fileName %>
+  pnpm add @bmod/api-inventory
 ```
 
 ## Funding
 
-Thank you for using `@bmod/api-<%- fileName %>` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
+Thank you for using `@bmod/api-inventory` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
 
 [Instant Funding](https://cash.app/$puqlib)
 

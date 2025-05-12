@@ -11,10 +11,10 @@ export type FindAllMethodOptions = {
  * HTTP GET method decorator to find all items
  * @returns MethodDecorator
  */
-export function FindAll(options: FindAllMethodOptions): MethodDecorator {
+export function FindAll(responseType: () => Type): MethodDecorator {
   return (...args) => {
     ApiOperation({ summary: 'Find all' })(...args);
-    ApiOkResponse({ type: options.responseType(), isArray: true })(...args);
+    ApiOkResponse({ type: responseType(), isArray: true })(...args);
     ReadOperation()(...args);
     Get()(...args);
   };

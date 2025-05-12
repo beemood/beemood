@@ -4,7 +4,9 @@ import { defineConfig } from '@playwright/test';
 import { fileURLToPath } from 'url';
 
 // For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URL'] || 'http://localhost:3000';
+
+const port = 3000; 
+const baseURL = `http://localhost:${port}`;
 
 const __filename = fileURLToPath(import.meta.url);
 
@@ -19,5 +21,6 @@ export default defineConfig({
     cwd: workspaceRoot,
     port: 3000,
   },
+  testDir: './e2e',
   tsconfig: './tsconfig.e2e.json',
 });

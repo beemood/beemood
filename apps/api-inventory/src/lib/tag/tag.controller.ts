@@ -1,4 +1,3 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import {
   Body,
   CreateOne,
@@ -10,78 +9,58 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import { InjectRepository } from '@bmod/prisma';
-import type { Prisma } from '@prisma/client';
+import { InjectRepo } from '@bmod/prisma';
+import type { Prisma as P } from '@prisma/client';
 import {
-  TagFindManyArgsDto,
-  TagFindOneArgsDto,
-  TagSelectArgsDto,
+  CreateTagDto as CreateDto,
+  ReadTagDto as ReadDto,
+  UpdateTagDto as UpdateDto,
+} from './dto/tag.dto.js';
+import {
+  TagFindManyArgsDto as FindManyDto,
+  TagFindOneArgsDto as FindOneDto,
+  TagSelectArgsDto as SelectDto,
 } from './dto/query-tag.dto.js';
-import { CreateTagDto, ReadTagDto, UpdateTagDto } from './dto/tag.dto.js';
 
-@ResourceController('tags')
+@ResourceController('tag', [
+  CreateDto,
+  UpdateDto,
+  SelectDto,
+  FindOneDto,
+  FindManyDto,
+])
 export class TagController {
-  constructor(
-    @InjectRepository('tag')
-    protected readonly repository: Prisma.TagDelegate
-  ) {}
+  constructor(@InjectRepo('tag') protected readonly repo: P.TagDelegate) {}
 
-  @CreateOne({
-    responseType: () => ReadTagDto,
-    queryDto: () => TagSelectArgsDto,
-    createDto: () => CreateTagDto,
-  })
-  async createOne(
-    @Body() data: CreateTagDto,
-    @Query() query: TagSelectArgsDto
-  ) {
-    return await this.repository.create({ ...query, data });
+  @CreateOne(() => ReadDto)
+  async createOne(@Body() data: CreateDto, @Query() query: SelectDto) {
+    return await this.repo.create({ ...query, data });
   }
 
-  @FindAll({
-    responseType: () => ReadTagDto,
-    queryDto: () => TagFindManyArgsDto,
-  })
-  findAll(@Query() query: TagFindManyArgsDto) {
-    return this.repository.findMany(query);
+  @FindAll(() => ReadDto)
+  async findAll(@Query() query: FindManyDto) {
+    return await this.repo.findMany(query);
   }
 
-  @FindOneById({
-    responseType: () => ReadTagDto,
-    queryDto: () => TagFindOneArgsDto,
-  })
-  findOneById(@ParamId() id: number, @Query() query: TagFindOneArgsDto) {
-    return this.repository.findFirst({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @FindOneById(() => ReadDto)
+  async findOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.findFirst(query);
   }
 
-  @UpdateOneById({
-    responseType: () => ReadTagDto,
-    updateDto: () => UpdateTagDto,
-    queryDto: () => TagFindManyArgsDto,
-  })
-  updateOneById(
+  @UpdateOneById(() => ReadDto)
+  async updateOneById(
     @ParamId() id: number,
-    @Body() data: UpdateTagDto,
-    @Query() query: TagFindOneArgsDto
+    @Body() data: UpdateDto,
+    @Query() query: FindOneDto
   ) {
-    return this.repository.update({
-      ...query,
-      where: { ...query.where, id },
-      data,
-    });
+    query.where.id = id;
+    return await this.repo.update({ ...query, data });
   }
 
-  @DeleteOneById({
-    responseType: () => ReadTagDto,
-    queryDto: () => TagFindOneArgsDto,
-  })
-  deleteOneById(@ParamId() id: number, @Query() query: TagFindOneArgsDto) {
-    return this.repository.delete({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @DeleteOneById(() => ReadDto)
+  async deleteOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.delete(query);
   }
 }

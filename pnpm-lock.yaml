@@ -221,8 +221,8 @@ importers:
   libs/prisma:
     dependencies:
       '@bmod/types':
-        specifier: ^0.3.3
-        version: 0.3.3
+        specifier: ^0.3.4
+        version: 0.3.4
       '@nestjs/common':
         specifier: ^11.1.0
         version: 11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -239,8 +239,8 @@ importers:
   libs/property:
     dependencies:
       '@bmod/types':
-        specifier: 0.3.3
-        version: 0.3.3
+        specifier: 0.3.4
+        version: 0.3.4
       '@nestjs/swagger':
         specifier: ^11.2.0
         version: 11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)
@@ -873,8 +873,8 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bmod/types@0.3.3':
-    resolution: {integrity: sha512-3yuX3n5CKn54G9222gcUYM0sxbZNss/THGhOnOilBQTcPcf58LRlow0JpOcNUlXWA0tBL3LdJH0O1dURWzR6Dg==}
+  '@bmod/types@0.3.4':
+    resolution: {integrity: sha512-PLd3PjxCa74hgflJnzmQOMdl7nFXQkFDfZhLDw7+USq6ZBVV62VMddjteSd7onekkd3+KUkAM4eVk1ozVTUJ4g==}
 
   '@cypress/request@3.0.8':
     resolution: {integrity: sha512-h0NFgh1mJmm1nr4jCwkGHwKneVYKghUyWe6TMNrk0B9zsjAJxpg8C4/+BAcmLgCPa1vj1V8rNUaILl+zYRUWBQ==}
@@ -6103,7 +6103,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bmod/types@0.3.3':
+  '@bmod/types@0.3.4':
     dependencies:
       '@swc/helpers': 0.5.17
 

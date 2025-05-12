@@ -16,18 +16,13 @@ export async function resourceGenerator(
   const source = join(__dirname, type);
   const projectConfig = readProjectConfiguration(tree, project);
 
-  const target = projectConfig.sourceRoot + '/lib';
+  const target = projectConfig.root;
 
   switch (type) {
-    case 'controller': {
-      generateFiles(tree, source, target, { ...names(name) });
-      break;
-    }
-    case 'module': {
-      generateFiles(tree, source, target, { ...names(name) });
-      break;
-    }
-    case 'dto': {
+    case 'controller':
+    case 'module':
+    case 'dto':
+    case 'e2e': {
       generateFiles(tree, source, target, { ...names(name) });
       break;
     }
@@ -35,6 +30,7 @@ export async function resourceGenerator(
       await resourceGenerator(tree, { ...options, type: 'controller' });
       await resourceGenerator(tree, { ...options, type: 'module' });
       await resourceGenerator(tree, { ...options, type: 'dto' });
+      await resourceGenerator(tree, { ...options, type: 'e2e' });
       break;
     }
   }

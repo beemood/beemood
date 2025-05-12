@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { <%- className %>Module } from './inventory.module.js';
 import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { <%- className %>Module } from './<%- fileName %>.module.js';
 
 @Module({
   imports: [
@@ -14,11 +15,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
     ThrottlerModule.forRoot({
       throttlers: [
         {
-          ttl: 60000,
-          limit: 10,
+          ttl: 10000,
+          limit: 5,
         },
       ],
     }),
   ],
+  providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
 export class AppModule {}

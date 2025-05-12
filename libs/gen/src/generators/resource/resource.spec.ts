@@ -6,8 +6,9 @@ import type { ResourceGeneratorSchema } from './schema.js';
 describe('resource generator', () => {
   let tree: Tree;
   const options: ResourceGeneratorSchema = {
-    type: 'rest-resource',
-    directory: 'test',
+    type: 'rest',
+    name: 'test',
+    project: 'test-prject',
   };
 
   beforeEach(() => {

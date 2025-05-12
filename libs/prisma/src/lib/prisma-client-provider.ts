@@ -59,7 +59,7 @@ export function provideRepository(
   };
 }
 
-export function InjectRepository(
+export function InjectRepo(
   resourceName: string,
   datasourceName = 'default'
 ): ParameterDecorator {

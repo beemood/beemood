@@ -1,19 +1,9 @@
-import { InjectRepository, PrismaModule } from '@bmod/prisma';
-import type { OnModuleInit } from '@nestjs/common';
+import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
-import type { Prisma } from '@prisma/client';
 import { PriceController } from './price.controller.js';
 
 @Module({
   imports: [PrismaModule.forFeature({ resources: ['price'] })],
   controllers: [PriceController],
 })
-export class PriceModule implements OnModuleInit {
-  constructor(
-    @InjectRepository('price')
-    protected readonly repo: Prisma.PriceDelegate
-  ) {}
-  onModuleInit() {
-    // Seeding
-  }
-}
+export class PriceModule {}

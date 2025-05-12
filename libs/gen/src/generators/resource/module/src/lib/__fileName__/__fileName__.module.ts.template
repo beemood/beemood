@@ -1,0 +1,9 @@
+import { PrismaModule } from '@bmod/prisma';
+import { Module } from '@nestjs/common';
+import { <%- className %>Controller } from './<%- fileName %>.controller.js';
+
+@Module({
+  imports: [PrismaModule.forFeature({ resources: ['<%- propertyName %>'] })],
+  controllers: [<%- className %>Controller],
+})
+export class <%- className %>Module { }

@@ -9,85 +9,60 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import { InjectRepository } from '@bmod/prisma';
-import type { Prisma } from '@prisma/client';
+import { InjectRepo } from '@bmod/prisma';
+import type { Prisma as P } from '@prisma/client';
 import {
-  CreateDepartmentDto,
-  ReadDepartmentDto,
-  UpdateDepartmentDto,
+  CreateDepartmentDto as CreateDto,
+  ReadDepartmentDto as ReadDto,
+  UpdateDepartmentDto as UpdateDto,
 } from './dto/department.dto.js';
 import {
-  DepartmentFindManyArgsDto,
-  DepartmentFindOneArgsDto,
-  DepartmentSelectArgsDto,
+  DepartmentFindManyArgsDto as FindManyDto,
+  DepartmentFindOneArgsDto as FindOneDto,
+  DepartmentSelectArgsDto as SelectDto,
 } from './dto/query-department.dto.js';
 
-@ResourceController('departments')
+@ResourceController('department', [
+  CreateDto,
+  UpdateDto,
+  SelectDto,
+  FindOneDto,
+  FindManyDto,
+])
 export class DepartmentController {
   constructor(
-    @InjectRepository('department')
-    protected readonly repository: Prisma.DepartmentDelegate
+    @InjectRepo('department') protected readonly repo: P.DepartmentDelegate
   ) {}
 
-  @CreateOne({
-    responseType: () => ReadDepartmentDto,
-    queryDto: () => DepartmentSelectArgsDto,
-    createDto: () => CreateDepartmentDto,
-  })
-  async createOne(
-    @Body() data: CreateDepartmentDto,
-    @Query() query: DepartmentSelectArgsDto
-  ) {
-    return await this.repository.create({ ...query, data });
+  @CreateOne(() => ReadDto)
+  async createOne(@Body() data: CreateDto, @Query() query: SelectDto) {
+    return await this.repo.create({ ...query, data });
   }
 
-  @FindAll({
-    responseType: () => ReadDepartmentDto,
-    queryDto: () => DepartmentFindManyArgsDto,
-  })
-  findAll(@Query() query: DepartmentFindManyArgsDto) {
-    return this.repository.findMany(query);
+  @FindAll(() => ReadDto)
+  async findAll(@Query() query: FindManyDto) {
+    return await this.repo.findMany(query);
   }
 
-  @FindOneById({
-    responseType: () => ReadDepartmentDto,
-    queryDto: () => DepartmentFindOneArgsDto,
-  })
-  findOneById(@ParamId() id: number, @Query() query: DepartmentFindOneArgsDto) {
-    return this.repository.findFirst({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @FindOneById(() => ReadDto)
+  async findOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.findFirst(query);
   }
 
-  @UpdateOneById({
-    responseType: () => ReadDepartmentDto,
-    updateDto: () => UpdateDepartmentDto,
-    queryDto: () => DepartmentFindManyArgsDto,
-  })
-  updateOneById(
+  @UpdateOneById(() => ReadDto)
+  async updateOneById(
     @ParamId() id: number,
-    @Body() data: UpdateDepartmentDto,
-    @Query() query: DepartmentFindOneArgsDto
+    @Body() data: UpdateDto,
+    @Query() query: FindOneDto
   ) {
-    return this.repository.update({
-      ...query,
-      where: { ...query.where, id },
-      data,
-    });
+    query.where.id = id;
+    return await this.repo.update({ ...query, data });
   }
 
-  @DeleteOneById({
-    responseType: () => ReadDepartmentDto,
-    queryDto: () => DepartmentFindOneArgsDto,
-  })
-  deleteOneById(
-    @ParamId() id: number,
-    @Query() query: DepartmentFindOneArgsDto
-  ) {
-    return this.repository.delete({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @DeleteOneById(() => ReadDto)
+  async deleteOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.delete(query);
   }
 }

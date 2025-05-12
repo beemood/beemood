@@ -1,6 +1,7 @@
+
 {
   "name": "@bmod/api-<%- fileName %>",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -10,7 +11,7 @@
     "tag": "latest"
   },
   "license": "MIT",
-  "description": "- [ ] Add project description for api-<%- fileName %>",
+  "description": "Inventory api",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
@@ -43,6 +44,7 @@
   },
   "files": [
     "dist",
+    "prisma",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
@@ -117,10 +119,10 @@
     }
   },
   "dependencies": {
-    "@bmod/nest": "^0.3.3",
-    "@bmod/prisma": "^0.3.3",
-    "@bmod/property": "^0.3.3",
-    "@bmod/types": "^0.3.3",
+    "@bmod/nest": "^0.3.4",
+    "@bmod/prisma": "^0.3.4",
+    "@bmod/property": "^0.3.4",
+    "@bmod/types": "^0.3.4",
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.0",

@@ -9,82 +9,60 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import { InjectRepository } from '@bmod/prisma';
-import type { Prisma } from '@prisma/client';
+import { InjectRepo } from '@bmod/prisma';
+import type { Prisma as P } from '@prisma/client';
 import {
-  CreateProductDto,
-  ReadProductDto,
-  UpdateProductDto,
+  CreateProductDto as CreateDto,
+  ReadProductDto as ReadDto,
+  UpdateProductDto as UpdateDto,
 } from './dto/product.dto.js';
 import {
-  ProductFindManyArgsDto,
-  ProductFindOneArgsDto,
-  ProductSelectArgsDto,
+  ProductFindManyArgsDto as FindManyDto,
+  ProductFindOneArgsDto as FindOneDto,
+  ProductSelectArgsDto as SelectDto,
 } from './dto/query-product.dto.js';
 
-@ResourceController('products')
+@ResourceController('product', [
+  CreateDto,
+  UpdateDto,
+  SelectDto,
+  FindOneDto,
+  FindManyDto,
+])
 export class ProductController {
   constructor(
-    @InjectRepository('product')
-    protected readonly repository: Prisma.ProductDelegate
+    @InjectRepo('product') protected readonly repo: P.ProductDelegate
   ) {}
 
-  @CreateOne({
-    responseType: () => ReadProductDto,
-    queryDto: () => ProductSelectArgsDto,
-    createDto: () => CreateProductDto,
-  })
-  async createOne(
-    @Body() data: CreateProductDto,
-    @Query() query: ProductSelectArgsDto
-  ) {
-    return await this.repository.create({ ...query, data });
+  @CreateOne(() => ReadDto)
+  async createOne(@Body() data: CreateDto, @Query() query: SelectDto) {
+    return await this.repo.create({ ...query, data });
   }
 
-  @FindAll({
-    responseType: () => ReadProductDto,
-    queryDto: () => ProductFindManyArgsDto,
-  })
-  findAll(@Query() query: ProductFindManyArgsDto) {
-    return this.repository.findMany(query);
+  @FindAll(() => ReadDto)
+  async findAll(@Query() query: FindManyDto) {
+    return await this.repo.findMany(query);
   }
 
-  @FindOneById({
-    responseType: () => ReadProductDto,
-    queryDto: () => ProductFindOneArgsDto,
-  })
-  findOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
-    return this.repository.findFirst({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @FindOneById(() => ReadDto)
+  async findOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.findFirst(query);
   }
 
-  @UpdateOneById({
-    responseType: () => ReadProductDto,
-    updateDto: () => UpdateProductDto,
-    queryDto: () => ProductFindManyArgsDto,
-  })
-  updateOneById(
+  @UpdateOneById(() => ReadDto)
+  async updateOneById(
     @ParamId() id: number,
-    @Body() data: UpdateProductDto,
-    @Query() query: ProductFindOneArgsDto
+    @Body() data: UpdateDto,
+    @Query() query: FindOneDto
   ) {
-    return this.repository.update({
-      ...query,
-      where: { ...query.where, id },
-      data,
-    });
+    query.where.id = id;
+    return await this.repo.update({ ...query, data });
   }
 
-  @DeleteOneById({
-    responseType: () => ReadProductDto,
-    queryDto: () => ProductFindOneArgsDto,
-  })
-  deleteOneById(@ParamId() id: number, @Query() query: ProductFindOneArgsDto) {
-    return this.repository.delete({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @DeleteOneById(() => ReadDto)
+  async deleteOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.delete(query);
   }
 }

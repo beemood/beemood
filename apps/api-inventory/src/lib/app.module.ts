@@ -4,11 +4,13 @@ import { APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { InventorySeedModule } from './inventory-seed.module.js';
 import { InventoryModule } from './inventory.module.js';
 
 @Module({
   imports: [
     InventoryModule,
+    InventorySeedModule,
     ConfigModule.forRoot(),
     EventEmitterModule.forRoot({ delimiter: '.' }),
     ScheduleModule.forRoot(),

@@ -12,12 +12,10 @@ export type DeleteOneByIdMethodOptions = {
  * HTTP PUT method decorator to update one item by id
  * @returns MethodDecorator
  */
-export function DeleteOneById(
-  options: DeleteOneByIdMethodOptions
-): MethodDecorator {
+export function DeleteOneById(responseType: () => Type): MethodDecorator {
   return (...args) => {
     ApiOperation({ summary: 'Delete one item by id' })(...args);
-    ApiOkResponse({ type: options.responseType() })(...args);
+    ApiOkResponse({ type: responseType() })(...args);
     DeleteOperation()(...args);
     Delete(':id')(...args);
   };

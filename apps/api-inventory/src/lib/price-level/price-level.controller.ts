@@ -9,85 +9,60 @@ import {
   ResourceController,
   UpdateOneById,
 } from '@bmod/nest';
-import { InjectRepository } from '@bmod/prisma';
-import type { Prisma } from '@prisma/client';
+import { InjectRepo } from '@bmod/prisma';
+import type { Prisma as P } from '@prisma/client';
 import {
-  CreatePriceLevelDto,
-  ReadPriceLevelDto,
-  UpdatePriceLevelDto,
+  CreatePriceLevelDto as CreateDto,
+  ReadPriceLevelDto as ReadDto,
+  UpdatePriceLevelDto as UpdateDto,
 } from './dto/price-level.dto.js';
 import {
-  PriceLevelFindManyArgsDto,
-  PriceLevelFindOneArgsDto,
-  PriceLevelSelectArgsDto,
+  PriceLevelFindManyArgsDto as FindManyDto,
+  PriceLevelFindOneArgsDto as FindOneDto,
+  PriceLevelSelectArgsDto as SelectDto,
 } from './dto/query-price-level.dto.js';
 
-@ResourceController('price-levels')
+@ResourceController('price-level', [
+  CreateDto,
+  UpdateDto,
+  SelectDto,
+  FindOneDto,
+  FindManyDto,
+])
 export class PriceLevelController {
   constructor(
-    @InjectRepository('priceLevel')
-    protected readonly repository: Prisma.PriceLevelDelegate
+    @InjectRepo('price-level') protected readonly repo: P.PriceLevelDelegate
   ) {}
 
-  @CreateOne({
-    responseType: () => ReadPriceLevelDto,
-    queryDto: () => PriceLevelSelectArgsDto,
-    createDto: () => CreatePriceLevelDto,
-  })
-  async createOne(
-    @Body() data: CreatePriceLevelDto,
-    @Query() query: PriceLevelSelectArgsDto
-  ) {
-    return await this.repository.create({ ...query, data });
+  @CreateOne(() => ReadDto)
+  async createOne(@Body() data: CreateDto, @Query() query: SelectDto) {
+    return await this.repo.create({ ...query, data });
   }
 
-  @FindAll({
-    responseType: () => ReadPriceLevelDto,
-    queryDto: () => PriceLevelFindManyArgsDto,
-  })
-  findAll(@Query() query: PriceLevelFindManyArgsDto) {
-    return this.repository.findMany(query);
+  @FindAll(() => ReadDto)
+  async findAll(@Query() query: FindManyDto) {
+    return await this.repo.findMany(query);
   }
 
-  @FindOneById({
-    responseType: () => ReadPriceLevelDto,
-    queryDto: () => PriceLevelFindOneArgsDto,
-  })
-  findOneById(@ParamId() id: number, @Query() query: PriceLevelFindOneArgsDto) {
-    return this.repository.findFirst({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @FindOneById(() => ReadDto)
+  async findOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.findFirst(query);
   }
 
-  @UpdateOneById({
-    responseType: () => ReadPriceLevelDto,
-    updateDto: () => UpdatePriceLevelDto,
-    queryDto: () => PriceLevelFindManyArgsDto,
-  })
-  updateOneById(
+  @UpdateOneById(() => ReadDto)
+  async updateOneById(
     @ParamId() id: number,
-    @Body() data: UpdatePriceLevelDto,
-    @Query() query: PriceLevelFindOneArgsDto
+    @Body() data: UpdateDto,
+    @Query() query: FindOneDto
   ) {
-    return this.repository.update({
-      ...query,
-      where: { ...query.where, id },
-      data,
-    });
+    query.where.id = id;
+    return await this.repo.update({ ...query, data });
   }
 
-  @DeleteOneById({
-    responseType: () => ReadPriceLevelDto,
-    queryDto: () => PriceLevelFindOneArgsDto,
-  })
-  deleteOneById(
-    @ParamId() id: number,
-    @Query() query: PriceLevelFindOneArgsDto
-  ) {
-    return this.repository.delete({
-      ...query,
-      where: { ...query.where, id },
-    });
+  @DeleteOneById(() => ReadDto)
+  async deleteOneById(@ParamId() id: number, @Query() query: FindOneDto) {
+    query.where.id = id;
+    return await this.repo.delete(query);
   }
 }

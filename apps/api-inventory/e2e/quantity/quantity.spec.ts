@@ -1,16 +1,25 @@
 import { expect, test } from '@playwright/test';
 import { describe } from 'node:test';
 
-describe('/api/stores', () => {
-  const timestamp = new Date().getTime().toString();
-  const fake = (suffix = '') => ({
-    name: `some ${timestamp}${suffix}`,
-    priceLevelId: 1,
-  });
+const timestamp = new Date().getTime().toString();
 
-  function route(...args: string[]) {
-    return ['/api/stores', ...args].join('/');
-  }
+const fake = (suffix = '') => ({
+  name: `some ${timestamp}${suffix}`,
+});
+
+function route(...args: string[]) {
+  return ['/api/quantity', ...args].join('/');
+}
+
+describe('/api/quantity', () => {
+  let items: any[];
+
+  test.beforeAll(async ({ request }) => {
+    const res = await request.get('/api/quantity');
+    items = await res.json();
+    expect(items).toBeDefined();
+    expect(items.length).toBeGreaterThan(2);
+  });
 
   test('POST /', async ({ request }) => {
     const res = await request.post(route(), { data: fake() });
@@ -21,7 +30,9 @@ describe('/api/stores', () => {
   });
 
   test('PUT /:id', async ({ request }) => {
-    const res = await request.put(route('1'), { data: fake('updated') });
+    const res = await request.put(route(items[0].id), {
+      data: fake('updated'),
+    });
     const body = await res.json();
     expect(body).toHaveProperty('id');
   });
@@ -35,7 +46,7 @@ describe('/api/stores', () => {
   });
 
   test('GET /:id', async ({ request }) => {
-    const res = await request.get(route('1'));
+    const res = await request.get(route(items[0].id));
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);
@@ -43,7 +54,7 @@ describe('/api/stores', () => {
   });
 
   test('DELETE /:id', async ({ request }) => {
-    const res = await request.delete(route('1'));
+    const res = await request.delete(route(items[2].id));
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);

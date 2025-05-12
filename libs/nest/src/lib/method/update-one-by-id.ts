@@ -12,12 +12,10 @@ export type UpdateOneByIdMethodOptions = {
  * HTTP PUT method decorator to update one item by id
  * @returns MethodDecorator
  */
-export function UpdateOneById(
-  options: UpdateOneByIdMethodOptions
-): MethodDecorator {
+export function UpdateOneById(responseType: () => Type): MethodDecorator {
   return (...args) => {
     ApiOperation({ summary: 'Update one item by id' })(...args);
-    ApiOkResponse({ type: options.responseType() })(...args);
+    ApiOkResponse({ type: responseType() })(...args);
     Put(':id')(...args);
   };
 }

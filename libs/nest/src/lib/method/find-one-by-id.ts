@@ -12,12 +12,10 @@ export type FindOneByIdMethodOptions = {
  * HTTP GET method decorator to find one item by id
  * @returns MethodDecorator
  */
-export function FindOneById(
-  options: FindOneByIdMethodOptions
-): MethodDecorator {
+export function FindOneById(responseType: () => Type): MethodDecorator {
   return (...args) => {
     ApiOperation({ summary: 'Find one by id' })(...args);
-    ApiOkResponse({ type: options.responseType() })(...args);
+    ApiOkResponse({ type: responseType() })(...args);
     ReadOperation()(...args);
     Get(':id')(...args);
   };

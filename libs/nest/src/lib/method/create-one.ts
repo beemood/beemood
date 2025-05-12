@@ -13,10 +13,10 @@ export type CreateOneMethodOptions = {
  * HTTP POST method decorator to create one item
  * @returns MethodDecorator
  */
-export function CreateOne(options: CreateOneMethodOptions): MethodDecorator {
+export function CreateOne(responseType: () => Type): MethodDecorator {
   return (...args) => {
     ApiOperation({ summary: 'Create one item' })(...args);
-    ApiCreatedResponse({ type: options.responseType() })(...args);
+    ApiCreatedResponse({ type: responseType() })(...args);
     WriteOperation()(...args);
     Post()(...args);
   };
