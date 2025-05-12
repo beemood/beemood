@@ -28,6 +28,28 @@ enum CustomerStatus {
   FORMER_CUSTOMER
 }
 
+enum MeetingType {
+  PHONE_CALL
+  VIDEO_CALL
+  IN_PERSON
+}
+
+enum MeetingPlace {
+  ONLINE
+  OUR_OFFICE
+  CUSTOMER_OFFICE
+  RESTORANT
+  CAFE
+}
+
+enum CustomerProductPotential {
+  UNKNOWN
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
+}
+
 model Company {
   id Int @id @unique @default(autoincrement())
 
@@ -45,8 +67,9 @@ model Company {
   Industry   Industry @relation(fields: [industryId], references: [id])
   industryId Int
 
-  Contact  Contact[]
-  Customer Customer[]
+  Contact         Contact[]
+  Customer        Customer[]
+  CustomerProduct CustomerProduct[]
 }
 
 model Website {
@@ -136,10 +159,47 @@ model Contact {
 }
 
 model Employee {
-  id Int @id @unique
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  employeeId Int
 
   MeetingInstructor MeetingInstructor[]
   MeetingEmployee   MeetingEmployee[]
+}
+
+model Product {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  productId Int
+
+  MeetingProduct  MeetingProduct[]
+  CustomerProduct CustomerProduct[]
+}
+
+model CustomerProduct {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  potential CustomerProductPotential @default(UNKNOWN)
+
+  notes String @default("Add product features that the customer like")
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  Company   Company @relation(fields: [companyId], references: [id])
+  companyId Int
 }
 
 model Customer {
@@ -153,8 +213,11 @@ model Customer {
   lastName   String
   middleName String?
 
-  Company         Company           @relation(fields: [companyId], references: [id])
-  companyId       Int
+  potential CustomerProductPotential @default(UNKNOWN)
+
+  Company   Company @relation(fields: [companyId], references: [id])
+  companyId Int
+
   MeetingCustomer MeetingCustomer[]
 }
 
@@ -182,7 +245,21 @@ model MeetingEmployee {
   Employee   Employee @relation(fields: [employeeId], references: [id])
   employeeId Int
 
-  Meeting   Meeting @relation(fields: [meetingId], references: [id])
+  Meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  meetingId Int
+}
+
+model MeetingProduct {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int
+
+  Meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
   meetingId Int
 }
 
@@ -196,7 +273,20 @@ model MeetingCustomer {
   Cusstomer  Customer @relation(fields: [customerId], references: [id])
   customerId Int
 
-  Meeting   Meeting @relation(fields: [meetingId], references: [id])
+  Meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  meetingId Int
+}
+
+model MeetingNote {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  note String
+
+  Meeting   Meeting @relation(fields: [meetingId], references: [id], onDelete: Cascade)
   meetingId Int
 }
 
@@ -213,25 +303,13 @@ model Meeting {
   goal    String
   outcome String?
 
-  type  String @default("other")
-  place String @default("other")
+  type  MeetingType  @default(PHONE_CALL)
+  place MeetingPlace @default(ONLINE)
 
   MeetingNote MeetingNote[]
 
   MeetingInstructor MeetingInstructor[]
   MeetingEmployee   MeetingEmployee[]
   MeetingCustomer   MeetingCustomer[]
-}
-
-model MeetingNote {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  note String
-
-  Meeting   Meeting @relation(fields: [meetingId], references: [id])
-  meetingId Int
+  MeetingProduct    MeetingProduct[]
 }
