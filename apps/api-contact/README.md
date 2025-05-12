@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-<%- fileName %>/favicon.png" alt="Logo" />
+  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-contact/favicon.png" alt="Logo" />
 </p>
 
-# @bmod/api-<%- fileName %>
+# @bmod/api-contact
 
 ## Summary
 
-<%- fileName %> api
+Contact api
 
 ## Install
 
 ```bash
-  pnpm add @bmod/api-<%- fileName %>
+  pnpm add @bmod/api-contact
 ```
 
 ## Funding
 
-Thank you for using `@bmod/api-<%- fileName %>` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
+Thank you for using `@bmod/api-contact` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
 
 [Instant Funding](https://cash.app/$puqlib)
 

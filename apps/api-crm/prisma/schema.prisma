@@ -8,19 +8,6 @@ datasource db {
   relationMode = "foreignKeys"
 }
 
-model Industry {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  name        String
-  description String?
-
-  Company Company[]
-}
-
 enum CustomerStatus {
   CUSTOMER
   PROSPECT
@@ -48,114 +35,6 @@ enum CustomerProductPotential {
   MEDIUM
   HIGH
   VERY_HIGH
-}
-
-model Company {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  name String @unique
-
-  annualRevenu      Decimal?
-  numberOfEmployees Int?
-
-  status CustomerStatus
-
-  Industry   Industry @relation(fields: [industryId], references: [id])
-  industryId Int
-
-  Contact         Contact[]
-  Customer        Customer[]
-  CustomerProduct CustomerProduct[]
-}
-
-model Website {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  url String
-
-  Contact   Contact @relation(fields: [contactId], references: [id])
-  contactId Int
-}
-
-model Email {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  email String
-
-  Contact   Contact @relation(fields: [contactId], references: [id])
-  contactId Int
-}
-
-model Phone {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  phone String
-
-  Contact   Contact @relation(fields: [contactId], references: [id])
-  contactId Int
-}
-
-model SocialMedia {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  url String
-
-  Contact   Contact @relation(fields: [contactId], references: [id])
-  contactId Int
-}
-
-model Address {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  country String
-  street  String
-  city    String
-  state   String
-  zip     String
-
-  Contact   Contact @relation(fields: [contactId], references: [id])
-  contactId Int
-}
-
-model Contact {
-  id Int @id @unique @default(autoincrement())
-
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-
-  Company   Company @relation(fields: [companyId], references: [id])
-  companyId Int     @unique
-
-  Address     Address[]
-  SocialMedia SocialMedia[]
-  Phone       Phone[]
-  Email       Email[]
-  Website     Website[]
 }
 
 model Employee {
@@ -197,9 +76,6 @@ model CustomerProduct {
 
   Product   Product @relation(fields: [productId], references: [id])
   productId Int
-
-  Company   Company @relation(fields: [companyId], references: [id])
-  companyId Int
 }
 
 model Customer {
@@ -209,14 +85,9 @@ model Customer {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  firstName  String
-  lastName   String
-  middleName String?
+  customerId Int
 
   potential CustomerProductPotential @default(UNKNOWN)
-
-  Company   Company @relation(fields: [companyId], references: [id])
-  companyId Int
 
   MeetingCustomer MeetingCustomer[]
 }
@@ -298,7 +169,7 @@ model Meeting {
   deletedAt DateTime?
 
   startDate DateTime
-  endDate   DateTime
+  endDate   DateTime?
 
   goal    String
   outcome String?

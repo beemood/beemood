@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "foreignKeys"
+}
+
+model Website {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  url String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Email {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  email String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Phone {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  phone String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model SocialMedia {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  url String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Address {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  country String
+  street  String
+  city    String
+  state   String
+  zip     String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Industry {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+}
+
+model JobTitle {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String
+
+  Contact Contact[]
+}
+
+model Department {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  Contact Contact[]
+}
+
+model Company {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name    String    @unique
+  Contact Contact[]
+}
+
+model Contact {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  firstName    String
+  lastName     String
+  preferedName String?
+  title        String?
+
+  gender String
+  dob    DateTime?
+
+  primaryEmail String
+  primaryPhone String
+
+  workEmail String?
+  workPhone String?
+
+  personalEmail String?
+  personalPhone String?
+
+  Departmenet  Department @relation(fields: [departmentId], references: [id])
+  departmentId Int
+
+  JobTitle   JobTitle @relation(fields: [jobTitleId], references: [id])
+  jobTitleId Int
+
+  Company   Company @relation(fields: [companyId], references: [id])
+  companyId Int
+
+  Address     Address[]
+  SocialMedia SocialMedia[]
+  Phone       Phone[]
+  Email       Email[]
+  Website     Website[]
+}

@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-inventory/favicon.png" alt="Logo" />
+  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-crm/favicon.png" alt="Logo" />
 </p>
 
-# @bmod/api-inventory
+# @bmod/api-crm
 
 ## Summary
 
-Inventory api
+crm api
 
 ## Install
 
 ```bash
-  pnpm add @bmod/api-inventory
+  pnpm add @bmod/api-crm
 ```
 
 ## Funding
 
-Thank you for using `@bmod/api-inventory` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
+Thank you for using `@bmod/api-crm` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
 
 [Instant Funding](https://cash.app/$puqlib)
 

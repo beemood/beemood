@@ -11,7 +11,7 @@
     "tag": "latest"
   },
   "license": "MIT",
-  "description": "Inventory api",
+  "description": "<%- fileName %> api",
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
