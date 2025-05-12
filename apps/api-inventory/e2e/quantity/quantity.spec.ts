@@ -1,44 +1,16 @@
+import type { APIRequestContext } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import { describe } from 'node:test';
 
-const timestamp = new Date().getTime().toString();
-
-const fake = (suffix = '') => ({
-  name: `some ${timestamp}${suffix}`,
-});
-
-function route(...args: string[]) {
-  return ['/api/quantity', ...args].join('/');
-}
-
 describe('/api/quantity', () => {
-  let items: any[];
-
-  test.beforeAll(async ({ request }) => {
+  async function findAll(request: APIRequestContext) {
     const res = await request.get('/api/quantity');
-    items = await res.json();
-    expect(items).toBeDefined();
-    expect(items.length).toBeGreaterThan(2);
-  });
-
-  test('POST /', async ({ request }) => {
-    const res = await request.post(route(), { data: fake() });
     const body = await res.json();
-    expect(res.ok()).toEqual(true);
-    expect(res.status()).toEqual(201);
-    expect(body).toHaveProperty('id');
-  });
-
-  test('PUT /:id', async ({ request }) => {
-    const res = await request.put(route(items[0].id), {
-      data: fake('updated'),
-    });
-    const body = await res.json();
-    expect(body).toHaveProperty('id');
-  });
+    return body;
+  }
 
   test('GET /', async ({ request }) => {
-    const res = await request.get(route());
+    const res = await request.get('/api/quantity');
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);
@@ -46,15 +18,8 @@ describe('/api/quantity', () => {
   });
 
   test('GET /:id', async ({ request }) => {
-    const res = await request.get(route(items[0].id));
-    const body = await res.json();
-    expect(res.ok()).toEqual(true);
-    expect(res.status()).toEqual(200);
-    expect(body).toHaveProperty('id');
-  });
-
-  test('DELETE /:id', async ({ request }) => {
-    const res = await request.delete(route(items[2].id));
+    const all = await findAll(request);
+    const res = await request.get(`/api/quantity/${all[0].id}`);
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);

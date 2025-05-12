@@ -118,7 +118,6 @@
     }
   },
   "dependencies": {
-    "@bmod/factory": "workspace:*",
     "@bmod/nest": "^0.4.0",
     "@bmod/prisma": "^0.4.0",
     "@bmod/property": "^0.4.0",
@@ -135,7 +134,8 @@
     "@playwright/test": "^1.36.0",
     "@prisma/client": "^6.7.0",
     "@swc/helpers": "~0.5.11",
-    "helmet": "^8.1.0"
+    "helmet": "^8.1.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^11.1.0",
@@ -143,6 +143,7 @@
     "@playwright/test": "^1.52.0",
     "@types/helmet": "^4.0.0",
     "@types/supertest": "^6.0.3",
+    "@types/uuid": "^10.0.0",
     "chokidar": "^4.0.3",
     "prisma": "6.7.0",
     "supertest": "^7.1.0"

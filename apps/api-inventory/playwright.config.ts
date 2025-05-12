@@ -19,6 +19,7 @@ export default defineConfig({
     cwd: workspaceRoot,
     port: 3000,
   },
+  
   testDir: './e2e',
   tsconfig: './tsconfig.e2e.json',
 });

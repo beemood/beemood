@@ -11,6 +11,7 @@ export * from './lib/department/department.controller.js';
 export * from './lib/department/department.module.js';
 export * from './lib/department/dto/department.dto.js';
 export * from './lib/department/dto/query-department.dto.js';
+export * from './lib/inventory-seed.module.js';
 export * from './lib/inventory.module.js';
 export * from './lib/price-level/dto/price-level.dto.js';
 export * from './lib/price-level/dto/query-price-level.dto.js';
@@ -40,6 +41,7 @@ export * from './lib/store/store.controller.js';
 export * from './lib/store/store.module.js';
 export * from './lib/tag/dto/query-tag.dto.js';
 export * from './lib/tag/dto/tag.dto.js';
+export * from './lib/tag/tag-data.js';
 export * from './lib/tag/tag.controller.js';
 export * from './lib/tag/tag.module.js';
 

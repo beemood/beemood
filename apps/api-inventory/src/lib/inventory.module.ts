@@ -1,7 +1,5 @@
-import type { OnModuleInit } from '@nestjs/common';
+import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { EventEmitterModule } from '@nestjs/event-emitter';
 import { CategoryModule } from './category/category.module.js';
 import { DepartmentModule } from './department/department.module.js';
 import { PriceLevelModule } from './price-level/price-level.module.js';
@@ -14,12 +12,11 @@ import { TagModule } from './tag/tag.module.js';
 
 @Module({
   imports: [
-    ConfigModule,
-    EventEmitterModule,
+    PrismaModule.forRoot(),
     CategoryModule,
     DepartmentModule,
-    PriceModule,
     PriceLevelModule,
+    PriceModule,
     ProductModule,
     ProductVariantModule,
     QuantityModule,
@@ -27,12 +24,4 @@ import { TagModule } from './tag/tag.module.js';
     TagModule,
   ],
 })
-export class InventoryModule implements OnModuleInit {
-  constructor() {
-    //
-  }
-
-  onModuleInit() {
-    // Seed database
-  }
-}
+export class InventoryModule {}

@@ -31,12 +31,12 @@ export class PrismaModule {
   }
 
   static forFeature(options: PrismaFeatureModuleOptions): DynamicModule {
-    const repos = options.resources.map((e) => {
-      return provideRepository(e, options.datasourceName);
+    const repos = options.resources.map((resourceName) => {
+      return provideRepository(resourceName, options.datasourceName);
     });
 
-    const tokens = options.resources.map((e) => {
-      return getRepositoryToken(e, options.datasourceName);
+    const tokens = options.resources.map((resourceName) => {
+      return getRepositoryToken(resourceName, options.datasourceName);
     });
 
     return {

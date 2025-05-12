@@ -31,7 +31,7 @@ import {
 ])
 export class PriceLevelController {
   constructor(
-    @InjectRepo('price-level') protected readonly repo: P.PriceLevelDelegate
+    @InjectRepo('priceLevel') protected readonly repo: P.PriceLevelDelegate
   ) {}
 
   @CreateOne(() => ReadDto)
@@ -46,8 +46,10 @@ export class PriceLevelController {
 
   @FindOneById(() => ReadDto)
   async findOneById(@ParamId() id: number, @Query() query: FindOneDto) {
-    query.where.id = id;
-    return await this.repo.findFirst(query);
+    return await this.repo.findFirst({
+      ...query,
+      where: { ...query.where, id },
+    });
   }
 
   @UpdateOneById(() => ReadDto)
@@ -56,13 +58,15 @@ export class PriceLevelController {
     @Body() data: UpdateDto,
     @Query() query: FindOneDto
   ) {
-    query.where.id = id;
-    return await this.repo.update({ ...query, data });
+    return await this.repo.update({
+      ...query,
+      where: { ...query.where, id },
+      data,
+    });
   }
 
   @DeleteOneById(() => ReadDto)
   async deleteOneById(@ParamId() id: number, @Query() query: FindOneDto) {
-    query.where.id = id;
-    return await this.repo.delete(query);
+    return await this.repo.delete({ ...query, where: { ...query.where, id } });
   }
 }

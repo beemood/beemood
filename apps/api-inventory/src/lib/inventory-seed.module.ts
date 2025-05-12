@@ -2,12 +2,12 @@ import { InjectRepo, PrismaModule } from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import type { Prisma as P } from '@prisma/client';
+import { v4 } from 'uuid';
 import { categoryData } from './category/category-data.js';
 import { departmentData } from './department/department-data.js';
 import { priceLevelData } from './price-level/price-level-data.js';
 import { productData } from './product/product-data.js';
 import { tagData } from './tag/tag-data.js';
-
 @Module({
   imports: [
     PrismaModule.forFeature({
@@ -58,6 +58,53 @@ export class InventorySeedModule implements OnModuleInit {
       }
     });
 
-    //
+    const allPriceLevels = await this.priceLevel.findMany();
+    const allProducts = await this.product.findMany();
+
+    // Create default variants
+    for (const data of allProducts) {
+      try {
+        await this.productVariant.create({
+          data: { barcode: v4(), sku: v4(), productId: data.id },
+        });
+      } catch {
+        //
+      }
+    }
+
+    const allProductVariants = await this.productVariant.findMany();
+
+    // Create store and quantities
+    for (const priceLevelData of allPriceLevels) {
+      try {
+        const savedStore = await this.store.create({
+          data: { name: priceLevelData.name, priceLevelId: priceLevelData.id },
+        });
+
+        for (const productVariantData of allProductVariants) {
+          await this.quantity.create({
+            data: {
+              quantity: 0,
+              minumumQuantity: 0,
+              productVariantId: productVariantData.id,
+              storeId: savedStore.id,
+            },
+          });
+
+          await this.price.create({
+            data: {
+              cost: 80,
+              price: 100,
+              priceLevelId: priceLevelData.id,
+              productVariantId: productVariantData.id,
+            },
+          });
+        }
+      } catch {
+        //
+      }
+    }
+
+    // Create prices
   }
 }

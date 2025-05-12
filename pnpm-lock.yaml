@@ -120,9 +120,6 @@ importers:
 
   apps/api-inventory:
     dependencies:
-      '@bmod/factory':
-        specifier: workspace:*
-        version: link:../../libs/factory
       '@bmod/nest':
         specifier: ^0.4.0
         version: 0.4.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(@nestjs/swagger@11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2))
@@ -174,6 +171,9 @@ importers:
       helmet:
         specifier: ^8.1.0
         version: 8.1.0
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
       '@nestjs/testing':
         specifier: ^11.1.0
@@ -184,6 +184,9 @@ importers:
       '@types/supertest':
         specifier: ^6.0.3
         version: 6.0.3
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
       chokidar:
         specifier: ^4.0.3
         version: 4.0.3
@@ -892,7 +895,7 @@ packages:
     engines: {node: '>=18'}
 
   '@bmod/nest@0.4.0':
-    resolution: {integrity: sha512-JwKlmxe3Pqkp2vdM7D99eqGyGOsT4IIOQnx39xmF9p8fD963C49Z4UP4f9s/DHpZWPnzsBJPZSePnWQI6SHGig==}
+    resolution: {integrity: sha512-aSjmgYfrRhbRVdZZ3hwkpCuWFvtK6mK6FoOgo2Z5CfbMgxppmW21wJaC4oCEYJo2l3icKkdh3vw1QXKNbd0mfQ==}
     peerDependencies:
       '@nestjs/common': ^11.1.0
       '@nestjs/core': ^11.1.0
@@ -2169,6 +2172,9 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+
+  '@types/uuid@10.0.0':
+    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
 
   '@types/validator@13.15.0':
     resolution: {integrity: sha512-nh7nrWhLr6CBq9ldtw0wx+z9wKnnv/uTVLA9g/3/TcOYxbpOSZE+MhKPmWqU+K0NvThjhv12uD8MuqijB0WzEA==}
@@ -5164,6 +5170,10 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
 
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
+
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
@@ -7676,6 +7686,8 @@ snapshots:
       '@types/superagent': 8.1.9
 
   '@types/unist@3.0.3': {}
+
+  '@types/uuid@10.0.0': {}
 
   '@types/validator@13.15.0': {}
 
@@ -11166,6 +11178,8 @@ snapshots:
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
+
+  uuid@11.1.0: {}
 
   uuid@8.3.2: {}
 

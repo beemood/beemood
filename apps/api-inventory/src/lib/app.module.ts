@@ -1,11 +1,11 @@
-import { PrismaModule } from '@bmod/prisma';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { FactoryModule } from './factory.module.js';
+import { InventorySeedModule } from './inventory-seed.module.js';
+import { InventoryModule } from './inventory.module.js';
 
 @Module({
   imports: [
@@ -20,8 +20,8 @@ import { FactoryModule } from './factory.module.js';
         },
       ],
     }),
-    PrismaModule.forRoot(),
-    FactoryModule,
+    InventoryModule,
+    InventorySeedModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
