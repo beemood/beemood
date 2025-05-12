@@ -1,0 +1,237 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "foreignKeys"
+}
+
+model Industry {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name        String
+  description String?
+
+  Company Company[]
+}
+
+enum CustomerStatus {
+  CUSTOMER
+  PROSPECT
+  PARTNER
+  FORMER_CUSTOMER
+}
+
+model Company {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  name String @unique
+
+  annualRevenu      Decimal?
+  numberOfEmployees Int?
+
+  status CustomerStatus
+
+  Industry   Industry @relation(fields: [industryId], references: [id])
+  industryId Int
+
+  Contact  Contact[]
+  Customer Customer[]
+}
+
+model Website {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  url String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Email {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  email String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Phone {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  phone String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model SocialMedia {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  url String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Address {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  country String
+  street  String
+  city    String
+  state   String
+  zip     String
+
+  Contact   Contact @relation(fields: [contactId], references: [id])
+  contactId Int
+}
+
+model Contact {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  Company   Company @relation(fields: [companyId], references: [id])
+  companyId Int     @unique
+
+  Address     Address[]
+  SocialMedia SocialMedia[]
+  Phone       Phone[]
+  Email       Email[]
+  Website     Website[]
+}
+
+model Employee {
+  id Int @id @unique
+
+  MeetingInstructor MeetingInstructor[]
+  MeetingEmployee   MeetingEmployee[]
+}
+
+model Customer {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  firstName  String
+  lastName   String
+  middleName String?
+
+  Company         Company           @relation(fields: [companyId], references: [id])
+  companyId       Int
+  MeetingCustomer MeetingCustomer[]
+}
+
+model MeetingInstructor {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  Employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
+
+  Meeting   Meeting @relation(fields: [meetingId], references: [id])
+  meetingId Int
+}
+
+model MeetingEmployee {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  Employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
+
+  Meeting   Meeting @relation(fields: [meetingId], references: [id])
+  meetingId Int
+}
+
+model MeetingCustomer {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  Cusstomer  Customer @relation(fields: [customerId], references: [id])
+  customerId Int
+
+  Meeting   Meeting @relation(fields: [meetingId], references: [id])
+  meetingId Int
+}
+
+model Meeting {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  startDate DateTime
+  endDate   DateTime
+
+  goal    String
+  outcome String?
+
+  type  String @default("other")
+  place String @default("other")
+
+  MeetingNote MeetingNote[]
+
+  MeetingInstructor MeetingInstructor[]
+  MeetingEmployee   MeetingEmployee[]
+  MeetingCustomer   MeetingCustomer[]
+}
+
+model MeetingNote {
+  id Int @id @unique @default(autoincrement())
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  note String
+
+  Meeting   Meeting @relation(fields: [meetingId], references: [id])
+  meetingId Int
+}

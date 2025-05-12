@@ -1,0 +1,149 @@
+{
+  "name": "@bmod/api-crm",
+  "version": "0.3.4",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "license": "MIT",
+  "description": "Inventory api",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "beemood"
+  ],
+  "repository": {
+    "directory": "apps/api-crm",
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
+  },
+  "homepage": "https://rbrightline.github.io/beemood/api-crm",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/api-crm/favicon.png",
+  "bin": {
+    "api-crm": "./bin/api-crm.js"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "prisma",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apps/api-crm/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/boot.ts",
+          "tsConfig": "{projectRoot}/tsconfig.app.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "build-watch": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "clean": false,
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/boot.ts",
+          "tsConfig": "{projectRoot}/tsconfig.app.json",
+          "watch": true
+        }
+      },
+      "start": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "node --watch --watch-path {projectRoot}/src {projectRoot}/dist/src/boot.js",
+          "cwd": "{workspaceRoot}"
+        }
+      },
+      "serve": {
+        "dependsOn": [
+          "build",
+          "build-watch",
+          "start"
+        ]
+      },
+      "e2e": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx playwright test",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "db-migrate": {
+        "command": "npx prisma migrate dev --name updated",
+        "options": {
+          "cwd": "{projectRoot}"
+        }
+      },
+      "db-generate": {
+        "command": "npx prisma generate",
+        "options": {
+          "cwd": "{projectRoot}"
+        }
+      },
+      "doc": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx typedoc --tsconfig {projectRoot}/tsconfig.app.json --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot}",
+          "cwd": "{workspaceRoot}"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@bmod/nest": "^0.3.4",
+    "@bmod/prisma": "^0.3.4",
+    "@bmod/property": "^0.3.4",
+    "@bmod/types": "^0.3.4",
+    "@nestjs/common": "^11.1.0",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.0",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/schedule": "^6.0.0",
+    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/throttler": "^6.4.0",
+    "@prisma/client": "^6.7.0",
+    "@swc/helpers": "~0.5.11",
+    "helmet": "^8.1.0",
+    "@nx/devkit": "21.0.3",
+    "@nx/playwright": "^21.0.3",
+    "@playwright/test": "^1.36.0"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.0",
+    "@nx/devkit": "^21.0.3",
+    "@playwright/test": "^1.52.0",
+    "@types/helmet": "^4.0.0",
+    "@types/supertest": "^6.0.3",
+    "chokidar": "^4.0.3",
+    "prisma": "6.7.0",
+    "supertest": "^7.1.0"
+  }
+}
