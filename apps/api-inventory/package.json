@@ -1,7 +1,6 @@
-
 {
   "name": "@bmod/api-inventory",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -119,10 +118,10 @@
     }
   },
   "dependencies": {
-    "@bmod/nest": "^0.3.5",
-    "@bmod/prisma": "^0.3.5",
-    "@bmod/property": "^0.3.5",
-    "@bmod/types": "^0.3.5",
+    "@bmod/nest": "^0.4.0",
+    "@bmod/prisma": "^0.4.0",
+    "@bmod/property": "^0.4.0",
+    "@bmod/types": "^0.4.0",
     "@nestjs/common": "^11.1.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.0",
