@@ -12,9 +12,6 @@ importers:
         specifier: ^1.6.0
         version: 1.9.0
     devDependencies:
-      '@bmod/gen':
-        specifier: workspace:^
-        version: link:libs/gen
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.26.0
@@ -123,18 +120,21 @@ importers:
 
   apps/api-inventory:
     dependencies:
+      '@bmod/factory':
+        specifier: workspace:*
+        version: link:../../libs/factory
       '@bmod/nest':
-        specifier: workspace:^
-        version: link:../../libs/nest
+        specifier: ^0.4.0
+        version: 0.4.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(@nestjs/swagger@11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2))
       '@bmod/prisma':
-        specifier: workspace:^
-        version: link:../../libs/prisma
+        specifier: ^0.4.0
+        version: 0.4.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@prisma/client@6.7.0(prisma@6.7.0(typescript@5.7.3))(typescript@5.7.3))
       '@bmod/property':
-        specifier: workspace:^
-        version: link:../../libs/property
+        specifier: ^0.4.0
+        version: 0.4.0(@nestjs/swagger@11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2))(class-transformer@0.5.1)(class-validator@0.14.2)
       '@bmod/types':
-        specifier: workspace:^
-        version: link:../../libs/types
+        specifier: ^0.4.0
+        version: 0.4.0
       '@nestjs/common':
         specifier: ^11.1.0
         version: 11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -194,6 +194,24 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0
 
+  libs/factory:
+    dependencies:
+      '@bmod/nest':
+        specifier: workspace:^
+        version: link:../nest
+      '@bmod/prisma':
+        specifier: workspace:^
+        version: link:../prisma
+      '@nestjs/common':
+        specifier: ^11.1.0
+        version: 11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/swagger':
+        specifier: ^11.2.0
+        version: 11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.17
+
   libs/gen:
     dependencies:
       '@nx/devkit':
@@ -221,8 +239,8 @@ importers:
   libs/prisma:
     dependencies:
       '@bmod/types':
-        specifier: ^0.3.4
-        version: 0.3.4
+        specifier: ^0.4.0
+        version: 0.4.0
       '@nestjs/common':
         specifier: ^11.1.0
         version: 11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -239,8 +257,8 @@ importers:
   libs/property:
     dependencies:
       '@bmod/types':
-        specifier: 0.3.4
-        version: 0.3.4
+        specifier: 0.4.0
+        version: 0.4.0
       '@nestjs/swagger':
         specifier: ^11.2.0
         version: 11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)
@@ -873,8 +891,29 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bmod/types@0.3.4':
-    resolution: {integrity: sha512-PLd3PjxCa74hgflJnzmQOMdl7nFXQkFDfZhLDw7+USq6ZBVV62VMddjteSd7onekkd3+KUkAM4eVk1ozVTUJ4g==}
+  '@bmod/nest@0.4.0':
+    resolution: {integrity: sha512-JwKlmxe3Pqkp2vdM7D99eqGyGOsT4IIOQnx39xmF9p8fD963C49Z4UP4f9s/DHpZWPnzsBJPZSePnWQI6SHGig==}
+    peerDependencies:
+      '@nestjs/common': ^11.1.0
+      '@nestjs/core': ^11.1.0
+      '@nestjs/swagger': ^11.2.0
+
+  '@bmod/prisma@0.4.0':
+    resolution: {integrity: sha512-+eeZyW0gt+Taat04R8M5+72sWRo+5e5sA2Yyyc/jLDV+rqHThYIsXlEHC+mdwVvu3MtjQ08GNrjDq7zO4YmSaA==}
+    peerDependencies:
+      '@nestjs/common': ^11.1.0
+      '@nestjs/config': ^4.0.2
+      '@prisma/client': ^6.7.0
+
+  '@bmod/property@0.4.0':
+    resolution: {integrity: sha512-vSECim+gket3+UNdNiWHbZlpLz0G8fO+0JK7/2m+HK2RlMGAlDDXme53K2miHmYRQ6BiIIn1ePHlT1T4uu5lBA==}
+    peerDependencies:
+      '@nestjs/swagger': ^11.2.0
+      class-transformer: ^0.5.1
+      class-validator: ^0.14.2
+
+  '@bmod/types@0.4.0':
+    resolution: {integrity: sha512-mJkQ1xJrKlYsEcYtwNgWni/BQpsm/RmF02ST5bc0qKW0Q9RivQGws1CJxQFKo9y25xn1Uv+3wl9IK8BXh7w+tg==}
 
   '@cypress/request@3.0.8':
     resolution: {integrity: sha512-h0NFgh1mJmm1nr4jCwkGHwKneVYKghUyWe6TMNrk0B9zsjAJxpg8C4/+BAcmLgCPa1vj1V8rNUaILl+zYRUWBQ==}
@@ -6103,7 +6142,30 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bmod/types@0.3.4':
+  '@bmod/nest@0.4.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(@nestjs/swagger@11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2))':
+    dependencies:
+      '@nestjs/common': 11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/core': 11.1.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/swagger': 11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)
+      '@swc/helpers': 0.5.17
+
+  '@bmod/prisma@0.4.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@prisma/client@6.7.0(prisma@6.7.0(typescript@5.7.3))(typescript@5.7.3))':
+    dependencies:
+      '@bmod/types': 0.4.0
+      '@nestjs/common': 11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/config': 4.0.2(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@prisma/client': 6.7.0(prisma@6.7.0(typescript@5.7.3))(typescript@5.7.3)
+      '@swc/helpers': 0.5.17
+
+  '@bmod/property@0.4.0(@nestjs/swagger@11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2))(class-transformer@0.5.1)(class-validator@0.14.2)':
+    dependencies:
+      '@bmod/types': 0.4.0
+      '@nestjs/swagger': 11.2.0(@nestjs/common@11.1.0(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.0)(class-transformer@0.5.1)(class-validator@0.14.2)(reflect-metadata@0.2.2)
+      '@swc/helpers': 0.5.17
+      class-transformer: 0.5.1
+      class-validator: 0.14.2
+
+  '@bmod/types@0.4.0':
     dependencies:
       '@swc/helpers': 0.5.17
 

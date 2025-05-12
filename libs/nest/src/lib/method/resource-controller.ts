@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { Type } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { SetResourceName } from '../metadata/set-resource-name.js';
 
 export type ResourceControllerOptions = {
@@ -9,16 +9,14 @@ export type ResourceControllerOptions = {
 };
 /**
  * Api resource class decorator
- * @param pluralName kebab-case plural name e.g products, categories.
+ * @param name kebab-case plural name e.g products, categories.
  * @returns ClassDecorator
  */
-export function ResourceController(
-  pluralName: string,
-  dtos: Type[]
-): ClassDecorator {
+export function ResourceController(name: string, dtos: Type[]): ClassDecorator {
   return (...args) => {
-    Controller(pluralName)(...args);
+    ApiTags(name[0].toUpperCase() + name.slice(1) + 'Controller')(...args);
+    Controller(name)(...args);
     ApiBearerAuth()(...args);
-    SetResourceName(pluralName)(...args);
+    SetResourceName(name)(...args);
   };
 }

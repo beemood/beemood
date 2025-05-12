@@ -1,4 +1,3 @@
-import { PrismaModule } from '@bmod/prisma';
 import type { OnModuleInit } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -17,7 +16,6 @@ import { TagModule } from './tag/tag.module.js';
   imports: [
     ConfigModule,
     EventEmitterModule,
-    PrismaModule.forRoot(),
     CategoryModule,
     DepartmentModule,
     PriceModule,

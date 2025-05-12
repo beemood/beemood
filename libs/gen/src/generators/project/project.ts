@@ -4,13 +4,12 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import type { ProjectGeneratorSchema } from './schema.js';
 
-const filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(filename);
-
 export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema
 ) {
+  const filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(filename);
   const { type, name } = options;
   const source = join(__dirname, type);
   const target = type === 'api' || type === 'client' ? 'apps' : 'libs';
