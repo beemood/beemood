@@ -96,25 +96,42 @@ export class AppSeedModule implements OnModuleInit {
     }
 
     const [foundContact] = await this.contact.findMany();
-    await this.website.create({
-      data: { url: 'http://beemood.github.io', contactId: foundContact.id },
-    });
-    await this.socialMedia.create({
-      data: { url: 'http://beemood.github.io', contactId: foundContact.id },
-    });
 
-    await this.email.create({
-      data: {
-        email: 'robert.brightline@gmail.com',
-        contactId: foundContact.id,
-      },
-    });
+    try {
+      await this.website.create({
+        data: { url: 'http://beemood.github.io', contactId: foundContact.id },
+      });
+    } catch {
+      //
+    }
+    try {
+      await this.socialMedia.create({
+        data: { url: 'http://beemood.github.io', contactId: foundContact.id },
+      });
+    } catch {
+      //
+    }
 
-    await this.phone.create({
-      data: {
-        phone: '+19009009999',
-        contactId: foundContact.id,
-      },
-    });
+    try {
+      await this.email.create({
+        data: {
+          email: 'robert.brightline@gmail.com',
+          contactId: foundContact.id,
+        },
+      });
+    } catch {
+      //
+    }
+
+    try {
+      await this.phone.create({
+        data: {
+          phone: '+19009009999',
+          contactId: foundContact.id,
+        },
+      });
+    } catch {
+      //
+    }
   }
 }
