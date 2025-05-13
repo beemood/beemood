@@ -4,6 +4,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { AppSeedModule } from './app-seed.module.js';
 import { ContactAppModule } from './contact-app.module.js';
 
 @Module({
@@ -19,6 +20,7 @@ import { ContactAppModule } from './contact-app.module.js';
         },
       ],
     }),
+    AppSeedModule,
     ContactAppModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
