@@ -127,6 +127,12 @@ model Company {
   industryId Int
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
 model Contact {
   id Int @id @unique @default(autoincrement())
 
@@ -139,7 +145,7 @@ model Contact {
   preferedName String?
   title        String?
 
-  gender String
+  gender Gender
   dob    DateTime?
 
   primaryEmail String
