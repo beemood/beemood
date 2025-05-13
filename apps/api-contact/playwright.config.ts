@@ -1,4 +1,3 @@
-import { workspaceRoot } from '@nx/devkit';
 import { nxE2EPreset } from '@nx/playwright/preset';
 import { defineConfig } from '@playwright/test';
 import { fileURLToPath } from 'url';
@@ -15,10 +14,6 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'on-first-retry',
-  },
-  webServer: {
-    command: 'npx nx serve @bmod/api-contact',
-    cwd: workspaceRoot,
   },
   testDir: './e2e',
   tsconfig: './tsconfig.e2e.json',

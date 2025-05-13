@@ -91,7 +91,8 @@ export class AppSeedModule implements OnModuleInit {
           departmentId: foundDepartments[0].id,
         },
       });
-    } catch {
+    } catch (err) {
+      console.log(err);
       //
     }
 
@@ -116,6 +117,19 @@ export class AppSeedModule implements OnModuleInit {
       await this.email.create({
         data: {
           email: 'robert.brightline@gmail.com',
+
+          contactId: foundContact.id,
+        },
+      });
+    } catch (err) {
+      console.log(err, '<<<< Email create error');
+      //
+    }
+
+    try {
+      await this.phone.create({
+        data: {
+          phone: '+19009009999',
           contactId: foundContact.id,
         },
       });
@@ -124,9 +138,13 @@ export class AppSeedModule implements OnModuleInit {
     }
 
     try {
-      await this.phone.create({
+      await this.address.create({
         data: {
-          phone: '+19009009999',
+          state: 'test',
+          city: 'test',
+          country: 'test',
+          street: 'test',
+          zip: 'test',
           contactId: foundContact.id,
         },
       });

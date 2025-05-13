@@ -20,7 +20,7 @@ import {
   QryTake,
 } from '@bmod/property';
 import type { OrderDirection } from '@bmod/types';
-import type { Contact } from '@prisma/client';
+import type { Contact, Gender } from '@prisma/client';
 import { Prisma as P } from '@prisma/client';
 
 @Model()
@@ -32,7 +32,7 @@ export class ContactWhereDto
   @QryStr() lastName: WhereStringDto;
   @QryStr() preferedName: WhereStringDto;
   @QryStr() title: WhereStringDto;
-  @QryStr() gender: WhereStringDto;
+  @QryStr() gender: Gender;
   @QryStr() dob: WhereDateDto;
   @QryStr() primaryEmail: WhereStringDto;
   @QryStr() primaryPhone: WhereStringDto;
@@ -54,7 +54,7 @@ export class ContactWhereUniqueDto
   @Prop({ type: 'string' }) lastName: string;
   @Prop({ type: 'string' }) preferedName: string;
   @Prop({ type: 'string' }) title: string;
-  @Prop({ type: 'string' }) gender: string;
+  @Prop({ type: 'string' }) gender: Gender;
   @Prop({ type: 'string' }) dob: Date;
   @Prop({ type: 'string' }) primaryEmail: string;
   @Prop({ type: 'string' }) primaryPhone: string;

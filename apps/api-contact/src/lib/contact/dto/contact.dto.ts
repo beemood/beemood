@@ -1,6 +1,6 @@
 import { BaseReadDto, Model, Prop } from '@bmod/property';
 import { PartialType } from '@nestjs/swagger';
-import type { Contact, Prisma as P } from '@prisma/client';
+import type { Contact, Gender, Prisma as P } from '@prisma/client';
 
 @Model()
 export class ReadContactDto extends BaseReadDto implements Contact {
@@ -8,7 +8,7 @@ export class ReadContactDto extends BaseReadDto implements Contact {
   @Prop({ type: 'string' }) lastName: string;
   @Prop({ type: 'string' }) preferedName: string | null;
   @Prop({ type: 'string' }) title: string | null;
-  @Prop({ type: 'string' }) gender: string;
+  @Prop({ type: 'string' }) gender: Gender;
   @Prop({ type: 'string', format: 'date' }) dob: Date | null;
 
   @Prop({ type: 'string', stringFormat: 'email' }) primaryEmail: string;
@@ -28,7 +28,7 @@ export class CreateContactDto implements P.ContactUncheckedCreateInput {
   @Prop({ type: 'string', required: true }) lastName: string;
   @Prop({ type: 'string' }) preferedName?: string;
   @Prop({ type: 'string' }) title?: string;
-  @Prop({ type: 'string', required: true }) gender: string;
+  @Prop({ type: 'string', required: true }) gender: Gender;
   @Prop({ type: 'string' }) dob?: Date;
 
   @Prop({ type: 'string', stringFormat: 'email' }) primaryEmail: string;
