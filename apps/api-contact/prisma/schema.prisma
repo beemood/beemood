@@ -84,7 +84,8 @@ model Industry {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name String @unique
+  name    String    @unique
+  Company Company[]
 }
 
 model JobTitle {
@@ -118,8 +119,12 @@ model Company {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  name    String    @unique
+  name String @unique
+
   Contact Contact[]
+
+  Industry   Industry @relation(fields: [industryId], references: [id])
+  industryId Int
 }
 
 model Contact {

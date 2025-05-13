@@ -2,15 +2,15 @@ import type { APIRequestContext } from '@playwright/test';
 import { expect, test } from '@playwright/test';
 import { describe } from 'node:test';
 
-describe('/api/product', () => {
+describe('/api/department', () => {
   async function findAll(request: APIRequestContext) {
-    const res = await request.get('/api/product');
+    const res = await request.get('/api/department');
     const body = await res.json();
     return body;
   }
 
   test('GET /', async ({ request }) => {
-    const res = await request.get('/api/product');
+    const res = await request.get('/api/department');
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);
@@ -19,7 +19,7 @@ describe('/api/product', () => {
 
   test('GET /:id', async ({ request }) => {
     const all = await findAll(request);
-    const res = await request.get(`/api/product/${all[0].id}`);
+    const res = await request.get(`/api/department/${all[0].id}`);
     const body = await res.json();
     expect(res.ok()).toEqual(true);
     expect(res.status()).toEqual(200);

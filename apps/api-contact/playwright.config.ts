@@ -19,7 +19,6 @@ export default defineConfig({
   webServer: {
     command: 'npx nx serve @bmod/api-contact',
     cwd: workspaceRoot,
-    port: 3000,
   },
   testDir: './e2e',
   tsconfig: './tsconfig.e2e.json',

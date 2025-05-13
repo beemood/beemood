@@ -4,11 +4,10 @@ import { APP_GUARD } from '@nestjs/core';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
-import { ContactModule } from './contact.module.js';
+import { ContactAppModule } from './contact-app.module.js';
 
 @Module({
   imports: [
-    ContactModule,
     ConfigModule.forRoot(),
     EventEmitterModule.forRoot({ delimiter: '.' }),
     ScheduleModule.forRoot(),
@@ -20,6 +19,7 @@ import { ContactModule } from './contact.module.js';
         },
       ],
     }),
+    ContactAppModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })

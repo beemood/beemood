@@ -1,6 +1,6 @@
 {
   "name": "@bmod/api-contact",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -133,7 +133,9 @@
     "helmet": "^8.1.0",
     "@nx/devkit": "21.0.3",
     "@nx/playwright": "^21.0.3",
-    "@playwright/test": "^1.36.0"
+    "@playwright/test": "^1.36.0",
+    "@prisma/client": "6.7.0",
+    "@bmod/property": "0.4.0"
   },
   "devDependencies": {
     "@nestjs/testing": "^11.1.0",
