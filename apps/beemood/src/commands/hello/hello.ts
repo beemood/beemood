@@ -8,12 +8,10 @@ export type HelloOptions = {
  * Hello command handler
  * @param args string[]
  * @param options {@link HelloOptions}
- * @return string
  */
-export function helloHandler(args: string[], options: HelloOptions): string {
+export function helloHandler(args: string[], options: HelloOptions) {
   const greeting = `Hello, ${options.name}`;
   console.log(greeting);
-  return greeting;
 }
 
 /**
