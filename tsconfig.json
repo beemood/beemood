@@ -4,9 +4,6 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/beemood-e2e"
-    },
-    {
       "path": "./apps/beemood"
     }
   ]

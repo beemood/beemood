@@ -1,0 +1,9 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.sortImports": "always",
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "always",
+    "source.addMissingImports.ts": "always",
+    "source.removeUnusedImports": "always"
+  }
+}
