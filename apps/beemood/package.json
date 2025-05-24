@@ -1,12 +1,25 @@
 {
   "name": "@beemood/beemood",
+  "description": "Beemood cli tool",
   "version": "0.0.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "bmod": "./bin/bmod.js"
+    "bmod": "./bin/cli.js"
   },
   "exports": {
     "./package.json": "./package.json",
@@ -20,7 +33,8 @@
   "files": [
     "dist",
     "bin",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "generators.json"
   ],
   "nx": {
     "sourceRoot": "apps/beemood/src",
@@ -34,13 +48,35 @@
           "outputPath": "apps/beemood/dist",
           "main": "apps/beemood/src/index.ts",
           "tsConfig": "apps/beemood/tsconfig.lib.json",
-          "skipTypeCheck": true,
-          "stripLeadingPaths": true
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "apps/beemood/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "apps/beemood/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      },
+      "doc": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx typedoc --tsconfig {projectRoot}/tsconfig.lib.json --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot}",
+          "cwd": "{workspaceRoot}"
         }
       }
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
-  }
+    "@nx/devkit": "21.1.2",
+    "@swc/helpers": "~0.5.11",
+    "commander": "^14.0.0"
+  },
+  "generators": "./generators.json"
 }

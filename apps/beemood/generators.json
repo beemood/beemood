@@ -1,0 +1,14 @@
+{
+  "generators": {
+    "project": {
+      "factory": "./dist/gen/project/project",
+      "schema": "./dist/gen/project/schema.json",
+      "description": "project generator"
+    },
+    "resource": {
+      "factory": "./dist/gen/resource/resource",
+      "schema": "./dist/gen/resource/schema.json",
+      "description": "resource generator"
+    }
+  }
+}
