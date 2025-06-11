@@ -2,6 +2,9 @@
   "compilerOptions": {
     "composite": true,
     "declarationMap": true,
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,

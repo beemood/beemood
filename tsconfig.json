@@ -8,6 +8,15 @@
     },
     {
       "path": "./apps/beemood"
+    },
+    {
+      "path": "./apps/inventory-e2e"
+    },
+    {
+      "path": "./apps/inventory"
+    },
+    {
+      "path": "./apps/hr"
     }
   ]
 }
