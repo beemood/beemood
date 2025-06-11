@@ -1,0 +1,2 @@
+- [ ] updated the resouce generator using the hr module sample 
+- [ ] update the api project generator using hr project
