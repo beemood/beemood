@@ -1,12 +1,6 @@
 {
   "name": "@beemood/hr",
-  "version": "0.9.0",
-  "description": "HR",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public",
-    "tag": "latest"
-  },
   "author": {
     "email": "robert.brightline@gmail.com",
     "name": "Robert Brightline",
@@ -25,10 +19,6 @@
     "https://cash.app/$puqlib"
   ],
   "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/hr/favicon.png",
-  "files": [
-    "dist",
-    "prisma"
-  ],
   "nx": {
     "targets": {
       "build": {

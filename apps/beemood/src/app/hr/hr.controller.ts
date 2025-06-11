@@ -10,6 +10,7 @@ import {
   UpdateOneById,
 } from '@bmod/http';
 import { InjectRepo } from '@bmod/prisma';
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import type { Prisma } from '@beemood/hr-prisma';
 import { CreateHrDto } from './dto/create-hr.dto.js';
 import { UpdateHrDto } from './dto/update-hr.dto.js';

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import type { Prisma } from '@beemood/hr-prisma';
 import { Dto, Property } from '@bmod/property';
 

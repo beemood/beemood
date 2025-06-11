@@ -1,5 +1,4 @@
 import { PrismaModule } from '@bmod/prisma';
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import { PrismaClient } from '@beemood/hr-prisma';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';

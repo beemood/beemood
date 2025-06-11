@@ -1,19 +1,49 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import type { Prisma } from '@beemood/hr-prisma';
-import { Dto } from '@bmod/property';
-import { OmitHrProperty } from '../decorator/omit-hr-property.js';
-import { OrderHrProperty } from '../decorator/order-hr-property.js';
-import { SelectHrProperty } from '../decorator/select-hr-property.js';
-import { SkipHrProperty } from '../decorator/skip-hr-property.js';
-import { TakeHrProperty } from '../decorator/take-hr-property.js';
-import { WhereHrProperty } from '../decorator/where-hr-property.js';
+import { Dto, Property } from '@bmod/property';
+import { SelectHrDto } from './select-hr.dto.js';
+import { OmitHrDto } from './omit-hr.dto.js';
+import { WhereHrDto } from './where-hr.dto.js';
+import { OrderHrDto } from './order-hr.dto.js';
 
 @Dto()
 export class FindManyHrDto implements Prisma.HrFindManyArgs {
-  @TakeHrProperty() take?: number;
-  @SkipHrProperty() skip?: number;
-  @SelectHrProperty() select?: Prisma.HrSelect;
-  @OmitHrProperty() omit?: Prisma.HrOmit;
-  @WhereHrProperty() where?: Prisma.HrWhereInput;
-  @OrderHrProperty() orderBy?: Prisma.HrOrderByWithAggregationInput;
+  @Property({
+    type: 'integer',
+    minimum: 1,
+    defaultValue: 20,
+    transform: true,
+  })
+  take?: number;
+
+  @Property({
+    type: 'integer',
+    minimum: 0,
+    defaultValue: 0,
+    transform: true,
+  })
+  skip?: number;
+
+  @Property({
+    type: 'object',
+    target: () => SelectHrDto,
+    transform: true,
+  })
+  select?: Prisma.HrSelect;
+
+  @Property({
+    type: 'object',
+    target: () => OmitHrDto,
+    transform: true,
+  })
+  omit?: Prisma.HrOmit;
+
+  @Property({
+    type: 'object',
+    target: () => WhereHrDto,
+    transform: true,
+  })
+  where?: Prisma.HrWhereInput;
+
+  @Property({ type: 'object', target: () => OrderHrDto, transform: true })
+  orderBy?: Prisma.HrOrderByWithAggregationInput;
 }

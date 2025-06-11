@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../../../node_modules/@beemood/hr-prisma"
+  provider = "prisma-client-js",
+  output   = "../node-modules/@beemood/hr-prisma"
 }
 
 datasource db {

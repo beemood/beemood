@@ -1,13 +1,17 @@
-// eslint-disable-next-line @nx/enforce-module-boundaries
 import type { Prisma } from '@beemood/hr-prisma';
-import { Dto } from '@bmod/property';
-import { WhereHrProperty } from '../decorator/where-hr-property.js';
+import { Dto, Property } from '@bmod/property';
 import { AdaptHrResponseDto } from './adapt-hr-response.dto.js';
+import { WhereHrDto } from './where-hr.dto.js';
 
 @Dto()
 export class FindOneHrDto
   extends AdaptHrResponseDto
   implements Prisma.HrFindUniqueArgs
 {
-  @WhereHrProperty() where: Prisma.HrWhereUniqueInput;
+  @Property({
+    type: 'object',
+    target: () => WhereHrDto,
+    transform: true,
+  })
+  where: Prisma.HrWhereUniqueInput;
 }
