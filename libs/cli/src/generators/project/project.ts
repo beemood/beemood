@@ -9,7 +9,6 @@ export async function projectGenerator(
   const __names = names(options.name);
 
   const projectRoot = `${options.projectType}s/${__names.fileName}`;
-
   const projectNamePrefix = process.env.PROJECT_NAME_PREFIX ?? '';
   const projectName = `${projectNamePrefix}${__names.fileName}`;
 
