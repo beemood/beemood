@@ -1,6 +1,6 @@
 {
   "name": "@beemood/cli",
-  "description": "beemood cli and generators",
+  "description": "Beemood cli and generators",
   "version": "0.0.1",
   "author": {
     "name": "Robert Brightline",
