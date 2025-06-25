@@ -1,1 +1,1 @@
-export const noExports = 'No exports';
+export const beemoodNoExports = 'No exports';

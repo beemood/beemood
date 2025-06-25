@@ -1,0 +1,2 @@
+// Cli tool shuold not export anything
+export const <%- propertyName %>NoExports = ''; 

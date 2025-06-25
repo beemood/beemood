@@ -1,6 +1,13 @@
-import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
+import {
+  formatFiles,
+  generateFiles,
+  names,
+  readJsonFile,
+  Tree,
+  workspaceRoot,
+} from '@nx/devkit';
 import * as path from 'path';
-import { ProjectGeneratorSchema } from './schema';
+import { ProjectGeneratorSchema } from './schema.js';
 
 export async function projectGenerator(
   tree: Tree,
@@ -8,8 +15,16 @@ export async function projectGenerator(
 ) {
   const __names = names(options.name);
 
+  const mainPackage = await readJsonFile(
+    path.join(workspaceRoot, 'package.json')
+  );
+
   const projectRoot = `${options.projectType}s/${__names.fileName}`;
   const projectNamePrefix = process.env.PROJECT_NAME_PREFIX ?? '';
+
+  const repositoryUsername = process.env.REPOSITORY_USERNAME ?? '';
+  const repositoryName = process.env.REPOSITORY_NAME ?? '';
+
   const projectName = `${projectNamePrefix}${__names.fileName}`;
 
   generateFiles(
@@ -20,6 +35,9 @@ export async function projectGenerator(
       ...__names,
       projectName,
       projectRoot,
+      mp: mainPackage,
+      repositoryUsername,
+      repositoryName,
     }
   );
   await formatFiles(tree);

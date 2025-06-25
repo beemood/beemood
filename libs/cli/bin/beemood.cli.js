@@ -1,2 +1,2 @@
-import '../dist/beemood.cli.js';
+import '../dist/cli.js';
 

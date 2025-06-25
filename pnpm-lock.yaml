@@ -14,6 +14,9 @@ importers:
       axios:
         specifier: ^1.6.0
         version: 1.10.0
+      express:
+        specifier: ^4.21.2
+        version: 4.21.2
     devDependencies:
       '@eslint/js':
         specifier: ^9.8.0
@@ -66,6 +69,9 @@ importers:
       '@swc/jest':
         specifier: ~0.2.36
         version: 0.2.38(@swc/core@1.5.29(@swc/helpers@0.5.17))
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.23
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.14
