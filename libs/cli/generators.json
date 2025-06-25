@@ -5,10 +5,10 @@
       "schema": "./dist/generators/project/schema.json",
       "description": "project generator"
     },
-    "command": {
-      "factory": "./dist/generators/command/command",
-      "schema": "./dist/generators/command/schema.json",
-      "description": "command generator"
+    "resource": {
+      "factory": "./src/generators/resource/resource",
+      "schema": "./src/generators/resource/schema.json",
+      "description": "resource generator"
     }
   }
 }

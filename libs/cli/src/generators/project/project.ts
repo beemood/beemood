@@ -2,6 +2,7 @@ import {
   addProjectConfiguration,
   formatFiles,
   generateFiles,
+  names,
   Tree,
 } from '@nx/devkit';
 import * as path from 'path';
@@ -11,14 +12,30 @@ export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
+  const __names = names(options.name);
+
+  const projectRoot = `${options.projectType}s/${__names.fileName}`;
+
+  const projectNamePrefix = process.env.PROJECT_NAME_PREFIX ?? '';
+  const projectName = `${projectNamePrefix}${__names.fileName}`;
+
   addProjectConfiguration(tree, options.name, {
     root: projectRoot,
-    projectType: 'library',
+    projectType: options.projectType == 'api' ? 'application' : 'library',
     sourceRoot: `${projectRoot}/src`,
     targets: {},
   });
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
+
+  generateFiles(
+    tree,
+    path.join(__dirname, 'files', options.projectType),
+    projectRoot,
+    {
+      ...__names,
+      projectName,
+      projectRoot,
+    }
+  );
   await formatFiles(tree);
 }
 
