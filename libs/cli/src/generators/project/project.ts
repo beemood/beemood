@@ -22,7 +22,13 @@ export async function projectGenerator(
     }
     case 'lib':
     case 'cli': {
-      await libraryGenerator(tree, { directory: projectRoot });
+      await libraryGenerator(tree, {
+        bundler: 'esbuild',
+        publishable: true,
+        importPath: projectName,
+        unitTestRunner: 'jest',
+        directory: projectRoot,
+      });
       break;
     }
   }
