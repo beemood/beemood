@@ -5,10 +5,8 @@ export type HelloOptions = {
 };
 
 export class HelloCommand {
-  constructor(protected readonly program: Command) {}
-
-  parse() {
-    this.program
+  bind(program: Command) {
+    program
       .command('hello')
       .description('Ssay hello')
       .requiredOption('-n,--name <string> what is your name?')

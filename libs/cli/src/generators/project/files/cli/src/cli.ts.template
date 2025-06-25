@@ -2,10 +2,10 @@ import { program } from 'commander';
 import { ByeCommand } from './commands/bye.command.js';
 import { HelloCommand } from './commands/hello.command.js';
 
-program.name('<%- className %> CLI').description('CLI tool').version('0.0.1');
+program.name('<%- className %> CLI').description('CLI tool').version('<%- mp.version %>');
 
-new HelloCommand(program).parse();
+new HelloCommand().bind(program);
 
-new ByeCommand(program).parse();
+new ByeCommand().bind(program);
 
 program.parse();

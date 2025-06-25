@@ -18,17 +18,16 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
+      "default": "./dist/index.js",
       "development": "./src/index.ts",
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": "./dist/index.js"
     }
   },
   "files": [
     "dist",
     "!**/*.tsbuildinfo"
   ],
-  "dependencies": {},
   "nx": {
     "targets": {
       "build": {

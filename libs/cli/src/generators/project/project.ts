@@ -21,10 +21,8 @@ export async function projectGenerator(
 
   const projectRoot = `${options.projectType}s/${__names.fileName}`;
   const projectNamePrefix = process.env.PROJECT_NAME_PREFIX ?? '';
-
   const repositoryUsername = process.env.REPOSITORY_USERNAME ?? '';
   const repositoryName = process.env.REPOSITORY_NAME ?? '';
-
   const projectName = `${projectNamePrefix}${__names.fileName}`;
 
   generateFiles(

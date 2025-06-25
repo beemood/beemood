@@ -4,8 +4,8 @@ import { HelloCommand } from './commands/hello.command.js';
 
 program.name('Beemood CLI').description('Dev tools').version('0.0.1');
 
-new HelloCommand(program).parse();
+new HelloCommand().bind(program);
 
-new ByeCommand(program).parse();
+new ByeCommand().bind(program);
 
 program.parse();

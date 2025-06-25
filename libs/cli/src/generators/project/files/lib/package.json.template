@@ -1,0 +1,49 @@
+{
+  "name": "<%- projectName %>",
+  "description": "- [ ] Add project description",
+  "version": "<%- mp.version %>",
+  "author": <%- JSON.stringify(mp.author ?? {}) %>,
+  "funding":  <%- JSON.stringify(mp.funding ?? []) %>,
+  "icon": "https://raw.githubusercontent.com/<%- repositoryUsername %>/<%- repositoryName %>/refs/heads/main/<%- projectRoot %>/favicon.png",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "default": "./dist/index.js",
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "generatePackageJson": false,
+          "bundle": false,
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/index.ts",
+          "tsConfig": "{projectRoot}/tsconfig.lib.json",
+          "format": [
+            "esm"
+          ],
+          "declarationRootDir": "{projectRoot}/src"
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectName} --tsconfig {projectRoot}/tsconfig.lib.json"
+      }
+    }
+  }
+}

@@ -5,10 +5,8 @@ export type ByeOptions = {
 };
 
 export class ByeCommand {
-  constructor(protected readonly program: Command) {}
-
-  parse() {
-    this.program
+  bind(program: Command) {
+    program
       .command('bye')
       .description('Bye')
       .requiredOption('-n,--name <string> some description')

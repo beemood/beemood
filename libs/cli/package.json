@@ -67,5 +67,8 @@
         ]
       }
     }
+  },
+  "devDependencies": {
+    "@beemood/interface": "^0.0.1"
   }
 }
