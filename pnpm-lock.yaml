@@ -739,7 +739,7 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
   '@beemood/cli@0.0.1':
-    resolution: {integrity: sha512-EWWRB462Q757bL1bOGeh+kedfq2YEmuen3sMcfMVE13JucPasU/xHuuNP89yXeVTqlDNIIt4NLKq++Q5FNuqfA==}
+    resolution: {integrity: sha512-IpweEtI/i07TWDGjbnfiJp8oaZZ+2GFnVVQNn0DdCBDhOvUjsIOSmmMa0iCXKtCVZSM9RrmroPp1KzPdBQzMjQ==}
     hasBin: true
 
   '@cspotcode/source-map-support@0.8.1':
