@@ -1,13 +1,12 @@
 {
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
-  "files": [],
   "references": [
     {
-      "path": "./apps/beemood-e2e"
+      "path": "./libs/cli"
     },
     {
-      "path": "./apps/beemood"
+      "path": "./libs/interface"
     }
   ]
 }

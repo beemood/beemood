@@ -1,0 +1,70 @@
+{
+  "name": "@beemood/cli",
+  "description": "beemood cli and generators",
+  "version": "0.0.1",
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/cli/favicon.png",
+  "bin": {
+    "beemood": "./bin/beemood.cli.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo",
+    "generators.json"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "development": "./src/index.ts",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@nx/devkit": "21.2.1",
+    "commander": "^14.0.0",
+    "tslib": "^2.3.0"
+  },
+  "generators": "./generators.json",
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/js:tsc",
+        "options": {
+          "assets": [
+            {
+              "glob": "**/!(*.ts)",
+              "input": "./libs/cli/src",
+              "output": "."
+            },
+            {
+              "glob": "**/*.d.ts",
+              "input": "./libs/cli/src",
+              "output": "."
+            }
+          ],
+          "generatePackageJson": false,
+          "main": "libs/cli/src/index.ts",
+          "outputPath": "libs/cli/dist",
+          "rootDir": "libs/cli/src",
+          "tsConfig": "libs/cli/tsconfig.lib.json"
+        },
+        "outputs": [
+          "{options.outputPath}"
+        ]
+      }
+    }
+  }
+}
