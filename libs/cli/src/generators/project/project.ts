@@ -1,6 +1,4 @@
 import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
-import { libraryGenerator } from '@nx/js';
-import { applicationGenerator } from '@nx/node';
 import * as path from 'path';
 import { ProjectGeneratorSchema } from './schema';
 
@@ -14,24 +12,6 @@ export async function projectGenerator(
 
   const projectNamePrefix = process.env.PROJECT_NAME_PREFIX ?? '';
   const projectName = `${projectNamePrefix}${__names.fileName}`;
-
-  switch (options.projectType) {
-    case 'api': {
-      await applicationGenerator(tree, { directory: projectRoot });
-      break;
-    }
-    case 'lib':
-    case 'cli': {
-      await libraryGenerator(tree, {
-        bundler: 'esbuild',
-        publishable: true,
-        importPath: projectName,
-        unitTestRunner: 'jest',
-        directory: projectRoot,
-      });
-      break;
-    }
-  }
 
   generateFiles(
     tree,

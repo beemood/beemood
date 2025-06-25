@@ -9,7 +9,6 @@
     "axios": "^1.6.0"
   },
   "devDependencies": {
-    "@beemood/cli": "^0.0.1",
     "@eslint/js": "^9.8.0",
     "@nx/esbuild": "21.2.1",
     "@nx/eslint": "21.2.1",
