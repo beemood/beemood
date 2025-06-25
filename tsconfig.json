@@ -7,6 +7,15 @@
     },
     {
       "path": "./libs/interface"
-    }
+    },
+    {
+      "path": "./libs/validation"
+    },
+    {
+      "path": "./libs/is"
+    },
+    {
+      "path": "./libs/error"
+    },
   ]
 }

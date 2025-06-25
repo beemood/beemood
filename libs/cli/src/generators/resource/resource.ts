@@ -1,6 +1,7 @@
-import { formatFiles, generateFiles, Tree } from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
+import { formatFiles, generateFiles } from '@nx/devkit';
 import * as path from 'path';
-import { ResourceGeneratorSchema } from './schema';
+import type { ResourceGeneratorSchema } from './schema.js';
 
 export async function resourceGenerator(
   tree: Tree,

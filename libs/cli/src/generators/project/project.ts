@@ -1,13 +1,14 @@
+import type {
+  Tree} from '@nx/devkit';
 import {
   formatFiles,
   generateFiles,
   names,
   readJsonFile,
-  Tree,
   workspaceRoot,
 } from '@nx/devkit';
 import * as path from 'path';
-import { ProjectGeneratorSchema } from './schema.js';
+import type { ProjectGeneratorSchema } from './schema.js';
 
 export async function projectGenerator(
   tree: Tree,

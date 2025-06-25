@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export interface ClassLike<T extends object = any> {
-  new (...args: any[]): T;
+import type { Any } from './any.js';
+
+export interface ClassLike<T extends object = Any> {
+  new (...args: Any[]): T;
 }

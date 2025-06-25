@@ -92,4 +92,6 @@ export default [
   'txt',
   'mfa',
   'ip',
+  'runable',
+  'barcode'
 ];

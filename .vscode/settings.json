@@ -8,5 +8,6 @@
     "source.removeUnusedImports": "always",
     "source.sortImports": "always"
   },
+
   "eslint.validate": ["json"]
 }
