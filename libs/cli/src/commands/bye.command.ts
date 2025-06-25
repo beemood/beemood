@@ -9,7 +9,7 @@ export class ByeCommand {
 
   parse() {
     this.program
-      .name('Bye')
+      .command('bye')
       .description('Bye')
       .requiredOption('-n,--name <string> some description')
       .action(this.run);

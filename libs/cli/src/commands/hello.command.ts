@@ -9,12 +9,12 @@ export class HelloCommand {
 
   parse() {
     this.program
-      .name('hello')
+      .command('hello')
       .description('Ssay hello')
       .requiredOption('-n,--name <string> what is your name?')
       .action(this.run);
   }
-  
+
   run(options: HelloOptions) {
     console.log(`Hello, ${options.name}`);
   }

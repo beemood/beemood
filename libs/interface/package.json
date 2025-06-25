@@ -37,6 +37,8 @@
           "{options.outputPath}"
         ],
         "options": {
+          "generatePackageJson": false,
+          "bundle": false,
           "outputPath": "libs/interface/dist",
           "main": "libs/interface/src/index.ts",
           "tsConfig": "libs/interface/tsconfig.lib.json",

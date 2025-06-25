@@ -1,0 +1,30 @@
+{
+  "command": {
+    "prefix": "command",
+
+    "body": [
+      "import { Command } from 'commander';",
+      "",
+      "export type $1Options = {",
+      "  name: string;",
+      "};",
+      "",
+      "export class $1Command {",
+      "  constructor(protected readonly program: Command) {}",
+      "",
+      "  parse() {",
+      "    this.program",
+      "      .command('$1')",
+      "      .description('$1')",
+      "      .requiredOption('-n,--name <string> some description')",
+      "      .action(this.run);",
+      "  }",
+      "  ",
+      "  run(options: $1Options) {",
+      "    console.log(`Hello, ${options.name}`);",
+      "  }",
+      "}"
+    ],
+    "scope": "typescript"
+  }
+}

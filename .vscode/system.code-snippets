@@ -1,0 +1,8 @@
+{
+    "shebang": {
+        "body": "#!/usr/bin/env ts-node",
+        "description": "Shebang",
+        "prefix": "shebang|runnable|executable",
+        "scope": "typescript,javascript,bash"
+    }
+}
