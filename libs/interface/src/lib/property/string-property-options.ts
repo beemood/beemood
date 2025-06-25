@@ -8,5 +8,7 @@ export type StringPropertyOptions = {
   minLength?: number;
   maxLength?: number;
   stringFormat?: StringFormat;
+  isIn?: string[];
+  isNotIn?: string[];
 } & CommonPropertyOptions &
   ValueOptions<string>;

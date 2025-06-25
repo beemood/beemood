@@ -1,11 +1,16 @@
 {
-  "name": "<%- projectName %>",
-  "description": "- [ ] Add project description",
-  "version": "<%- mp.version %>",
-  "author": <%- JSON.stringify(mp.author ?? {}) %>,
-  "funding":  <%- JSON.stringify(mp.funding ?? []) %>,
-  "icon": "https://raw.githubusercontent.com/<%- repositoryUsername %>/<%- repositoryName %>/refs/heads/main/<%- projectRoot %>/favicon.png",
-  "homepage":"<%- mp.homepage %>/<%- projectRoot %>"
+  "name": "@beemood/property",
+  "description": "Property decorator",
+  "version": "0.0.1",
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/property/favicon.png",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -46,5 +51,15 @@
         "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     }
-  }
+  },
+  "peerDependencies": {
+    "@nestjs/swagger": "^11.2.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "@beemood/validation": "workspace:*"
+  },
+  "devDependencies": {
+    "@beemood/interface": "workspace:*"
+  },
+  "dependencies": {}
 }

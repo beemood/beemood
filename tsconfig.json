@@ -17,5 +17,11 @@
     {
       "path": "./libs/error"
     },
+    {
+      "path": "./libs/property"
+    },
+    {
+      "path": "./libs/dto"
+    },
   ]
 }

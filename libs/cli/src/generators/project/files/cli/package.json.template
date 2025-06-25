@@ -5,6 +5,7 @@
   "author": <%- JSON.stringify(mp.author ?? {}) %>,
   "funding":  <%- JSON.stringify(mp.funding ?? []) %>,
   "icon": "https://raw.githubusercontent.com/<%- repositoryUsername %>/<%- repositoryName %>/refs/heads/main/<%- projectRoot %>/favicon.png",
+  "homepage":"<%- mp.homepage %>/<%- projectRoot %>"
   "bin": {
     "<%- fileName %>": "./bin/<%- fileName %>.cli.js"
   },
@@ -58,6 +59,9 @@
         "outputs": [
           "{options.outputPath}"
         ]
+      },
+      "doc": {
+        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     }
   }
