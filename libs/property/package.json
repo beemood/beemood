@@ -1,7 +1,7 @@
 {
   "name": "@beemood/property",
   "description": "Combined validation and documentaion decorators built on top of swagger, class-validator, and class-transformer to keep the application code clean and dry",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",
@@ -55,10 +55,9 @@
   "peerDependencies": {
     "@nestjs/swagger": "^11.2.0",
     "class-transformer": "^0.5.1",
-    "@beemood/validation": "workspace:*",
-    "@beemood/interface": "0.0.1"
+    "@beemood/validation": "^1.0.0"
   },
   "devDependencies": {
-    "@beemood/interface": "workspace:*"
+    "@beemood/interface": "^1.0.0"
   }
 }

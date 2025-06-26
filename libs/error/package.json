@@ -1,7 +1,7 @@
 {
   "name": "@beemood/error",
   "description": "Common errors with error message and error codes to improve communication between services",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",
@@ -53,7 +53,7 @@
     }
   },
   "devDependencies": {
-    "@beemood/interface": "workspace:*"
+    "@beemood/interface": "^1.0.0"
   },
   "dependencies": {
     "@beemood/interface": "0.0.1"

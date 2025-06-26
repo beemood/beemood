@@ -1,7 +1,7 @@
 {
   "name": "@beemood/cli",
   "description": "Beemood cli and generators",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",
@@ -72,6 +72,6 @@
     }
   },
   "devDependencies": {
-    "@beemood/interface": "^0.0.1"
+    "@beemood/interface": "^1.0.0"
   }
 }

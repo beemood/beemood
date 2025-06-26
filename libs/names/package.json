@@ -1,11 +1,17 @@
 {
   "name": "@beemood/names",
   "description": "- [ ] Add project description",
-  "version": "0.0.1",
-  "author": {"name":"Robert Brightline","email":"robert.brightline@gmail.com","url":"https://beemood.github.io"},
-  "funding":  ["https://cash.app/$puqlib"],
+  "version": "1.0.0",
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
   "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/names/favicon.png",
-  "homepage":"https://beemood.github.io/beemood/libs/names",
+  "homepage": "https://beemood.github.io/beemood/libs/names",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
