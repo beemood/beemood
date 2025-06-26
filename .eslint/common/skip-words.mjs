@@ -93,5 +93,8 @@ export default [
   'mfa',
   'ip',
   'runable',
-  'barcode'
+  'barcode',
+  'prisma',
+  'rn',
+  'rid',
 ];

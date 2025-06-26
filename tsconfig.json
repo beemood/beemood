@@ -2,32 +2,16 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "references": [
-    {
-      "path": "./libs/cli"
-    },
-    {
-      "path": "./libs/interface"
-    },
-    {
-      "path": "./libs/validation"
-    },
-    {
-      "path": "./libs/is"
-    },
-    {
-      "path": "./libs/error"
-    },
-    {
-      "path": "./libs/property"
-    },
-    {
-      "path": "./libs/dto"
-    },
-    {
-      "path": "./libs/names"
-    },
-    {
-      "path": "./libs/crypto"
-    },
+    { "path": "./libs/cli" },
+    { "path": "./libs/crypto" },
+    { "path": "./libs/dto" },
+    { "path": "./libs/error" },
+    { "path": "./libs/interface" },
+    { "path": "./libs/is" },
+    { "path": "./libs/names" },
+    { "path": "./libs/nest" },
+    { "path": "./libs/prisma" },
+    { "path": "./libs/property" },
+    { "path": "./libs/validation" }
   ]
 }
