@@ -8,7 +8,7 @@
 
 Software development tool kit
 
-## Pakcages
+## Packages
 
 - [@beemood/cli](https://beemood.github.io/beemood/libs/cli)
 - [@beemood/crypto](https://beemood.github.io/beemood/libs/crypto)
