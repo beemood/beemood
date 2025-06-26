@@ -6,7 +6,7 @@
 
 ## Summary
 
-Property decorator
+Combined validation and documentaion decorators built on top of swagger, class-validator, and class-transformer to keep the application code clean and dry
 
 ## Install
 

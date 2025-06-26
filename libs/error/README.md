@@ -6,7 +6,7 @@
 
 ## Summary
 
-- [ ] add project summary
+Common errors with error message and error codes to improve communication between services
 
 ## Install
 

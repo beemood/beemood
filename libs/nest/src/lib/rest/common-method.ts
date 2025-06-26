@@ -12,11 +12,15 @@ export type MethodOptions = {
   responseDto?: Type | Type[];
 };
 
+/**
+ * Common method decorators used by all method decorators
+ * @param options {@link MethodOptions}
+ * @returns {@link MethodDecorator}
+ */
 export function CommonMethod(options: MethodOptions): MethodDecorator {
   return (...args) => {
-    
     ApiOperation({ summary: options.summary })(...args);
-    
+
     if (options.public === true) {
       PublicMethod()(...args);
     } else {

@@ -101,4 +101,5 @@ export default [
   'npx',
   'gen',
   'beemood',
+  'nestjs',
 ];

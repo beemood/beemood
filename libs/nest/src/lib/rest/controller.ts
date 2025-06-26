@@ -8,6 +8,11 @@ export type ControllerOptions = {
   tags?: string[];
 };
 
+/**
+ * Resource controller with builtin secured and public metadata options.
+ * @param options
+ * @returns
+ */
 export function Controller(options: ControllerOptions): ClassDecorator {
   return (...args) => {
     __Controller(options.path ?? '')(...args);

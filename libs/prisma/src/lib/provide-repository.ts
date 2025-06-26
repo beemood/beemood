@@ -5,6 +5,12 @@ import {
   getClientToken,
 } from './provide-client.js';
 
+/**
+ * Create a repository token with resource name and data source name that allows us to create repositories that belongs to different data sources.
+ * @param resourceName resource name
+ * @param dataSourceName data source name
+ * @returns repository token
+ */
 export function getRepositoryToken(
   resourceName: string,
   dataSourceName?: string
@@ -14,6 +20,12 @@ export function getRepositoryToken(
   }_${resourceName}_REPO`;
 }
 
+/**
+ * Provide repository by resource name and repository name
+ * @param resourceName resource name
+ * @param dataSourceName data source name
+ * @returns {@link Provider}
+ */
 export function provideRepository(
   resourceName: string,
   dataSourceName?: string
@@ -27,6 +39,12 @@ export function provideRepository(
   };
 }
 
+/**
+ * Inject repository by resource name and data source name.
+ * @param resourceName resource name
+ * @param dataSourceName data source name
+ * @returns
+ */
 export function InjectRepository(
   resourceName: string,
   dataSourceName?: string

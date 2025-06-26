@@ -1,6 +1,6 @@
 {
   "name": "@beemood/is",
-  "description": "- [ ] Add project description",
+  "description": "Common utility functions to sovle common problems and keep the application code clean.",
   "version": "0.0.1",
   "author": {
     "name": "Robert Brightline",
@@ -56,6 +56,7 @@
     "@beemood/interface": "workspace:*"
   },
   "dependencies": {
-    "@beemood/error": "workspace:*"
+    "@beemood/error": "workspace:*",
+    "@beemood/interface": "0.0.1"
   }
 }

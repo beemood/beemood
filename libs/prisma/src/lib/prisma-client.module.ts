@@ -13,8 +13,16 @@ export type PrismClientFeatureOptions = {
   resourceNames: string[];
 };
 
+/**
+ * Prisma module provides PrismaClient instance and repositories
+ */
 @Module({})
 export class PrismaClientModule {
+  /**
+   * Provides a global prisma client instance
+   * @param options {@link PrismaClientRootOptions}
+   * @returns
+   */
   static forRoot(options: PrismaClientRootOptions): DynamicModule {
     return {
       global: true,
@@ -24,6 +32,11 @@ export class PrismaClientModule {
     };
   }
 
+  /**
+   * Provides prisma repositories for the imported module.
+   * @param options {@link PrismClientFeatureOptions}
+   * @returns
+   */
   static forFeature(options: PrismClientFeatureOptions): DynamicModule {
     const providers = options.resourceNames.map((r) => {
       return provideRepository(r, options.dataSourceName);

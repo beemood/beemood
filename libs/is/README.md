@@ -6,7 +6,7 @@
 
 ## Summary
 
-- [ ] add project summary
+Common utility functions to sovle common problems and keep the application code clean.
 
 ## Install
 

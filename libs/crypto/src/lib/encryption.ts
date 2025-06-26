@@ -1,4 +1,4 @@
-import { randomBytes, createCipheriv, createDecipheriv } from 'crypto';
+import { createCipheriv, createDecipheriv, randomBytes } from 'crypto';
 import { Readable } from 'stream';
 
 /**
@@ -27,7 +27,7 @@ export class Encryption {
 
   /**
    * Check the key has at 256 bits
-   * @param key
+   * @param key buffer
    */
   protected static validateKey(key: Buffer | undefined | null) {
     if (key?.length !== this.KEY_LENGTH) {
@@ -45,7 +45,7 @@ export class Encryption {
   static async encrypt(
     data: string,
     key: Buffer,
-    version: number,
+    version: number
   ): Promise<string> {
     this.validateKey(key);
     const iv = randomBytes(this.IV_LENGTH);
@@ -60,8 +60,8 @@ export class Encryption {
         .on('data', (chunk) => (encrypted += chunk.toString(this.ENCODING)))
         .on('end', () =>
           resolve(
-            `${version.toString()}:${iv.toString(this.ENCODING)}:${encrypted}`,
-          ),
+            `${version.toString()}:${iv.toString(this.ENCODING)}:${encrypted}`
+          )
         )
         .on('error', reject);
     });

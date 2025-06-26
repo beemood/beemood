@@ -6,7 +6,7 @@
 
 ## Summary
 
-Common dto objects
+Common data transfer objects
 
 ## Install
 

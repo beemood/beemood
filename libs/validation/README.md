@@ -6,7 +6,7 @@
 
 ## Summary
 
-Property validation decorator
+Validation decorators built on top of class-validation and class-transformer to keep the application code clean and dry.
 
 ## Install
 

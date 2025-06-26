@@ -6,7 +6,7 @@
 
 ## Summary
 
-Common types and interfaces
+Common types and interfaces to establish a flawless integration between services and libraries
 
 ## Install
 

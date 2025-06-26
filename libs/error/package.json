@@ -1,6 +1,6 @@
 {
   "name": "@beemood/error",
-  "description": "- [ ] Add project description",
+  "description": "Common errors with error message and error codes to improve communication between services",
   "version": "0.0.1",
   "author": {
     "name": "Robert Brightline",
@@ -54,5 +54,8 @@
   },
   "devDependencies": {
     "@beemood/interface": "workspace:*"
+  },
+  "dependencies": {
+    "@beemood/interface": "0.0.1"
   }
 }

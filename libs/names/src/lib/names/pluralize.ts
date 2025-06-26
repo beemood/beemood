@@ -2,7 +2,7 @@
 /**
  * Pluralize the given string following (english) grammer
  * @param name name to pluralize
- * @returns
+ * @returns plural name
  */
 export function pluralize(name: string): string {
   const lowercase = name.toLowerCase();

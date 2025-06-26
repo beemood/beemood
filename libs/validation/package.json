@@ -1,6 +1,6 @@
 {
   "name": "@beemood/validation",
-  "description": "- [ ] Add project description",
+  "description": "Validation decorators built on top of class-validation and class-transformer to keep the application code clean and dry.",
   "version": "0.0.1",
   "author": {
     "name": "Robert Brightline",
