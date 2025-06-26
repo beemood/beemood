@@ -102,4 +102,6 @@ export default [
   'gen',
   'beemood',
   'nestjs',
+  'req',
+  'res',
 ];

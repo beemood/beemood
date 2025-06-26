@@ -40,8 +40,7 @@
       "plugin": "@nx/jest/plugin",
       "options": {
         "targetName": "test"
-      },
-      "exclude": ["**/*-e2e/**/*"]
+      }
     }
   ],
   "targetDefaults": {
