@@ -2,15 +2,57 @@
   <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/cli/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/cli
+# [@beemood/cli](https://beemood.github.io/beemood/libs/cli)
 
 ## Summary
 
-Dev tools
+Project, resource, and component generators and common tools to improve development experience
 
 ## Install
 
-`pnpm add @beemood/cli`
+Install as generator
+
+```bash
+pnpm add -D @beemood/cli
+```
+
+Install as global cli
+
+```bash
+pnpm add -g @beemood/cli
+```
+
+## Usage
+
+Generate library, api, and cli projects
+
+```bash
+npx nx g @beemood/cli:project <project-name> <project-type(lib|api|cli)>
+```
+
+Generate rest resource module, controller, and dto.
+
+```bash
+npx nx g @beemood/cli:resource <resource-name> <project-name>
+```
+
+Say hello command
+
+```bash
+beemood hello Robert
+```
+
+Say bye command
+
+```bash
+beemood bye Robert
+```
+
+Help
+
+```bash
+beemood --help
+```
 
 ## Funding
 
@@ -25,6 +67,6 @@ Thank you for using `@beemood/cli` It's an open-source project, and maintaining 
 - **Documentation** improvements to help users get the most out of [Your Library Name].
 - **General maintenance** to keep the library running smoothly and securely.
 
-Contact to the developer: [robert.brightline@gmail.com]
+Contact to the developer: [robert.brightline@gmail.com](mailto:robert.brightline@gmail.com?subject=Contact)
 
 [Support the developer](https://cash.app/$puqlib)

@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/validation/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/validation
+# [@beemood/validation](https://beemood.github.io/beemood/libs/validation)
 
 ## Summary
 
@@ -25,6 +25,6 @@ Thank you for using `@beemood/validation` It's an open-source project, and maint
 - **Documentation** improvements to help users get the most out of [Your Library Name].
 - **General maintenance** to keep the library running smoothly and securely.
 
-Contact to the developer: [robert.brightline@gmail.com]
+Contact to the developer: [robert.brightline@gmail.com](mailto:robert.brightline@gmail.com?subject=Contact)
 
 [Support the developer](https://cash.app/$puqlib)

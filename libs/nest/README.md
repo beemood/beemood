@@ -2,11 +2,11 @@
   <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/nest/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/nest
+# [@beemood/nest](https://beemood.github.io/beemood/libs/nest)
 
 ## Summary
 
-- [ ] add project summary
+Combined nestjs decorators to keep the application code clean.
 
 ## Install
 
@@ -25,6 +25,6 @@ Thank you for using `@beemood/nest` It's an open-source project, and maintaining
 - **Documentation** improvements to help users get the most out of [Your Library Name].
 - **General maintenance** to keep the library running smoothly and securely.
 
-Contact to the developer: [robert.brightline@gmail.com]
+Contact to the developer: [robert.brightline@gmail.com](mailto:robert.brightline@gmail.com?subject=Contact)
 
 [Support the developer](https://cash.app/$puqlib)

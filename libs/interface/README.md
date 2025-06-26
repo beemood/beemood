@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/interface/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/interface
+# [@beemood/interface](https://beemood.github.io/beemood/libs/interface)s
 
 ## Summary
 
@@ -25,6 +25,6 @@ Thank you for using `@beemood/interface` It's an open-source project, and mainta
 - **Documentation** improvements to help users get the most out of [Your Library Name].
 - **General maintenance** to keep the library running smoothly and securely.
 
-Contact to the developer: [robert.brightline@gmail.com]
+Contact to the developer: [robert.brightline@gmail.com](mailto:robert.brightline@gmail.com?subject=Contact)
 
 [Support the developer](https://cash.app/$puqlib)

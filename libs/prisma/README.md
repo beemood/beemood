@@ -2,11 +2,11 @@
   <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/prisma/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/prisma
+# [@beemood/prisma](https://beemood.github.io/beemood/libs/prisma)
 
 ## Summary
 
-- [ ] add project summary
+Nestjs prisma client module that provides database connection and repositories
 
 ## Install
 
@@ -25,6 +25,6 @@ Thank you for using `@beemood/prisma` It's an open-source project, and maintaini
 - **Documentation** improvements to help users get the most out of [Your Library Name].
 - **General maintenance** to keep the library running smoothly and securely.
 
-Contact to the developer: [robert.brightline@gmail.com]
+Contact to the developer: [robert.brightline@gmail.com](mailto:robert.brightline@gmail.com?subject=Contact)
 
 [Support the developer](https://cash.app/$puqlib)
