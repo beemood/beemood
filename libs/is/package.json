@@ -2,6 +2,10 @@
   "name": "@beemood/is",
   "description": "Common utility functions to sovle common problems and keep the application code clean.",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",

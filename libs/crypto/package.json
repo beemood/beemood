@@ -1,7 +1,11 @@
 {
   "name": "@beemood/crypto",
-  "description": "- [ ] Add project description",
+  "description": "Hashing and encription utilities",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",

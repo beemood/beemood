@@ -1,7 +1,11 @@
 {
   "name": "@beemood/cli",
-  "description": "Beemood cli and generators",
+  "description": "Project, resource, and component generators and common tools to improve development experience",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",

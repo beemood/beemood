@@ -2,6 +2,10 @@
   "name": "@beemood/interface",
   "description": "Common types and interfaces to establish a flawless integration between services and libraries",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",

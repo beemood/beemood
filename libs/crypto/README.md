@@ -6,7 +6,7 @@
 
 ## Summary
 
-Hashing and encription unitilities
+Hashing and encription utilities
 
 ## Install
 

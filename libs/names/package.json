@@ -1,7 +1,11 @@
 {
   "name": "@beemood/names",
-  "description": "- [ ] Add project description",
+  "description": "Utility to create all variation of names in english only.",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",

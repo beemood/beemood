@@ -2,6 +2,10 @@
   "name": "@beemood/property",
   "description": "Combined validation and documentaion decorators built on top of swagger, class-validator, and class-transformer to keep the application code clean and dry",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",

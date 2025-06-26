@@ -2,6 +2,10 @@
   "name": "@beemood/error",
   "description": "Common errors with error message and error codes to improve communication between services",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "author": {
     "name": "Robert Brightline",
     "email": "robert.brightline@gmail.com",
