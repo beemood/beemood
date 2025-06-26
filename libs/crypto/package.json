@@ -1,11 +1,17 @@
 {
-  "name": "<%- projectName %>",
+  "name": "@beemood/crypto",
   "description": "- [ ] Add project description",
-  "version": "<%- mp.version %>",
-  "author": <%- JSON.stringify(mp.author ?? {}) %>,
-  "funding":  <%- JSON.stringify(mp.funding ?? []) %>,
-  "icon": "https://raw.githubusercontent.com/<%- repositoryUsername %>/<%- repositoryName %>/refs/heads/main/<%- projectRoot %>/favicon.png",
-  "homepage":"<%- mp.homepage %>/<%- projectRoot %>",
+  "version": "0.0.1",
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/crypto/favicon.png",
+  "homepage": "https://beemood.github.io/beemood/libs/crypto",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
