@@ -48,7 +48,7 @@
         }
       },
       "doc": {
-        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectName} --tsconfig {projectRoot}/tsconfig.lib.json"
+        "command": "npx typedoc --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     }
   },
