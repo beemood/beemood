@@ -1,5 +1,4 @@
-import type {
-  Tree} from '@nx/devkit';
+import type { Tree } from '@nx/devkit';
 import {
   formatFiles,
   generateFiles,
@@ -10,6 +9,13 @@ import {
 import * as path from 'path';
 import type { ProjectGeneratorSchema } from './schema.js';
 
+/**
+ * NX generator to generate project with advance `Readme.md` file template, `package.json`, test, and documentation configurations
+ *
+ * @example
+ *
+ * `npx nx g @beemood/cli:project` <project-name> <project-type(lib|cli|api)>`
+ */
 export async function projectGenerator(
   tree: Tree,
   options: ProjectGeneratorSchema

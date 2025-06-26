@@ -97,4 +97,8 @@ export default [
   'prisma',
   'rn',
   'rid',
+  'npx',
+  'npx',
+  'gen',
+  'beemood',
 ];
