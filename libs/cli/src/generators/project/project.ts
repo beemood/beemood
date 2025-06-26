@@ -10,11 +10,15 @@ import * as path from 'path';
 import type { ProjectGeneratorSchema } from './schema.js';
 
 /**
- * NX generator to generate project with advance `Readme.md` file template, `package.json`, test, and documentation configurations
+ * NX workspace generator to generate project with advance test, build, package, and documentation configurations.
+ *
+ * @group Generator
  *
  * @example
  *
- * `npx nx g @beemood/cli:project` <project-name> <project-type(lib|cli|api)>`
+ * ````bash
+ *  npx nx g @beemood/cli:project` <project-name> <project-type(lib|cli|api)>
+ * ````
  */
 export async function projectGenerator(
   tree: Tree,
