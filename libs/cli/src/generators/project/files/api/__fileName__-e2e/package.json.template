@@ -17,8 +17,8 @@
           "passWithNoTests": true
         },
         "dependsOn": [
-          <%- projectName %>:build",
-          <%- projectName %>:serve"
+          "<%- projectName %>:build",
+          "<%- projectName %>:serve"
         ]
       }
     }

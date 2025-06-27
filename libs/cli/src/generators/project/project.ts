@@ -35,13 +35,15 @@ export async function projectGenerator(
   );
 
   const projectRoot = `${options.projectType}s/${__names.fileName}`;
+  const targetDirectory = options.projectType === 'api' ? 'apis' : projectRoot;
+
   const projectNamePrefix = process.env.PROJECT_NAME_PREFIX ?? '';
   const repositoryUsername = process.env.REPOSITORY_USERNAME ?? '';
   const repositoryName = process.env.REPOSITORY_NAME ?? '';
   const projectName = `${projectNamePrefix}${__names.fileName}`;
 
   const source = path.join(__dirname, 'files', options.projectType);
-  generateFiles(tree, source, projectRoot, {
+  generateFiles(tree, source, targetDirectory, {
     ...__names,
     projectName,
     projectRoot,
