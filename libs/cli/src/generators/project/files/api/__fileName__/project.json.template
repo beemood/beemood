@@ -18,15 +18,15 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "<%- projectName %>y:build",
+        "buildTarget": "<%- projectName %>:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "<%- projectName %>y:build:development"
+          "buildTarget": "<%- projectName %>:build:development"
         },
         "production": {
-          "buildTarget": "<%- projectName %>y:build:production"
+          "buildTarget": "<%- projectName %>:build:production"
         }
       }
     },

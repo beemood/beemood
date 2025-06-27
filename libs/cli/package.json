@@ -1,7 +1,7 @@
 {
   "name": "@beemood/cli",
   "description": "Project, resource, and component generators and common tools to improve development experience",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
