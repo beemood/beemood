@@ -1,0 +1,13 @@
+{
+  "name": "<%- projectName %>",
+  "description": "- [ ] Add project description",
+  "version": "<%- mp.version %>",
+  "author": <%- JSON.stringify(mp.author ?? {}) %>,
+  "funding":  <%- JSON.stringify(mp.funding ?? []) %>,
+  "icon": "https://raw.githubusercontent.com/<%- repositoryUsername %>/<%- repositoryName %>/refs/heads/main/<%- projectRoot %>/favicon.png",
+  "homepage":"<%- mp.homepage %>/<%- projectRoot %>",
+  "files": ["assets"],
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}

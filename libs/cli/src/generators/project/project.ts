@@ -36,19 +36,15 @@ export async function projectGenerator(
   const repositoryName = process.env.REPOSITORY_NAME ?? '';
   const projectName = `${projectNamePrefix}${__names.fileName}`;
 
-  generateFiles(
-    tree,
-    path.join(__dirname, 'files', options.projectType),
+  const source = path.join(__dirname, 'files', options.projectType);
+  generateFiles(tree, source, projectRoot, {
+    ...__names,
+    projectName,
     projectRoot,
-    {
-      ...__names,
-      projectName,
-      projectRoot,
-      mp: mainPackage,
-      repositoryUsername,
-      repositoryName,
-    }
-  );
+    mp: mainPackage,
+    repositoryUsername,
+    repositoryName,
+  });
   await formatFiles(tree);
 }
 
