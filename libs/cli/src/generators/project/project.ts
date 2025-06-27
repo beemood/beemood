@@ -7,7 +7,11 @@ import {
   workspaceRoot,
 } from '@nx/devkit';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import type { ProjectGeneratorSchema } from './schema.js';
+
+const fileName = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(fileName);
 
 /**
  * NX workspace generator to generate project with advance test, build, package, and documentation configurations.

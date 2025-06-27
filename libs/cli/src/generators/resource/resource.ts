@@ -6,7 +6,11 @@ import {
   readProjectConfiguration,
 } from '@nx/devkit';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import type { ResourceGeneratorSchema } from './schema.js';
+
+const fileName = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(fileName);
 
 /**
  * Generate rest api resource module, controller, and data transfer objects
