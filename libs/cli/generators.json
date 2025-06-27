@@ -6,8 +6,8 @@
       "description": "project generator"
     },
     "resource": {
-      "factory": "./src/generators/resource/resource",
-      "schema": "./src/generators/resource/schema.json",
+      "factory": "./dist/generators/resource/resource",
+      "schema": "./dist/generators/resource/schema.json",
       "description": "resource generator"
     }
   }

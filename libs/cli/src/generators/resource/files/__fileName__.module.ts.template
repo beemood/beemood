@@ -1,0 +1,9 @@
+import { Module } from '@nestjs/common';
+import { <%- className %>Controller } from './<%- fileName %>.controller';
+import { PrismaClientModule } from '@beemood/prisma';
+
+@Module({
+  imports: [PrismaClientModule.forFeature({ resourceNames: ['<%- propertyName %>'] })],
+  controllers: [<%- className %>Controller],
+})
+export class <%- className %>Module {}

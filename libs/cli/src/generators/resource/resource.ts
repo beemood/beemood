@@ -1,5 +1,10 @@
 import type { Tree } from '@nx/devkit';
-import { formatFiles, generateFiles } from '@nx/devkit';
+import {
+  formatFiles,
+  generateFiles,
+  names,
+  readProjectConfiguration,
+} from '@nx/devkit';
 import * as path from 'path';
 import type { ResourceGeneratorSchema } from './schema.js';
 
@@ -18,9 +23,18 @@ export async function resourceGenerator(
   tree: Tree,
   options: ResourceGeneratorSchema
 ) {
-  const projectRoot = `libs/${options.name}`;
+  const targetProjectConfiguration = readProjectConfiguration(
+    tree,
+    options.project
+  );
 
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
+  const __names = names(options.name);
+
+  const source = path.join(__dirname, 'files', __names.fileName);
+  const target = path.join(targetProjectConfiguration.root, 'src', 'app');
+
+  generateFiles(tree, source, target, { ...__names });
+
   await formatFiles(tree);
 }
 

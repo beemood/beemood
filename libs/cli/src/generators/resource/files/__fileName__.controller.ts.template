@@ -1,0 +1,46 @@
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  ParamId,
+  Post,
+  Put,
+} from '@beemood/nest';
+import { InjectRepository } from '@beemood/prisma';
+import { Create<%- className %>Dto } from './dto/create-<%- fileName %>.dto';
+import { Update<%- className %>Dto } from './dto/update-<%- fileName %>.dto';
+import { Prisma } from '@bms/prisma-inventory';
+
+@Controller({ path: '<%- fileName %>' })
+export class <%- className %>Controller {
+  constructor(
+    @InjectRepository('<%- propertyName %>')
+    protected readonly repo: Prisma.<%- className %>Delegate
+  ) {}
+
+  @Get({})
+  findAll() {
+    return this.repo.findMany();
+  }
+
+  @Get({ path: ':id' })
+  findOneById(@ParamId() id: number) {
+    return this.repo.findUnique({ where: { id } });
+  }
+
+  @Post({})
+  save(@Body() data: Create<%- className %>Dto) {
+    return this.repo.create({ data });
+  }
+
+  @Put({ path: ':id' })
+  update(@ParamId() id: number, @Body() data: Update<%- className %>Dto) {
+    return this.repo.update({ where: { id }, data });
+  }
+
+  @Delete({ path: ':id' })
+  delete(@ParamId() id: number) {
+    return this.repo.delete({ where: { id } });
+  }
+}
