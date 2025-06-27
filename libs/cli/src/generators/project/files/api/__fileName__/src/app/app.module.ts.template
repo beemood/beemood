@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { PrismaClientModule } from '@beemood/prisma';
-import { PrismaClient } from '@bms/prisma-inventory';
+import { PrismaClient } from '<%- projectName %>-prisma';
 
 @Module({
   imports: [

@@ -10,7 +10,7 @@ import {
 import { InjectRepository } from '@beemood/prisma';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { Prisma } from '@bms/prisma-inventory';
+import { Prisma } from '<%- projectName %>-prisma';
 
 @Controller({ path: 'category' })
 export class CategoryController {
