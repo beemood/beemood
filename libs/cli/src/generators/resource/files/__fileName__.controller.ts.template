@@ -10,7 +10,7 @@ import {
 import { InjectRepository } from '@beemood/prisma';
 import { Create<%- className %>Dto } from './dto/create-<%- fileName %>.dto';
 import { Update<%- className %>Dto } from './dto/update-<%- fileName %>.dto';
-import { Prisma } from '@bms/prisma-inventory';
+import { Prisma } from '<%- projectName %>-prisma';
 
 @Controller({ path: '<%- fileName %>' })
 export class <%- className %>Controller {

@@ -34,8 +34,13 @@ export async function resourceGenerator(
 
   const __names = names(options.name);
 
-  const source = path.join(__dirname, 'files', __names.fileName);
-  const target = path.join(targetProjectConfiguration.root, 'src', 'app');
+  const source = path.join(__dirname, 'files');
+  const target = path.join(
+    targetProjectConfiguration.root,
+    'src',
+    'app',
+    __names.fileName
+  );
 
   generateFiles(tree, source, target, { ...__names });
 
