@@ -3,10 +3,10 @@
 ## Workspace and templates
 
 - [x] (001) Create beemood workspace with `none` configuration
-- [ ] (001) Configure linting, generators, and scripts
-- [ ] (001) Define project structure
-- [ ] (001) Generate a sample library
-- [ ] (001) Generate a sample backend project
+- [x] (001) Configure linting, generators, and scripts
+- [x] (001) Define project structure
+- [x] (001) Generate a sample library
+- [x] (001) Generate a sample backend project
 - [ ] (001) Generate a sample cli project
 - [ ] (001) Create detailed library/backend/cli configuration template that should include links and icons to the documentation, repository page, and contact page.
 - [ ] (001) Build, publish, do unit and e2e test for publishable libraries.
