@@ -20,9 +20,8 @@
 
 ## Code snippets
 
-- [ ] (001) create common code snippets
-- [ ] (001) create typescript syntax code snippets
-- [ ] (001) create rest resource code snippets
+- [x] (001) create common code snippets
+- [x] (001) create typescript syntax code snippets
 - [ ] (001) create test code snippets
 - [ ] (001) create command and generator code snippets
 
@@ -31,4 +30,3 @@
 - [ ] (001) create the utility libraries.
 - [ ] (001) create `utils` library that import and export all utility libraries.
 - [ ] (001) create `names` library
-- [ ] (001) create `rest-path` library

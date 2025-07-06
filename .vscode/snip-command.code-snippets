@@ -1,0 +1,25 @@
+{
+  "command": {
+    "prefix": "command",
+    "body": [
+      "import { Command } from 'commander';",
+      "",
+      "export type $1CommandOptions = {",
+      "  username: string;",
+      "};",
+      "",
+      "export function $2CommandAction(options: $1CommandOptions) {",
+      "  console.log(`$1, ${options.username}`);",
+      "}",
+      "",
+      "export function $2Command(program: Command) {",
+      "  program",
+      "    .command('$2')",
+      "    .description('Say $2')",
+      "    .requiredOption('-n,--username <string> Useranme')",
+      "    .action($2CommandAction);",
+      "}"
+    ],
+    "scope": "typescript"
+  }
+}

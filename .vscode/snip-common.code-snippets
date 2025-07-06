@@ -1,0 +1,42 @@
+{
+  "function": {
+    "prefix": "function",
+    "body": ["export funcion $1(){ ", "    return '';", "}"],
+    "scope": "typescript"
+  },
+  "type": {
+    "prefix": "type",
+    "body": ["expor type $1 =  {$0}"],
+    "scope": "typescript"
+  },
+  "class": {
+    "prefix": "class",
+    "body": ["export class $1 { ", "    constructor(){}", "}"],
+    "scope": "typescript"
+  },
+  "interface": {
+    "prefix": "interface",
+    "body": ["export interface $1 { ", "    constructor(){}", "}"],
+    "scope": "typescript"
+  },
+  "is defined": {
+    "prefix": "is defined",
+    "body": ["if($1 !=undefined){ ", "    $0", "}"],
+    "scope": "typescript"
+  },
+  "is undefined": {
+    "prefix": "is undefined",
+    "body": ["if($1 ==undefined){ ", "    $0", "}"],
+    "scope": "typescript"
+  },
+  "throw error": {
+    "prefix": "throw error",
+    "body": ["throw new Errror($1)"],
+    "scope": "typescript"
+  },
+  "log": {
+    "prefix": "log",
+    "body": ["console.log($1);", "$0"],
+    "scope": "typescript"
+  }
+}
