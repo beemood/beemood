@@ -1,24 +1,18 @@
 {
-  "name": "@beemood/cli",
-  "description": "Beemood cli and generators",
-  "version": "0.0.1",
+  "name": "<%- projectName >",
+  "description": "- [ ] add project description",
+  "version": "<%- mp.version %>",
   "keywords": [
-    "validation"
+    "cli"
   ],
-  "homepage": "https://beemood.github.io/beemood/cli/cli",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/cli/cli/favicon.png",
+  "homepage": "<%- mp.homepage %>/<%- projectRoot %>",
+  "funding":<%- JSON.stringify(mp.funding) %>,
+  "icon": "<%- mp.content %>/<%- projectRoot %>/favicon.png",
   "repository": {
-    "url": "https://github.com/beemood/beemood/tree/main/cli/cli",
+    "url": "<%- mp.repository.url %>/<%- projectRoot %>",
     "type": "github"
   },
-  "author": {
-    "name": "Robert",
-    "email": "robert.brightline@gmail.com",
-    "url": "https://beemood.github.io"
-  },
+  "author": <%- JSON.stringify(mp.author) %>,
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -36,7 +30,7 @@
     }
   },
   "bin": {
-    "beemood": "./bin/beemood.mjs"
+    "<%- fileName %>": "./bin/<%- fileName %>.mjs"
   },
   "files": [
     "dist",
@@ -52,19 +46,19 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "clis/cli/dist",
-          "main": "clis/cli/src/index.ts",
-          "tsConfig": "clis/cli/tsconfig.lib.json",
-          "rootDir": "clis/cli/src",
+          "outputPath": "<%- projectRoot %>/dist",
+          "main": "<%- projectRoot %>/src/index.ts",
+          "tsConfig": "<%- projectRoot %>/tsconfig.lib.json",
+          "rootDir": "<%- projectRoot %>/src",
           "generatePackageJson": false,
           "assets": [
             {
-              "input": "./clis/cli/src",
+              "input": "./<%- projectRoot %>/src",
               "glob": "**/!(*.ts)",
               "output": "."
             },
             {
-              "input": "./clis/cli/src",
+              "input": "./<%- projectRoot %>/src",
               "glob": "**/*.d.ts",
               "output": "."
             }

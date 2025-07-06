@@ -1,24 +1,18 @@
 {
-  "name": "@beemood/validation",
-  "version": "0.0.1",
-  "description": "Input validation decorators",
+  "name": "<%- projectName %>",
+  "version": "<%- mp.version %>",
+  "description": "- [ ] add project description",
   "keywords": [
-    "validation"
+    "library"
   ],
-  "homepage": "https://beemood.github.io/beemood/libs/validation",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/validation/favicon.png",
+  "homepage": "<%- mp.homepage %>/<%- projectRoot %>",
+  "funding": <%- JSON.stringify(mp.funding) %>,
+  "icon": "<%- mp.content %>/<%- projectRoot %>/favicon.png",
   "repository": {
-    "url": "https://github.com/beemood/beemood/tree/main/libs/validation",
+    "url": "<%- mp.repository.url %>/<%- projectRoot %>",
     "type": "github"
   },
-  "author": {
-    "name": "Robert",
-    "email": "robert.brightline@gmail.com",
-    "url": "https://beemood.github.io"
-  },
+  "author":<%- JSON.stringify(mp.author) %>
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -48,13 +42,13 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/validation/dist",
-          "main": "libs/validation/src/index.ts",
-          "tsConfig": "libs/validation/tsconfig.lib.json",
+          "outputPath": "<%- projectRoot %>/dist",
+          "main": "<%- projectRoot %>/src/index.ts",
+          "tsConfig": "<%- projectRoot %>/tsconfig.lib.json",
           "format": [
             "esm"
           ],
-          "declarationRootDir": "libs/validation/src"
+          "declarationRootDir": "<%- projectRoot %>/src"
         }
       },
       "doc": {

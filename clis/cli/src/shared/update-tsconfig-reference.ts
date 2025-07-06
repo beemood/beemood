@@ -1,7 +1,11 @@
 import { readJsonFile, writeJsonFile } from '@nx/devkit';
 import { WORKSPACE_TSCONFIG } from './constants';
-
-export async function updateReference(projectRootDirectory: string) {
+/**
+ * Update workspace root `tsconfig.json` files references by adding the generated project path such as `{ "path": "./libs/my-project"}`
+ * @group generator
+ * @param projectRootDirectory root directory
+ */
+export async function updateTsconfigReference(projectRootDirectory: string) {
   const content = await readJsonFile(WORKSPACE_TSCONFIG);
 
   if (content.references == undefined) {

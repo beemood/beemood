@@ -3,9 +3,22 @@
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
+  "author": {
+    "name": "Robert",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "keywords": [
+    "beemood"
+  ],
+  "content": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main",
   "dependencies": {
     "@nx/devkit": "21.2.2",
     "axios": "^1.6.0"
+  },
+  "repository": {
+    "url": "https://github.com/beemood/beemood/tree/main",
+    "type": "github"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",

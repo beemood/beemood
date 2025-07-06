@@ -15,11 +15,5 @@
     {
       "path": "./libs/validation"
     },
-    {
-      "path": "./utils/names"
-    },
-    {
-      "path": "./utils/utils"
-    }
   ]
 }

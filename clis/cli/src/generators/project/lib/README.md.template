@@ -1,34 +1,35 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/cli/cli/favicon.png" alt="Logo" />
+  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main//<%- projectRoot %>/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/cli
+# <%- projectName %>
 
-Beemood cli and generators
+Input validation library
 
-## Install Global
+## Build scripts
 
 ```shell
-pnpm add -g @beemood/cli
+npx nx test <%- projectName %>
+npx nx lint <%- projectName %>
+npx nx build <%- projectName %>
+npx nx doc <%- projectName %>
 ```
 
-## Commands
+## Install 
 
-```shell
-beemood hello <username>
-```
+`pnpm add <%- projectName %>`
 
-## Generators
+## Examples
 
-```shell
-npx nx g @beemood/cli:project <project-name> <project-type (lib|cli|api|util)>
+```typescript
+// - [ ] add examples
 ```
 
 ## Funding
 
 Thank you for using the library. It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
 
-[Instant Funding](https://cash.app/$puqlib)
+[Instant Funding](<%- JSON.stringify(mp.funding) %>)
 
 ### Your funding will go toward
 
@@ -37,6 +38,6 @@ Thank you for using the library. It's an open-source project, and maintaining it
 - **Documentation** improvements to help users get the most out of [Your Library Name].
 - **General maintenance** to keep the library running smoothly and securely.
 
-Contact to the developer: [robert.brightline@gmail.com](mailto:robert.brightline@gmail.com?subject=Contact)
+Contact to the developer: [<%- mp.author.email %>](mailto:<%- mp.author.email %>?subject=Contact)
 
-[Support the developer](https://cash.app/$puqlib)
+[Support the developer](<%- JSON.stringify(mp.funding) %>)
