@@ -5,7 +5,9 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AppCronService } from './app-cron.service';
 import { AppEventService } from './app-event.service';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
+
 @Module({
   imports: [
     EventEmitterModule.forRoot(),
@@ -14,13 +16,20 @@ import { ThrottlerModule } from '@nestjs/throttler';
     ThrottlerModule.forRoot({
       throttlers: [
         {
-          ttl: 60000,
+          ttl: 10_000,
           limit: 10,
         },
       ],
     }),
   ],
   controllers: [AppController],
-  providers: [AppCronService, AppEventService],
+  providers: [
+    AppCronService,
+    AppEventService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}

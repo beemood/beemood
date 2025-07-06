@@ -3,6 +3,7 @@ import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import helmet from 'helmet';
 async function bootstrap() {
   const GLOBAL_PREFIX = 'api';
 
@@ -13,6 +14,8 @@ async function bootstrap() {
   const PORT = cnf.getOrThrow('PORT');
 
   app.setGlobalPrefix(GLOBAL_PREFIX);
+  app.enableCors({ origin: ['*'] });
+  app.use(helmet());
 
   const docConf = new DocumentBuilder()
     .setTitle('todo')
