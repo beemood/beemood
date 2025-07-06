@@ -17,6 +17,9 @@
     },
     {
       "path": "./utils/names"
+    },
+    {
+      "path": "./apps/sample"
     }
   ]
 }

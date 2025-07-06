@@ -1,18 +1,18 @@
 {
-  "name": "<%- projectName %>",
-  "version": "<%- mp.version %>",
+  "name": "@beemood/sample",
+  "version": "0.0.1",
   "private": true,
   "keywords": [
     "api"
   ],
-  "homepage": "<%- mp.homepage %>/<%- projectRoot %>",
-  "funding": <%- JSON.stringify(mp.funding) %>,
-  "icon": "<%- mp.content %>/<%- projectRoot %>/favicon.png",
+  "homepage": "/apps/sample",
+  "funding": ["https://cash.app/$puqlib"],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/sample/favicon.png",
   "repository": {
-    "url": "<%- mp.repository.url %>/<%- projectRoot %>",
+    "url": "https://github.com/beemood/beemood/tree/main/apps/sample",
     "type": "github"
   },
-  "author":<%- JSON.stringify(mp.author) %>,
+  "author":{"name":"Robert","email":"robert.brightline@gmail.com","url":"https://beemood.github.io"},
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -27,15 +27,15 @@
         "defaultConfiguration": "production",
         "options": {
           "platform": "node",
-          "outputPath": "<%- projectRoot %>/dist",
+          "outputPath": "apps/sample/dist",
           "format": [
             "cjs"
           ],
           "bundle": false,
-          "main": "<%- projectRoot %>/src/main.ts",
-          "tsConfig": "<%- projectRoot %>/tsconfig.app.json",
+          "main": "apps/sample/src/main.ts",
+          "tsConfig": "apps/sample/tsconfig.app.json",
           "assets": [
-            "<%- projectRoot %>/src/assets"
+            "apps/sample/src/assets"
           ],
           "esbuildOptions": {
             "sourcemap": true,
@@ -64,16 +64,16 @@
           "build"
         ],
         "options": {
-          "buildTarget": "<%- projectName %>:build",
-          "runBuildTargetDependenci<%- mp.version %>false
+          "buildTarget": "@beemood/sample:build",
+          "runBuildTargetDependenci0.0.1false
         },
         "configurations": {
        api   "development": {
-            "buildTarget": "<%- projectName %>:build:development"
-     <%- mp.version %>},
+            "buildTarget": "@beemood/sample:build:development"
+     0.0.1},
           "production": {
-            "buildTarget": "<%- projectName %>:build:production"
-    <%- mp.api %> }
+            "buildTarget": "@beemood/sample:build:production"
+     }
         }
       },
       api"test": {
