@@ -1,0 +1,102 @@
+{
+  "name": "<%- projectName >",
+  "version": "<%- mp.version %>",
+  "private": true,
+  "keywords": [
+    "api"
+  ],
+  "homepage": "<%- mp.homepage %>/<%- projectRoot %>",
+  "funding": <%- JSON.stringify(mp.funding) %>,
+  "icon": "<%- mp.content %>/<%- projectRoot %>/favicon.png",
+  "repository": {
+    "url": "<%- mp.repository.url %>/<%- projectRoot %>",
+    "type": "github"
+  },
+  "author":<%- JSON.stringify(mp.author) %>,
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "<%- projectRoot %>/dist",
+          "format": [
+            "cjs"
+          ],
+          "bundle": false,
+          "main": "<%- projectRoot %>/src/main.ts",
+          "tsConfig": "<%- projectRoot %>/tsconfig.app.json",
+          "assets": [
+            "<%- projectRoot %>/src/assets"
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "<%- projectName >:build",
+          "runBuildTargetDependenci<%- mp.version %>false
+        },
+        "configurations": {
+       api   "development": {
+            "buildTarget": "<%- projectName >:build:development"
+     <%- mp.version %>},
+          "production": {
+            "buildTarget": "<%- projectName >:build:production"
+    <%- mp.api %> }
+        }
+      },
+      api"test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
+      }
+    }
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.3",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.3",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/platform-express": "^11.1.3",
+    "@nestjs/schedule": "^6.0.0",
+    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/throttler": "^6.4.0",
+    "@prisma/client": "^6.11.1",
+    "commander": "^14.0.0",
+    "helmet": "^8.1.0"
+  }
+}
