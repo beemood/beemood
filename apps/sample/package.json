@@ -6,13 +6,19 @@
     "api"
   ],
   "homepage": "/apps/sample",
-  "funding": ["https://cash.app/$puqlib"],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
   "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/apps/sample/favicon.png",
   "repository": {
     "url": "https://github.com/beemood/beemood/tree/main/apps/sample",
     "type": "github"
   },
-  "author":{"name":"Robert","email":"robert.brightline@gmail.com","url":"https://beemood.github.io"},
+  "author": {
+    "name": "Robert",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -65,18 +71,18 @@
         ],
         "options": {
           "buildTarget": "@beemood/sample:build",
-          "runBuildTargetDependenci0.0.1false
+          "runBuildTargetDependencies": false
         },
         "configurations": {
-       api   "development": {
+          "development": {
             "buildTarget": "@beemood/sample:build:development"
-     0.0.1},
+          },
           "production": {
             "buildTarget": "@beemood/sample:build:production"
-     }
+          }
         }
       },
-      api"test": {
+      "test": {
         "options": {
           "passWithNoTests": true
         }

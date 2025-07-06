@@ -2,13 +2,10 @@
   <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/favicon.png" alt="Logo" />
 </p>
 
-# Beemood
+# Beemood Software
 
-This is a monorepo project that contains libraries, dev-tools, and backend services.
+Welcome to the beemood official GitHub repository! This repository serves as a central hub for our software products, showcasing our projects, expertise, and services.
 
-## Directories
+## Contact
 
-- `apps`: contains backend services
-- `libs`: contains publishable library projects
-- `utils`: contains publishable utility library projects
-- `clis`: contains `cli` projects
+[Robert Brightline](mailto:robert.brightline@gmail.com?subject=Contact)

@@ -65,18 +65,18 @@
         ],
         "options": {
           "buildTarget": "<%- projectName %>:build",
-          "runBuildTargetDependenci<%- mp.version %>false
+          "runBuildTargetDependencies": false
         },
         "configurations": {
-       api   "development": {
+          "development": {
             "buildTarget": "<%- projectName %>:build:development"
-     <%- mp.version %>},
+          },
           "production": {
-            "buildTarget": "<%- projectName %>:build:production"
-    <%- mp.api %> }
+            "buildTarget": "<%- projectName %>:build:production" 
+          }
         }
       },
-      api"test": {
+      "test": {
         "options": {
           "passWithNoTests": true
         }
