@@ -3,6 +3,7 @@ packages:
   - 'libs/*'
   - 'clis/*'
   - 'utils/*'
+
 onlyBuiltDependencies:
   - '@swc/core'
   - 'esbuild'

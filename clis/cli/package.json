@@ -23,6 +23,7 @@
     "access": "public",
     "tag": "latest"
   },
+  "type": "commonjs",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

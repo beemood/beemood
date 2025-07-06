@@ -127,10 +127,6 @@ importers:
 
   libs/validation: {}
 
-  utils/names: {}
-
-  utils/utils: {}
-
 packages:
 
   '@ampproject/remapping@2.3.0':
