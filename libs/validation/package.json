@@ -1,0 +1,58 @@
+{
+  "name": "@beemood/validation",
+  "description": "Input validation decorators",
+  "keywords": [
+    "validation"
+  ],
+  "homepage": "",
+  "repository": {
+    "url": "https://github.com/beemood/beemood"
+  },
+  "author": {
+    "name": "Robert",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/validation/dist",
+          "main": "libs/validation/src/index.ts",
+          "tsConfig": "libs/validation/tsconfig.lib.json",
+          "format": [
+            "esm"
+          ],
+          "declarationRootDir": "libs/validation/src"
+        }
+      }
+    }
+  },
+  "dependencies": {}
+}

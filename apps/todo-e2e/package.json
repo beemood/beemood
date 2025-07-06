@@ -1,10 +1,10 @@
 {
-  "name": "@beemood/beemood-e2e",
+  "name": "@beemood/todo-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@beemood/beemood"
+      "@beemood/todo"
     ],
     "targets": {
       "e2e": {
@@ -13,12 +13,12 @@
           "{projectRoot}/test-output/jest/coverage"
         ],
         "options": {
-          "jestConfig": "apps/beemood-e2e/jest.config.ts",
+          "jestConfig": "apps/todo-e2e/jest.config.ts",
           "passWithNoTests": true
         },
         "dependsOn": [
-          "@beemood/beemood:build",
-          "@beemood/beemood:serve"
+          "@beemood/todo:build",
+          "@beemood/todo:serve"
         ]
       }
     }

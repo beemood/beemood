@@ -41,9 +41,17 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/beemood-e2e/**/*"]
+      "exclude": ["apps/beemood-e2e/**/*", "apps/todo-e2e/**/*"]
     }
   ],
+  "generators": {
+    "@nx/js:library": {
+      "bundler": "esbuild",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "publishable": true
+    }
+  },
   "targetDefaults": {
     "@nx/esbuild:esbuild": {
       "cache": true,
@@ -52,6 +60,16 @@
     },
     "test": {
       "dependsOn": ["^build"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    }
+  },
+  "release": {
+    "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build"
     }
   }
 }

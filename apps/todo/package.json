@@ -1,5 +1,5 @@
 {
-  "name": "@beemood/beemood",
+  "name": "@beemood/todo",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -12,15 +12,15 @@
         "defaultConfiguration": "production",
         "options": {
           "platform": "node",
-          "outputPath": "apps/beemood/dist",
+          "outputPath": "apps/todo/dist",
           "format": [
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/beemood/src/main.ts",
-          "tsConfig": "apps/beemood/tsconfig.app.json",
+          "main": "apps/todo/src/main.ts",
+          "tsConfig": "apps/todo/tsconfig.app.json",
           "assets": [
-            "apps/beemood/src/assets"
+            "apps/todo/src/assets"
           ],
           "esbuildOptions": {
             "sourcemap": true,
@@ -49,15 +49,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@beemood/beemood:build",
+          "buildTarget": "@beemood/todo:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@beemood/beemood:build:development"
+            "buildTarget": "@beemood/todo:build:development"
           },
           "production": {
-            "buildTarget": "@beemood/beemood:build:production"
+            "buildTarget": "@beemood/todo:build:production"
           }
         }
       },

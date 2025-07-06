@@ -1,2 +1,9 @@
-packages: 
-  - "apps/*"
+packages:
+  - 'apps/*'
+  - 'libs/*'
+  - 'clis/*'
+  - 'utils/*'
+onlyBuiltDependencies:
+  - '@swc/core'
+  - 'esbuild'
+  - 'nx'

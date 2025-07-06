@@ -4,10 +4,22 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/beemood-e2e"
+      "path": "./apps/todo-e2e"
     },
     {
-      "path": "./apps/beemood"
+      "path": "./apps/todo"
+    },
+    {
+      "path": "./clis/cli"
+    },
+    {
+      "path": "./libs/validation"
+    },
+    {
+      "path": "./utils/names"
+    },
+    {
+      "path": "./utils/utils"
     }
   ]
 }
