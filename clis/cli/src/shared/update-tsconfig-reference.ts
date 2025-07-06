@@ -12,7 +12,7 @@ export async function updateTsconfigReference(projectRootDirectory: string) {
     content.references = [];
   }
 
-  content.readJsonFile.push({
+  content.references.push({
     path: `./${projectRootDirectory}`,
   });
 

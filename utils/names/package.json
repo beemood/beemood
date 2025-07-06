@@ -1,18 +1,24 @@
 {
-  "name": "<%- projectName %>",
-  "version": "<%- mp.version %>",
+  "name": "@beemood/names",
+  "version": "0.0.1",
   "description": "- [ ] add project description",
   "keywords": [
     "library"
   ],
-  "homepage": "<%- mp.homepage %>/<%- projectRoot %>",
-  "funding": <%- JSON.stringify(mp.funding || []) %>,
-  "icon": "<%- mp.content %>/<%- projectRoot %>/favicon.png",
+  "homepage": "/utils/names",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/utils/names/favicon.png",
   "repository": {
-    "url": "<%- mp.repository.url %>/<%- projectRoot %>",
+    "url": "https://github.com/beemood/beemood/tree/main/utils/names",
     "type": "github"
   },
-  "author":<%- JSON.stringify(mp.author || {}) %>,
+  "author": {
+    "name": "Robert",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -42,13 +48,13 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "<%- projectRoot %>/dist",
-          "main": "<%- projectRoot %>/src/index.ts",
-          "tsConfig": "<%- projectRoot %>/tsconfig.lib.json",
+          "outputPath": "utils/names/dist",
+          "main": "utils/names/src/index.ts",
+          "tsConfig": "utils/names/tsconfig.lib.json",
           "format": [
             "esm"
           ],
-          "declarationRootDir": "<%- projectRoot %>/src"
+          "declarationRootDir": "utils/names/src"
         }
       },
       "doc": {

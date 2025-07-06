@@ -3,7 +3,7 @@ import {
   createProjectName,
   getProjectRootDirectory,
   getSourceDirectory,
-} from './project';
+} from './helpers.js';
 
 describe('projectGenerator', () => {
   it('should create project name', () => {

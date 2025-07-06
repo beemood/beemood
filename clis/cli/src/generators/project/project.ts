@@ -1,10 +1,4 @@
-import {
-  formatFiles,
-  generateFiles,
-  names,
-  Tree,
-  workspaceRoot,
-} from '@nx/devkit';
+import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
 import * as path from 'path';
 import { ProjectGeneratorSchema } from './schema';
 import { updateTsconfigReference } from '../../shared/update-tsconfig-reference';
@@ -29,8 +23,8 @@ export async function projectGenerator(
 
   const __names = names(__projectName);
   const projectRoot = getProjectRootDirectory(__projectName, projectType);
+  const targetDirectory = projectRoot;
   const sourceDirectory = path.join(__dirname, getSourceDirectory(projectType));
-  const targetDirectory = path.join(workspaceRoot, projectRoot);
   const mp = await workspacePackageJson();
   const projectName = createProjectName(__names.fileName, mp.name);
 
