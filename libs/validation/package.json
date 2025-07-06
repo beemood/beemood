@@ -1,19 +1,24 @@
 {
   "name": "@beemood/validation",
+  "version": "0.0.1",
   "description": "Input validation decorators",
   "keywords": [
     "validation"
   ],
-  "homepage": "",
+  "homepage": "https://beemood.github.io/beemood/libs/validation",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/validation/favicon.png",
   "repository": {
-    "url": "https://github.com/beemood/beemood"
+    "url": "https://github.com/beemood/beemood/tree/main/libs/validation",
+    "type": "github"
   },
   "author": {
     "name": "Robert",
     "email": "robert.brightline@gmail.com",
     "url": "https://beemood.github.io"
   },
-  "version": "0.0.1",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -51,6 +56,9 @@
           ],
           "declarationRootDir": "libs/validation/src"
         }
+      },
+      "doc": {
+        "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     }
   },
