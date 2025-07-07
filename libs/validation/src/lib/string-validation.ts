@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsNotEmpty,
   IsPhoneNumber,
   IsString,
   IsStrongPassword,
@@ -8,16 +9,19 @@ import {
   MinLength,
   ValidationOptions,
 } from 'class-validator';
-import { CommonOptions } from './common-validation.js';
+import { CommonOptions, CommonValidation } from './common-validation.js';
+import { TrimTransformer } from './trim-transformer.js';
+import { CommonNumberValidation } from './common-number-validation.js';
 
 export type StringFormat = 'email' | 'password' | 'uuid' | 'phone';
 
 export type StringOptions = {
   type: 'string';
-  minLengty?: number;
+  minLength?: number;
   maxLength?: number;
   format?: StringFormat;
   defaultValue?: string;
+  trim?: boolean;
 } & CommonOptions;
 
 export function StringValidation(
@@ -27,8 +31,13 @@ export function StringValidation(
   return (...args) => {
     IsString(validationOptions)(...args);
 
-    const { minLengty, maxLength, format } = options;
+    CommonValidation(options, validationOptions)(...args);
 
+    const { minLength: minLengty, maxLength, format, trim, required } = options;
+
+    if (required == true) {
+      IsNotEmpty(validationOptions)(...args);
+    }
     if (minLengty != undefined) {
       MinLength(minLengty, validationOptions)(...args);
     }
@@ -56,6 +65,10 @@ export function StringValidation(
           break;
         }
       }
+    }
+
+    if (trim) {
+      TrimTransformer()(...args);
     }
   };
 }

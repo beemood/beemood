@@ -1,4 +1,9 @@
-import { IsNotEmpty, IsOptional, ValidationOptions } from 'class-validator';
+import {
+  IsDefined,
+  IsNotEmpty,
+  IsOptional,
+  ValidationOptions,
+} from 'class-validator';
 import { DefaultValueTransformer } from './default-value-transformer.js';
 import { JsonTransformer } from './json-tranfromer.js';
 
@@ -26,7 +31,7 @@ export function CommonValidation(
 
     if (validationOptions?.each !== true) {
       if (required === true) {
-        IsNotEmpty(validationOptions)(...args);
+        IsDefined(validationOptions)(...args);
       } else {
         IsOptional(validationOptions)(...args);
       }

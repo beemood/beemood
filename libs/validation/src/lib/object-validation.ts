@@ -1,6 +1,6 @@
 import { IsObject, ValidateNested, ValidationOptions } from 'class-validator';
 import { ClassConstructor, Type } from 'class-transformer';
-import { CommonOptions } from './common-validation.js';
+import { CommonOptions, CommonValidation } from './common-validation.js';
 
 export type ObjectOptions = {
   type: 'object';
@@ -18,6 +18,7 @@ export function ObjectValidation(
 ): PropertyDecorator {
   return (...args) => {
     IsObject(validationOptions)(...args);
+    CommonValidation(options, validationOptions)(...args);
     Type(options.target)(...args);
     ValidateNested(validationOptions)(...args);
   };

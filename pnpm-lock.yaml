@@ -205,6 +205,10 @@ importers:
       class-validator:
         specifier: ^0.14.2
         version: 0.14.2
+    devDependencies:
+      reflect-metadata:
+        specifier: ^0.2.2
+        version: 0.2.2
 
   utils/names: {}
 

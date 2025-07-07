@@ -40,11 +40,8 @@ export function ArrayValidation(
 ): PropertyDecorator {
   return (...args) => {
     IsArray(validationOptions)(...args);
-
     CommonValidation(options, validationOptions)(...args);
-
     const { minSize, maxSize } = options;
-
     if (minSize != undefined) ArrayMinSize(minSize, validationOptions)(...args);
     if (maxSize != undefined) ArrayMaxSize(maxSize, validationOptions)(...args);
   };

@@ -14,7 +14,6 @@ export function IntegerValidation(
 ): PropertyDecorator {
   return (...args) => {
     IsInt(validationOptions)(...args);
-
     CommonNumberValidation(options, validationOptions)(...args);
   };
 }
