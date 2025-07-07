@@ -12,7 +12,8 @@
 ## Nestjs decorators and dtos
 
 - [ ] (002) create decorators from nestjs and swagger decorators
-- [ ] (002) create validation library
+- [x] (002) create validation library
+- [ ] (002) test validation library
 - [ ] (002) create property library that is used to decorator dto properties.
 
 ## Generators
