@@ -1,17 +1,17 @@
 {
-  "name": "@beemood/validation",
+  "name": "@beemood/fs",
   "version": "0.0.1",
-  "description": "Input validation decorators",
+  "description": "- [ ] add project description",
   "keywords": [
-    "validation"
+    "library"
   ],
-  "homepage": "https://beemood.github.io/beemood/libs/validation",
+  "homepage": "/libs/fs",
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/validation/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/fs/favicon.png",
   "repository": {
-    "url": "https://github.com/beemood/beemood/tree/main/libs/validation",
+    "url": "https://github.com/beemood/beemood/tree/main/libs/fs",
     "type": "github"
   },
   "author": {
@@ -48,22 +48,18 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/validation/dist",
-          "main": "libs/validation/src/index.ts",
-          "tsConfig": "libs/validation/tsconfig.lib.json",
+          "outputPath": "libs/fs/dist",
+          "main": "libs/fs/src/index.ts",
+          "tsConfig": "libs/fs/tsconfig.lib.json",
           "format": [
             "esm"
           ],
-          "declarationRootDir": "libs/validation/src"
+          "declarationRootDir": "libs/fs/src"
         }
       },
       "doc": {
         "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     }
-  },
-  "dependencies": {
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.14.2"
   }
 }

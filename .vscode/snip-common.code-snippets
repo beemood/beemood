@@ -1,7 +1,12 @@
 {
   "function": {
     "prefix": "function",
-    "body": ["export funcion $1(){ ", "    return '';", "}"],
+    "body": ["export function $1(){ ", "    return '';", "}"],
+    "scope": "typescript"
+  },
+  "async function": {
+    "prefix": "async function",
+    "body": ["export async function $1(){ ", "    return '';", "}"],
     "scope": "typescript"
   },
   "type": {
