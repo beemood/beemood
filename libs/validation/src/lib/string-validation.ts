@@ -11,7 +11,6 @@ import {
 } from 'class-validator';
 import { CommonOptions, CommonValidation } from './common-validation.js';
 import { TrimTransformer } from './trim-transformer.js';
-import { CommonNumberValidation } from './common-number-validation.js';
 
 export type StringFormat = 'email' | 'password' | 'uuid' | 'phone';
 

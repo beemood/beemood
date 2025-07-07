@@ -1,6 +1,5 @@
 import { Command } from 'commander';
 import { CliErrors } from 'src/shared/cli-errors';
-import { pathToFileURL } from 'url';
 
 /**
  * Rename command options
@@ -37,7 +36,7 @@ export type RenameCommandOptions = {
 };
 
 export function renameAction(options: RenameCommandOptions) {
-  const { expression, from, to, prefix, suffix } = options;
+  const { from, to, prefix, suffix } = options;
 
   if (
     from == undefined &&
@@ -49,6 +48,8 @@ export function renameAction(options: RenameCommandOptions) {
       `${CliErrors.INVALID_PARAM}: at least one of the parameter is required! (from, to, prefix, or suffix)`
     );
   }
+
+  throw new Error('Not implemented!');
 }
 
 export function renameCommand(program: Command) {

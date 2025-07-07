@@ -1,6 +1,5 @@
 import {
   IsDefined,
-  IsNotEmpty,
   IsOptional,
   ValidationOptions,
 } from 'class-validator';
