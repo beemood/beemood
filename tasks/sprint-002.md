@@ -7,7 +7,7 @@
 ## Types
 
 - [x] (002) create JSON schema bundler
-- [ ] (002) create type bundler form bundled schema file.
+- [x] (002) create type bundler form bundled schema file.
 
 ## Nestjs decorators and dtos
 

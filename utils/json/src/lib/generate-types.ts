@@ -1,8 +1,7 @@
-import { readJsonFile, writeJsonFile, writeTextFile } from '@beemood/fs';
+import { readJsonFile, writeTextFile } from '@beemood/fs';
 import { JsonSchema } from './json-schema.js';
 import { basename } from 'path';
 import { names } from '@beemood/names';
-import { toDefinitionPaths } from './to-definition-paths.js';
 
 export function getSchemaType(schema: JsonSchema): string {
   if (schema.type) {
