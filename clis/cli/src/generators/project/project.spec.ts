@@ -1,4 +1,4 @@
-import { join } from 'path';
+import { join, resolve } from 'path';
 import {
   createProjectName,
   getProjectRootDirectory,
@@ -18,9 +18,9 @@ describe('projectGenerator', () => {
   });
 
   it('should get source directory', () => {
-    expect(getSourceDirectory('api')).toEqual(join(__dirname, 'api'));
-    expect(getSourceDirectory('cli')).toEqual(join(__dirname, 'cli'));
-    expect(getSourceDirectory('lib')).toEqual(join(__dirname, 'lib'));
-    expect(getSourceDirectory('util')).toEqual(join(__dirname, 'lib'));
+    expect(getSourceDirectory('api')).toEqual('api');
+    expect(getSourceDirectory('cli')).toEqual('cli');
+    expect(getSourceDirectory('lib')).toEqual('lib');
+    expect(getSourceDirectory('util')).toEqual('lib');
   });
 });

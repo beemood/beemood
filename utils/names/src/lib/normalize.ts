@@ -1,30 +1,26 @@
-export function findDelimeters(name: string): string[] {
-  return ['.', '-', '_', '|', '&', ' '].filter((e) => name.includes(e));
-}
-
 /**
  * Normalize the given string (transform it into kebab-case)
  * @param name string
  */
 export function normalize(name: string): string {
-  const delimeter = findDelimeters(name);
+  const delimeters = ['.', '-', '_', '|', '&', ' '];
 
-  if (delimeter != undefined) {
-    for (const d of delimeter) {
+  if (delimeters.find((e) => name.includes(e))) {
+    for (const d of delimeters) {
       name = name.replaceAll(d, '-');
     }
-    return name;
-  } else {
-    return name
+  } else if (/^[A-Za-z]{1,}$/.test(name)) {
+    name = name
       .split('')
-      .map((v, i) => {
-        if (i > 0) {
-          if (/[A-Z]/.test(v)) {
-            v = '-' + v;
-          }
+      .map((e, i) => {
+        if (i > 0 && /[A-Z]/.test(e)) {
+          return '-' + e;
         }
-        return v.toLowerCase();
+
+        return e;
       })
       .join('');
   }
+
+  return name.toLowerCase();
 }

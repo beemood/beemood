@@ -88,7 +88,7 @@
         }
       },
       "doc": {
-        "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
+        "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/main.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.app.json"
       }
     }
   },
