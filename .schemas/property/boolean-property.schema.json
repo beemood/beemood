@@ -2,7 +2,13 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "properties": {
     "type": { "const": "boolean" },
-    "defaultValue": { "type": "boolean", "default": true }
+    "defaultValue": { "type": "boolean", "default": true },
+    "example": { "type": "boolean", "default": true },
+    "examples": {
+      "type": "array",
+      "items": { "type": "boolean" },
+      "default": 0
+    }
   },
   "required": ["type"]
 }

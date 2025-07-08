@@ -7,7 +7,9 @@
     "items": {
       "$ref": "./property.schema.json"
     },
-    "defaultValue": { "type": "array", "default": [] }
+    "defaultValue": { "type": "array", "default": [] },
+    "example": { "type": "array", "default": [] },
+    "examples": { "type": "array", "default": [] }
   },
   "required": ["type", "items"]
 }

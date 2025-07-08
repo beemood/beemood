@@ -9,7 +9,24 @@
     "readOnly": { "type": "boolean", "default": true },
     "writeOnly": { "type": "boolean", "default": true },
     "generated": { "$ref": "../enum/generated.schema.json" },
-    "inputType": { "$ref": "../enum/input-type.schema.json" }
+    "inputType": { "$ref": "../enum/input-type.schema.json" },
+    "notEqualToProperty": {
+      "type": "array",
+      "items": {
+        "$ref": "../enum/property-name.schema.json"
+      }
+    },
+    "dependencies": {
+      "patternProperties": {
+        "[A-Za-z]{3,}": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "propertyNames": {
+        "$ref": "../enum/property-name.schema.json"
+      }
+    }
   },
   "required": ["type", "inputType"]
 }

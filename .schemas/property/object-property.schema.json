@@ -4,6 +4,13 @@
     "type": { "const": "object" },
     "target": {
       "$ref": "../enum/model-name.schema.json"
+    },
+    "defaultValue": { "type": "object", "default": {} },
+    "example": { "type": "object", "default": {} },
+    "examples": {
+      "type": "array",
+      "items": { "type": "object" },
+      "default": [{}]
     }
   },
   "required": ["type"]

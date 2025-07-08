@@ -1,0 +1,65 @@
+{
+  "name": "@beemood/nest",
+  "version": "0.0.1",
+  "description": "- [ ] add project description",
+  "keywords": [
+    "library"
+  ],
+  "homepage": "/libs/nest",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/nest/favicon.png",
+  "repository": {
+    "url": "https://github.com/beemood/beemood/tree/main/libs/nest",
+    "type": "github"
+  },
+  "author": {
+    "name": "Robert",
+    "email": "robert.brightline@gmail.com",
+    "url": "https://beemood.github.io"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/nest/dist",
+          "main": "libs/nest/src/index.ts",
+          "tsConfig": "libs/nest/tsconfig.lib.json",
+          "format": [
+            "esm"
+          ],
+          "declarationRootDir": "libs/nest/src"
+        }
+      },
+      "doc": {
+        "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
+      }
+    }
+  }
+}

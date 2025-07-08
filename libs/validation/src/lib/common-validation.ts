@@ -1,10 +1,7 @@
-import {
-  IsDefined,
-  IsOptional,
-  ValidationOptions,
-} from 'class-validator';
+import { IsDefined, IsOptional, ValidationOptions } from 'class-validator';
 import { DefaultValueTransformer } from './default-value-transformer.js';
 import { JsonTransformer } from './json-tranfromer.js';
+import { Exclude, Expose } from 'class-transformer';
 
 export type PropertyType =
   | 'string'
@@ -19,6 +16,7 @@ export type CommonOptions = {
   required?: boolean;
   transform?: boolean;
   defaultValue?: any;
+  exclude?: boolean;
 };
 
 export function CommonValidation(
@@ -34,7 +32,14 @@ export function CommonValidation(
       } else {
         IsOptional(validationOptions)(...args);
       }
+
+      if (options.exclude) {
+        Exclude()(...args);
+      } else {
+        Expose()(...args);
+      }
     }
+
     if (options.defaultValue != undefined) {
       DefaultValueTransformer(options.defaultValue)(...args);
     }

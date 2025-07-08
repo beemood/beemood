@@ -7,7 +7,13 @@
     "isIn": { "type": "array", "items": { "type": "integer" } },
     "notIn": { "type": "array", "items": { "type": "integer" } },
     "format": { "$ref": "../enum/integer-format.schema.json" },
-    "defaultValue": { "type": "integer", "default": 0 }
+    "defaultValue": { "type": "integer", "default": 0 },
+    "example": { "type": "integer", "default": 0 },
+    "examples": {
+      "type": "array",
+      "items": { "type": "integer" },
+      "default": [0]
+    }
   },
   "required": ["type"]
 }

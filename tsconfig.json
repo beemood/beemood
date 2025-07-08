@@ -29,6 +29,12 @@
     },
     {
       "path": "./libs/types"
+    },
+    {
+      "path": "./libs/nest"
+    },
+    {
+      "path": "./libs/property"
     }
   ]
 }

@@ -11,7 +11,7 @@ export function getSchemaType(schema: JsonSchema): string {
       case 'boolean':
         return schema.type;
       case 'object':
-        break;
+        return 'any';
       case 'integer':
         return 'number';
       case 'array': {

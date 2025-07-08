@@ -6,8 +6,14 @@
     "maximum": { "type": "number" },
     "isIn": { "type": "array", "items": { "type": "number" } },
     "notIn": { "type": "array", "items": { "type": "number" } },
-    "format": {"$ref": "../enum/number-format.schema.json"},
-    "defaultValue": { "type": "number" }
+    "format": { "$ref": "../enum/number-format.schema.json" },
+    "defaultValue": { "type": "number", "default": 0 },
+    "example": { "type": "number", "default": 0 },
+    "examples": {
+      "type": "array",
+      "items": { "type": "number" },
+      "default": [0]
+    }
   },
   "required": ["type"]
 }

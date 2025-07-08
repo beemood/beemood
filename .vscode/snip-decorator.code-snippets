@@ -1,0 +1,16 @@
+{
+  "property decorator": {
+    "prefix": "property decorator",
+    "body": [
+      "export type $1Options = {",
+      "- [ ] add options",
+      "}",
+      "export function $1(options: $1Options): ${2|PropertyDecorator,ClassDecorator,MethodDecorator,ParameterDecorator|} {",
+      "  return (...args) => {",
+      "     - [ ] add logic",
+      "  };",
+      "}"
+    ],
+    "scope": "typescript"
+  }
+}
