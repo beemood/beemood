@@ -41,7 +41,7 @@ export type JsonSchema = {
   oneOf?: JsonSchema[];
   pattern?: string;
   patternProperties?: Record<string, JsonSchema>;
-  properties?: JsonSchema;
+  properties?: Record<string, JsonSchema>;
   propertyNames?: JsonSchema;
   readOnly?: boolean;
   required?: string[];

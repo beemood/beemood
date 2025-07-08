@@ -5,9 +5,16 @@ import { basename } from 'path';
 
 export const DEFINITIONS_PREFIX = '#/definitions/';
 
-export function convertReferencePathIntoDefinitionPath(referencePath: string) {
-  const filename = basename(referencePath).split('.').pop();
+export function validateJsonPath(referencePath: string) {
+  if (referencePath.length > 5 && referencePath.endsWith('.json')) {
+    return;
+  }
+  throw new Error(`Invalid json reference path ${referencePath}`);
+}
 
+export function convertReferencePathIntoDefinitionPath(referencePath: string) {
+  validateJsonPath(referencePath);
+  const filename = basename(referencePath).split('.').slice(0, -1).join('');
   if (filename == undefined) {
     throw new Error(`Could not extract the filename from ${referencePath}!`);
   }
@@ -19,7 +26,9 @@ export function isDefinitionPath(referencePath: string) {
   return referencePath.startsWith(DEFINITIONS_PREFIX);
 }
 
-export function convertReferencePathsIntoDefinitionPaths(schema: JsonSchema) {
+export function updateJsonSchemaReferencesToDefinitionPaths(
+  schema: JsonSchema
+) {
   const entries = Object.entries(schema);
 
   for (const [key, value] of entries) {
@@ -31,12 +40,14 @@ export function convertReferencePathsIntoDefinitionPaths(schema: JsonSchema) {
 
     if (Array.isArray(value)) {
       for (const item of value) {
-        convertReferencePathIntoDefinitionPath(item);
+        updateJsonSchemaReferencesToDefinitionPaths(item);
       }
     } else if (typeof value === 'object') {
-      convertReferencePathIntoDefinitionPath(value);
+      updateJsonSchemaReferencesToDefinitionPaths(value);
     }
   }
+
+  return schema;
 }
 
 export async function bundle(filepath: string): Promise<JsonSchema> {
@@ -44,7 +55,7 @@ export async function bundle(filepath: string): Promise<JsonSchema> {
 
   // Convert $ref paths into definition paths
   {
-    convertReferencePathsIntoDefinitionPaths(mainSchema);
+    updateJsonSchemaReferencesToDefinitionPaths(mainSchema);
   }
 
   return mainSchema;
