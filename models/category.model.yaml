@@ -6,6 +6,7 @@ properties:
     minLength: 3
     maxLength: 30
     inputType: text
+    casing: title
     notIn:
       - root
       - admin

@@ -9,14 +9,18 @@
     "readOnly": { "type": "boolean", "default": true },
     "writeOnly": { "type": "boolean", "default": true },
     "generated": { "$ref": "../enum/generated.schema.json" },
+    "hash": { "type": "boolean" },
+    "encrypt": { "type": "boolean" },
     "inputType": { "$ref": "../enum/input-type.schema.json" },
     "notEqualToProperty": {
       "type": "array",
+      "description": "The value of the property should not be equal to the value of listed properties",
       "items": {
         "$ref": "../enum/property-name.schema.json"
       }
     },
     "dependencies": {
+      "description": "The property depends on the mapped properties.",
       "patternProperties": {
         "[A-Za-z]{3,}": {
           "type": "boolean",

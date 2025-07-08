@@ -8,7 +8,31 @@
     "isIn": { "type": "array", "items": { "type": "string" } },
     "notIn": { "type": "array", "items": { "type": "string" } },
     "format": { "$ref": "../enum/string-format.schema.json" },
+    "contains": { "type": "string" },
+    "notContains": { "type": "string" },
+    "startsWith": { "type": "string" },
+    "notStartsWith": { "type": "string" },
+    "endsWith": { "type": "string" },
+    "notEndsWith": { "type": "string" },
+    "casing": {
+      "$ref": "#/definitions/StringCasing"
+    },
     "defaultValue": { "type": "string" }
   },
-  "required": ["type"]
+  "required": ["type"],
+  "definitions": {
+    "StringCasing": {
+      "enum": [
+        "snake",
+        "kabab",
+        "camel",
+        "pascal",
+        "screaming-snake",
+        "title",
+        "sentence",
+        "lower",
+        "upper"
+      ]
+    }
+  }
 }

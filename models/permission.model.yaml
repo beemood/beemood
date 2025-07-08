@@ -5,15 +5,16 @@ properties:
     unique: true
     minLength: 3
     maxLength: 30
+    casing: screaming-snake
     inputType: text
 
   action:
     type: string
     isIn:
-      - read
-      - write
-      - update
-      - delete
+      - READ
+      - WRITE
+      - UPDATE
+      - DELETE
     inputType: radio
 
 uniques:

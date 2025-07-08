@@ -4,12 +4,12 @@
     { "$ref": "./common-property.schema.json" },
     {
       "oneOf": [
-        {"$ref": "./string-property.schema.json"},
-        {"$ref": "./number-property.schema.json"},
-        {"$ref": "./integer-property.schema.json"},
-        {"$ref": "./boolean-property.schema.json"},
-        {"$ref": "./object-property.schema.json"},
-        {"$ref": "./array-property.schema.json"}
+        { "$ref": "./string-property.schema.json" },
+        { "$ref": "./number-property.schema.json" },
+        { "$ref": "./integer-property.schema.json" },
+        { "$ref": "./boolean-property.schema.json" },
+        { "$ref": "./object-property.schema.json" },
+        { "$ref": "./array-property.schema.json" }
       ]
     }
   ],

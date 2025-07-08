@@ -5,6 +5,7 @@ properties:
     unique: true
     minLength: 3
     maxLength: 30
+    casing: title
     inputType: text
 
 relations:
