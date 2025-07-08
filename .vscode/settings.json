@@ -1,3 +1,6 @@
 {
-  "eslint.validate": ["json"]
+  "eslint.validate": ["json"],
+  "yaml.schemas": {
+    ".schemas/model.json": ["models/*.model.yaml"]
+  }
 }

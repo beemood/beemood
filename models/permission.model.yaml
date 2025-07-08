@@ -1,0 +1,21 @@
+properties:
+  resource:
+    type: string
+    required: true
+    unique: true
+    minLength: 3
+    maxLength: 30
+    inputType: text
+
+  action:
+    type: string
+    isIn:
+      - read
+      - write
+      - update
+      - delete
+    inputType: radio
+
+uniques:
+  - resource
+  - action

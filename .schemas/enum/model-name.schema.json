@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "enum": [
+    "-- Common",
+    "Category",
+    "Department",
+
+    "-- User",
+    "User",
+    "Role",
+    "Permission",
+    "AccessToken",
+    "Session",
+    "Profile",
+
+    "-- Contact",
+    "Address",
+    "Phone",
+    "Email",
+    "Website",
+    "SocialMedia",
+
+    "-- Content",
+    "Blog",
+    "Article",
+    "Comment",
+
+    "-- Message",
+    "Message",
+
+    "-- Product",
+    "Product",
+    "Price",
+    "Quantity",
+    "Sku",
+    "Attribute",
+    "Model",
+    "Property",
+    "Review"
+  ]
+}

@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "build-schemas": "bash ./.scripts/build-schemas.sh"
+  },
   "author": {
     "name": "Robert",
     "email": "robert.brightline@gmail.com",

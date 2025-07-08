@@ -2,6 +2,9 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "title": "Model",
   "properties": {
+    "name": {
+      "$ref": "./enum/model-name.schema.json"
+    },
     "properties": {
       "patternProperties": {
         "[a-zA-Z]{1,}": {

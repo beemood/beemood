@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "properties": {
+    "type": { "$ref": "../enum/property-type.schema.json" },
+    "name": { "$ref": "../enum/property-name.schema.json" },
+    "description": { "type": "string" },
+    "required": { "type": "boolean", "default": true },
+    "unique": { "type": "boolean", "default": true },
+    "readOnly": { "type": "boolean", "default": true },
+    "writeOnly": { "type": "boolean", "default": true },
+    "generated": { "$ref": "../enum/generated.schema.json" },
+    "inputType": { "$ref": "../enum/input-type.schema.json" }
+  },
+  "required": ["type", "inputType"]
+}

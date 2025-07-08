@@ -7,7 +7,7 @@
     "isIn": { "type": "array", "items": { "type": "integer" } },
     "notIn": { "type": "array", "items": { "type": "integer" } },
     "format": { "$ref": "../enum/integer-format.schema.json" },
-    "defaultValue": { "type": "integer" }
+    "defaultValue": { "type": "integer", "default": 0 }
   },
   "required": ["type"]
 }

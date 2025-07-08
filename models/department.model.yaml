@@ -1,0 +1,8 @@
+properties:
+  name:
+    type: string
+    required: true
+    unique: true
+    minLength: 3
+    maxLength: 30
+    inputType: text

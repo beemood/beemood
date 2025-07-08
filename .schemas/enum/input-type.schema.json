@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "enum": [
+    "text",
+    "textArea",
+    "textEditor",
+    "number",
+    "check",
+    "button-group",
+    "radio",
+    "check-group",
+    "switch",
+    "slider",
+
+    "dropdown-select",
+    "dropdown-select-many",
+    "autocomplete",
+    "list-select",
+    "like-button",
+    "dislike-button",
+    "password"
+  ]
+}

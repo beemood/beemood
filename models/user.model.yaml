@@ -1,0 +1,22 @@
+properties:
+  username:
+    type: string
+    required: true
+    unique: true
+    format: email
+    inputType: text
+
+  password:
+    type: string
+    required: true
+    format: password
+    inputType: password
+
+relations:
+  roles:
+    type: many-to-many
+    target: Role
+
+  permissions:
+    type: many-to-many
+    target: Permission
