@@ -4,7 +4,7 @@
 
 # <%- projectName %>
 
-- [ ] add project description
+- <%- '- [ ]' +  fileName + ' project description'  %>
 
 ## Install Global
 
@@ -14,11 +14,11 @@ pnpm add -g <%- projectName %>
 
 ## Commands
 
-- [ ] add commands
+- <%- '[ ] add commands' %>
 
 ## Generators
 
-- [ ] add generators 
+<%- '- [ ] add generators' %>
 
 ## Funding
 
