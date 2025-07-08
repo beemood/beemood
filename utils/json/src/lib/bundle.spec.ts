@@ -1,8 +1,9 @@
-import { Directory, writeJsonFile } from '@beemood/fs';
+import { Directory, readJsonFile, writeJsonFile } from '@beemood/fs';
 import { workspaceRoot } from '@nx/devkit';
 import { resolve } from 'path';
 import { JsonSchema } from './json-schema.js';
 import { bundle } from './bundle.js';
+import { rm } from 'fs/promises';
 
 describe('bundle', () => {
   const root = resolve(workspaceRoot, 'tmp', 'test', 'json', 'bundle');
@@ -17,9 +18,13 @@ describe('bundle', () => {
     {
       path: resolve(root, './property.schema.json'),
       content: {
-        properties: {
-          name: {
-            $ref: './enum/names.schema.json',
+        patternProperties: {
+          '[a-z-]': {
+            properties: {
+              name: {
+                $ref: './enum/names.schema.json',
+              },
+            },
           },
         },
       },
@@ -32,6 +37,10 @@ describe('bundle', () => {
     }
   });
 
+  afterAll(async () => {
+    await rm(root, { recursive: true });
+  });
+
   it('should work', async () => {
     expect(1).toEqual(1);
 
@@ -39,5 +48,25 @@ describe('bundle', () => {
       resolve(root, './property.schema.json'),
       resolve(root, './property-build.schema.json')
     );
+
+    expect(
+      await readJsonFile(resolve(root, './property-build.schema.json'))
+    ).toEqual({
+      patternProperties: {
+        '[a-z-]': {
+          properties: { name: { $ref: '#/definitions/NamesSchema' } },
+        },
+      },
+      definitions: {
+        NamesSchema: { enum: ['username', 'password'] },
+        PropertySchema: {
+          patternProperties: {
+            '[a-z-]': {
+              properties: { name: { $ref: '#/definitions/NamesSchema' } },
+            },
+          },
+        },
+      },
+    });
   });
 });

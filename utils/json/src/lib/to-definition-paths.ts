@@ -4,6 +4,7 @@ import {
   DEFINITIONS_PATH_PREFIX,
   isDefinitionPath,
 } from './is-definition-path.js';
+import { names } from '@beemood/names';
 
 /**
  * Update all entries of relative `$ref` paths into defintion paths such as `#/definitions/SomeSchemaFileName`
@@ -17,7 +18,7 @@ export function toDefinitionPaths(schema: JsonSchema) {
         continue;
       }
 
-      const definitionName = basename(value).split('.').slice(0, -1).join('');
+      const definitionName = names(basename(value).split('.').slice(0, -1).join('.')).pascalCase
       schema.$ref = `${DEFINITIONS_PATH_PREFIX}${definitionName}`;
     } else if (Array.isArray(value)) {
       for (const s of value) {

@@ -14,7 +14,7 @@ export function bundleSchemas(
 
       if (d.content !== mainSchema) {
         const definitionName = names(
-          basename(d.path).split('.').slice(0, -1).join('')
+          basename(d.path).split('.').slice(0, -1).join('.')
         ).pascalCase;
 
         mainSchema.definitions = {
@@ -32,7 +32,11 @@ export function bundleSchemas(
     }
   }
 }
-
+/**
+ * Bundle multiple json schemas into a single json schema fileF
+ * @param mainSchemaFilePath main schema file path
+ * @param outputSchemaFilepath schem bundle file path
+ */
 export async function bundle(
   mainSchemaFilePath: string,
   outputSchemaFilepath: string
