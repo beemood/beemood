@@ -58,4 +58,6 @@ export async function bundle(
   toDefinitionPaths(mainSchema);
 
   await writeJsonFile(outputSchemaFilepath, mainSchema);
+
+  return mainSchema;
 }
