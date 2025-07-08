@@ -1,17 +1,17 @@
 {
-  "name": "@beemood/names",
+  "name": "@beemood/json",
   "version": "0.0.1",
-  "description": "Names",
+  "description": "- [ ] add project description",
   "keywords": [
     "library"
   ],
-  "homepage": "/utils/names",
+  "homepage": "/utils/json",
   "funding": [
     "https://cash.app/$puqlib"
   ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/utils/names/favicon.png",
+  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/utils/json/favicon.png",
   "repository": {
-    "url": "https://github.com/beemood/beemood/tree/main/utils/names",
+    "url": "https://github.com/beemood/beemood/tree/main/utils/json",
     "type": "github"
   },
   "author": {
@@ -48,18 +48,22 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "utils/names/dist",
-          "main": "utils/names/src/index.ts",
-          "tsConfig": "utils/names/tsconfig.lib.json",
+          "outputPath": "utils/json/dist",
+          "main": "utils/json/src/index.ts",
+          "tsConfig": "utils/json/tsconfig.lib.json",
           "format": [
             "esm"
           ],
-          "declarationRootDir": "utils/names/src"
+          "declarationRootDir": "utils/json/src"
         }
       },
       "doc": {
         "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
       }
     }
+  },
+  "dependencies": {
+    "@beemood/fs": "^0.0.1",
+    "@beemood/names": "^0.0.1"
   }
 }

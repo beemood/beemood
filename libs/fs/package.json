@@ -1,7 +1,7 @@
 {
   "name": "@beemood/fs",
   "version": "0.0.1",
-  "description": "- [ ] add project description",
+  "description": "IO functions",
   "keywords": [
     "library"
   ],

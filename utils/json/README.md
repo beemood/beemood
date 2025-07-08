@@ -1,23 +1,23 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main//utils/names/favicon.png" alt="Logo" />
+  <img src="https://raw.githubusercontent.com/beemood/beemood/refs/heads/main//utils/json/favicon.png" alt="Logo" />
 </p>
 
-# @beemood/names
+# @beemood/json
 
-Names
+Input validation library
 
 ## Build scripts
 
 ```shell
-npx nx test @beemood/names
-npx nx lint @beemood/names
-npx nx build @beemood/names
-npx nx doc @beemood/names
+npx nx test @beemood/json
+npx nx lint @beemood/json
+npx nx build @beemood/json
+npx nx doc @beemood/json
 ```
 
 ## Install
 
-`pnpm add @beemood/names`
+`pnpm add @beemood/json`
 
 ## Examples
 

@@ -2,7 +2,7 @@
 
 ## IO
 
-- [ ] create io library to ease read, write, traverse files.
+- [x] create io library to ease reads, write, traverse files.
 
 ## Types
 

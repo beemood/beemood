@@ -4,7 +4,7 @@
 
 # @beemood/fs
 
-Input validation library
+IO functions
 
 ## Build scripts
 

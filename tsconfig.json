@@ -23,6 +23,9 @@
     },
     {
       "path": "./libs/fs"
+    },
+    {
+      "path": "./utils/json"
     }
   ]
 }
