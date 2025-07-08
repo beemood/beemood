@@ -15,6 +15,9 @@ importers:
         specifier: ^1.6.0
         version: 1.10.0
     devDependencies:
+      '@beemood/cli':
+        specifier: workspace:*
+        version: link:clis/cli
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.30.1
@@ -184,6 +187,8 @@ importers:
         version: 2.8.1
 
   libs/fs: {}
+
+  libs/types: {}
 
   libs/validation:
     dependencies:

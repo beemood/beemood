@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "StringProperty",
+  "properties": {
+    "type": { "const": "string" },
+    "minLength": { "type": "integer" },
+    "maxLength": { "type": "integer" },
+    "isIn": { "type": "array", "items": { "type": "string" } },
+    "notIn": { "type": "array", "items": { "type": "string" } },
+    "format": { "$ref": "../enum/string-format.schema.json" },
+    "defaultValue": { "type": "string" }
+  },
+  "required": ["type"]
+}
