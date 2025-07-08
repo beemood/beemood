@@ -1,4 +1,5 @@
-import { writeFile } from 'fs/promises';
+import { mkdir, writeFile } from 'fs/promises';
+import { dirname } from 'path';
 /**
  * Write text file
  * @param filepath
@@ -6,5 +7,6 @@ import { writeFile } from 'fs/promises';
  * @returns
  */
 export async function writeTextFile(filepath: string, content: string) {
+  await mkdir(dirname(filepath), { recursive: true });
   return await writeFile(filepath, content, { encoding: 'utf8' });
 }

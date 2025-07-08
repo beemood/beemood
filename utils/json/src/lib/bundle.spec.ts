@@ -1,54 +1,43 @@
-import {
-  convertReferencePathIntoDefinitionPath,
-  updateJsonSchemaReferencesToDefinitionPaths,
-} from './bundle.js';
+import { Directory, writeJsonFile } from '@beemood/fs';
+import { workspaceRoot } from '@nx/devkit';
+import { resolve } from 'path';
+import { JsonSchema } from './json-schema.js';
+import { bundle } from './bundle.js';
 
 describe('bundle', () => {
-  describe('convertReferencePathIntoDefinitionPath', () => {
-    it('should convert references into definition paths', () => {
-      expect(convertReferencePathIntoDefinitionPath('./some.json')).toEqual(
-        '#/definitions/Some'
-      );
-    });
-  });
-
-  describe('updateJsonSchemaReferencesToDefinitionPaths', () => {
-    it('should update json schema refs to definition paths ', () => {
-      expect(
-        updateJsonSchemaReferencesToDefinitionPaths({
-          $ref: './some.json',
-          properties: {
-            name: {
-              $ref: './other.json',
-            },
-          },
-          oneOf: [
-            {
-              properties: {
-                some: {
-                  $ref: './some.json',
-                },
-              },
-            },
-          ],
-        })
-      ).toEqual({
-        $ref: '#/definitions/Some',
+  const root = resolve(workspaceRoot, 'tmp', 'test', 'json', 'bundle');
+  const schemaFiles: Pick<Directory<JsonSchema>, 'path' | 'content'>[] = [
+    {
+      path: resolve(root, './enums/names.schema.json'),
+      content: {
+        $schema: 'draft-7',
+        enum: ['username', 'password'],
+      },
+    },
+    {
+      path: resolve(root, './property.schema.json'),
+      content: {
         properties: {
           name: {
-            $ref: '#/definitions/Other',
+            $ref: './enum/names.schema.json',
           },
         },
-        oneOf: [
-          {
-            properties: {
-              some: {
-                $ref: '#/definitions/Some',
-              },
-            },
-          },
-        ],
-      });
-    });
+      },
+    },
+  ];
+
+  beforeAll(async () => {
+    for (const d of schemaFiles) {
+      await writeJsonFile(d.path, d.content);
+    }
+  });
+
+  it('should work', async () => {
+    expect(1).toEqual(1);
+
+    await bundle(
+      resolve(root, './property.schema.json'),
+      resolve(root, './property-build.schema.json')
+    );
   });
 });

@@ -63,7 +63,7 @@
     }
   },
   "dependencies": {
-    "@beemood/fs": "^0.0.1",
-    "@beemood/names": "^0.0.1"
+    "@beemood/fs": "workspace:^",
+    "@beemood/names": "workspace:^"
   }
 }

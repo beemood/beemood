@@ -1,10 +1,11 @@
 packages:
-  - 'apps/*'
-  - 'libs/*'
-  - 'clis/*'
-  - 'utils/*'
+  - apps/*
+  - libs/*
+  - clis/*
+  - utils/*
 
 onlyBuiltDependencies:
+  - '@nestjs/core'
   - '@swc/core'
-  - 'esbuild'
-  - 'nx'
+  - esbuild
+  - nx

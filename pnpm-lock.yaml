@@ -213,11 +213,11 @@ importers:
   utils/json:
     dependencies:
       '@beemood/fs':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: workspace:^
+        version: link:../../libs/fs
       '@beemood/names':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: workspace:^
+        version: link:../names
 
   utils/names: {}
 
@@ -839,12 +839,6 @@ packages:
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-
-  '@beemood/fs@0.0.1':
-    resolution: {integrity: sha512-DKYHcBJTS8ujVcqeMPJ1osIdOsMo+PqXUYce75sd9l5+6+I3Wz4mftStV4yGhxQ0YsjqvqpObePWo3vcpxeO/Q==}
-
-  '@beemood/names@0.0.1':
-    resolution: {integrity: sha512-fRwtDoJsmHZAst/F3TBcg+8ahM+a+SeM91/1vIuIgIAs7TUqpDSjzR7hhQNRhNxUXgoNGThhr3RQweL209eajA==}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -5379,10 +5373,6 @@ snapshots:
       '@babel/helper-validator-identifier': 7.27.1
 
   '@bcoe/v8-coverage@0.2.3': {}
-
-  '@beemood/fs@0.0.1': {}
-
-  '@beemood/names@0.0.1': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:

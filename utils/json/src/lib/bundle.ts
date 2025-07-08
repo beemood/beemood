@@ -1,62 +1,57 @@
-import { readJsonFile } from '@beemood/fs';
+import { Directory, dirs, readJsonFile, writeJsonFile } from '@beemood/fs';
 import { JsonSchema } from './json-schema.js';
+import { basename, dirname, resolve } from 'path';
+import { toDefinitionPaths } from './to-definition-paths.js';
 import { names } from '@beemood/names';
-import { basename } from 'path';
 
-export const DEFINITIONS_PREFIX = '#/definitions/';
-
-export function validateJsonPath(referencePath: string) {
-  if (referencePath.length > 5 && referencePath.endsWith('.json')) {
-    return;
-  }
-  throw new Error(`Invalid json reference path ${referencePath}`);
-}
-
-export function convertReferencePathIntoDefinitionPath(referencePath: string) {
-  validateJsonPath(referencePath);
-  const filename = basename(referencePath).split('.').slice(0, -1).join('');
-  if (filename == undefined) {
-    throw new Error(`Could not extract the filename from ${referencePath}!`);
-  }
-
-  return `${DEFINITIONS_PREFIX}${names(filename).pascalCase}`;
-}
-
-export function isDefinitionPath(referencePath: string) {
-  return referencePath.startsWith(DEFINITIONS_PREFIX);
-}
-
-export function updateJsonSchemaReferencesToDefinitionPaths(
-  schema: JsonSchema
+export function bundleSchemas(
+  mainSchema: JsonSchema,
+  schemas: Directory<JsonSchema>[]
 ) {
-  const entries = Object.entries(schema);
+  for (const d of schemas) {
+    if (d.isFile) {
+      if (!d.content) throw new Error(`${d.path} content is required!`);
 
-  for (const [key, value] of entries) {
-    if (key === '$ref') {
-      if (isDefinitionPath(value) == false) {
-        schema.$ref = convertReferencePathIntoDefinitionPath(value);
-      }
-    }
+      if (d.content !== mainSchema) {
+        const definitionName = names(
+          basename(d.path).split('.').slice(0, -1).join('')
+        ).pascalCase;
 
-    if (Array.isArray(value)) {
-      for (const item of value) {
-        updateJsonSchemaReferencesToDefinitionPaths(item);
+        mainSchema.definitions = {
+          ...mainSchema.definitions,
+          ...d.content.definitions,
+        };
+        mainSchema.definitions![definitionName] = d.content;
+
+        delete d.content.$schema;
+
+        delete d.content.definitions;
       }
-    } else if (typeof value === 'object') {
-      updateJsonSchemaReferencesToDefinitionPaths(value);
+    } else if (d.isDirectory && d.children) {
+      bundleSchemas(mainSchema, d.children);
     }
   }
-
-  return schema;
 }
 
-export async function bundle(filepath: string): Promise<JsonSchema> {
-  const mainSchema = await readJsonFile<JsonSchema>(filepath);
+export async function bundle(
+  mainSchemaFilePath: string,
+  outputSchemaFilepath: string
+) {
+  mainSchemaFilePath = resolve(mainSchemaFilePath);
 
-  // Convert $ref paths into definition paths
-  {
-    updateJsonSchemaReferencesToDefinitionPaths(mainSchema);
-  }
+  const mainSchema = await readJsonFile<JsonSchema>(mainSchemaFilePath);
+  const root = dirname(mainSchemaFilePath);
 
-  return mainSchema;
+  const allFilesAndDirectories = await dirs<JsonSchema>(root, {
+    recursive: true,
+    readJsonContent: true,
+  });
+
+  mainSchema.definitions = mainSchema.definitions ?? {};
+
+  bundleSchemas(mainSchema, allFilesAndDirectories);
+
+  toDefinitionPaths(mainSchema);
+
+  await writeJsonFile(outputSchemaFilepath, mainSchema);
 }

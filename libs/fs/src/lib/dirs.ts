@@ -59,10 +59,10 @@ export type DirsOptions = {
  * @param options options {@link DirsOptions}
  * @returns
  */
-export async function dirs(
+export async function dirs<T>(
   rootdir: string,
   options?: DirsOptions
-): Promise<Directory[]> {
+): Promise<Directory<T>[]> {
   const { readContent, readJsonContent, recursive } = options || {};
 
   {
