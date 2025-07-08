@@ -22,11 +22,11 @@
 
 - [x] (001) create common code snippets
 - [x] (001) create typescript syntax code snippets
-- [ ] (001) create test code snippets
-- [ ] (001) create command and generator code snippets
+- [x] (001) create test code snippets
+- [x] (001) create command and generator code snippets
 
 ## Utility library
 
-- [ ] (001) create the utility libraries.
-- [ ] (001) create `utils` library that import and export all utility libraries.
-- [ ] (001) create `names` library
+- [x] (001) create the utility libraries.
+- [] (001) create `utils` library that import and export all utility libraries.
+- [x] (001) create `names` library
