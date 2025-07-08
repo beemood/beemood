@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "properties": {
+    "type": { "const": "number" },
+    "minimum": { "type": "number" },
+    "maximum": { "type": "number" },
+    "isIn": { "type": "array", "items": { "type": "number" } },
+    "notIn": { "type": "array", "items": { "type": "number" } },
+    "format": {"$ref": "../enum/number-format.schema.json"},
+    "defaultValue": { "type": "number" }
+  },
+  "required": ["type"]
+}

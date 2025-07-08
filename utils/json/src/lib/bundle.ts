@@ -9,7 +9,7 @@ export function bundleSchemas(
   schemas: Directory<JsonSchema>[]
 ) {
   for (const d of schemas) {
-    if (d.isFile) {
+    if (d.isFile && d.path.endsWith('.schema.json')) {
       if (!d.content) throw new Error(`${d.path} content is required!`);
 
       if (d.content !== mainSchema) {

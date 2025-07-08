@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Model",
+  "properties": {
+    "properties": {
+      "patternProperties": {
+        "[a-zA-Z]{1,}": {
+          "$ref": "./property/property.schema.json"
+        }
+      },
+      "propertyNames": {
+        "$ref": "./enum/property-name.schema.json"
+      }
+    },
+    "relations": {
+      "patternProperties": {
+        "[a-zA-Z]{1,}": {
+          "$ref": "./property/relation-property.schema.json"
+        }
+      },
+
+      "propertyNames": {
+        "$ref": "./enum/property-name.schema.json"
+      }
+    },
+    "uniques": {
+      "type": "array",
+      "items": {
+        "$ref": "./enum/property-name.schema.json"
+      }
+    }
+  },
+  "definitions": {}
+}

@@ -2,6 +2,7 @@ import { readJsonFile, writeJsonFile, writeTextFile } from '@beemood/fs';
 import { JsonSchema } from './json-schema.js';
 import { basename } from 'path';
 import { names } from '@beemood/names';
+import { toDefinitionPaths } from './to-definition-paths.js';
 
 export function getSchemaType(schema: JsonSchema): string {
   if (schema.type) {
@@ -15,12 +16,20 @@ export function getSchemaType(schema: JsonSchema): string {
       case 'integer':
         return 'number';
       case 'array': {
-        if (!schema.items) {
-          throw new Error(`Array property must have items options!`);
+        if (schema.items) {
+          return `${getSchemaType(schema.items)}[]`;
+        } else {
+          return `any[]`;
         }
-        return `${getSchemaType(schema.items)}[]`;
       }
     }
+  }
+
+  if (schema.const) {
+    if (typeof schema.const === 'string') {
+      return `'${schema.const}'`;
+    }
+    return schema.const;
   }
 
   if (schema.enum) {
@@ -50,7 +59,38 @@ export function getSchemaType(schema: JsonSchema): string {
     result.push('}');
     return result.join(' ');
   }
+
+  if (schema.patternProperties) {
+    let propertyName = 'string';
+
+    if (schema.propertyNames) {
+      const __newPropertyName = schema.propertyNames.$ref?.split('/').pop();
+      if (__newPropertyName) {
+        propertyName = __newPropertyName;
+      }
+    }
+
+    return `Record<${propertyName},${getSchemaType(
+      Object.values(schema.patternProperties)[0]
+    )}>`;
+  }
+  if (schema.allOf) {
+    const allOf = schema.allOf.map((e) => {
+      return `& ${getSchemaType(e)}`;
+    });
+    return `(${allOf.join('')})`;
+  }
+
+  if (schema.oneOf) {
+    const oneOf = schema.oneOf.map((e) => {
+      return `| ${getSchemaType(e)}`;
+    });
+    return `(${oneOf.join('')})`;
+  }
+
+  return '';
 }
+
 export async function generateTypes(filepath: string, outputFilePath: string) {
   const typeName = names(
     basename(filepath).split('.').slice(0, -1).join('.')

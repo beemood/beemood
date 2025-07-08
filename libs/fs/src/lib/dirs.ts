@@ -103,7 +103,7 @@ export async function dirs<T>(
 
       if (readContent == true) {
         d.content = await readTextFile(d.path);
-      } else if (readJsonContent == true) {
+      } else if (readJsonContent == true && d.path.endsWith('.json')) {
         d.content = await readJsonFile(d.path);
       }
     }

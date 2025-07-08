@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=./models.json
+properties:
+  name: 
+    type: string
+
