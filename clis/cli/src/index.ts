@@ -1,4 +1,6 @@
 // @index(['./**/*.ts', '!./**/*.{spec,test}.ts', '!./**/program.ts'], f => `export * from '${f.path}.js'`)
+export * from './commands/bundle-json/bundle-json.command.js';
+export * from './commands/generate-typs/generate-types.js';
 export * from './commands/hello/hello.command.js';
 export * from './commands/rename/rename.command.js';
 export * from './generators/project/helpers.js';

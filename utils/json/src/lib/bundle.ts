@@ -3,6 +3,7 @@ import { JsonSchema } from './json-schema.js';
 import { basename, dirname, resolve } from 'path';
 import { toDefinitionPaths } from './to-definition-paths.js';
 import { names } from '@beemood/names';
+import { JsonError } from './json-error.js';
 
 export function bundleSchemas(
   mainSchema: JsonSchema,
@@ -10,7 +11,10 @@ export function bundleSchemas(
 ) {
   for (const d of schemas) {
     if (d.isFile && d.path.endsWith('.schema.json')) {
-      if (!d.content) throw new Error(`${d.path} content is required!`);
+      if (!d.content)
+        throw new Error(
+          `${JsonError.REQUIRED_CONTENT}: ${d.path} content is required!`
+        );
 
       if (d.content !== mainSchema) {
         const definitionName = names(
