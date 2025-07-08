@@ -26,7 +26,7 @@ export type ArrayPropertySchema = { type:'array'; minSize?:number; maxSize?:numb
 
 export type BooleanPropertySchema = { type:'boolean'; defaultValue?:boolean; example?:boolean; examples?:boolean[]; }
 
-export type CommonPropertySchema = { type:PropertyTypeSchema; name?:PropertyNameSchema; description?:string; required?:boolean; unique?:boolean; readOnly?:boolean; writeOnly?:boolean; generated?:GeneratedSchema; hash?:boolean; inputType:InputTypeSchema; notEqualToProperty?:PropertyNameSchema[]; dependencies?:Record<PropertyNameSchema,boolean>; }
+export type CommonPropertySchema = { type:PropertyTypeSchema; name?:PropertyNameSchema; description?:string; required?:boolean; unique?:boolean; readOnly?:boolean; writeOnly?:boolean; generated?:GeneratedSchema; hash?:boolean; encrypt?:boolean; inputType:InputTypeSchema; notEqualToProperty?:PropertyNameSchema[]; dependencies?:Record<PropertyNameSchema,boolean>; }
 
 export type IntegerPropertySchema = { type:'integer'; minimum?:number; maximum?:number; isIn?:number[]; notIn?:number[]; format?:IntegerFormatSchema; defaultValue?:number; example?:number; examples?:number[]; }
 
@@ -40,6 +40,6 @@ export type RelationPropertySchema = { type:RelationTypeSchema; required?:boolea
 
 export type StringCasing = 'snake'|'kabab'|'camel'|'pascal'|'screaming-snake'|'title'|'sentence'|'lower'|'upper'
 
-export type StringPropertySchema = { type:'string'; minLength?:number; maxLength?:number; isIn?:string[]; notIn?:string[]; format?:StringFormatSchema; contains?:string; notContains?:string; startsWith?:string; notStartsWith?:string; endsWith?:string; notEndsWith?:string; defaultValue?:string; casing?:StringCasing; }
+export type StringPropertySchema = { type:'string'; minLength?:number; maxLength?:number; isIn?:string[]; notIn?:string[]; format?:StringFormatSchema; contains?:string; notContains?:string; startsWith?:string; notStartsWith?:string; endsWith?:string; notEndsWith?:string; casing?:StringCasing; defaultValue?:string; }
 
 export type Model = { name?:ModelNameSchema; properties?:Record<PropertyNameSchema,PropertySchema>; relations?:Record<PropertyNameSchema,RelationPropertySchema>; uniques?:PropertyNameSchema[]; }
