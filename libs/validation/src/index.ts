@@ -9,4 +9,6 @@ export * from './lib/json-tranfromer.js';
 export * from './lib/number-validation.js';
 export * from './lib/object-validation.js';
 export * from './lib/string-validation.js';
+export * from './lib/test-utils.js';
+export * from './lib/trim-transformer.js';
 export * from './lib/validation.js';

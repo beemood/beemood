@@ -1,24 +1,18 @@
 {
-  "name": "@beemood/nest",
-  "version": "0.0.1",
+  "name": "<%- projectName %>",
+  "version": "<%- mp.version %>",
   "description": "- [ ] add project description",
   "keywords": [
     "library"
   ],
-  "homepage": "/libs/nest",
-  "funding": [
-    "https://cash.app/$puqlib"
-  ],
-  "icon": "https://raw.githubusercontent.com/beemood/beemood/refs/heads/main/libs/nest/favicon.png",
+  "homepage": "<%- mp.homepage %>/<%- projectRoot %>",
+  "funding": <%- JSON.stringify(mp.funding || []) %>,
+  "icon": "<%- mp.content %>/<%- projectRoot %>/favicon.png",
   "repository": {
-    "url": "https://github.com/beemood/beemood/tree/main/libs/nest",
+    "url": "<%- mp.repository.url %>/<%- projectRoot %>",
     "type": "github"
   },
-  "author": {
-    "name": "Robert",
-    "email": "robert.brightline@gmail.com",
-    "url": "https://beemood.github.io"
-  },
+  "author":<%- JSON.stringify(mp.author || {}) %>,
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -48,22 +42,35 @@
           "{options.outputPath}"
         ],
         "options": {
-          "outputPath": "libs/nest/dist",
-          "main": "libs/nest/src/index.ts",
-          "tsConfig": "libs/nest/tsconfig.lib.json",
+          "outputPath": "<%- projectRoot %>/dist",
+          "main": "<%- projectRoot %>/src/index.ts",
+          "tsConfig": "<%- projectRoot %>/tsconfig.lib.json",
           "format": [
             "esm"
           ],
-          "declarationRootDir": "libs/nest/src"
+          "declarationRootDir": "<%- projectRoot %>/src"
         }
       },
       "doc": {
         "command": "npx typedoc --options {projectRoot}/typedoc.json --favicon {projectRoot}/favicon.png --entryPoints {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json"
+      }, 
+      "prisma-migrate": {
+        "command": "npx prisma migrate deve --name some", 
+        "options":{
+          "cwd":"<%- projectRoot %>"
+        }
+      },
+      "prisma-generate": {
+        "command": "npx prisma generate", 
+        "options":{
+          "cwd":"<%- projectRoot %>"
+        }
       }
     }
-  },
-  "dependencies": {
-    "@nestjs/common": "^11.1.3",
-    "@nestjs/swagger": "^11.2.0"
+  }, 
+  "dependencies": { 
+    "@beemood/nest": "workspace:*",
+    "@beemood/property": "workspace:*",
+    "@prisma/client": "^6.11.1",
   }
 }

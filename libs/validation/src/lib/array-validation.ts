@@ -26,6 +26,8 @@ export type ArrayOptions = {
   items: PropertyValidationOptions;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   defaultValue?: any;
+  example?: any;
+  examples?: any[];
 } & CommonOptions;
 
 /**

@@ -17,6 +17,7 @@ export type CommonOptions = {
   transform?: boolean;
   defaultValue?: any;
   exclude?: boolean;
+  description?: string;
 };
 
 export function CommonValidation(

@@ -2,7 +2,7 @@
  * Project types
  * @group generator
  */
-export type ProjectType = 'api' | 'cli' | 'lib' | 'util';
+export type ProjectType = 'api' | 'cli' | 'lib' | 'util' | 'db';
 
 /**
  * Project generator parameter type

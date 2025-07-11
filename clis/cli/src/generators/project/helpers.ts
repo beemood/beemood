@@ -15,6 +15,8 @@ export function getSourceDirectory(projectType: ProjectType) {
     case 'lib':
     case 'util':
       return 'lib';
+    case 'db':
+      return 'db';
   }
 }
 
@@ -38,6 +40,8 @@ export function getProjectRootDirectory(
       return `libs/${projectName}`;
     case 'util':
       return `utils/${projectName}`;
+    case 'db':
+      return `dbs/${projectName}`;
   }
 }
 

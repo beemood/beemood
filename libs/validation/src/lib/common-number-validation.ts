@@ -8,6 +8,8 @@ export type CommonNumberOptions = {
   maximum?: number;
   format?: NumberFormat;
   defaultValue?: number;
+  example?: number;
+  examples?:number[]
 } & CommonOptions;
 
 export function CommonNumberValidation(

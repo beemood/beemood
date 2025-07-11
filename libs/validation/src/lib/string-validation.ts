@@ -21,6 +21,8 @@ export type StringOptions = {
   format?: StringFormat;
   defaultValue?: string;
   trim?: boolean;
+  example?: string;
+  examples?: string[];
 } & CommonOptions;
 
 export function StringValidation(

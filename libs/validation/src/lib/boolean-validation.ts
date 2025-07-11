@@ -4,6 +4,8 @@ import { CommonOptions, CommonValidation } from './common-validation.js';
 export type BooleanOptions = {
   type: 'boolean';
   defaultValue?: boolean;
+  example?: boolean;
+  examples?: boolean[];
 } & CommonOptions;
 
 export function BooleanValidation(
