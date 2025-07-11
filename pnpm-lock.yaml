@@ -198,6 +198,18 @@ importers:
         specifier: ^2.3.0
         version: 2.8.1
 
+  dbs/todo-db:
+    dependencies:
+      '@beemood/nest':
+        specifier: workspace:*
+        version: link:../../libs/nest
+      '@beemood/property':
+        specifier: workspace:*
+        version: link:../../libs/property
+      '@prisma/client':
+        specifier: 6.11.1
+        version: 6.11.1(prisma@6.11.1(typescript@5.8.3))(typescript@5.8.3)
+
   libs/fs: {}
 
   libs/nest:

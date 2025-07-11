@@ -35,6 +35,9 @@
     },
     {
       "path": "./libs/property"
+    },
+    {
+      "path": "./dbs/todo-db"
     }
   ]
 }
