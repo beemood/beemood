@@ -1,5 +1,5 @@
 {
-  "name": "@beemood/beemood",
+  "name": "@beemood/inventory",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -12,15 +12,15 @@
         "defaultConfiguration": "production",
         "options": {
           "platform": "node",
-          "outputPath": "apps/beemood/dist",
+          "outputPath": "apps/inventory/dist",
           "format": [
             "cjs"
           ],
           "bundle": false,
-          "main": "apps/beemood/src/main.ts",
-          "tsConfig": "apps/beemood/tsconfig.app.json",
+          "main": "apps/inventory/src/main.ts",
+          "tsConfig": "apps/inventory/tsconfig.app.json",
           "assets": [
-            "apps/beemood/src/assets"
+            "apps/inventory/src/assets"
           ],
           "esbuildOptions": {
             "sourcemap": true,
@@ -49,15 +49,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@beemood/beemood:build",
+          "buildTarget": "@beemood/inventory:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@beemood/beemood:build:development"
+            "buildTarget": "@beemood/inventory:build:development"
           },
           "production": {
-            "buildTarget": "@beemood/beemood:build:production"
+            "buildTarget": "@beemood/inventory:build:production"
           }
         }
       },
@@ -67,5 +67,16 @@
         }
       }
     }
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.3",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.3",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/platform-express": "^11.1.3",
+    "@nestjs/schedule": "^6.0.0",
+    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/throttler": "^6.4.0",
+    "helmet": "^8.1.0"
   }
 }

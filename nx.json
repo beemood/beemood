@@ -41,7 +41,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/beemood-e2e/**/*"]
+      "exclude": ["apps/beemood-e2e/**/*", "apps/inventory-e2e/**/*"]
     }
   ],
   "targetDefaults": {

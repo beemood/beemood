@@ -10,7 +10,7 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 
 export default {
-  displayName: '@beemood/beemood',
+  displayName: '@beemood/inventory',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
