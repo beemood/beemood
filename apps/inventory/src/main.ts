@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app/app.module';
+import { AppModule } from './app/app.module.js';
 import helmet from 'helmet';
 import { ConfigService } from '@nestjs/config';
 import { Logger } from '@nestjs/common';

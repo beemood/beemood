@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "nx": {
-    "implicitDependencies": [
-      "@beemood/inventory"
-    ],
     "targets": {
       "e2e": {
         "executor": "@nx/jest:jest",
@@ -15,10 +12,7 @@
         "options": {
           "jestConfig": "apps/inventory-e2e/jest.config.ts",
           "passWithNoTests": true
-        },
-        "dependsOn": [
-          "@beemood/inventory:serve"
-        ]
+        }
       }
     }
   }
