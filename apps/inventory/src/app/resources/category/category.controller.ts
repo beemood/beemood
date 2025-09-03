@@ -1,43 +1,47 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import {
-  DeleteOneById,
-  FindMany,
-  FindOneById,
+  AutoMethod,
   ParamId,
+  Body,
+  Query,
   ResourceController,
-  SaveOne,
-  UpdateOneById,
 } from '@beenest/nest';
-import { InjectRepository } from '@beenest/prisma';
 import { Prisma } from '@beemood/inventory-db';
-import { Body } from '@nestjs/common';
-import type { CreateCategory, UpdateCategory } from './category.schema';
-import { CreateCategorySchema, UpdateCategorySchema } from './category.schema';
+
+import type {
+  CreateCategory,
+  QueryManyCategory,
+  UpdateCategory,
+} from './category.schema';
+import {
+  CreateCategorySchema,
+  QueryManyCategorySchema,
+  UpdateCategorySchema,
+} from './category.schema';
+import { InjectRepository } from '@beenest/prisma';
+
 @ResourceController()
 export class CategoryController {
   constructor(
     @InjectRepository() protected readonly repo: Prisma.CategoryDelegate
   ) {}
 
-  @SaveOne()
-  async saveOne(
-    @Body({ transform: (value) => CreateCategorySchema.parse(value) })
-    data: CreateCategory
-  ) {
+  @AutoMethod()
+  async saveOne(@Body(CreateCategorySchema) data: CreateCategory) {
     return await this.repo.create({ data });
   }
 
-  @FindMany()
-  async findMany() {
-    return await this.repo.findMany();
+  @AutoMethod()
+  async findMany(@Query(QueryManyCategorySchema) query: QueryManyCategory) {
+    return await this.repo.findMany(query);
   }
 
-  @FindOneById()
-  async findOneById(@ParamId() id: number) {
+  @AutoMethod()
+  async findOneById(@ParamId() id: number, @Query() query) {
     return await this.repo.findUniqueOrThrow({ where: { id } });
   }
 
-  @UpdateOneById()
+  @AutoMethod()
   async updateOneById(
     @ParamId() id: number,
     @Body({ transform: (value) => UpdateCategorySchema.parse(value) })
@@ -47,7 +51,7 @@ export class CategoryController {
     return await this.repo.update({ where: { id }, data });
   }
 
-  @DeleteOneById()
+  @AutoMethod()
   async deleteOneById(@ParamId() id: number) {
     return await this.repo.delete({ where: { id } });
   }

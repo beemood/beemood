@@ -15,7 +15,15 @@ datasource db {
 }
 
 model Category {
-  id Int @id @default(autoincrement())
-
+  id   Int    @id @default(autoincrement())
   name String @unique
+}
+
+model Sample {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  intValue     Int?
+  decimalValue Decimal?
+  booleanValue Boolean?
+  jsonValue    Json?
 }

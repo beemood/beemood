@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@beenest/nest':
-        specifier: ^0.0.1
-        version: 0.0.1(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)
+        specifier: ^0.0.3
+        version: 0.0.3(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@beenest/prisma':
-        specifier: ^0.0.1
-        version: 0.0.1(reflect-metadata@0.1.14)(rxjs@7.8.2)
+        specifier: ^0.0.3
+        version: 0.0.3(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@beenest/utils':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.3
+        version: 0.0.3
       '@nestjs/common':
         specifier: ^11.0.0
         version: 11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2)
@@ -171,10 +171,6 @@ importers:
       webpack-cli:
         specifier: ^5.1.4
         version: 5.1.4(webpack@5.101.3)
-
-  apps/beemood: {}
-
-  apps/beemood-e2e: {}
 
   apps/inventory: {}
 
@@ -816,14 +812,14 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@beenest/nest@0.0.1':
-    resolution: {integrity: sha512-LJEaWzlNyDE7vd7PzMWiGRnRVcwl6H97Z+KQuqK+Eb/kqA0q6nkDZ/ZXh3pRLJkIp9sGlu1IP0sSCAKnmLK2tg==}
+  '@beenest/nest@0.0.3':
+    resolution: {integrity: sha512-zfNTkd57FQbAXnE2znN+3PCpfwIT3Iv8d8lv+EQEM4IJRDJIw4/v6cN6Q9w0O99HLRCMJyUUNhOs8sSZuDfYyA==}
 
-  '@beenest/prisma@0.0.1':
-    resolution: {integrity: sha512-ciXdjG2fstmOLtG8M0amiNyr5j2lj1m5M6n73fa9l3p72tRm6IeHMKUwHlI5W7GRYiR0LXNHrG2lvgwMyq5uRA==}
+  '@beenest/prisma@0.0.3':
+    resolution: {integrity: sha512-slTu3vbjmORfvcEPexvhmOtj9H1O3Df6XV5L7GRJEQRgPQiLbgM89C1nV+ZBYUxoy8VJwePGMrZ5BLRhG5NrXg==}
 
-  '@beenest/utils@0.0.1':
-    resolution: {integrity: sha512-G627KWFbhczal7X/nleoN+EkiIUFYYsPWQlbLCWaBoA8sOzbw1W8tIHqIf6SCWts1DeNktIuiNYhtHkVMuU/Gw==}
+  '@beenest/utils@0.0.3':
+    resolution: {integrity: sha512-DiRc9pS4Vc5RaDe3M9eBq3sAk5IPSHfDb3dzLhzLC3Sh9LJgUlAP8OWXcwRl/t29SNeBdeFF51Pz4vFEe+bekg==}
 
   '@borewit/text-codec@0.1.1':
     resolution: {integrity: sha512-5L/uBxmjaCIX5h8Z+uu+kA9BQLkc/Wl06UGR5ajNRxu+/XjonB5i8JpgFMrPj3LXTCPA0pv8yxUvbUi+QthGGA==}
@@ -6438,9 +6434,9 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@beenest/nest@0.0.1(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)':
+  '@beenest/nest@0.0.3(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)':
     dependencies:
-      '@beenest/utils': 0.0.1
+      '@beenest/utils': 0.0.3
       '@nestjs/common': 11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@nestjs/config': 4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2))(rxjs@7.8.2)
       '@nestjs/core': 11.1.6(@nestjs/common@11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/platform-express@11.1.6)(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)
@@ -6458,9 +6454,9 @@ snapshots:
       - rxjs
       - supports-color
 
-  '@beenest/prisma@0.0.1(reflect-metadata@0.1.14)(rxjs@7.8.2)':
+  '@beenest/prisma@0.0.3(reflect-metadata@0.1.14)(rxjs@7.8.2)':
     dependencies:
-      '@beenest/utils': 0.0.1
+      '@beenest/utils': 0.0.3
       '@nestjs/common': 11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@swc/helpers': 0.5.17
       zod: 4.1.5
@@ -6471,7 +6467,7 @@ snapshots:
       - rxjs
       - supports-color
 
-  '@beenest/utils@0.0.1':
+  '@beenest/utils@0.0.3':
     dependencies:
       '@swc/helpers': 0.5.17
 
