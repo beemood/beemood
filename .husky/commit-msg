@@ -1,0 +1,58 @@
+#!/usr/bin/env sh 
+
+
+# This script validates commit messages to enforce a specific format.
+# A common format is the Conventional Commits specification.
+# For example: feat(scope): message or fix(scope): message
+#
+# The script checks for the following types:
+# - feat: A new feature
+# - fix: A bug fix
+# - docs: Documentation changes
+# - style: Formatting, missing semicolons, etc.; no code change
+# - refactor: A code change that neither fixes a bug nor adds a feature
+# - test: Adding missing tests or correcting existing tests
+# - chore: Routine tasks, build process or auxiliary tool changes
+# - ci: CI configuration changes
+# - build: Changes that affect the build system or external dependencies
+
+# The first argument is the path to the temporary commit message file.
+commit_msg_file=$1
+commit_msg=$(cat "$commit_msg_file")
+
+# Regular expression to validate the commit message format.
+# It checks for a valid type, an optional scope in parentheses, a colon, and a space.
+# The `^` and `$` ensure the entire line is matched.
+# It also allows for optional breaking change messages (e.g., 'BREAKING CHANGE:').
+#
+# Pattern breakdown:
+# ^(feat|fix|docs|style|refactor|test|chore|ci|build) - Start of line, followed by one of the valid types.
+# (\([a-zA-Z0-9-]+\))? - An optional scope, which is text inside parentheses.
+# !? - An optional exclamation mark for breaking changes.
+# : - A colon.
+# [[:space:]] - A single space.
+# .+ - At least one character for the subject line.
+# $ - End of the line.
+
+if echo "$commit_msg" | grep -Eq '^(feat|fix|docs|style|refactor|test|chore|ci|build)(\([a-zA-Z0-9-]+\))?!?: .+'; then
+  # Commit message is valid.
+  exit 0
+else
+  # Commit message is invalid. Print an error message and exit with a non-zero status code.
+  echo "
+  🚨 Invalid commit message! 🚨
+
+  Commit messages must follow the Conventional Commits format.
+
+  Example:
+    feat(api): add user authentication endpoint
+    fix: correct a bug in the login form
+    docs: update README with new instructions
+    refactor!: drop support for Node.js 12
+
+  Valid types: feat, fix, docs, style, refactor, test, chore, ci, build
+  
+  For more information, see: https://www.conventionalcommits.org/
+  "
+  exit 1
+fi

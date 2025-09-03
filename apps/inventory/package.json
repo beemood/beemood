@@ -1,7 +1,37 @@
 {
   "name": "@beemood/inventory",
   "version": "0.0.1",
-  "private": true,
+  "displayName": "Inventory Management System",
+  "description": "Inventory management software to manage inventory, stock, supplier, manufacturer, serial number and so more",
+  "keywords": [
+    "inventory",
+    "stock"
+  ],
+  "homepage": "https://beemood.github.io/beemood/apps/inventory",
+  "icon": "https://beemood.github.io/beemood/apps/inventory/assets/favicon.png",
+  "author": {
+    "name": "Robert Brightline",
+    "email": "robert-brightline@gmail.com",
+    "url": "https://beemood.github.io/#profile"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "bugs": {
+    "email": "robert-brightline@gmail.com"
+  },
+  "sponsor": {
+    "url": "https://beemood.github.io"
+  },
+  "repository": {
+    "directory": "apps/inventory",
+    "type": "github",
+    "url": "https://github.com/beemood"
+  },
   "nx": {
     "targets": {
       "build": {
@@ -78,6 +108,15 @@
       "test": {
         "options": {
           "passWithNoTests": true
+        }
+      },
+      "doc": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "npx typedoc"
+          ],
+          "cwd": "{projectRoot}"
         }
       }
     }
