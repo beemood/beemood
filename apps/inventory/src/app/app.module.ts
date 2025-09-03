@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { APP_GUARD } from '@nestjs/core';
+import { ResourceModule } from './resources/resource.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { APP_GUARD } from '@nestjs/core';
     ThrottlerModule.forRoot({
       throttlers: [{ ttl: 5_000, limit: 8, blockDuration: 10_000 }],
     }),
+    ResourceModule,
   ],
   controllers: [AppController],
   providers: [
