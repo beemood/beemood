@@ -2,18 +2,5 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": [
-    {
-      "path": "./apps/inventory-e2e"
-    },
-    {
-      "path": "./apps/inventory"
-    },
-    {
-      "path": "./apps/website-e2e"
-    },
-    {
-      "path": "./apps/website"
-    }
-  ]
+  "references": []
 }

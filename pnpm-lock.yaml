@@ -172,14 +172,6 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(webpack@5.101.3)
 
-  apps/inventory: {}
-
-  apps/inventory-e2e: {}
-
-  apps/website: {}
-
-  apps/website-e2e: {}
-
 packages:
 
   '@ampproject/remapping@2.3.0':

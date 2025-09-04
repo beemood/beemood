@@ -55,7 +55,8 @@
       "exclude": [
         "apps/beemood-e2e/**/*",
         "apps/inventory-e2e/**/*",
-        "apps/website-e2e/**/*"
+        "apps/website-e2e/**/*",
+        "apps/inventory-e2e/**/*"
       ]
     }
   ],
