@@ -1,5 +1,11 @@
-packages:
-  - "apps/*"
-
-autoInstallPeers: true
-strictPeerDependencies: false
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@prisma/client'
+  - '@prisma/engines'
+  - '@scarf/scarf'
+  - '@swc/core'
+  - bcrypt
+  - nx
+  - prisma
+  - unrs-resolver

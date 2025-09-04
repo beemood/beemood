@@ -7,9 +7,9 @@
   },
   "private": true,
   "dependencies": {
-    "@beenest/nest": "^0.0.3",
-    "@beenest/prisma": "^0.0.3",
-    "@beenest/utils": "^0.0.3",
+    "@beenest/nest": "^0.0.5",
+    "@beenest/prisma": "^0.0.5",
+    "@beenest/utils": "^0.0.5",
     "@nestjs/common": "^11.0.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.0",

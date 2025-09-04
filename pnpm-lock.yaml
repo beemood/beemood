@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@beenest/nest':
-        specifier: ^0.0.3
-        version: 0.0.3(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)
+        specifier: ^0.0.5
+        version: 0.0.5(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@beenest/prisma':
-        specifier: ^0.0.3
-        version: 0.0.3(reflect-metadata@0.1.14)(rxjs@7.8.2)
+        specifier: ^0.0.5
+        version: 0.0.5(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@beenest/utils':
-        specifier: ^0.0.3
-        version: 0.0.3
+        specifier: ^0.0.5
+        version: 0.0.5
       '@nestjs/common':
         specifier: ^11.0.0
         version: 11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2)
@@ -812,14 +812,14 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@beenest/nest@0.0.3':
-    resolution: {integrity: sha512-zfNTkd57FQbAXnE2znN+3PCpfwIT3Iv8d8lv+EQEM4IJRDJIw4/v6cN6Q9w0O99HLRCMJyUUNhOs8sSZuDfYyA==}
+  '@beenest/nest@0.0.5':
+    resolution: {integrity: sha512-AlO/YI173dtuUu+EFYUqR0TLnJJTj2ABaSfViuvfBAPnt9eSWvkjTELZ4AKDFIv+QirTWXUkbDfYCKUiVQoijw==}
 
-  '@beenest/prisma@0.0.3':
-    resolution: {integrity: sha512-slTu3vbjmORfvcEPexvhmOtj9H1O3Df6XV5L7GRJEQRgPQiLbgM89C1nV+ZBYUxoy8VJwePGMrZ5BLRhG5NrXg==}
+  '@beenest/prisma@0.0.5':
+    resolution: {integrity: sha512-Tggsa0gfAyqQ06wE2MPlqoPUgn3Z1bQKBXLyzN6SZoekXuOyuIDH7KIS7bBz3fhFGXXEaKYtoXp0+tmf2fP2vg==}
 
-  '@beenest/utils@0.0.3':
-    resolution: {integrity: sha512-DiRc9pS4Vc5RaDe3M9eBq3sAk5IPSHfDb3dzLhzLC3Sh9LJgUlAP8OWXcwRl/t29SNeBdeFF51Pz4vFEe+bekg==}
+  '@beenest/utils@0.0.5':
+    resolution: {integrity: sha512-1lNzo5dh00ID2yTCht8dZMrWhz29mNBb7G4yDAUSvjBIQT6UWlhA41cO4p6asARqptweQHj/T7gvmY+KJZrySA==}
 
   '@borewit/text-codec@0.1.1':
     resolution: {integrity: sha512-5L/uBxmjaCIX5h8Z+uu+kA9BQLkc/Wl06UGR5ajNRxu+/XjonB5i8JpgFMrPj3LXTCPA0pv8yxUvbUi+QthGGA==}
@@ -6434,9 +6434,9 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@beenest/nest@0.0.3(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)':
+  '@beenest/nest@0.0.5(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)':
     dependencies:
-      '@beenest/utils': 0.0.3
+      '@beenest/utils': 0.0.5
       '@nestjs/common': 11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@nestjs/config': 4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2))(rxjs@7.8.2)
       '@nestjs/core': 11.1.6(@nestjs/common@11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2))(@nestjs/platform-express@11.1.6)(@nestjs/websockets@11.1.6)(reflect-metadata@0.1.14)(rxjs@7.8.2)
@@ -6454,9 +6454,9 @@ snapshots:
       - rxjs
       - supports-color
 
-  '@beenest/prisma@0.0.3(reflect-metadata@0.1.14)(rxjs@7.8.2)':
+  '@beenest/prisma@0.0.5(reflect-metadata@0.1.14)(rxjs@7.8.2)':
     dependencies:
-      '@beenest/utils': 0.0.3
+      '@beenest/utils': 0.0.5
       '@nestjs/common': 11.1.6(reflect-metadata@0.1.14)(rxjs@7.8.2)
       '@swc/helpers': 0.5.17
       zod: 4.1.5
@@ -6467,7 +6467,7 @@ snapshots:
       - rxjs
       - supports-color
 
-  '@beenest/utils@0.0.3':
+  '@beenest/utils@0.0.5':
     dependencies:
       '@swc/helpers': 0.5.17
 

@@ -1,24 +1,27 @@
 /* eslint-disable @nx/enforce-module-boundaries */
+import { Prisma } from '@beemood/inventory-db';
 import {
   AutoMethod,
-  ParamId,
   Body,
+  ParamId,
   Query,
   ResourceController,
 } from '@beenest/nest';
-import { Prisma } from '@beemood/inventory-db';
 
-import type {
-  CreateCategory,
-  QueryManyCategory,
-  UpdateCategory,
-} from './category.schema';
-import {
-  CreateCategorySchema,
-  QueryManyCategorySchema,
-  UpdateCategorySchema,
-} from './category.schema';
 import { InjectRepository } from '@beenest/prisma';
+import { inspect } from 'util';
+import {
+  type CreateCategory,
+  CreateCategorySchema,
+} from './schemas/create-category';
+import {
+  type QueryManyCategories,
+  QueryManyCategoriesSchema,
+} from './schemas/query-many-categories';
+import {
+  type UpdateCategory,
+  UpdateCategorySchema,
+} from './schemas/update-category';
 
 @ResourceController()
 export class CategoryController {
@@ -32,20 +35,26 @@ export class CategoryController {
   }
 
   @AutoMethod()
-  async findMany(@Query(QueryManyCategorySchema) query: QueryManyCategory) {
-    return await this.repo.findMany(query);
+  async findMany(@Query(QueryManyCategoriesSchema) query: QueryManyCategories) {
+    console.log(inspect(query, true, 100));
+
+    return await this.repo.findMany({
+      take: query?.take,
+      skip: query?.skip,
+      select: query?.select,
+      where: query?.where,
+    });
   }
 
   @AutoMethod()
-  async findOneById(@ParamId() id: number, @Query() query) {
+  async findOneById(@ParamId() id: number) {
     return await this.repo.findUniqueOrThrow({ where: { id } });
   }
 
   @AutoMethod()
   async updateOneById(
     @ParamId() id: number,
-    @Body({ transform: (value) => UpdateCategorySchema.parse(value) })
-    data: UpdateCategory
+    @Body(UpdateCategorySchema) data: UpdateCategory
   ) {
     await this.repo.findUniqueOrThrow({ where: { id } });
     return await this.repo.update({ where: { id }, data });
