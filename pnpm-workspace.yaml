@@ -4,7 +4,11 @@ packages:
 autoInstallPeers: true
 
 onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@prisma/client'
   - '@prisma/engines'
+  - '@puq/inventory-db'
+  - '@scarf/scarf'
   - '@swc/core'
   - esbuild
   - nx

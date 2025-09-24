@@ -1,6 +1,6 @@
 {
   "name": "@beemood/inventory",
-  "version": "0.11.7",
+  "version": "0.13.0",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
@@ -71,6 +71,30 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@nestjs/cache-manager": "^3.0.1",
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/event-emitter": "^3.0.1",
+    "@nestjs/platform-express": "^11.1.6",
+    "@nestjs/schedule": "^6.0.0",
+    "@nestjs/swagger": "^11.2.0",
+    "@nestjs/throttler": "^6.4.0",
+    "@prisma/client": "^6.16.2",
+    "@puq/inventory-db": "^0.13.0",
+    "@puq/nest": "^0.13.0",
+    "@puq/prisma": "^0.13.0",
+    "@puq/types": "^0.13.0",
+    "@puq/zod": "^0.13.0",
+    "@swc/helpers": "~0.5.11",
+    "cache-manager": "^7.2.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.6"
   }
 }

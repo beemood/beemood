@@ -1,10 +1,4 @@
-function Sample(): PropertyDecorator {
-  return (...args) => {
-    console.log(args);
-  };
-}
+import { boot } from '@puq/nest';
+import { AppModule } from './lib/app.module.js';
 
-class A {
-  @Sample()
-  name: string;
-}
+boot(AppModule);

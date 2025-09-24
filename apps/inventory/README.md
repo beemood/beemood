@@ -4,7 +4,7 @@
 
 # @beemood/inventory
 
-inventory
+Inventory api
 
 ## Install
 
