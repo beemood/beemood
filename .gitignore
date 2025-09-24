@@ -4,6 +4,7 @@
 dist
 tmp
 out-tsc
+generated
 
 # dependencies
 node_modules
@@ -23,6 +24,8 @@ node_modules
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/*.code-snippets
+!.vscode/*.code-profile
 
 # misc
 /.sass-cache
@@ -42,3 +45,6 @@ Thumbs.db
 .nx/workspace-data
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
+
+vite.config.*.timestamp*
+vitest.config.*.timestamp*

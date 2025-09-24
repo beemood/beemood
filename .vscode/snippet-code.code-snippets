@@ -1,0 +1,95 @@
+{
+    "describe": {
+        "prefix": "describe",
+        "body": [
+            "describe('$1', () => {",
+            "  beforeAll(async () => {",
+            "    // setup",
+            "  });",
+            "",
+            "  afterAll(async () => {",
+            "    // teardown",
+            "  });",
+            "",
+            "  it('should $1', async () => {",
+            "    // Test",
+            "  });",
+            "});",
+        ],
+        "scope": "typescript"
+    },
+    "it": {
+        "prefix": "it",
+        "body": [
+            "  it('should $1', async () => {",
+            "    // Test",
+            "  });",
+            "});",
+        ],
+        "scope": "typescript"
+    },
+    "each": {
+        "prefix": "each",
+        "body": [
+            "describe('$1', () => {",
+            "  describe('valid cases', () => {",
+            "    it.each`",
+            "      name      | result",
+            "      ${'some'} | ${'some'}",
+            "    `('$1(\\$name) should return \\$result', ({ name, result }) => {",
+            "      expect($1(name)).toEqual(result);",
+            "    });",
+            "  });",
+            "",
+            "  describe('invalid cases', () => {",
+            "    it.each`",
+            "      name      | error",
+            "      ${'some'} | ${Error}",
+            "    `('$1(\\$name) should throw \\$error', ({ name, error }) => {",
+            "      expect(()=> $1(name)).toThrowError(error);",
+            "    });",
+            "  });",
+            "});",
+        ],
+        "scope": "typescript"
+    },
+    "decorator": {
+        "prefix": "decorator",
+        "body": [
+            "export function $1(): ${2|ClassDecorator,MethodDecorator,ParameterDecorator|} {",
+            "  return (...args) => {",
+            "    //",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "error": {
+        "prefix": "error",
+        "body": [
+            "export class $1 extends Error {",
+            "  constructor() {",
+            "    super(`$2`);",
+            "  }",
+            "}",
+        ],
+        "scope": "typescript"
+    },
+    "metadata-decorator": {
+        "prefix": "metadata-decorator",
+        "body": [
+            "import { SetMetadata } from '@nestjs/common';",
+            "",
+            "export const $1 = Symbol(",
+            "  '$1'",
+            ");",
+            "",
+            "export function $2(): ClassDecorator {",
+            "  return (...args) => {",
+            "    SetMetadata($1, true)(...args);",
+            "  };",
+            "}",
+        ],
+        "scope": "typescript"
+    }
+}

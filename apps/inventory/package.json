@@ -1,0 +1,67 @@
+{
+  "name": "@beemood/inventory",
+  "version": "0.11.7",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "description": "inventory",
+  "homepage": "https://beemood.github.io/beemood/apps/inventory",
+  "author": {
+    "email": "robert.brightline@gmail.com",
+    "name": "Robert Brightline",
+    "url": "https://beemood.github.io"
+  },
+  "icon": "https://beemood.github.io/beemood/apps/inventory/assets/favicon.png",
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "keywords": [],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "apps/inventory/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "apps/inventory/dist",
+          "main": "apps/inventory/src/index.ts",
+          "tsConfig": "apps/inventory/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true
+        }
+      },
+      "serve": {},
+      "doc": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "npx typedoc"
+          ],
+          "cwd": "{projectRoot}"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11"
+  }
+}

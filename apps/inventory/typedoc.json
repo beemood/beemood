@@ -1,0 +1,6 @@
+{
+  "name": "inventory",
+  "favicon": "./favicon.png",
+  "entryPoints": ["./src/index.ts"],
+  "out": "../../public/apps/inventory"
+}

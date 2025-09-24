@@ -4,39 +4,59 @@ export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
+
   {
-    ignores: ['**/dist'],
+    files: ['**/*.json'],
+    rules: {},
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
   },
+
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: [
+      'libs/**/package.json',
+      'apps/**/package.json',
+      'plugins/**/package.json',
+    ],
     rules: {
-      '@nx/enforce-module-boundaries': [
+      '@nx/dependency-checks': [
         'error',
         {
-          enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
-          depConstraints: [
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
+          ignoredFiles: [
+            '{projectRoot}/eslint.config.mjs',
+            '{projectRoot}/vite.config.ts',
           ],
         },
       ],
     },
+
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
   },
+
   {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
+    files: ['**/*.ts', '**/*.cts', '**/*.mts'],
+    rules: {
+      '@typescript-eslint/consistent-type-imports': [
+        'error',
+        {
+          prefer: 'type-imports',
+          fixStyle: 'separate-type-imports',
+          disallowTypeAnnotations: false,
+        },
+      ],
+    },
+  },
+
+  {
+    ignores: [
+      '**/node_modules',
+      '**/dist',
+      '**/vite.config.*.timestamp*',
+      '**/vitest.config.*.timestamp*',
+      '**/generated',
     ],
-    // Override or add rules here
-    rules: {},
   },
 ];

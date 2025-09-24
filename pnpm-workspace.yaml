@@ -1,5 +1,13 @@
 packages:
-  - "apps/*"
+  - apps/*
 
 autoInstallPeers: true
+
+onlyBuiltDependencies:
+  - '@prisma/engines'
+  - '@swc/core'
+  - esbuild
+  - nx
+  - prisma
+
 strictPeerDependencies: false
