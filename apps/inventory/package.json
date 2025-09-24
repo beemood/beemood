@@ -49,6 +49,16 @@
           "stripLeadingPaths": true
         }
       },
+      "serve": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "npx nx build inventory --watch=true",
+            "nodemon {projectRoot}/dist/main.js"
+          ],
+          "parallel": true
+        }
+      },
       "doc": {
         "executor": "nx:run-commands",
         "options": {

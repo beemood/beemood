@@ -6,10 +6,20 @@
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "emitDeclarationOnly": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts"
+  ],
   "references": [],
-  "exclude": ["vite.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
+  "exclude": [
+    "vite.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
+  ]
 }
