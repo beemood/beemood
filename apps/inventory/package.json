@@ -49,7 +49,6 @@
           "stripLeadingPaths": true
         }
       },
-      "serve": {},
       "doc": {
         "executor": "nx:run-commands",
         "options": {
