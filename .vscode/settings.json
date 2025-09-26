@@ -36,4 +36,5 @@
   "[env]": {
     "editor.defaultFormatter": "IronGeek.vscode-env"
   },
+  "typescript.preferences.importModuleSpecifier": "relative"
 }

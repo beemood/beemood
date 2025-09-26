@@ -160,20 +160,20 @@ importers:
         specifier: ^6.16.2
         version: 6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)
       '@puq/inventory-db':
-        specifier: ^0.13.0
-        version: 0.13.0(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))
+        specifier: ^0.16.7
+        version: 0.16.7(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))
       '@puq/nest':
-        specifier: ^0.13.0
-        version: 0.13.0(@nestjs/cache-manager@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(cache-manager@7.2.2)(keyv@5.5.2)(rxjs@7.8.2))(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(@nestjs/event-emitter@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/platform-express@11.1.6)(@nestjs/schedule@6.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/swagger@11.2.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(@nestjs/throttler@6.4.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(cache-manager@7.2.2)(express@5.1.0)(helmet@8.1.0)(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(rxjs@7.8.2)(typescript@5.9.2)
+        specifier: ^0.16.7
+        version: 0.16.7(@nestjs/cache-manager@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(cache-manager@7.2.2)(keyv@5.5.2)(rxjs@7.8.2))(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(@nestjs/event-emitter@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/platform-express@11.1.6)(@nestjs/schedule@6.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/swagger@11.2.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(@nestjs/throttler@6.4.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))(cache-manager@7.2.2)(express@5.1.0)(helmet@8.1.0)(rxjs@7.8.2)(zod@4.1.11)
       '@puq/prisma':
-        specifier: ^0.13.0
-        version: 0.13.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)
+        specifier: ^0.16.7
+        version: 0.16.7(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))(express@5.1.0)
       '@puq/types':
-        specifier: ^0.13.0
-        version: 0.13.0
+        specifier: ^0.16.7
+        version: 0.16.7
       '@puq/zod':
-        specifier: ^0.13.0
-        version: 0.13.0(zod@4.1.11)
+        specifier: ^0.16.7
+        version: 0.16.7(zod@4.1.11)
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -1791,19 +1791,19 @@ packages:
   '@prisma/get-platform@6.16.2':
     resolution: {integrity: sha512-U/P36Uke5wS7r1+omtAgJpEB94tlT4SdlgaeTc6HVTTT93pXj7zZ+B/cZnmnvjcNPfWddgoDx8RLjmQwqGDYyA==}
 
-  '@puq/errors@0.13.0':
-    resolution: {integrity: sha512-6WWIgKk/wjAnGVFYAspOn538PDB9yz6fzneCSC01bGpEwkfgIxQD/iuGayrwgDCRbG0aOGugu0vNO8rp1PBKEw==}
+  '@puq/errors@0.16.7':
+    resolution: {integrity: sha512-jfFQODiWfaN9TOZlusn6SaM2/Fd1vuDSPqHUJ6s9kn5kKxlc09qOGe2+DNAStnvL8Lv7ZlFgXwgMDBk/awBdRg==}
 
-  '@puq/inventory-db@0.13.0':
-    resolution: {integrity: sha512-w5O697yzLhixt9i7kSaharhzlIf9sQm7lfmHJ6cLX5p0gtG6B9VYV7Yo208QvXNnRfpUS/s1EY/vnkPXoaEtQg==}
+  '@puq/inventory-db@0.16.7':
+    resolution: {integrity: sha512-AQjyBbDS7vOV40CWGD++jWwDwGZh4bQTzbkkJSZSC3/HqGJYSED/NOCo/T0Cx64BG+u7u6ieZIiHeV7Ucg4tvg==}
     peerDependencies:
       '@prisma/client': ^6.16.2
 
-  '@puq/names@0.13.0':
-    resolution: {integrity: sha512-Dk2BtsSeL28u+cgNG8vRIPeruPfSYNE4rGBUHpwmPzOaZ0KRQ22m8gtPxAJjPXGxdmlmeL1EC5ptlLx9Jw7Wcg==}
+  '@puq/names@0.16.7':
+    resolution: {integrity: sha512-9/lpCTOgp5vsiS6tHWR4d0Qm62ccJ4+DHo1Wr83faC+f5NQ/rcxcMlOrYdc7wiXx4pBZZh5rzemsqKqpfXDh+w==}
 
-  '@puq/nest@0.13.0':
-    resolution: {integrity: sha512-KUKhC1zp80du9K+nyI1j10BrDzukjfYXQbM20TzGVBpHVxn5UsJLTt5P1gKIH6IoSKQEw9ciKFrTAKYJl0P6tQ==}
+  '@puq/nest@0.16.7':
+    resolution: {integrity: sha512-UPhVBLDLzf+7qjnLcu3JQ2ivS8PA10tGL80+0iYEfftm2mqBjdxaIlAYmSSbteDcvX8BSQI02NbxIkL4C3WTow==}
     peerDependencies:
       '@nestjs/cache-manager': ^3.0.1
       '@nestjs/common': ^11.1.6
@@ -1814,30 +1814,34 @@ packages:
       '@nestjs/schedule': ^6.0.0
       '@nestjs/swagger': ^11.2.0
       '@nestjs/throttler': ^6.4.0
+      '@prisma/client': 6.16.2
       cache-manager: ^7.2.0
       express: ^5.1.0
       helmet: ^8.1.0
       rxjs: ^7.8.2
+      zod: ^4.1.11
 
   '@puq/plugin@0.13.0':
     resolution: {integrity: sha512-PqbC2J51jrcURVMmIIgu/KAS7W/s+iwWkixYnOA0ABOLxRjHEcFY/a6SZrsVswQmctRPog/lPXjGAsK3SIFTRA==}
     hasBin: true
 
-  '@puq/prisma@0.13.0':
-    resolution: {integrity: sha512-rloCALoptU2q+yTmpjS8qm3eqecesZPJBoYM7Ys7WmKi03c6/QlI6bNJVVoNkd+lHtYDFQteLsKJGoU1pZ2IgQ==}
+  '@puq/prisma@0.16.7':
+    resolution: {integrity: sha512-VusEydt21jVeeu1JYOQCIreIqzZXnjAx5LOMOk2o9SqqznwUpPk1PfJE5ysYJO7HC1bvtQqis8Gyf9mst1qlpg==}
     peerDependencies:
       '@nestjs/common': ^11.1.6
       '@nestjs/config': ^4.0.2
       '@nestjs/core': ^11.1.6
+      '@prisma/client': 6.16.2
+      express: ^5.1.0
 
-  '@puq/types@0.13.0':
-    resolution: {integrity: sha512-sq6GaNy7t5lYktvE8ux20DHJl0iSIbbLz2FS7DK4PKVQ9km098dVvbPd3BRWtb14g2KUc+0/2FyNUgN21EFWzA==}
+  '@puq/types@0.16.7':
+    resolution: {integrity: sha512-+n1P/ngaTTM4wkjLpDTxJpE0JXXJ9F87cE1DiJoxV5OTh4MAxAKdzw6ieNNDLQVRveSmKI0DlfbMVa0lQDIU1g==}
 
-  '@puq/utils@0.13.0':
-    resolution: {integrity: sha512-Jz6usCGd7OPfD4a6Vt8G56e2lyp7NskeNTjySYxt7VJnj1cO41l3lvitZXmYggfLLhNoUaDqufcvkh/30CT2oA==}
+  '@puq/utils@0.16.7':
+    resolution: {integrity: sha512-XHSv8cZn0PdJScuBJdgPQEoZ/BkP7yoRfOezIMv9fxrrot5FAd5U3G9257dPlNsDv1hAn0KRwd/M3COcWvhY8g==}
 
-  '@puq/zod@0.13.0':
-    resolution: {integrity: sha512-WMBHlGOD/d1CMwcWWnzC8yJb3n8EmpCxy4u2dzANmn0F/JjrYKSjVFN5g/YNEURT0P5+I5IcWhrQiIhd6xxn+g==}
+  '@puq/zod@0.16.7':
+    resolution: {integrity: sha512-CY//0mshSDjKTaDaF+9H0IxTx0hzNMAD9zULQGI30L6oivJDKeXfhdgjs7+uJnhxB3W/nL9pDUZiqctL4E7OBg==}
     peerDependencies:
       zod: ^4.1.11
 
@@ -7962,23 +7966,23 @@ snapshots:
     dependencies:
       '@prisma/debug': 6.16.2
 
-  '@puq/errors@0.13.0':
+  '@puq/errors@0.16.7':
     dependencies:
       '@swc/helpers': 0.5.17
 
-  '@puq/inventory-db@0.13.0(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))':
+  '@puq/inventory-db@0.16.7(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))':
     dependencies:
       '@prisma/client': 6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)
       '@swc/helpers': 0.5.17
 
-  '@puq/names@0.13.0':
+  '@puq/names@0.16.7':
     dependencies:
-      '@puq/errors': 0.13.0
-      '@puq/types': 0.13.0
-      '@puq/utils': 0.13.0
+      '@puq/errors': 0.16.7
+      '@puq/types': 0.16.7
+      '@puq/utils': 0.16.7
       '@swc/helpers': 0.5.17
 
-  '@puq/nest@0.13.0(@nestjs/cache-manager@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(cache-manager@7.2.2)(keyv@5.5.2)(rxjs@7.8.2))(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(@nestjs/event-emitter@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/platform-express@11.1.6)(@nestjs/schedule@6.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/swagger@11.2.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(@nestjs/throttler@6.4.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(cache-manager@7.2.2)(express@5.1.0)(helmet@8.1.0)(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(rxjs@7.8.2)(typescript@5.9.2)':
+  '@puq/nest@0.16.7(@nestjs/cache-manager@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(cache-manager@7.2.2)(keyv@5.5.2)(rxjs@7.8.2))(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(@nestjs/event-emitter@3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/platform-express@11.1.6)(@nestjs/schedule@6.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6))(@nestjs/swagger@11.2.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(@nestjs/throttler@6.4.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2))(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))(cache-manager@7.2.2)(express@5.1.0)(helmet@8.1.0)(rxjs@7.8.2)(zod@4.1.11)':
     dependencies:
       '@nestjs/cache-manager': 3.0.1(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(cache-manager@7.2.2)(keyv@5.5.2)(rxjs@7.8.2)
       '@nestjs/common': 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -7990,10 +7994,10 @@ snapshots:
       '@nestjs/swagger': 11.2.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2)
       '@nestjs/throttler': 6.4.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)(reflect-metadata@0.2.2)
       '@prisma/client': 6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)
-      '@puq/errors': 0.13.0
-      '@puq/names': 0.13.0
-      '@puq/types': 0.13.0
-      '@puq/utils': 0.13.0
+      '@puq/errors': 0.16.7
+      '@puq/names': 0.16.7
+      '@puq/types': 0.16.7
+      '@puq/utils': 0.16.7
       '@swc/helpers': 0.5.17
       cache-manager: 7.2.2
       express: 5.1.0
@@ -8001,9 +8005,6 @@ snapshots:
       rxjs: 7.8.2
       uuid: 13.0.0
       zod: 4.1.11
-    transitivePeerDependencies:
-      - prisma
-      - typescript
 
   '@puq/plugin@0.13.0(nx@21.5.2(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.17))(@swc/types@0.1.25)(typescript@5.9.2))(@swc/core@1.5.29(@swc/helpers@0.5.17)))':
     dependencies:
@@ -8013,32 +8014,31 @@ snapshots:
     transitivePeerDependencies:
       - nx
 
-  '@puq/prisma@0.13.0(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)':
+  '@puq/prisma@0.16.7(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/config@4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@nestjs/core@11.1.6)(@prisma/client@6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2))(express@5.1.0)':
     dependencies:
       '@nestjs/common': 11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/config': 4.0.2(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@nestjs/core': 11.1.6(@nestjs/common@11.1.6(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/platform-express@11.1.6)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@prisma/client': 6.16.2(prisma@6.16.2(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)
-      '@puq/names': 0.13.0
+      '@puq/names': 0.16.7
+      '@puq/types': 0.16.7
+      '@puq/utils': 0.16.7
       '@swc/helpers': 0.5.17
       express: 5.1.0
-    transitivePeerDependencies:
-      - prisma
-      - supports-color
-      - typescript
 
-  '@puq/types@0.13.0':
+  '@puq/types@0.16.7':
     dependencies:
       '@swc/helpers': 0.5.17
 
-  '@puq/utils@0.13.0':
+  '@puq/utils@0.16.7':
     dependencies:
-      '@puq/errors': 0.13.0
-      '@puq/types': 0.13.0
+      '@puq/errors': 0.16.7
+      '@puq/types': 0.16.7
       '@swc/helpers': 0.5.17
 
-  '@puq/zod@0.13.0(zod@4.1.11)':
+  '@puq/zod@0.16.7(zod@4.1.11)':
     dependencies:
+      '@puq/types': 0.16.7
       '@swc/helpers': 0.5.17
       zod: 4.1.11
 
