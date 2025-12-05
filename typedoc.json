@@ -4,14 +4,14 @@
   // The 'entryPointStrategy' tells TypeDoc to treat the specified
   // entry points as an array of independent projects/modules.
   "entryPointStrategy": "packages",
-
   // This is where Nx will inject the list of all your library entry points.
-  "entryPoints": ["libs/*"],
-
+  "entryPoints": [
+    "libs/*",
+    "tools"
+  ],
   // Output configuration
-  "out": "docs",
+  "out": "../beemood.github.io/public/libs",
   "name": "Beemood Packages",
-
   // Customize as needed
   "excludePrivate": true,
   "theme": "default",

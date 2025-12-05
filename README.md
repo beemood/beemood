@@ -1,3 +1,10 @@
+
+
+<p align="center">
+  <img src="https://beemood.github.io/favicon.png" alt="Logo" />
+</p>
+
+
 # 📚 @beemood/libs - Shared Utility Libraries
 
 This repository serves as a **monorepo** for a collection of core utility and infrastructural packages used across various applications within the ecosystem. These libraries encapsulate common patterns, shared logic, and foundational integrations to ensure consistency, reduce boilerplate, and accelerate development across all projects.
@@ -21,18 +28,18 @@ This project is built and maintained using modern, robust technologies.
 
 The following packages are included in this library collection, providing specialized functionality:
 
-| Package Name | Description |
-| :--- | :--- |
-| **`console`** | Enhanced logging utilities for structured, context-aware, and colorized console output. |
-| **`datetime`** | Utilities for date and time manipulation, formatting, and time zone handling. |
-| **`errors`** | Standardized custom error classes and handlers for consistent error reporting across services. |
-| **`names`** | Utilities for string case conversion (e.g., camelCase, snake\_case, PascalCase) and name generation. |
-| **`nestjs`** | Core utilities, decorators, and providers specifically designed to enhance NestJS application development. |
-| **`nestjs-prisma`** | A dedicated NestJS module for initializing, configuring, and injecting the Prisma Client. |
-| **`prisma-extentions`** | Custom extensions and helpers for the Prisma Client to add reusable query logic or computed fields. |
-| **`registry`** | A simple service for registering and retrieving configuration values, services, or module definitions at runtime. |
-| **`types`** | A central package for defining and sharing common TypeScript type definitions, interfaces, and enums. |
-| **`zod`** | Utilities for defining and validating data schemas using the **Zod** library. |
+| Package Name            | Description                                                                                                       |
+| :---------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| **`console`**           | Enhanced logging utilities for structured, context-aware, and colorized console output.                           |
+| **`datetime`**          | Utilities for date and time manipulation, formatting, and time zone handling.                                     |
+| **`errors`**            | Standardized custom error classes and handlers for consistent error reporting across services.                    |
+| **`names`**             | Utilities for string case conversion (e.g., camelCase, snake\_case, PascalCase) and name generation.              |
+| **`nestjs`**            | Core utilities, decorators, and providers specifically designed to enhance NestJS application development.        |
+| **`nestjs-prisma`**     | A dedicated NestJS module for initializing, configuring, and injecting the Prisma Client.                         |
+| **`prisma-extentions`** | Custom extensions and helpers for the Prisma Client to add reusable query logic or computed fields.               |
+| **`registry`**          | A simple service for registering and retrieving configuration values, services, or module definitions at runtime. |
+| **`types`**             | A central package for defining and sharing common TypeScript type definitions, interfaces, and enums.             |
+| **`zod`**               | Utilities for defining and validating data schemas using the **Zod** library.                                     |
 
 ---
 
@@ -41,3 +48,31 @@ The following packages are included in this library collection, providing specia
 For full API documentation, installation guides, and usage examples for each package, please visit the dedicated documentation site:
 
 [**https://beemood.github.io/libs**](https://beemood.github.io/libs)
+
+
+
+## Funding
+
+
+Thank you for using `@puq/puq` It's an open-source project, and maintaining it takes time and effort. If you find this library useful, please consider supporting its ongoing development. Your contributions help ensure that the project stays up-to-date, secure, and well-maintained.
+
+
+[Instant Funding](https://cash.app/$puqlib)
+
+
+### Your funding will go toward
+
+
+- **Bug fixes and updates** to ensure compatibility with the latest versions of dependencies.
+
+- **New features** that will make the library even more powerful.
+
+- **Documentation** improvements to help users get the most out of [Your Library Name].
+
+- **General maintenance** to keep the library running smoothly and securely.
+
+
+Contact to the developer: [robert.brightline@gmail.com]
+
+
+[Support the developer](https://cash.app/$puqlib)
