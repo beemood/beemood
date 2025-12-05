@@ -1,0 +1,47 @@
+{
+  "name": "@beemood/prisma-generators",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/lib/generate.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@beemood/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "!**/*.tsbuildinfo"
+  ],
+  "bin": {
+    "beemood-prisma": "./bin/beemood-prisma.mjs"
+  },
+  "nx": {
+    "sourceRoot": "libs/prisma-generators/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "libs/prisma-generators/dist",
+          "main": "libs/prisma-generators/src/index.ts",
+          "tsConfig": "libs/prisma-generators/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@prisma/generator-helper": "^7.1.0",
+    "@swc/helpers": "~0.5.11"
+  }
+}

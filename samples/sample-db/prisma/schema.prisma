@@ -1,0 +1,27 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/lib/prisma"
+}
+
+generator zod {
+  provider = "beemood-prisma"
+  output   = "../src/lib/zod.ts"
+  kind     = "zod"
+}
+
+generator swagger {
+  provider = "beemood-prisma"
+  output   = "../src/lib/swagger.ts"
+  kind     = "swagger"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Sample {
+  id   Int    @id @default(autoincrement())
+  uuid String @default(uuid(7))
+  name String @unique @db.VarChar(255)
+}

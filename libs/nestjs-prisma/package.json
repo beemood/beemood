@@ -36,8 +36,17 @@
       }
     }
   },
-  "dependencies": {
+  "peerDependencies": {
+    "@beemood/nestjs": "workspace:*",
+    "@beemood/types": "workspace:*",
     "@nestjs/common": "^11.1.9",
+    "@nestjs/config": "^4.0.2",
+    "express": "^5.2.1"
+  },
+  "dependencies": {
     "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
   }
 }

@@ -1,0 +1,58 @@
+{
+  "name": "@beemood/sample",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@beemood/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "samples/sample/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "samples/sample/dist",
+          "main": "samples/sample/src/index.ts",
+          "tsConfig": "samples/sample/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      },
+      "serve": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "npx nx build sample --watch",
+            "npx nodemon ./dist/main.js -w ./src/lib"
+          ],
+          "cwd": "{projectRoot}",
+          "parallel": true
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "@beemood/sample-db": "workspace:*",
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/core": "^11.1.9",
+    "@nestjs/serve-static": "^5.0.4",
+    "@swc/helpers": "~0.5.11",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6"
+  }
+}

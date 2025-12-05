@@ -15,7 +15,7 @@ export type ProviderFunctions<T> = {
  * Creates a provider factory object with methods for dependency injection in NestJS.
  *
  * @template T - The type of value provided by this provider
- * @param debugName {@link string}  - Optional name to identify tokens for debugging purposes
+ * @param tokenName {@link string}  - Optional name to identify tokens for debugging purposes
  * @returns - {@link ProviderFunctions<T>} An object containing utility functions for:
  *   - `token()` - Returns the unique injection token
  *   - `inject()` - Returns a parameter decorator for injecting this provider
@@ -37,8 +37,8 @@ export type ProviderFunctions<T> = {
  *   providers: [myProvider.provideValue(new MyService())]
  * })
  */
-export function createProvider<T>(debugName = 'Unknown'): ProviderFunctions<T> {
-  const injectionToken = Symbol(debugName);
+export function createProvider<T>(tokenName = 'Unknown'): ProviderFunctions<T> {
+  const injectionToken = Symbol(tokenName);
 
   const token = () => {
     return injectionToken;

@@ -1,11 +1,16 @@
 packages:
-  - 'apps/*'
-  - 'libs/*'
-  - 'tools'
-  - 'libs/zod/libs/*'
+  - apps/*
+  - libs/*
+  - tools
+  - libs/zod/libs/*
+  - samples/*
+
 autoInstallPeers: true
+
 onlyBuiltDependencies:
+  - '@prisma/engines'
   - '@swc/core'
-  - 'esbuild'
-  - 'nx'
-  - 'unrs-resolver'
+  - esbuild
+  - nx
+  - prisma
+  - unrs-resolver

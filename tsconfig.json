@@ -35,6 +35,15 @@
     },
     {
       "path": "./libs/console"
+    },
+    {
+      "path": "./samples/sample"
+    },
+    {
+      "path": "./samples/sample-db"
+    },
+    {
+      "path": "./libs/prisma-generators"
     }
   ]
 }

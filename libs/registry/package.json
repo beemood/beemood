@@ -37,6 +37,7 @@
     }
   },
   "dependencies": {
+    "@beemood/datetime": "workspace:*",
     "@beemood/errors": "workspace:*",
     "@beemood/types": "workspace:*",
     "@swc/helpers": "~0.5.11"

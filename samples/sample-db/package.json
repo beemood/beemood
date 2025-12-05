@@ -1,0 +1,56 @@
+{
+  "name": "@beemood/sample-db",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "@beemood/source": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "nx": {
+    "sourceRoot": "samples/sample-db/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "outputPath": "samples/sample-db/dist",
+          "main": "samples/sample-db/src/index.ts",
+          "tsConfig": "samples/sample-db/tsconfig.lib.json",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true
+        }
+      },
+      "prisma:generate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx prisma generate",
+          "cwd": "{projectRoot}"
+        }
+      }
+    }
+  },
+  "peerDependencies": {
+    "@prisma/adapter-pg": "^7.1.0",
+    "@prisma/client": "^7.1.0",
+    "@swc/helpers": "~0.5.11",
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "prisma": "^7.1.0"
+  },
+  "dependencies": {
+    "@beemood/prisma-generators": "workspace:*"
+  }
+}
