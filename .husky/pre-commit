@@ -1,3 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-npx nx run-many -t test build lint
+
+
+npx nx run-many -t lint test build 
