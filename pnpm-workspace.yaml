@@ -1,0 +1,11 @@
+packages:
+  - 'apps/*'
+  - 'libs/*'
+  - 'tools'
+  - 'libs/zod/libs/*'
+autoInstallPeers: true
+onlyBuiltDependencies:
+  - '@swc/core'
+  - 'esbuild'
+  - 'nx'
+  - 'unrs-resolver'

@@ -1,0 +1,40 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./tools"
+    },
+    {
+      "path": "./libs/errors"
+    },
+    {
+      "path": "./libs/names"
+    },
+    {
+      "path": "./libs/zod"
+    },
+    {
+      "path": "./libs/nestjs-prisma"
+    },
+    {
+      "path": "./libs/nestjs"
+    },
+    {
+      "path": "./libs/prisma-extentions"
+    },
+    {
+      "path": "./libs/types"
+    },
+    {
+      "path": "./libs/registry"
+    },
+    {
+      "path": "./libs/datetime"
+    },
+    {
+      "path": "./libs/console"
+    }
+  ]
+}

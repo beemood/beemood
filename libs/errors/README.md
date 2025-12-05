@@ -1,0 +1,1 @@
+# @beemood/errors

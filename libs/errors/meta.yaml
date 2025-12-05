@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=./../../schemas/record.schema.json
+
+Empty: Throw when the string, array, or object is empty
+Exist: Throw when something already exist
+ForbiddenParam: Throw when the parameter is not allowed
+InvalidName: Throw when the name is invalid in the cotext
+InvalidParam: Throw when the user pass invalid parameters
+Max: Throw when the given number is greater than expected
+MaxLength: Throw when the given string is longer than expected
+Min: Throw when the given number is less than expected
+MinLength: Throw when the given string is shorter than expected
+NotAllowed: Throw when the operation is not allowed
+NotFound: Throw when something is not found
+Range: Throw when the number is out of range
+Required: Throw when the required parameters is not provided

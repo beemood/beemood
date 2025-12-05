@@ -1,0 +1,63 @@
+{
+  "name": "@beemood/errors",
+  "displayName": "Error Classes",
+  "description": "Common error classes utilized in the @beemood projects",
+  "version": "0.0.1",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "nx": {
+    "sourceRoot": "libs/errors/src",
+    "targets": {
+      "prebuild": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx ts-node ./scripts/prebuild.ts",
+          "cwd": "{projectRoot}"
+        },
+        "inputs": [
+          "default",
+          "{projectRoot}/scripts/prebuild.ts",
+          "{projectRoot}/meta.yaml"
+        ],
+        "outputs": [
+          "{projectRoot}/src/lib/errors.ts"
+        ]
+      },
+      "build": {
+        "executor": "@nx/js:swc",
+        "options": {
+          "main": "libs/errors/src/index.ts",
+          "outputPath": "libs/errors/dist",
+          "skipTypeCheck": true,
+          "stripLeadingPaths": true,
+          "tsConfig": "libs/errors/tsconfig.lib.json"
+        },
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "dependsOn": [
+          "prebuild"
+        ]
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "exports": {
+    ".": {
+      "@beemood/source": "./src/index.ts",
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.11",
+    "nx": "22.1.3"
+  }
+}

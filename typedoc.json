@@ -1,0 +1,19 @@
+// typedoc.json (at the workspace root)
+{
+  "$schema": "https://typedoc.org/schema.json",
+  // The 'entryPointStrategy' tells TypeDoc to treat the specified
+  // entry points as an array of independent projects/modules.
+  "entryPointStrategy": "packages",
+
+  // This is where Nx will inject the list of all your library entry points.
+  "entryPoints": ["libs/*"],
+
+  // Output configuration
+  "out": "docs",
+  "name": "Beemood Packages",
+
+  // Customize as needed
+  "excludePrivate": true,
+  "theme": "default",
+  "logLevel": "Warn"
+}
