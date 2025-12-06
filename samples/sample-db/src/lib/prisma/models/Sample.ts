@@ -28,56 +28,92 @@ export type AggregateSample = {
 
 export type SampleAvgAggregateOutputType = {
   id: number | null
+  price: runtime.Decimal | null
 }
 
 export type SampleSumAggregateOutputType = {
   id: number | null
+  price: runtime.Decimal | null
 }
 
 export type SampleMinAggregateOutputType = {
   id: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
   uuid: string | null
   name: string | null
+  price: runtime.Decimal | null
+  status: $Enums.Status | null
 }
 
 export type SampleMaxAggregateOutputType = {
   id: number | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  deletedAt: Date | null
   uuid: string | null
   name: string | null
+  price: runtime.Decimal | null
+  status: $Enums.Status | null
 }
 
 export type SampleCountAggregateOutputType = {
   id: number
+  createdAt: number
+  updatedAt: number
+  deletedAt: number
   uuid: number
   name: number
+  price: number
+  notes: number
+  status: number
   _all: number
 }
 
 
 export type SampleAvgAggregateInputType = {
   id?: true
+  price?: true
 }
 
 export type SampleSumAggregateInputType = {
   id?: true
+  price?: true
 }
 
 export type SampleMinAggregateInputType = {
   id?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
   uuid?: true
   name?: true
+  price?: true
+  status?: true
 }
 
 export type SampleMaxAggregateInputType = {
   id?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
   uuid?: true
   name?: true
+  price?: true
+  status?: true
 }
 
 export type SampleCountAggregateInputType = {
   id?: true
+  createdAt?: true
+  updatedAt?: true
+  deletedAt?: true
   uuid?: true
   name?: true
+  price?: true
+  notes?: true
+  status?: true
   _all?: true
 }
 
@@ -169,8 +205,14 @@ export type SampleGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type SampleGroupByOutputType = {
   id: number
+  createdAt: Date
+  updatedAt: Date
+  deletedAt: Date | null
   uuid: string
   name: string
+  price: runtime.Decimal
+  notes: string[]
+  status: $Enums.Status
   _count: SampleCountAggregateOutputType | null
   _avg: SampleAvgAggregateOutputType | null
   _sum: SampleSumAggregateOutputType | null
@@ -198,29 +240,56 @@ export type SampleWhereInput = {
   OR?: Prisma.SampleWhereInput[]
   NOT?: Prisma.SampleWhereInput | Prisma.SampleWhereInput[]
   id?: Prisma.IntFilter<"Sample"> | number
+  createdAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
   uuid?: Prisma.StringFilter<"Sample"> | string
   name?: Prisma.StringFilter<"Sample"> | string
+  price?: Prisma.DecimalFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.StringNullableListFilter<"Sample">
+  status?: Prisma.EnumStatusFilter<"Sample"> | $Enums.Status
+  attributes?: Prisma.AttributeListRelationFilter
 }
 
 export type SampleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  attributes?: Prisma.AttributeOrderByRelationAggregateInput
 }
 
 export type SampleWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  uuid?: string
   name?: string
   AND?: Prisma.SampleWhereInput | Prisma.SampleWhereInput[]
   OR?: Prisma.SampleWhereInput[]
   NOT?: Prisma.SampleWhereInput | Prisma.SampleWhereInput[]
-  uuid?: Prisma.StringFilter<"Sample"> | string
-}, "id" | "name">
+  createdAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Sample"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Sample"> | Date | string | null
+  price?: Prisma.DecimalFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.StringNullableListFilter<"Sample">
+  status?: Prisma.EnumStatusFilter<"Sample"> | $Enums.Status
+  attributes?: Prisma.AttributeListRelationFilter
+}, "id" | "uuid" | "name">
 
 export type SampleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   _count?: Prisma.SampleCountOrderByAggregateInput
   _avg?: Prisma.SampleAvgOrderByAggregateInput
   _max?: Prisma.SampleMaxOrderByAggregateInput
@@ -233,122 +302,373 @@ export type SampleScalarWhereWithAggregatesInput = {
   OR?: Prisma.SampleScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SampleScalarWhereWithAggregatesInput | Prisma.SampleScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Sample"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Sample"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Sample"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Sample"> | Date | string | null
   uuid?: Prisma.StringWithAggregatesFilter<"Sample"> | string
   name?: Prisma.StringWithAggregatesFilter<"Sample"> | string
+  price?: Prisma.DecimalWithAggregatesFilter<"Sample"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.StringNullableListFilter<"Sample">
+  status?: Prisma.EnumStatusWithAggregatesFilter<"Sample"> | $Enums.Status
 }
 
 export type SampleCreateInput = {
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
   uuid?: string
   name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleCreatenotesInput | string[]
+  status: $Enums.Status
+  attributes?: Prisma.AttributeCreateNestedManyWithoutSampleInput
 }
 
 export type SampleUncheckedCreateInput = {
   id?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
   uuid?: string
   name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleCreatenotesInput | string[]
+  status: $Enums.Status
+  attributes?: Prisma.AttributeUncheckedCreateNestedManyWithoutSampleInput
 }
 
 export type SampleUpdateInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleUpdatenotesInput | string[]
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  attributes?: Prisma.AttributeUpdateManyWithoutSampleNestedInput
 }
 
 export type SampleUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleUpdatenotesInput | string[]
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  attributes?: Prisma.AttributeUncheckedUpdateManyWithoutSampleNestedInput
 }
 
 export type SampleCreateManyInput = {
   id?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
   uuid?: string
   name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleCreatenotesInput | string[]
+  status: $Enums.Status
 }
 
 export type SampleUpdateManyMutationInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleUpdatenotesInput | string[]
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type SampleUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   uuid?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleUpdatenotesInput | string[]
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+}
+
+export type SampleNullableScalarRelationFilter = {
+  is?: Prisma.SampleWhereInput | null
+  isNot?: Prisma.SampleWhereInput | null
+}
+
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
 }
 
 export type SampleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type SampleAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  price?: Prisma.SortOrder
 }
 
 export type SampleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type SampleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   uuid?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  status?: Prisma.SortOrder
 }
 
 export type SampleSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+}
+
+export type SampleCreateNestedOneWithoutAttributesInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutAttributesInput, Prisma.SampleUncheckedCreateWithoutAttributesInput>
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutAttributesInput
+  connect?: Prisma.SampleWhereUniqueInput
+}
+
+export type SampleUpdateOneWithoutAttributesNestedInput = {
+  create?: Prisma.XOR<Prisma.SampleCreateWithoutAttributesInput, Prisma.SampleUncheckedCreateWithoutAttributesInput>
+  connectOrCreate?: Prisma.SampleCreateOrConnectWithoutAttributesInput
+  upsert?: Prisma.SampleUpsertWithoutAttributesInput
+  disconnect?: Prisma.SampleWhereInput | boolean
+  delete?: Prisma.SampleWhereInput | boolean
+  connect?: Prisma.SampleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SampleUpdateToOneWithWhereWithoutAttributesInput, Prisma.SampleUpdateWithoutAttributesInput>, Prisma.SampleUncheckedUpdateWithoutAttributesInput>
+}
+
+export type SampleCreatenotesInput = {
+  set: string[]
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
+export type DecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type SampleUpdatenotesInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: $Enums.Status
+}
+
+export type SampleCreateWithoutAttributesInput = {
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  uuid?: string
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleCreatenotesInput | string[]
+  status: $Enums.Status
+}
+
+export type SampleUncheckedCreateWithoutAttributesInput = {
+  id?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  uuid?: string
+  name: string
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleCreatenotesInput | string[]
+  status: $Enums.Status
+}
+
+export type SampleCreateOrConnectWithoutAttributesInput = {
+  where: Prisma.SampleWhereUniqueInput
+  create: Prisma.XOR<Prisma.SampleCreateWithoutAttributesInput, Prisma.SampleUncheckedCreateWithoutAttributesInput>
+}
+
+export type SampleUpsertWithoutAttributesInput = {
+  update: Prisma.XOR<Prisma.SampleUpdateWithoutAttributesInput, Prisma.SampleUncheckedUpdateWithoutAttributesInput>
+  create: Prisma.XOR<Prisma.SampleCreateWithoutAttributesInput, Prisma.SampleUncheckedCreateWithoutAttributesInput>
+  where?: Prisma.SampleWhereInput
+}
+
+export type SampleUpdateToOneWithWhereWithoutAttributesInput = {
+  where?: Prisma.SampleWhereInput
+  data: Prisma.XOR<Prisma.SampleUpdateWithoutAttributesInput, Prisma.SampleUncheckedUpdateWithoutAttributesInput>
+}
+
+export type SampleUpdateWithoutAttributesInput = {
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleUpdatenotesInput | string[]
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+}
+
+export type SampleUncheckedUpdateWithoutAttributesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  uuid?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  notes?: Prisma.SampleUpdatenotesInput | string[]
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+}
+
+
+/**
+ * Count Type SampleCountOutputType
+ */
+
+export type SampleCountOutputType = {
+  attributes: number
+}
+
+export type SampleCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  attributes?: boolean | SampleCountOutputTypeCountAttributesArgs
+}
+
+/**
+ * SampleCountOutputType without action
+ */
+export type SampleCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SampleCountOutputType
+   */
+  select?: Prisma.SampleCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SampleCountOutputType without action
+ */
+export type SampleCountOutputTypeCountAttributesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttributeWhereInput
+}
 
 
 export type SampleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   uuid?: boolean
   name?: boolean
+  price?: boolean
+  notes?: boolean
+  status?: boolean
+  attributes?: boolean | Prisma.Sample$attributesArgs<ExtArgs>
+  _count?: boolean | Prisma.SampleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   uuid?: boolean
   name?: boolean
+  price?: boolean
+  notes?: boolean
+  status?: boolean
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   uuid?: boolean
   name?: boolean
+  price?: boolean
+  notes?: boolean
+  status?: boolean
 }, ExtArgs["result"]["sample"]>
 
 export type SampleSelectScalar = {
   id?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  deletedAt?: boolean
   uuid?: boolean
   name?: boolean
+  price?: boolean
+  notes?: boolean
+  status?: boolean
 }
 
-export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "uuid" | "name", ExtArgs["result"]["sample"]>
+export type SampleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "deletedAt" | "uuid" | "name" | "price" | "notes" | "status", ExtArgs["result"]["sample"]>
+export type SampleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  attributes?: boolean | Prisma.Sample$attributesArgs<ExtArgs>
+  _count?: boolean | Prisma.SampleCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type SampleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type SampleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $SamplePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Sample"
-  objects: {}
+  objects: {
+    attributes: Prisma.$AttributePayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date | null
     uuid: string
     name: string
+    price: runtime.Decimal
+    notes: string[]
+    status: $Enums.Status
   }, ExtArgs["result"]["sample"]>
   composites: {}
 }
@@ -743,6 +1063,7 @@ readonly fields: SampleFieldRefs;
  */
 export interface Prisma__SampleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  attributes<T extends Prisma.Sample$attributesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Sample$attributesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttributePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -773,8 +1094,14 @@ export interface Prisma__SampleClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface SampleFieldRefs {
   readonly id: Prisma.FieldRef<"Sample", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"Sample", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Sample", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"Sample", 'DateTime'>
   readonly uuid: Prisma.FieldRef<"Sample", 'String'>
   readonly name: Prisma.FieldRef<"Sample", 'String'>
+  readonly price: Prisma.FieldRef<"Sample", 'Decimal'>
+  readonly notes: Prisma.FieldRef<"Sample", 'String[]'>
+  readonly status: Prisma.FieldRef<"Sample", 'Status'>
 }
     
 
@@ -791,6 +1118,10 @@ export type SampleFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * Filter, which Sample to fetch.
    */
@@ -810,6 +1141,10 @@ export type SampleFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter, which Sample to fetch.
    */
   where: Prisma.SampleWhereUniqueInput
@@ -827,6 +1162,10 @@ export type SampleFindFirstArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * Filter, which Sample to fetch.
    */
@@ -876,6 +1215,10 @@ export type SampleFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter, which Sample to fetch.
    */
   where?: Prisma.SampleWhereInput
@@ -924,6 +1267,10 @@ export type SampleFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter, which Samples to fetch.
    */
   where?: Prisma.SampleWhereInput
@@ -966,6 +1313,10 @@ export type SampleCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * The data needed to create a Sample.
    */
@@ -1014,6 +1365,10 @@ export type SampleUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
   /**
    * The data needed to update a Sample.
    */
@@ -1081,6 +1436,10 @@ export type SampleUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * The filter to search for the Sample to update in case it exists.
    */
   where: Prisma.SampleWhereUniqueInput
@@ -1107,6 +1466,10 @@ export type SampleDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
+  /**
    * Filter which Sample to delete.
    */
   where: Prisma.SampleWhereUniqueInput
@@ -1127,6 +1490,30 @@ export type SampleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
+ * Sample.attributes
+ */
+export type Sample$attributesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Attribute
+   */
+  select?: Prisma.AttributeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Attribute
+   */
+  omit?: Prisma.AttributeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AttributeInclude<ExtArgs> | null
+  where?: Prisma.AttributeWhereInput
+  orderBy?: Prisma.AttributeOrderByWithRelationInput | Prisma.AttributeOrderByWithRelationInput[]
+  cursor?: Prisma.AttributeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AttributeScalarFieldEnum | Prisma.AttributeScalarFieldEnum[]
+}
+
+/**
  * Sample without action
  */
 export type SampleDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1138,4 +1525,8 @@ export type SampleDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Sample
    */
   omit?: Prisma.SampleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SampleInclude<ExtArgs> | null
 }

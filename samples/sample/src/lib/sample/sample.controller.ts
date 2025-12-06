@@ -1,29 +1,41 @@
-import { GetAll, Post, ResourceController } from '@beemood/nestjs';
+import { AutoResourceController, ParamId } from '@beemood/nestjs';
 import { InjectRepository } from '@beemood/nestjs-prisma';
-
-import { ApiBody, ApiOperation } from '@nestjs/swagger';
-
-import { Prisma } from '@beemood/sample-db';
+import {
+  CreateSampleDto,
+  Prisma,
+  ReadSampleDto,
+  UpdateSampleDto,
+} from '@beemood/sample-db';
 import { Body } from '@nestjs/common';
-@ResourceController('samples')
+
+@AutoResourceController({
+  createDto: CreateSampleDto,
+  updateDto: UpdateSampleDto,
+  readDto: ReadSampleDto,
+})
 export class SampleController {
   constructor(
-    @InjectRepository('sample') protected readonly repo: Prisma.SampleDelegate
+    @InjectRepository(Prisma.ModelName.Sample)
+    protected readonly repo: Prisma.SampleDelegate
   ) {}
 
-  @ApiOperation({ summary: 'Get hello message' })
-  @GetAll()
   findAll() {
-    return this.repo.findMany();
+    return this.repo.findMany({});
   }
 
-  @ApiBody({
-    schema: { properties: { name: { type: 'string' } } },
-  })
-  @Post()
+  findOneById(@ParamId() id: number) {
+    return this.repo.findFirstOrThrow({ where: { id } });
+  }
+
   create(@Body() data: Prisma.SampleCreateInput) {
-    return this.repo.create({
-      data,
-    });
+    return this.repo.create({ data });
+  }
+
+  update(@ParamId() id: number, @Body() data: UpdateSampleDto) {
+    return this.repo.update({ where: { id }, data });
+  }
+
+  delete(@ParamId() id: number) {
+    return this.repo.delete({ where: { id } });
   }
 }

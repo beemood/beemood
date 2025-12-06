@@ -7,7 +7,7 @@ export type Kind = 'zod' | 'swagger';
 
 helper.generatorHandler({
   onGenerate: async (options) => {
-    const { kind } = options.generator.config;
+    const { kind, project } = options.generator.config;
     const output = options.generator.output?.value;
 
     switch (kind as Kind) {
@@ -22,7 +22,7 @@ helper.generatorHandler({
       case 'swagger': {
         await writeFile(
           output || '../src/lib/swagger.ts',
-          generateSwagger(options.dmmf.datamodel)
+          generateSwagger(options.dmmf.datamodel, project as string)
         );
         break;
       }
@@ -35,6 +35,10 @@ helper.generatorHandler({
   onManifest: () => ({
     prettyName: 'Beemood Generators',
     config: {
+      project: {
+        type: 'string',
+        required: true,
+      },
       kind: {
         type: 'string',
         enum: ['zod', 'swagger'],

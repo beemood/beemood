@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.1.0",
   "engineVersion": "ab635e6b9d606fa5c8fb8b1a7f909c3c3c1c98ba",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/lib/prisma\"\n}\n\ngenerator zod {\n  provider = \"beemood-prisma\"\n  output   = \"../src/lib/zod.ts\"\n  kind     = \"zod\"\n}\n\ngenerator swagger {\n  provider = \"beemood-prisma\"\n  output   = \"../src/lib/swagger.ts\"\n  kind     = \"swagger\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel Sample {\n  id   Int    @id @default(autoincrement())\n  uuid String @default(uuid(7))\n  name String @unique @db.VarChar(255)\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/lib/prisma\"\n}\n\ngenerator zod {\n  provider = \"beemood-prisma\"\n  output   = \"../src/lib/zod.ts\"\n  kind     = \"zod\"\n  project  = \"@beemood/sample-db\"\n}\n\ngenerator swagger {\n  provider = \"beemood-prisma\"\n  output   = \"../src/lib/swagger.ts\"\n  kind     = \"swagger\"\n  project  = \"@beemood/sample-db\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Status {\n  Active\n  Passive\n}\n\nmodel Attribute {\n  id       Int     @id @default(autoincrement())\n  sample   Sample? @relation(fields: [sampleId], references: [id])\n  sampleId Int?\n}\n\nmodel Sample {\n  id        Int       @id @default(autoincrement())\n  createdAt DateTime  @default(now())\n  updatedAt DateTime  @updatedAt\n  deletedAt DateTime?\n\n  uuid String @unique @default(uuid(7))\n  name String @unique @db.VarChar(255)\n\n  price Decimal @db.Decimal(8, 2)\n\n  notes String[]\n\n  status Status\n\n  attributes Attribute[]\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -28,7 +28,7 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Sample\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Attribute\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"sample\",\"kind\":\"object\",\"type\":\"Sample\",\"relationName\":\"AttributeToSample\"},{\"name\":\"sampleId\",\"kind\":\"scalar\",\"type\":\"Int\"}],\"dbName\":null},\"Sample\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"deletedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"uuid\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"price\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"notes\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"Status\"},{\"name\":\"attributes\",\"kind\":\"object\",\"type\":\"Attribute\",\"relationName\":\"AttributeToSample\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
   const { Buffer } = await import('node:buffer')
@@ -58,8 +58,8 @@ export interface PrismaClientConstructor {
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Samples
-   * const samples = await prisma.sample.findMany()
+   * // Fetch zero or more Attributes
+   * const attributes = await prisma.attribute.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -80,8 +80,8 @@ export interface PrismaClientConstructor {
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Samples
- * const samples = await prisma.sample.findMany()
+ * // Fetch zero or more Attributes
+ * const attributes = await prisma.attribute.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -175,6 +175,16 @@ export interface PrismaClient<
   }>>
 
       /**
+   * `prisma.attribute`: Exposes CRUD operations for the **Attribute** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Attributes
+    * const attributes = await prisma.attribute.findMany()
+    * ```
+    */
+  get attribute(): Prisma.AttributeDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
    * `prisma.sample`: Exposes CRUD operations for the **Sample** model.
     * Example usage:
     * ```ts

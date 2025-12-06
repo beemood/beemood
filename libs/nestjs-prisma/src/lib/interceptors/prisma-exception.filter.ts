@@ -1,3 +1,4 @@
+import { Any } from '@beemood/types';
 import { ArgumentsHost, ExceptionFilter, HttpStatus } from '@nestjs/common';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/client.js';
 import { Response } from 'express';
@@ -14,7 +15,7 @@ export class PrismaExceptionFilter implements ExceptionFilter {
       case 'P2002':
         status = HttpStatus.CONFLICT;
         message = `${exception.meta?.modelName} fields, ${
-          (exception.meta?.driverAdapterError as any)?.cause?.constraint?.fields
+          (exception.meta?.driverAdapterError as Any)?.cause?.constraint?.fields
         }, must be unique`;
         break;
       case 'P2025':

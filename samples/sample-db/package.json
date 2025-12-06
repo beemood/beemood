@@ -37,6 +37,20 @@
           "command": "npx prisma generate",
           "cwd": "{projectRoot}"
         }
+      },
+      "prisma:dev": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx prisma dev",
+          "cwd": "{projectRoot}"
+        }
+      },
+      "prisma:migrate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "npx prisma migrate dev --name {options.name}",
+          "cwd": "{projectRoot}"
+        }
       }
     }
   },
@@ -48,9 +62,11 @@
     "pg": "^8.16.3"
   },
   "devDependencies": {
+    "@beemood/types": "workspace:*",
     "prisma": "^7.1.0"
   },
   "dependencies": {
-    "@beemood/prisma-generators": "workspace:*"
+    "@beemood/prisma-generators": "workspace:*",
+    "@nestjs/swagger": "^11.2.3"
   }
 }

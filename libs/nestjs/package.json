@@ -41,9 +41,11 @@
   },
   "dependencies": {
     "@beemood/errors": "workspace:*",
+    "@beemood/names": "workspace:*",
     "@beemood/registry": "workspace:*",
     "@beemood/types": "workspace:*",
     "@nestjs/core": "^11.1.9",
+    "@nestjs/swagger": "^11.2.3",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

@@ -36,7 +36,7 @@
         "options": {
           "commands": [
             "npx nx build sample --watch",
-            "npx nodemon ./dist/main.js -w ./src/lib"
+            "npx nodemon ./dist/main.js"
           ],
           "cwd": "{projectRoot}",
           "parallel": true

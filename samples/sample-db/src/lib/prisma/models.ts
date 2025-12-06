@@ -8,5 +8,6 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Attribute.js'
 export type * from './models/Sample.js'
 export type * from './commonInputTypes.js'

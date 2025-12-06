@@ -44,6 +44,7 @@
     "express": "^5.2.1"
   },
   "dependencies": {
+    "@beemood/names": "workspace:*",
     "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {

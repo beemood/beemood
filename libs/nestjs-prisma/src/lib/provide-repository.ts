@@ -4,5 +4,5 @@ export const {
   inject: InjectRepository,
   provideFactory: provideRepositoryFactory,
   provideValue: provideRepositoryValue,
-  token: getReposiitoryToken,
+  token: getRepositoryToken,
 } = createNamedProvider('PrismaClientRepository');

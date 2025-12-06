@@ -37,6 +37,10 @@
     }
   },
   "dependencies": {
+    "@beemood/errors": "workspace:*",
     "@swc/helpers": "~0.5.11"
+  },
+  "devDependencies": {
+    "@beemood/types": "workspace:*"
   }
 }

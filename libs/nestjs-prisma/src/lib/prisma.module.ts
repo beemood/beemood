@@ -1,10 +1,11 @@
+import { names } from '@beemood/names';
 import { Any } from '@beemood/types';
 import { DynamicModule, Module, Provider, Type } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { getClientToken, provideClientFactory } from './provide-client.js';
 import {
-  getReposiitoryToken,
+  getRepositoryToken,
   provideRepositoryFactory,
 } from './provide-repository.js';
 
@@ -32,17 +33,20 @@ export class PrismaModule {
   }
 
   static forFeature(resourceNames: string[]): DynamicModule {
-    const providers: Provider[] = resourceNames.map((resourceName) => {
+    const resourceNameNames = resourceNames.map(names);
+    const providers: Provider[] = resourceNameNames.map(({ pascal, camel }) => {
       return provideRepositoryFactory(
-        resourceName,
+        pascal,
         (client: Any) => {
-          return client[resourceName];
+          return client[camel];
         },
         [getClientToken()]
       );
     });
 
-    const exports = resourceNames.map(getReposiitoryToken);
+    const exports = resourceNameNames.map(({ pascal }) =>
+      getRepositoryToken(pascal)
+    );
 
     return {
       module: PrismaModule,

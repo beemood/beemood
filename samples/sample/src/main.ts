@@ -7,6 +7,7 @@ import { AppModule } from './app.module.js';
 import { PrismaExceptionFilter } from './lib/interceptors/prisma-exception.filter.js';
 
 async function bootstrap() {
+  const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
 
   const GLOBAL_PREFIX = 'api';
@@ -20,7 +21,6 @@ async function bootstrap() {
     .setTitle('Sample api')
     .setDescription('Sample api to test beemood packages')
     .setVersion('1.0')
-
     .build();
 
   const document = SwaggerModule.createDocument(app, config, {
@@ -35,8 +35,8 @@ async function bootstrap() {
   });
 
   await app.listen(3000);
-  Logger.log(`Application is running on ${await app.getUrl()}`);
+
+  logger.log(`Application is running on ${await app.getUrl()}`);
 }
 
-console.log(process.env.DATABASE_URL, '<<<<<<');
 bootstrap();
