@@ -1,0 +1,26 @@
+{
+  "name": "@beemood/beemood-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@beemood/beemood"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/beemood-e2e/jest.config.cts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@beemood/beemood:build",
+          "@beemood/beemood:serve"
+        ]
+      }
+    }
+  }
+}
