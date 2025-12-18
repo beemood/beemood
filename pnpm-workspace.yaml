@@ -1,4 +1,8 @@
 packages:
-  - "apps/*"
+  - apps/*
 
 autoInstallPeers: true
+
+onlyBuiltDependencies:
+  - '@prisma/engines'
+  - prisma
