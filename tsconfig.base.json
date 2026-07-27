@@ -2,11 +2,11 @@
   "compilerOptions": {
     "composite": true,
     "declarationMap": true,
-    "emitDecoratorMetadata": true,
     "importHelpers": true,
     "isolatedModules": true,
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": [
       "es2022"
     ],

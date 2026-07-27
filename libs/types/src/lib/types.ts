@@ -27,7 +27,7 @@ export type Mutable<T> = {
 export type PropertyDecoratorTarget = Parameters<PropertyDecorator>[0];
 export type PropertyDecoratorPropertyKey = Parameters<PropertyDecorator>[1];
 
-export interface ObjectType<T extends typeof Object> {
+export interface ObjectType<T = Any> {
   new (...args: Any[]): T;
 }
 

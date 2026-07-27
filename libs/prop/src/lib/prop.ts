@@ -1,19 +1,27 @@
 import {
   Any,
+  PropBooleanOptions,
+  PropBufferOptions,
+  PropCommonOptions,
+  PropDateOptions,
   PropertyDecoratorPropertyKey,
   PropertyDecoratorTarget,
-  TypeOrFactory,
+  PropNumberFormatType,
+  PropNumberOptions,
+  PropObjectOptions,
+  PropStringOptions,
 } from '@beemood/types';
-
-import { ClassConstructor, Type } from 'class-transformer';
+import { isDefined, isNotDefined } from '@beemood/utils';
+import { ClassConstructor, Exclude, Expose, Type } from 'class-transformer';
 import {
+  IsArray,
   IsBoolean,
   IsDate,
-  isDefined,
   IsDefined,
   IsEmail,
   IsInstance,
   IsInt,
+  IsISO8601,
   IsNumber,
   IsObject,
   IsOptional,
@@ -29,28 +37,12 @@ import {
   ValidationOptions,
 } from 'class-validator';
 import { getPropType } from './get-prop-type.js';
+import { BooleanTransformer } from './transformers/boolean-transformer.js';
+import { CasingTransformer } from './transformers/casing-transformer.js';
+import { DateTransformer } from './transformers/date-transformer.js';
+import { NumberTransformer } from './transformers/number-transformer.js';
 import { BufferMaxLength } from './validations/buffer-max-length.js';
 import { BufferMinLength } from './validations/buffer-min-length.js';
-import { isNotDefined } from '@beemood/utils';
-export type PropType =
-  | 'String'
-  | 'Number'
-  | 'Boolean'
-  | 'Date'
-  | 'Buffer'
-  | 'Object';
-
-export type PropCommonOptions = {
-  /**
-   * Primitive type of the property or array-property such as ()=>String, ()=>Number, ()=>SampleObject
-   * @returns
-   */
-  type?: <T>() => ClassConstructor<T>;
-  required?: boolean;
-  exclude?: boolean;
-  minArraySize?: number;
-  maxArraySize?: number;
-};
 
 export function PropCommon(
   options: PropCommonOptions,
@@ -59,20 +51,21 @@ export function PropCommon(
   return (...args) => {
     const acc: PropertyDecorator[] = [];
 
-    acc.push(
-      options.required
-        ? IsDefined(validationOptions)
-        : IsOptional(validationOptions),
-    );
+    if (options.required) {
+      acc.push(IsDefined(validationOptions));
+    } else {
+      acc.push(IsOptional(validationOptions));
+    }
+
+    if (options.exclude) {
+      acc.push(Exclude());
+    } else {
+      acc.push(Expose());
+    }
 
     acc.forEach((d) => d(...args));
   };
 }
-
-export type PropDateOptions = {
-  minDate?: TypeOrFactory<Date>;
-  maxDate?: TypeOrFactory<Date>;
-};
 
 export function PropDate(
   options: PropDateOptions,
@@ -85,14 +78,11 @@ export function PropDate(
     options.minDate && acc.push(MaxDate(options.minDate, validationOptions));
     options.maxDate && acc.push(MaxDate(options.maxDate, validationOptions));
 
+    acc.push(DateTransformer());
+
     acc.forEach((d) => d(...args));
   };
 }
-
-export type PropBufferOptions = {
-  minBufferSize?: number;
-  maxBufferSize?: number;
-};
 
 export function PropBuffer(
   options: PropBufferOptions,
@@ -111,9 +101,6 @@ export function PropBuffer(
   };
 }
 
-export type PropObjectOptions = {
-  target?: ClassConstructor<Any>;
-};
 export function PropObject(
   options: PropObjectOptions,
   validationOptions: ValidationOptions = {},
@@ -128,23 +115,18 @@ export function PropObject(
   };
 }
 
-export type PropBooleanOptions = {};
 export function PropBoolean(
   validationOptions: ValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
     const acc: PropertyDecorator[] = [];
     acc.push(IsBoolean(validationOptions));
+
+    if (!validationOptions.each) acc.push(BooleanTransformer());
+
     acc.forEach((d) => d(...args));
   };
 }
-
-export type PropNumberFormatType = 'int';
-export type PropNumberOptions = {
-  minimum?: number;
-  maximum?: number;
-  numberFormat?: PropNumberFormatType;
-};
 
 export function PropNumberFormat(
   numberFormat: PropNumberFormatType,
@@ -178,37 +160,19 @@ export function PropNumber(
 
     isDefined(options.numberFormat) &&
       acc.push(PropNumberFormat(options.numberFormat));
+
+    acc.push(NumberTransformer());
+
     acc.forEach((d) => d(...args));
   };
 }
 
-export type PropStringFormat =
-  | 'email'
-  | 'password'
-  | 'uuid'
-  | 'uuid4'
-  | 'uuid7';
-
-export type PropStringOptions = {
-  minLength?: number;
-  maxLength?: number;
-  stringFormat?: PropStringFormat;
-};
-
-export function PropString(
+export function StringFormat(
   options: PropStringOptions,
   validationOptions: ValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
     const acc: PropertyDecorator[] = [];
-
-    acc.push(IsString(validationOptions));
-
-    isDefined(options.minLength) &&
-      acc.push(MinLength(options.minLength, validationOptions));
-
-    isDefined(options.maxLength) &&
-      acc.push(MaxLength(options.maxLength, validationOptions));
 
     if (options.stringFormat)
       switch (options.stringFormat) {
@@ -232,7 +196,37 @@ export function PropString(
           acc.push(IsUUID('7', validationOptions));
           break;
         }
+        case 'iso8601': {
+          acc.push(IsISO8601({ strict: true }, validationOptions));
+          break;
+        }
       }
+
+    if (options.casing) {
+      acc.push(CasingTransformer(options.casing));
+    }
+
+    acc.forEach((d) => d(...args));
+  };
+}
+
+export function PropString(
+  options: PropStringOptions,
+  validationOptions: ValidationOptions = {},
+): PropertyDecorator {
+  return (...args) => {
+    const acc: PropertyDecorator[] = [];
+
+    acc.push(IsString(validationOptions));
+
+    isDefined(options.minLength) &&
+      acc.push(MinLength(options.minLength, validationOptions));
+
+    isDefined(options.maxLength) &&
+      acc.push(MaxLength(options.maxLength, validationOptions));
+
+    isDefined(options.stringFormat) &&
+      acc.push(StringFormat(options, validationOptions));
 
     acc.forEach((d) => d(...args));
   };
@@ -305,6 +299,8 @@ export function __Prop(
         break;
       }
       case Array.name: {
+        acc.push(IsArray(validationOptions));
+
         if (isNotDefined(options.type)) {
           throw new Error(`type is required for array properties`);
         }
@@ -328,7 +324,7 @@ export function __Prop(
   };
 }
 
-export function Prop(options: PropOptions): PropertyDecorator {
+export function Prop(options: PropOptions = {}): PropertyDecorator {
   return (...args) => {
     const acc: PropertyDecorator[] = [];
 

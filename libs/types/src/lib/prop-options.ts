@@ -1,112 +1,58 @@
-// import { Any } from './types.js';
+import { Casing, ObjectType, TypeOrFactory } from './types.js';
 
-// export enum PropType {
-//   String = 'String',
-//   Number = 'Number',
-//   Boolean = 'Boolean',
-//   Date = 'Date',
-//   Buffer = 'Buffer',
-//   Array = 'Array',
-//   Object = 'Object',
-// }
+export type PropType =
+  | 'String'
+  | 'Number'
+  | 'Boolean'
+  | 'Date'
+  | 'Buffer'
+  | 'Object';
 
-// export type StringFormat = 'email' | 'password' | 'uuid';
-// export type NumberFormat =
-//   | 'integer'
-//   | 'rate'
-//   | 'percent'
-//   | 'fraction'
-//   | 'binary';
+export type PropCommonOptions = {
+  /**
+   * Primitive type of the property or array-property such as ()=>String, ()=>Number, ()=>SampleObject
+   * @returns
+   */
+  type?: () => ObjectType;
+  required?: boolean;
+  exclude?: boolean;
+  minArraySize?: number;
+  maxArraySize?: number;
+};
 
-// export type CommonOptions = {
-//   type?: PropType;
-//   required?: boolean;
-// };
+export type PropDateOptions = {
+  minDate?: TypeOrFactory<Date>;
+  maxDate?: TypeOrFactory<Date>;
+};
+export type PropBufferOptions = {
+  minBufferSize?: number;
+  maxBufferSize?: number;
+};
 
-// export type DefaultValueOption<T> = {
-//   defaultValue: T;
-// };
+export type PropObjectOptions = {
+  target?: ObjectType;
+};
 
-// export type StringOptions = {
-//   type?: PropType.String;
-//   minLength?: number;
-//   maxLength?: number;
-//   format?: StringFormat;
-//   defaultValue: number;
-//   isIn?: string[];
-//   isNotIn?: string[];
-//   pattern?: RegExp;
-// } & DefaultValueOption<string>;
+export type PropBooleanOptions = {};
 
-// export type NumberOptions = {
-//   type?: PropType.Number;
-//   minimum?: number;
-//   maximum?: number;
-//   format?: NumberFormat;
-//   isIn?: number[];
-//   isNotIn?: number[];
-// } & DefaultValueOption<number>;
+export type PropNumberFormatType = 'int';
+export type PropNumberOptions = {
+  minimum?: number;
+  maximum?: number;
+  numberFormat?: PropNumberFormatType;
+};
 
-// export type BooleanOptions = {
-//   type?: PropType.Boolean;
-// } & DefaultValueOption<boolean>;
+export type PropStringFormat =
+  | 'email'
+  | 'password'
+  | 'uuid'
+  | 'uuid4'
+  | 'uuid7'
+  | 'iso8601';
 
-// export type DateOptions = {
-//   type?: PropType.Date;
-//   future?: boolean;
-//   past?: boolean;
-// } & DefaultValueOption<Date>;
-
-// export type BufferOptions = {
-//   type?: PropType.Buffer;
-//   maxBufferSize?: number;
-//   minBufferSize?: number;
-// } & DefaultValueOption<Buffer>;
-
-// export type ObjectOptions = {
-//   type?: PropType.Object;
-//   defaultValue?: Any;
-// } & DefaultValueOption<Any>;
-
-// export type __ArrayOptions<T> = {
-//   type?: PropType.Array;
-//   minArraySize?: number;
-//   maxArraySize?: number;
-//   items?: T;
-// };
-
-// export type ArrayStringOptions = __ArrayOptions<StringOptions> &
-//   DefaultValueOption<string>;
-
-// export type ArrayNumberOptions = __ArrayOptions<NumberOptions> &
-//   DefaultValueOption<number>;
-
-// export type ArrayBooleanOptions = __ArrayOptions<BooleanOptions> &
-//   DefaultValueOption<boolean>;
-
-// export type ArrayDateOptions = __ArrayOptions<DateOptions> &
-//   DefaultValueOption<Date>;
-
-// export type ArrayBufferOptions = __ArrayOptions<BufferOptions> &
-//   DefaultValueOption<Buffer>;
-
-// export type ArrayObjectOptions = __ArrayOptions<ObjectOptions> &
-//   DefaultValueOption<Any>;
-
-// export type __PropOptions = CommonOptions &
-//   (
-//     | StringOptions
-//     | NumberOptions
-//     | BooleanOptions
-//     | DateOptions
-//     | BufferOptions
-//     | ObjectOptions
-//     | ArrayStringOptions
-//     | ArrayNumberOptions
-//     | ArrayBooleanOptions
-//     | ArrayDateOptions
-//     | ArrayBufferOptions
-//     | ArrayObjectOptions
-//   );
-
-// export type PropOptions = __PropOptions | __ArrayOptions<__PropOptions>;
+export type PropStringOptions = {
+  minLength?: number;
+  maxLength?: number;
+  stringFormat?: PropStringFormat;
+  casing?: Casing;
+};

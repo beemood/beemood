@@ -12,7 +12,7 @@
     },
     "keepClassNames": true,
     "externalHelpers": true,
-    "loose": false,
+    "loose": false
   },
   "module": {
     "type": "es6"

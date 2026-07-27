@@ -4,8 +4,6 @@
 ![Bundle size](https://img.shields.io/bundlephobia/min/<%- projectName %>) 
 
 
-
-
 <p align="center">
   <img   srcset="./assets/favicon.svg, <%- homePage %>/<%- directory %>/assets/favicon.svg" alt="Logo" height="128" style="border-radius: 100%"/>
 </p>
