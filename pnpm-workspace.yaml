@@ -1,31 +1,34 @@
 packages:
-  - 'apis/*'
-  - 'dbs/*'
-  - 'mods/*'
-  - 'clis/*'
-  - 'libs/*'
+  - "apis/*"
+  - "dbs/*"
+  - "mods/*"
+  - "clis/*"
+  - "libs/*"
 autoInstallPeers: true
 allowBuilds:
-  '@scarf/scarf': true
-  '@swc/core': true
+  '@prisma/engines': true
+  "@scarf/scarf": true
+  "@swc/core": true
   nx: true
+  prisma: true
   unrs-resolver: true
 minimumReleaseAgeExclude:
-  - '@rolldown/binding-android-arm64@1.2.3'
-  - '@rolldown/binding-darwin-arm64@1.2.3'
-  - '@rolldown/binding-darwin-x64@1.2.3'
-  - '@rolldown/binding-freebsd-x64@1.2.3'
-  - '@rolldown/binding-linux-arm-gnueabihf@1.2.3'
-  - '@rolldown/binding-linux-arm64-gnu@1.2.3'
-  - '@rolldown/binding-linux-arm64-musl@1.2.3'
-  - '@rolldown/binding-linux-ppc64-gnu@1.2.3'
-  - '@rolldown/binding-linux-s390x-gnu@1.2.3'
-  - '@rolldown/binding-linux-x64-gnu@1.2.3'
-  - '@rolldown/binding-linux-x64-musl@1.2.3'
-  - '@rolldown/binding-openharmony-arm64@1.2.3'
-  - '@rolldown/binding-win32-arm64-msvc@1.2.3'
-  - '@rolldown/binding-win32-x64-msvc@1.2.3'
-  - '@xhmikosr/bin-wrapper@14.5.1'
-  - '@xhmikosr/decompress@11.1.4'
-  - '@xhmikosr/downloader@16.3.1'
-  - rolldown@1.2.3
+  - '@nx/devkit@23.1.1'
+  - '@nx/eslint-plugin@23.1.1'
+  - '@nx/eslint@23.1.1'
+  - '@nx/jest@23.1.1'
+  - '@nx/js@23.1.1'
+  - '@nx/nx-darwin-arm64@23.1.1'
+  - '@nx/nx-darwin-x64@23.1.1'
+  - '@nx/nx-freebsd-x64@23.1.1'
+  - '@nx/nx-linux-arm-gnueabihf@23.1.1'
+  - '@nx/nx-linux-arm64-gnu@23.1.1'
+  - '@nx/nx-linux-arm64-musl@23.1.1'
+  - '@nx/nx-linux-x64-gnu@23.1.1'
+  - '@nx/nx-linux-x64-musl@23.1.1'
+  - '@nx/nx-win32-arm64-msvc@23.1.1'
+  - '@nx/nx-win32-x64-msvc@23.1.1'
+  - '@nx/plugin@23.1.1'
+  - '@nx/vitest@23.1.1'
+  - '@nx/workspace@23.1.1'
+  - nx@23.1.1
