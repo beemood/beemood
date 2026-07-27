@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import 'reflect-metadata';
 import { PropValidationOptions as O } from './prop-validation-options.js';
 import { PropValidation } from './prop-validation.js';
@@ -6,24 +7,115 @@ import { transformAndValidate } from './transform-and-validate.js';
 describe('String validation', () => {
   describe('Valid input', () => {
     it.each`
-      keyOptions                                                          | valueOptions               | value
-      ${undefined}                                                        | ${undefined}               | ${{ key: undefined, value: undefined }}
-      ${undefined}                                                        | ${undefined}               | ${{ key: null, value: null }}
-      ${{ required: true, dependencies: { notEqualTo: ['value'] } } as O} | ${{ required: true } as O} | ${{ key: 's', value: 'd' }}
-      ${{} as O}                                                          | ${{} as O}                 | ${{ key: 'some', value: 'some' }}
-    `(
-      'should validate $value with $keyOptions and $valueOptions',
-      ({ keyOptions, valueOptions, value }) => {
-        class Sample {
-          @PropValidation(keyOptions) key: string;
-          @PropValidation(valueOptions) value: string;
-        }
+      options                        | value
+      ${undefined}                   | ${{ value: null }}
+      ${undefined}                   | ${{ value: undefined }}
+      ${undefined}                   | ${{ value: 'some' }}
+      ${{ required: true } as O}     | ${{ value: 's' }}
+      ${{ minLength: 1 } as O}       | ${{ value: 's' }}
+      ${{ maxLength: 1 } as O}       | ${{ value: 's' }}
+      ${{ enum: ['s', 'v'] } as O}   | ${{ value: 's' }}
+      ${{ format: 'email' } as O}    | ${{ value: 'some@email.com' }}
+      ${{ format: 'uuid' } as O}     | ${{ value: randomUUID() }}
+      ${{ format: 'password' } as O} | ${{ value: '?SomePassword12.' }}
+    `(`$value | $options`, ({ options, value }) => {
+      class Sample {
+        @PropValidation(options) value: string;
+      }
 
-        const { errors, instance } = transformAndValidate(Sample, value);
+      const { errors, instance } = transformAndValidate(Sample, value);
 
-        expect(instance).toEqual(value);
-        expect(errors).toEqual([]);
-      },
-    );
+      expect(instance).toEqual(value);
+      expect(errors).toEqual([]);
+    });
+  });
+
+  describe('Invalid input', () => {
+    it.each`
+      options                         | value              | exp
+      ${{ minLength: 3 } as O}        | ${{ value: '12' }} | ${['minLength']}
+      ${{ maxLength: 1 } as O}        | ${{ value: '12' }} | ${['maxLength']}
+      ${{ enum: ['s', 'v'] } as O}    | ${{ value: 'd' }}  | ${['isEnum']}
+      ${{ format: 'email' } as O}     | ${{ value: '12' }} | ${['isEmail']}
+      ${{ format: 'uuid' } as O}      | ${{ value: '12' }} | ${['isUuid']}
+      ${{ format: 'uri' } as O}       | ${{ value: '12' }} | ${['isUrl']}
+      ${{ format: 'ean' } as O}       | ${{ value: '12' }} | ${['isEAN']}
+      ${{ format: 'password' } as O}  | ${{ value: '12' }} | ${['isStrongPassword']}
+      ${{ format: 'date' } as O}      | ${{ value: '12' }} | ${['isDateString']}
+      ${{ format: 'date-time' } as O} | ${{ value: '12' }} | ${['isDateString']}
+      ${{ format: 'time' } as O}      | ${{ value: '12' }} | ${['isDateString']}
+    `(`$value | $options`, ({ options, value, exp }) => {
+      class Sample {
+        @PropValidation(options) value: string;
+      }
+
+      const { errors, instance } = transformAndValidate(Sample, value);
+
+      expect(instance).toEqual(value);
+      expect(exp.length).toEqual(errors.length);
+
+      const constraints = errors.flatMap((e) =>
+        Object.keys(e.constraints ?? {}),
+      );
+      for (const constraint of constraints) {
+        expect(exp).include(constraint);
+      }
+    });
+  });
+
+  describe('Array valid input', () => {
+    it.each`
+      options                                                            | value
+      ${{ type: () => String, isArray: true } as O}                      | ${{ value: ['some'] }}
+      ${{ type: () => String, isArray: true, required: true } as O}      | ${{ value: ['s'] }}
+      ${{ type: () => String, isArray: true, minLength: 1 } as O}        | ${{ value: ['s'] }}
+      ${{ type: () => String, isArray: true, maxLength: 1 } as O}        | ${{ value: ['s'] }}
+      ${{ type: () => String, isArray: true, format: 'email' } as O}     | ${{ value: ['some@email.com'] }}
+      ${{ type: () => String, isArray: true, format: 'uuid' } as O}      | ${{ value: [randomUUID()] }}
+      ${{ type: () => String, isArray: true, format: 'password' } as O}  | ${{ value: ['?SomePassword12.'] }}
+      ${{ type: () => String, isArray: true, format: 'date' } as O}      | ${{ value: [new Date().toISOString()] }}
+      ${{ type: () => String, isArray: true, format: 'date-time' } as O} | ${{ value: [new Date().toISOString()] }}
+      ${{ type: () => String, isArray: true, format: 'time' } as O}      | ${{ value: [new Date().toISOString()] }}
+    `(`$value | $options`, ({ options, value }) => {
+      class Sample {
+        @PropValidation(options) value: string;
+      }
+
+      const { errors, instance } = transformAndValidate(Sample, value);
+
+      expect(instance).toEqual(value);
+      expect(errors).toEqual([]);
+    });
+  });
+
+  describe('Array invalid input', () => {
+    it.each`
+      options                                                            | value                          | exp
+      ${{ type: () => String, isArray: true } as O}                      | ${{ value: undefined }}        | ${[]}
+      ${{ type: () => String, isArray: true } as O}                      | ${{ value: [] }}               | ${[]}
+      ${{ type: () => String, isArray: true, minLength: 1 } as O}        | ${{ value: [''] }}             | ${['minLength']}
+      ${{ type: () => String, isArray: true, maxLength: 1 } as O}        | ${{ value: ['12'] }}           | ${['maxLength']}
+      ${{ type: () => String, isArray: true, format: 'email' } as O}     | ${{ value: ['invalid'] }}      | ${['isEmail']}
+      ${{ type: () => String, isArray: true, format: 'uuid' } as O}      | ${{ value: ['invalid'] }}      | ${['isUuid']}
+      ${{ type: () => String, isArray: true, format: 'password' } as O}  | ${{ value: ['invalid'] }}      | ${['isStrongPassword']}
+      ${{ type: () => String, isArray: true, format: 'date' } as O}      | ${{ value: ['invalid date'] }} | ${['isDateString']}
+      ${{ type: () => String, isArray: true, format: 'date-time' } as O} | ${{ value: ['invalid date'] }} | ${['isDateString']}
+      ${{ type: () => String, isArray: true, format: 'time' } as O}      | ${{ value: ['invalid date'] }} | ${['isDateString']}
+    `(`$value | $options`, ({ options, value, exp }) => {
+      class Sample {
+        @PropValidation(options) value: string;
+      }
+
+      const { errors, instance } = transformAndValidate(Sample, value);
+
+      expect(instance).toEqual(value);
+      expect(exp.length).toEqual(errors.length);
+      const constraints = errors.flatMap((e) =>
+        Object.keys(e.constraints ?? {}),
+      );
+      for (const constraint of constraints) {
+        expect(exp).include(constraint);
+      }
+    });
   });
 });
