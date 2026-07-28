@@ -4,9 +4,16 @@ export const ClassSuffixes = {
   CreateManyDto: 'CreateManyDto',
   UdpateDto: 'UdpateDto',
   UdpateManyDto: 'UdpateManyDto',
-  QueryDto: 'QueryDto',
+  FindManyDto: 'FindManyDto',
+  FindUniqueDto: 'FindUniqueDto',
   ProjectionDto: 'ProjectionDto',
+  SelectDto: 'SelectDto',
+  OmitDto: 'OmitDto',
+  IncludeDto: 'IncludeDto',
   OrderByDto: 'OrderByDto',
+  WhereDto: 'WhereDto',
+  WhereUniqueDto: 'WhereUniqueDto',
+  WhereManyRelationDto: 'WhereManyRelationDto',
 } as const;
 
 export type DtoClassNameSuffix = keyof typeof ClassSuffixes;
