@@ -1,7 +1,32 @@
 {
   "name": "@beemood/source",
+  "displayName": "Beemood",
   "version": "0.0.0",
   "license": "BSL-1.0",
+  "description": "A set of packages, modules, and tools for Beemood.",
+  "homepage": "https://beemood.github.io",
+  "author": {
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus@gmail.com",
+    "url": "https://beemood.github.io/profile"
+  },
+  "keywords": [
+    "libs",
+    "clis",
+    "mods",
+    "apis",
+    "beemood"
+  ],
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "engines": {
+    "runtime": {
+      "name": "nodejs",
+      "version": "v24.16.0"
+    },
+    "vscode": "^1.131.0"
+  },
   "scripts": {},
   "private": true,
   "dependencies": {},
