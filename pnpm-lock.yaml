@@ -30,7 +30,7 @@ importers:
         specifier: ~1.15.5
         version: 1.15.47(@swc/helpers@0.5.23)
       '@swc/helpers':
-        specifier: ~0.5.18
+        specifier: ~0.5.23
         version: 0.5.23
       '@types/node':
         specifier: ^22.0.0
@@ -78,7 +78,7 @@ importers:
   libs/types:
     dependencies:
       '@swc/helpers':
-        specifier: ~0.5.18
+        specifier: ~0.5.23
         version: 0.5.23
 
 packages:
@@ -6303,9 +6303,9 @@ snapshots:
     dependencies:
       reusify: 1.1.0
 
-  fdir@6.5.0(picomatch@4.0.4):
+  fdir@6.5.0(picomatch@4.0.5):
     optionalDependencies:
-      picomatch: 4.0.4
+      picomatch: 4.0.5
 
   figures@3.2.0:
     dependencies:
@@ -7690,8 +7690,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.4)
-      picomatch: 4.0.4
+      fdir: 6.5.0(picomatch@4.0.5)
+      picomatch: 4.0.5
 
   tinyrainbow@3.1.1: {}
 
