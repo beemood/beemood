@@ -1,3 +1,4 @@
+import { toBrandEmail } from '@beemood/utils';
 import {
   formatFiles,
   generateFiles,
@@ -20,9 +21,8 @@ function normalizeOptions(
 ): NormalizeProjectGeneratorSchema {
   const shortName = basename(rawOptions.directory);
   const projectName = `@${rawOptions.username}/${shortName}`;
-  const email = rawOptions.email
-    .split('@')
-    .join(`+${rawOptions.username}-${shortName}@`);
+  const brandName = `${rawOptions.username}-${shortName}`;
+  const email = toBrandEmail(rawOptions.email, brandName);
 
   return { ...rawOptions, projectName, email, shortName, ...names(shortName) };
 }

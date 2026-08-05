@@ -1,8 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Any = any;
 export type Some<T> = T | undefined | null;
-export type Optional<T> = T | undefined;
-export type Nullable<T> = T | null;
 export type KeyOf<T> = keyof T;
 export type Keys<T> = KeyOf<T>[];
 

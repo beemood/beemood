@@ -12,5 +12,8 @@
     {
       "path": "./clis/plugin"
     },
+    {
+      "path": "./libs/fs"
+    }
   ]
 }

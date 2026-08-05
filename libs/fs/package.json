@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/utils",
+  "name": "@beemood/fs",
   "version": "0.0.1",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus+beemood-utils@gmail.com",
+    "email": "aemrebasus+beemood-fs@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -34,7 +34,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/utils/src",
+    "sourceRoot": "libs/fs/src",
     "targets": {
       "build": {},
       "doc": {}
@@ -42,11 +42,5 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.23"
-  },
-  "devDependencies": {
-    "@beemood/types": "workspace:*"
-  },
-  "peerDependencies": {
-    "@beemood/types": "workspace:*"
   }
 }
