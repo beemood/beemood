@@ -2,9 +2,9 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/clis/plugin',
+  cacheDir: '../../node_modules/.vite/<%- directory %>',
   test: {
-    name: '@beemood/plugin',
+    name: '<%- projectName %>,
     watch: false,
     globals: true,
     environment: 'jsdom',

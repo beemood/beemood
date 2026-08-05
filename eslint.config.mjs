@@ -25,6 +25,28 @@ export default [
       ],
     },
   },
+
+  {
+    files: ['**/*.json'],
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        {
+          ignoredFiles: [
+            '{projectRoot}/eslint.config.mjs',
+            '{projectRoot}/vitest.config.mts',
+          ],
+        },
+      ],
+    },
+    languageOptions: {
+      parser: await import('jsonc-eslint-parser'),
+    },
+  },
+  {
+    ignores: ['**/out-tsc'],
+  },
+
   {
     files: [
       '**/*.ts',

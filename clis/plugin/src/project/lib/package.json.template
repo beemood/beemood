@@ -1,0 +1,45 @@
+{
+  "name": "<%- projectName %>",
+  "version": "<%- version %>",
+  "description": "- [ ] add project description",
+  "homepage": "<%- homePage %>",
+  "author": {
+    "name": "<%- fullName %>",
+    "email": "<%- email %>",
+    "url": "<%- homePage %>/profile"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "<%- directory %>/src",
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.23"
+  }
+}

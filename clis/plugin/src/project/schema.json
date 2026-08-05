@@ -4,15 +4,86 @@
   "title": "",
   "type": "object",
   "properties": {
-    "name": {
+    "type": {
       "type": "string",
-      "description": "",
+      "description": "Project type ",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What name would you like to use?"
+      "enum": ["lib", "cli", "api", "workspace", "prisma"],
+      "x-prompt": "What type of project would you like to generate?"
+    },
+    "directory": {
+      "type": "string",
+      "description": "Project root directory",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What directory would you like to use?"
+    },
+    "repoName": {
+      "type": "string",
+      "description": "Repository name",
+      "$default": {
+        "source": "argv",
+        "index": 2
+      },
+      "x-prompt": "What repoName would you like to use?"
+    },
+    "username": {
+      "type": "string",
+      "description": "username used by repository",
+      "$default": {
+        "source": "argv",
+        "index": 3
+      },
+      "x-prompt": "What username would you like to use?"
+    },
+    "fundingUrl": {
+      "type": "string",
+      "description": "fundingUrl",
+      "$default": {
+        "source": "argv",
+        "index": 4
+      },
+      "x-prompt": "What fundingUrl would you like to use?"
+    },
+    "email": {
+      "type": "string",
+      "description": "email",
+      "$default": { "source": "argv", "index": 5 },
+      "x-prompt": "What email would you like to use?"
+    },
+    "version": {
+      "type": "string",
+      "description": "version",
+      "$default": { "source": "argv", "index": 6 },
+      "x-prompt": "What version would you like to use?"
+    },
+    "homePage": {
+      "type": "string",
+      "description": "home page url",
+      "$default": { "source": "argv", "index": 7 },
+      "x-prompt": "What homePage would you like to use?"
+    },
+    "fullName": {
+      "type": "string",
+      "description": "fullName",
+      "$default": { "source": "argv", "index": 8 },
+      "x-prompt": "What fullName would you like to use?"
     }
   },
-  "required": ["name"]
+  "required": [
+    "type",
+    "directory",
+    "repoName",
+    "username",
+    "fundingUrl",
+    "email",
+    "version",
+    "homePage",
+    "fullName"
+  ]
 }
