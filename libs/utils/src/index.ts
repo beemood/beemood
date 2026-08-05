@@ -4,6 +4,7 @@ export * from './lib/is-defined-then.js';
 export * from './lib/is-defined.js';
 export * from './lib/is-empty-string.js';
 export * from './lib/lowercase-first.js';
+export * from './lib/names.js';
 export * from './lib/to-brand-email.js';
 export * from './lib/to-camel-case.js';
 export * from './lib/to-constant-case.js';

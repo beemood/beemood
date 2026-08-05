@@ -9,3 +9,12 @@ export type StringRecord<T> = MapRecord<T, string>;
 export type NumberRecord<T> = MapRecord<T, number>;
 export type BooleanRecord<T> = MapRecord<T, boolean>;
 export type BinaryRecord<T> = MapRecord<T, 1 | 0>;
+
+export type Names = {
+  normal: string;
+  pascal: string;
+  camel: string;
+  kebab: string;
+  snake: string;
+  contant: string;
+};
