@@ -1,12 +1,12 @@
 {
-  "name": "<%- projectName %>",
-  "version": "<%- version %>",
+  "name": "@beemood/utils",
+  "version": "0.0.1",
   "description": "- [ ] add project description",
-  "homepage": "<%- homePage %>",
+  "homepage": "https://beemood.github.io",
   "author": {
-    "name": "<%- fullName %>",
-    "email": "<%- email %>",
-    "url": "<%- homePage %>/profile"
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus+beemood-utils@gmail.com",
+    "url": "https://beemood.github.io/profile"
   },
   "funding": [
     "https://cash.app/$puqlib"
@@ -34,7 +34,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "<%- directory %>/src",
+    "sourceRoot": "libs/utils/src",
     "targets": {
       "build": {},
       "doc": {}

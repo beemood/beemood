@@ -1,12 +1,19 @@
-import { formatFiles, generateFiles, names, Tree } from '@nx/devkit';
-import { basename, join } from 'node:path';
+import {
+  formatFiles,
+  generateFiles,
+  names,
+  Tree,
+  updateJson,
+} from '@nx/devkit';
+import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type {
   NormalizeProjectGeneratorSchema,
   ProjectGeneratorSchema,
 } from './schema.js';
 
-const __dirname = fileURLToPath(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function normalizeOptions(
   rawOptions: ProjectGeneratorSchema,
@@ -15,9 +22,19 @@ function normalizeOptions(
   const projectName = `@${rawOptions.username}/${shortName}`;
   const email = rawOptions.email
     .split('@')
-    .join(`+${rawOptions.username}-${shortName}`);
+    .join(`+${rawOptions.username}-${shortName}@`);
 
   return { ...rawOptions, projectName, email, shortName, ...names(shortName) };
+}
+
+async function updateTsconfigReferences(tree: Tree, directory: string) {
+  updateJson(tree, 'tsconfig.json', (value) => {
+    if (!value.references) {
+      value.references = [];
+    }
+    value.references.push({ path: `./${directory}` });
+    return value;
+  });
 }
 
 async function generateCommon(
@@ -39,7 +56,10 @@ export async function projectGenerator(
 
   const soruceDir = join(__dirname, options.type);
   const targetDir = options.directory;
-  generateFiles(tree, soruceDir, targetDir, options);
+
+  generateFiles(tree, soruceDir, targetDir, { ...options });
+
+  await updateTsconfigReferences(tree, options.directory);
 
   await formatFiles(tree);
 }

@@ -103,6 +103,12 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
 
+  libs/utils:
+    dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.23
+        version: 0.5.23
+
 packages:
 
   '@acemir/cssom@0.9.31':

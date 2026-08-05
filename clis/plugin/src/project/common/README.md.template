@@ -7,7 +7,7 @@
 
 
 <p align="center">
-  <img   srcset="./assets/imgs/favicon.svg, <%- homePage %>/assets/imgs/favicon.svg" alt="Logo" height="200" style="border-radius: 20px"/>
+  <img   srcset="./assets/favicon.svg, <%- homePage %>/<%- directory %>/assets/favicon.svg" alt="Logo" height="128" style="border-radius: 100%"/>
 </p>
 
 ## <%- projectName %>
