@@ -1,0 +1,60 @@
+{
+  "name": "@beemood/plugin",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets",
+    "bin",
+    "generators.json",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "clis/plugin/src",
+    "targets": {
+      "build": {
+        "executor": "@nx/js:swc",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "options": {
+          "clean": true,
+          "outputPath": "{projectRoot}/dist",
+          "main": "{projectRoot}/src/index.ts",
+          "tsConfig": "{projectRoot}/tsconfig.lib.json",
+          "skipTypeCheck": false,
+          "stripLeadingPaths": true,
+          "assets": [
+            {
+              "input": "{projectRoot}/src",
+              "glob": "**/!(*.ts)",
+              "output": "."
+            },
+            {
+              "input": "{projectRoot}/src",
+              "glob": "**/*.d.ts",
+              "output": "."
+            }
+          ]
+        }
+      },
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@nx/devkit": "23.1.1",
+    "@swc/helpers": "~0.5.23"
+  },
+  "generators": "./generators.json"
+}

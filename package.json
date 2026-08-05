@@ -34,7 +34,9 @@
     "@nx/eslint": "23.1.1",
     "@nx/eslint-plugin": "23.1.1",
     "@nx/js": "23.1.1",
+    "@nx/plugin": "^23.1.1",
     "@nx/vitest": "23.1.1",
+    "@swc-node/register": "~1.11.1",
     "@swc/cli": "~0.8.1",
     "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.23",
@@ -42,6 +44,7 @@
     "@vitest/coverage-v8": "~4.1.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "jsdom": "^27.1.0",
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "23.1.1",
     "prettier": "~3.6.2",
@@ -65,5 +68,8 @@
         }
       }
     }
+  },
+  "dependencies": {
+    "@nx/devkit": "23.1.1"
   }
 }
