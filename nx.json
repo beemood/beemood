@@ -19,14 +19,15 @@
         "typecheck": {
           "targetName": "typecheck"
         },
-        "build": {
-          "targetName": "build",
+        "buildtypes": {
+          "targetName": "buildtypes",
           "configName": "tsconfig.lib.json",
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
       }
     },
+
     {
       "plugin": "@nx/eslint/plugin",
       "options": {
@@ -48,6 +49,20 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
+    "build": {
+      "cache": true,
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "clean": true,
+        "outputPath": "{projectRoot}/dist",
+        "main": "{projectRoot}/src/index.ts",
+        "tsConfig": "{projectRoot}/tsconfig.lib.json",
+        "skipTypeCheck": false,
+        "stripLeadingPaths": true
+      },
+      "dependsOn": ["^build"]
+    },
     "test": {
       "dependsOn": ["^build"]
     },
@@ -58,23 +73,6 @@
           "typedoc {projectRoot}/src/index.ts --out public/{projectRoot} --tsconfig {projectRoot}/tsconfig.lib.json --favicon {projectRoot}/assets/favicon.svg"
         ]
       }
-    },
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "clean": true,
-        "outputPath": "{projectRoot}/dist",
-        "main": "{projectRoot}/src/main.ts",
-        "tsConfig": "{projectRoot}/tsconfig.lib.json",
-        "skipTypeCheck": false,
-        "stripLeadingPaths": true
-      }
-    },
-    "@nx/js:tsc": {
-      "cache": true,
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
     }
   },
   "generators": {

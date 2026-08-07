@@ -12,11 +12,14 @@
     },
     "keepClassNames": true,
     "externalHelpers": true,
-    "loose": false
+    "loose": false,
   },
   "module": {
     "type": "es6"
   },
   "sourceMaps": true,
-  "exclude": [".*\\.spec.ts$", ".*.js$"]
+  "exclude": [
+    ".*\\.spec.ts$",
+    ".*.js$"
+  ]
 }
