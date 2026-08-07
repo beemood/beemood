@@ -2,7 +2,7 @@ import { Some } from '@beemood/types';
 import { isDefined } from './is-defined.js';
 
 /**
- * Null and undefined guard with then and else handlers
+ * Check the {@link value} is defined or not then run {@link thenHandler} or {@link elseHandler} accordingly.
  *
  * @param value
  * @param thenHandler

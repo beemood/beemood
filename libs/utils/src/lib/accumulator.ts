@@ -1,3 +1,4 @@
+import { Some } from '@beemood/types';
 import { isDefinedThen } from './is-defined-then.js';
 
 export class Collector<T> {
@@ -5,8 +6,12 @@ export class Collector<T> {
   constructor() {}
 
   addIf<V>(conditionalValue: V, value: T) {
-    isDefinedThen(conditionalValue, () => this.collectedData.push(value));
+    isDefinedThen<V>(conditionalValue, () => this.collectedData.push(value));
 
+    return this;
+  }
+  addIfDefined<V>(value: Some<V>, handler: (value: V) => T) {
+    isDefinedThen(value, (value) => this.collectedData.push(handler(value)));
     return this;
   }
 

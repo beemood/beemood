@@ -7,11 +7,15 @@
       "vitest/importMeta",
       "vite/client",
       "node",
-      "vitest"
+      "vitest",
+      "reflect-metadata"
     ],
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["vitest.config.mts", "src/**/*.spec.ts"],
+  "include": [
+    "vitest.config.mts",
+    "src/**/*.spec.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"

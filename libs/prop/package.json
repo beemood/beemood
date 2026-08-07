@@ -44,11 +44,19 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
-    "@beemood/nestjs": "workspace:*",
-    "@beemood/types": "workspace:*"
+    "@beemood/types": "workspace:*",
+    "@beemood/utils": "workspace:*",
+    "@nestjs/swagger": "^11.4.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "reflect-metadata": "^0.2.2"
   },
   "peerDependencies": {
-    "@beemood/nestjs": "workspace:*",
-    "@beemood/types": "workspace:*"
+    "@beemood/types": "workspace:*",
+    "@beemood/utils": "workspace:*",
+    "@nestjs/swagger": "^11.4.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "reflect-metadata": "^0.2.2"
   }
 }
