@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "types": [
       "node",
+      "reflect-metadata"
     ]
   },
   "include": [

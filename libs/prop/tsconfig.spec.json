@@ -7,8 +7,7 @@
       "vitest/importMeta",
       "vite/client",
       "node",
-      "vitest",
-      "reflect-metadata"
+      "vitest"
     ],
     "forceConsistentCasingInFileNames": true
   },

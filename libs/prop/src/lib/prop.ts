@@ -2,23 +2,27 @@ import {
   Any,
   PropertyDecoratorPropertyKey,
   PropertyDecoratorTarget,
-  Some,
   TypeOrFactory,
 } from '@beemood/types';
 
-import { isDefinedThen, isNotDefined } from '@beemood/utils';
 import { ClassConstructor, Type } from 'class-transformer';
 import {
   IsBoolean,
   IsDate,
+  isDefined,
   IsDefined,
+  IsEmail,
   IsInstance,
   IsInt,
   IsNumber,
   IsObject,
   IsOptional,
+  IsString,
+  IsStrongPassword,
+  IsUUID,
   Max,
   MaxDate,
+  MaxLength,
   Min,
   MinLength,
   ValidateNested,
@@ -27,6 +31,7 @@ import {
 import { getPropType } from './get-prop-type.js';
 import { BufferMaxLength } from './validations/buffer-max-length.js';
 import { BufferMinLength } from './validations/buffer-min-length.js';
+import { isNotDefined } from '@beemood/utils';
 export type PropType =
   | 'String'
   | 'Number'
@@ -138,17 +143,17 @@ export type PropNumberFormatType = 'int';
 export type PropNumberOptions = {
   minimum?: number;
   maximum?: number;
-  format?: PropNumberFormatType;
+  numberFormat?: PropNumberFormatType;
 };
 
 export function PropNumberFormat(
-  format: PropNumberFormatType,
+  numberFormat: PropNumberFormatType,
   validationOptions: ValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
     const acc: PropertyDecorator[] = [];
 
-    switch (format) {
+    switch (numberFormat) {
       case 'int':
         acc.push(IsInt(validationOptions));
         break;
@@ -164,18 +169,32 @@ export function PropNumber(
   return (...args) => {
     const acc: PropertyDecorator[] = [];
     acc.push(IsNumber({}, validationOptions));
-    options.minimum && acc.push(Min(options.minimum, validationOptions));
-    options.maximum && acc.push(Max(options.maximum, validationOptions));
-    options.format && acc.push(PropNumberFormat(options.format));
 
+    isDefined(options.minimum) &&
+      acc.push(Min(options.minimum, validationOptions));
+
+    isDefined(options.maximum) &&
+      acc.push(Max(options.maximum, validationOptions));
+
+    isDefined(options.numberFormat) &&
+      acc.push(PropNumberFormat(options.numberFormat));
     acc.forEach((d) => d(...args));
   };
 }
 
+export type PropStringFormat =
+  | 'email'
+  | 'password'
+  | 'uuid'
+  | 'uuid4'
+  | 'uuid7';
+
 export type PropStringOptions = {
   minLength?: number;
   maxLength?: number;
+  stringFormat?: PropStringFormat;
 };
+
 export function PropString(
   options: PropStringOptions,
   validationOptions: ValidationOptions = {},
@@ -183,18 +202,39 @@ export function PropString(
   return (...args) => {
     const acc: PropertyDecorator[] = [];
 
-    function add<T>(
-      constraint: Some<T>,
-      decoratorFactory: (constraint: T) => PropertyDecorator,
-    ) {
-      isDefinedThen(constraint, (constraint) =>
-        acc.push(decoratorFactory(constraint)),
-      );
-    }
-    add(options.minLength, (constraint) =>
-      MinLength(constraint, validationOptions),
-    );
-    return [args, options];
+    acc.push(IsString(validationOptions));
+
+    isDefined(options.minLength) &&
+      acc.push(MinLength(options.minLength, validationOptions));
+
+    isDefined(options.maxLength) &&
+      acc.push(MaxLength(options.maxLength, validationOptions));
+
+    if (options.stringFormat)
+      switch (options.stringFormat) {
+        case 'email': {
+          acc.push(IsEmail({}, validationOptions));
+          break;
+        }
+        case 'password': {
+          acc.push(IsStrongPassword({}, validationOptions));
+          break;
+        }
+        case 'uuid': {
+          acc.push(IsUUID(undefined, validationOptions));
+          break;
+        }
+        case 'uuid4': {
+          acc.push(IsUUID('4', validationOptions));
+          break;
+        }
+        case 'uuid7': {
+          acc.push(IsUUID('7', validationOptions));
+          break;
+        }
+      }
+
+    acc.forEach((d) => d(...args));
   };
 }
 
