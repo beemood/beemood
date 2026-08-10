@@ -20,6 +20,9 @@
     },
     {
       "path": "./dbs/pms-db"
+    },
+    {
+      "path": "./clis/prisma-plugins"
     }
   ]
 }

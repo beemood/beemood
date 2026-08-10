@@ -1,0 +1,57 @@
+{
+  "name": "@beemood/prisma-plugins",
+  "version": "0.0.1",
+  "description": "- [ ] add project description",
+  "homepage": "https://beemood.github.io",
+  "author": {
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus+beemood-prisma-plugins@gmail.com",
+    "url": "https://beemood.github.io/profile"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "dto": "./bin/dto.mjs",
+    "base-service": "./bin/base-service.mjs"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "clis/prisma-plugins/src",
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@prisma/generator-helper": "^7.9.1",
+    "@swc/helpers": "~0.5.23"
+  },
+  "devDependencies": {
+    "@beemood/types": "workspace:*"
+  },
+  "peerDependencies": {
+    "@beemood/types": "workspace:*"
+  }
+}

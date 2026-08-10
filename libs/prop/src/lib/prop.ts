@@ -1,6 +1,5 @@
 import {
-  Any,
-  PropBooleanOptions,
+  NormalizedPropOptions,
   PropBufferOptions,
   PropCommonOptions,
   PropDateOptions,
@@ -9,10 +8,11 @@ import {
   PropNumberFormatType,
   PropNumberOptions,
   PropObjectOptions,
+  PropOptions,
   PropStringOptions,
 } from '@beemood/types';
 import { isDefined, isNotDefined } from '@beemood/utils';
-import { ClassConstructor, Exclude, Expose, Type } from 'class-transformer';
+import { Exclude, Expose, Type } from 'class-transformer';
 import {
   IsArray,
   IsBoolean,
@@ -231,27 +231,6 @@ export function PropString(
     acc.forEach((d) => d(...args));
   };
 }
-
-export type NormalizedPropOptions = PropCommonOptions &
-  PropStringOptions &
-  PropNumberOptions &
-  PropBooleanOptions &
-  PropDateOptions &
-  PropBufferOptions &
-  PropObjectOptions & {
-    /**
-     * Name of the type
-     */
-    __typeName: string;
-
-    /**
-     * Class reference of the property type such as String, Number, Boolean, SampleObject, Array etc.
-     */
-    __type: ClassConstructor<Any>;
-  };
-
-export type PropOptions = Partial<NormalizedPropOptions>;
-
 export function normalizePropOptions(
   options: PropOptions,
   target: PropertyDecoratorTarget,

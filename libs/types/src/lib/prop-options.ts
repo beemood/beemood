@@ -56,3 +56,23 @@ export type PropStringOptions = {
   stringFormat?: PropStringFormat;
   casing?: Casing;
 };
+
+export type NormalizedPropOptions = PropCommonOptions &
+  PropStringOptions &
+  PropNumberOptions &
+  PropBooleanOptions &
+  PropDateOptions &
+  PropBufferOptions &
+  PropObjectOptions & {
+    /**
+     * Name of the type
+     */
+    __typeName: string;
+
+    /**
+     * Class reference of the property type such as String, Number, Boolean, SampleObject, Array etc.
+     */
+    __type: ObjectType;
+  };
+
+export type PropOptions = Partial<NormalizedPropOptions>;
