@@ -1,9 +1,11 @@
 import 'reflect-metadata';
 //
 import {
+  ObjectType,
   PropertyDecoratorPropertyKey,
   PropertyDecoratorTarget,
 } from '@beemood/types';
+//
 
 /**
  * Get "design:type" from reflection
@@ -14,6 +16,6 @@ import {
 export function getPropType(
   target: PropertyDecoratorTarget,
   propertyKey: PropertyDecoratorPropertyKey,
-) {
+): ObjectType {
   return Reflect.getMetadata('design:type', target, propertyKey);
 }

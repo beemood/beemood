@@ -1,4 +1,4 @@
-import { StringRecord } from '@beemood/types';
+import { ToStringRecord } from '@beemood/types';
 
 export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\((\w{0,})\)/gi;
 
@@ -16,6 +16,6 @@ export function extractAnnotations<T extends object>(documentation: string) {
         return acc;
       }
     },
-    {} as StringRecord,
+    {} as ToStringRecord<T>,
   ) as T;
 }

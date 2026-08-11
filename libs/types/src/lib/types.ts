@@ -8,14 +8,16 @@ export type Keys<T> = Array<KeyOf<T>>;
 
 export type Obj = Any;
 
-export type MapRecord<T, V> = Record<KeyOf<T>, V>;
+export type MapRecord<T extends object, V> = Record<KeyOf<T>, V>;
 
-export type StringRecord<T = string> = MapRecord<T, string>;
-export type DateRecord<T = string> = MapRecord<T, Date>;
-export type NumberRecord<T = string> = MapRecord<T, number>;
-export type BooleanRecord<T = string> = MapRecord<T, boolean>;
-export type BinaryRecord<T = string> = MapRecord<T, 1 | 0>;
-export type ObjectRecord<T, O extends Obj> = MapRecord<T, O>;
+export type ToStringRecord<T extends object> = MapRecord<T, string>;
+export type TODateRecord<T extends object> = MapRecord<T, Date>;
+export type ToNumberRecord<T extends object> = MapRecord<T, number>;
+export type ToBooleanRecord<T extends object> = MapRecord<T, boolean>;
+export type ToBinaryRecord<T extends object> = MapRecord<T, 1 | 0>;
+export type ToObjectRecord<T extends object, O extends Obj> = MapRecord<T, O>;
+
+export type ToAnyRecord<T extends object> = MapRecord<T, Any>;
 
 export type PickRequired<T, K extends KeyOf<T>> = T & Required<Pick<T, K>>;
 export type PickPartial<T, K extends KeyOf<T>> = Omit<T, K> &
@@ -51,3 +53,6 @@ export type Casings = {
 };
 
 export type Casing = KeyOf<Casings>;
+
+export type ValueFactory<T> = () => T;
+export type DateFactory = ValueFactory<Date>;

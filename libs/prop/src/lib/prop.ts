@@ -1,53 +1,109 @@
+import { ObjectType, PropOptions, PropType, PropTypes } from '@beemood/types';
+import { isNotDefined } from '@beemood/utils';
+import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 import {
-  NormalizedPropOptions,
-  PropBufferOptions,
-  PropCommonOptions,
-  PropDateOptions,
-  PropertyDecoratorPropertyKey,
-  PropertyDecoratorTarget,
-  PropNumberFormatType,
-  PropNumberOptions,
-  PropObjectOptions,
-  PropOptions,
-  PropStringOptions,
-} from '@beemood/types';
-import { isDefined, isNotDefined } from '@beemood/utils';
-import { ApiProperty } from '@nestjs/swagger';
-import { Exclude, Expose, Type } from 'class-transformer';
-import {
-  IsArray,
+  Equals,
   IsBoolean,
-  IsDate,
   IsDefined,
+  isDefined,
   IsEmail,
-  IsInstance,
+  IsIn,
   IsInt,
   IsISO8601,
-  IsNumber,
-  IsObject,
+  IsJSON,
   IsOptional,
-  IsString,
   IsStrongPassword,
   IsUUID,
+  Matches,
   Max,
   MaxDate,
   MaxLength,
   Min,
+  MinDate,
   MinLength,
-  ValidateNested,
+  NotEquals,
   ValidationOptions,
+  ValidatorOptions,
 } from 'class-validator';
 import { getPropType } from './get-prop-type.js';
-import { BooleanTransformer } from './transformers/boolean-transformer.js';
-import { CasingTransformer } from './transformers/casing-transformer.js';
-import { DateTransformer } from './transformers/date-transformer.js';
-import { NumberTransformer } from './transformers/number-transformer.js';
 import { BufferMaxLength } from './validations/buffer-max-length.js';
 import { BufferMinLength } from './validations/buffer-min-length.js';
+import { LessThanOrEqualTo } from './validations/less-than-or-equal-to.js';
+import { LessThan } from './validations/less-than.js';
+import { MoreThanOrEqualTo } from './validations/more-than-or-equal-to.js';
+import { MoreThan } from './validations/more-than.js';
 
-export function PropCommon(
-  options: PropCommonOptions,
-  validationOptions: ValidationOptions = {},
+export type NormalizedOptions = PropOptions & {
+  __typeName: string;
+  type: () => ObjectType;
+};
+
+export class __TypeError extends Error {
+  constructor() {
+    super('Type is not defined');
+    throw this;
+  }
+}
+
+/**
+ * Infer the property type and check required type options.
+ * @param options
+ * @param args
+ * @returns
+ */
+export function toNormalizedOptions(
+  options: Readonly<PropOptions>,
+  ...args: Parameters<PropertyDecorator>
+): NormalizedOptions {
+  const inferedType = getPropType(...args);
+  const inferedTypeName = inferedType.name;
+  const nOptions: NormalizedOptions = {
+    ...options,
+    type: () => __TypeError,
+    __typeName: inferedTypeName,
+  };
+
+  nOptions.required ??= false;
+
+  if (inferedTypeName === PropTypes.Array) {
+    if (isNotDefined(options.type)) {
+      throw new Error(`type is required for arrary properties`);
+    }
+    nOptions.isArray = true;
+  } else {
+    nOptions.type = () => inferedType;
+  }
+
+  return nOptions;
+}
+
+export function toApiPropertyOptions(
+  options: NormalizedOptions,
+): ApiPropertyOptions {
+  const nOptions: ApiPropertyOptions = {
+    type: options.type,
+    required: !!options.required,
+    isArray: !!options.isArray,
+  };
+
+  return nOptions;
+}
+
+export function __RangeValidation(
+  min: number,
+  max: number,
+  validationOptions: ValidationOptions,
+): PropertyDecorator {
+  return (...args) => {
+    Min(min, validationOptions)(...args);
+    Max(max, validationOptions)(...args);
+  };
+}
+
+export function __CommonValidation(
+  options: NormalizedOptions,
+  validationOptions: ValidationOptions,
 ): PropertyDecorator {
   return (...args) => {
     const acc: PropertyDecorator[] = [];
@@ -58,135 +114,87 @@ export function PropCommon(
       acc.push(IsOptional(validationOptions));
     }
 
-    if (options.exclude) {
-      acc.push(Exclude());
-    } else {
-      acc.push(Expose());
+    if (isDefined(options.isIn)) {
+      acc.push(IsIn(options.isIn, validationOptions));
     }
 
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function PropDate(
-  options: PropDateOptions,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-
-    acc.push(IsDate(validationOptions));
-    options.minDate && acc.push(MaxDate(options.minDate, validationOptions));
-    options.maxDate && acc.push(MaxDate(options.maxDate, validationOptions));
-
-    acc.push(DateTransformer());
-
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function PropBuffer(
-  options: PropBufferOptions,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-
-    acc.push(IsInstance(Buffer, validationOptions));
-    options.minBufferSize &&
-      acc.push(BufferMinLength(options.minBufferSize, validationOptions));
-    options.maxBufferSize &&
-      acc.push(BufferMaxLength(options.maxBufferSize, validationOptions));
-
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function PropObject(
-  options: PropObjectOptions,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-
-    acc.push(IsObject(validationOptions));
-    options.target && acc.push(IsInstance(options.target, validationOptions));
-
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function PropBoolean(
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-    acc.push(IsBoolean(validationOptions));
-
-    if (!validationOptions.each) acc.push(BooleanTransformer());
-
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function PropNumberFormat(
-  numberFormat: PropNumberFormatType,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-
-    switch (numberFormat) {
-      case 'int':
-        acc.push(IsInt(validationOptions));
-        break;
+    if (isDefined(options.equalsTo)) {
+      acc.push(Equals(options.equalsTo, validationOptions));
     }
 
-    acc.forEach((d) => d(...args));
+    if (isDefined(options.not?.equalsTo)) {
+      acc.push(NotEquals(options.not.equalsTo));
+    }
+
+    acc.forEach((decorator) => decorator(...args));
   };
 }
-export function PropNumber(
-  options: PropNumberOptions,
+/**
+ * String property decorator
+ */
+export function __StringValidation(
+  options: NormalizedOptions,
   validationOptions: ValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
-    const acc: PropertyDecorator[] = [];
-    acc.push(IsNumber({}, validationOptions));
+    if (options.__typeName !== PropTypes.String) {
+      throw new Error(`__typeName is not String`);
+    }
 
-    isDefined(options.minimum) &&
-      acc.push(Min(options.minimum, validationOptions));
-
-    isDefined(options.maximum) &&
-      acc.push(Max(options.maximum, validationOptions));
-
-    isDefined(options.numberFormat) &&
-      acc.push(PropNumberFormat(options.numberFormat));
-
-    acc.push(NumberTransformer());
-
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function StringFormat(
-  options: PropStringOptions,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
     const acc: PropertyDecorator[] = [];
 
-    if (options.stringFormat)
-      switch (options.stringFormat) {
+    // Minlegnth
+    if (isDefined(options.moreThan)) {
+      if (typeof options.moreThan === 'number') {
+        acc.push(MinLength(options.moreThan - 1, validationOptions));
+      }
+    }
+
+    // Max length
+    if (isDefined(options.lessThan)) {
+      if (typeof options.lessThan === 'number') {
+        acc.push(MaxLength(options.lessThan - 1, validationOptions));
+      }
+    }
+
+    // Minlegnth
+    if (isDefined(options.moreThanOrEqualTo)) {
+      if (typeof options.moreThanOrEqualTo === 'number') {
+        acc.push(MinLength(options.moreThanOrEqualTo, validationOptions));
+      }
+    }
+
+    // Max length
+    if (isDefined(options.lessThanOrEqualTo)) {
+      if (typeof options.lessThanOrEqualTo === 'number') {
+        acc.push(MaxLength(options.lessThanOrEqualTo, validationOptions));
+      }
+    }
+
+    // String format validation
+    if (options.format)
+      switch (options.format) {
+        case 'json': {
+          acc.push(IsJSON(validationOptions));
+          break;
+        }
         case 'email': {
-          acc.push(IsEmail({}, validationOptions));
+          acc.push(IsEmail(undefined, validationOptions));
           break;
         }
         case 'password': {
-          acc.push(IsStrongPassword({}, validationOptions));
-          break;
-        }
-        case 'uuid': {
-          acc.push(IsUUID(undefined, validationOptions));
+          acc.push(
+            IsStrongPassword(
+              {
+                minLength: 6,
+                minLowercase: 1,
+                minUppercase: 1,
+                minNumbers: 1,
+                minSymbols: 1,
+              },
+              validationOptions,
+            ),
+          );
           break;
         }
         case 'uuid4': {
@@ -201,123 +209,257 @@ export function StringFormat(
           acc.push(IsISO8601({ strict: true }, validationOptions));
           break;
         }
-      }
-
-    if (options.casing) {
-      acc.push(CasingTransformer(options.casing));
-    }
-
-    acc.forEach((d) => d(...args));
-  };
-}
-
-export function PropString(
-  options: PropStringOptions,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-
-    acc.push(IsString(validationOptions));
-
-    isDefined(options.minLength) &&
-      acc.push(MinLength(options.minLength, validationOptions));
-
-    isDefined(options.maxLength) &&
-      acc.push(MaxLength(options.maxLength, validationOptions));
-
-    isDefined(options.stringFormat) &&
-      acc.push(StringFormat(options, validationOptions));
-
-    acc.forEach((d) => d(...args));
-  };
-}
-export function normalizePropOptions(
-  options: PropOptions,
-  target: PropertyDecoratorTarget,
-  propertyKey: PropertyDecoratorPropertyKey,
-): NormalizedPropOptions {
-  const __type = getPropType(target, propertyKey);
-  return {
-    ...options,
-    __type,
-    __typeName: __type.name,
-  };
-}
-
-export function __Prop(
-  options: NormalizedPropOptions,
-  validationOptions: ValidationOptions = {},
-): PropertyDecorator {
-  return (...args) => {
-    const acc: PropertyDecorator[] = [];
-
-    switch (options.__typeName) {
-      case String.name: {
-        acc.push(PropString({ ...options }, validationOptions));
-        break;
-      }
-      case Number.name: {
-        acc.push(PropNumber({ ...options }, validationOptions));
-        break;
-      }
-      case Boolean.name: {
-        acc.push(PropBoolean(validationOptions));
-        break;
-      }
-      case Date.name: {
-        acc.push(PropDate({ ...options }, validationOptions));
-        break;
-      }
-      case Buffer.name: {
-        acc.push(PropBuffer({ ...options }, validationOptions));
-        break;
-      }
-      case Object.name: {
-        acc.push(ValidateNested(validationOptions));
-        acc.push(Type(options.type));
-        break;
-      }
-      case Array.name: {
-        acc.push(IsArray(validationOptions));
-
-        if (isNotDefined(options.type)) {
-          throw new Error(`type is required for array properties`);
+        case 'date': {
+          // Matches MM-DD-YYYY (01-12 for month, 01-31 for day, 1000-9999 for year)
+          acc.push(
+            Matches(/^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-\d{4}$/, {
+              message: `$property should be a valid date format "MM-DD-YYYY"`,
+            }),
+          );
+          break;
         }
-        const __typeName = options.type().name;
-        acc.push(__Prop({ ...options, __typeName }, { each: true }));
-        break;
+        case 'time': {
+          // Matches 12-hour format HH:MM AM/PM (01-12 for hour, 00-59 for minute)
+          acc.push(
+            Matches(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/, {
+              message: `$property should be a valid time format "HH:MM AM/PM"`,
+            }),
+          );
+          break;
+        }
+        case 'int':
+        case 'rate':
+        case 'percent':
+        case 'fraction': {
+          throw new Error(
+            `${options.format} is not supported by ${options.__typeName}`,
+          );
+        }
       }
-      default: {
-        acc.push(
-          __Prop({
-            ...options,
-            __typeName: Object.name,
-            type: () => options.__type,
-          }),
-        );
-        break;
+
+    acc.forEach((decorator) => decorator(...args));
+  };
+}
+
+export function __NumberValidation(
+  options: NormalizedOptions,
+  validationOptions: ValidatorOptions,
+): PropertyDecorator {
+  return (...args) => {
+    if (options.__typeName !== PropTypes.Number) {
+      throw new Error(`${options.__typeName} is not Number`);
+    }
+
+    const acc: PropertyDecorator[] = [];
+
+    // Minlegnth
+    if (isDefined(options.moreThan)) {
+      if (typeof options.moreThan === 'number') {
+        acc.push(Min(options.moreThan - 1, validationOptions));
+      } else if (typeof options.moreThan === 'string') {
+        acc.push(MoreThan(options.moreThan, validationOptions));
       }
     }
 
-    acc.forEach((d) => d(...args));
+    // Max length
+    if (isDefined(options.lessThan)) {
+      if (typeof options.lessThan === 'number') {
+        acc.push(Max(options.lessThan - 1, validationOptions));
+      } else if (typeof options.lessThan === 'string') {
+        acc.push(LessThan(options.lessThan, validationOptions));
+      }
+    }
+
+    // Minlegnth
+    if (isDefined(options.moreThanOrEqualTo)) {
+      if (typeof options.moreThanOrEqualTo === 'number') {
+        acc.push(Min(options.moreThanOrEqualTo, validationOptions));
+      } else if (typeof options.moreThanOrEqualTo === 'string') {
+        acc.push(
+          MoreThanOrEqualTo(options.moreThanOrEqualTo, validationOptions),
+        );
+      }
+    }
+
+    // Max length
+    if (isDefined(options.lessThanOrEqualTo)) {
+      if (typeof options.lessThanOrEqualTo === 'number') {
+        acc.push(Max(options.lessThanOrEqualTo, validationOptions));
+      } else if (typeof options.lessThanOrEqualTo === 'string') {
+        acc.push(
+          LessThanOrEqualTo(options.lessThanOrEqualTo, validationOptions),
+        );
+      }
+    }
+
+    if (options.format) {
+      switch (options.format) {
+        case 'int': {
+          acc.push(IsInt(validationOptions));
+
+          break;
+        }
+        case 'rate': {
+          acc.push(__RangeValidation(0, 5, validationOptions));
+
+          break;
+        }
+        case 'percent': {
+          acc.push(__RangeValidation(0, 100, validationOptions));
+          break;
+        }
+        case 'fraction': {
+          acc.push(__RangeValidation(0, 1, validationOptions));
+          break;
+        }
+
+        case 'json':
+        case 'email':
+        case 'password':
+        case 'uuid4':
+        case 'uuid7':
+        case 'iso8601':
+        case 'date':
+        case 'time': {
+          throw new Error(
+            `${options.format} is not supported by ${options.__typeName}`,
+          );
+        }
+      }
+    }
+
+    acc.forEach((decorator) => decorator(...args));
+  };
+}
+
+export function __BooleanValidation(
+  _options: NormalizedOptions,
+  _validationOptions: ValidationOptions,
+): PropertyDecorator {
+  return () => {
+    // IsBoolean(validationOptions)(...args);
+  };
+}
+
+export function __DateValidation(
+  options: NormalizedOptions,
+  validationOptions: ValidationOptions,
+): PropertyDecorator {
+  return (...args) => {
+    const acc: PropertyDecorator[] = [];
+
+    acc.push(IsBoolean(validationOptions));
+
+    if (isDefined(options.moreThan)) {
+      if (typeof options.moreThan === 'function') {
+        acc.push(MinDate(options.moreThan, validationOptions));
+      } else {
+        // - [ ] add More than date vlidation decorator
+      }
+    }
+
+    if (isDefined(options.lessThan)) {
+      if (typeof options.lessThan === 'function') {
+        acc.push(MaxDate(options.lessThan, validationOptions));
+      } else if (typeof options.lessThan === 'string') {
+        // - [ ] Add LessThan property valition decoartor
+      }
+    }
+    acc.forEach((decorator) => decorator(...args));
+  };
+}
+
+export function __BufferValidation(
+  options: NormalizedOptions,
+  validationOptions: ValidationOptions,
+): PropertyDecorator {
+  return (...args) => {
+    if (options.__typeName !== PropTypes.Buffer) {
+      throw new Error(`${options.__typeName} is not Buffer`);
+    }
+
+    const acc: PropertyDecorator[] = [];
+
+    if (isDefined(options.moreThan)) {
+      if (typeof options.moreThan === 'number') {
+        acc.push(BufferMinLength(options.moreThan + 1, validationOptions));
+      }
+    }
+
+    if (isDefined(options.lessThan)) {
+      if (typeof options.lessThan === 'number') {
+        acc.push(BufferMaxLength(options.lessThan + 1, validationOptions));
+      }
+    }
+
+    if (isDefined(options.moreThanOrEqualTo)) {
+      if (typeof options.moreThanOrEqualTo === 'number') {
+        acc.push(BufferMinLength(options.moreThanOrEqualTo, validationOptions));
+      }
+    }
+
+    if (isDefined(options.lessThanOrEqualTo)) {
+      if (typeof options.lessThanOrEqualTo === 'number') {
+        acc.push(BufferMaxLength(options.lessThanOrEqualTo, validationOptions));
+      }
+    }
+
+    acc.forEach((decorator) => decorator(...args));
+  };
+}
+
+export function PropValidation(
+  options: NormalizedOptions,
+  validationOptions: ValidationOptions = {},
+): PropertyDecorator {
+  return (...args) => {
+    const acc: PropertyDecorator[] = [];
+
+    switch (options.__typeName as PropType) {
+      case 'String': {
+        acc.push(__StringValidation(options, validationOptions));
+        break;
+      }
+      case 'Number': {
+        acc.push(__NumberValidation(options, validationOptions));
+        break;
+      }
+      case 'Boolean': {
+        acc.push(__BooleanValidation(options, validationOptions));
+        break;
+      }
+      case 'Date': {
+        acc.push(__DateValidation(options, validationOptions));
+        break;
+      }
+      case 'Buffer': {
+        acc.push(__BufferValidation(options, validationOptions));
+        break;
+      }
+      case 'BigInt':
+      case 'Array': {
+        // -  [ ]
+      }
+    }
+
+    acc.forEach((decorator) => decorator(...args));
   };
 }
 
 export function Prop(options: PropOptions = {}): PropertyDecorator {
   return (...args) => {
     const acc: PropertyDecorator[] = [];
+    const nOptions = toNormalizedOptions(options, ...args);
 
-    const nOptions = normalizePropOptions(options, ...args);
+    const validationOptions: ValidationOptions = { each: nOptions.isArray };
 
-    const validationOptions: ValidationOptions = {
-      each: nOptions.__typeName === 'Array',
-    };
-    acc.push(PropCommon(options, validationOptions));
+    acc.push(__CommonValidation(nOptions, validationOptions));
 
-    acc.push(__Prop(nOptions));
-
-    acc.push(ApiProperty());
+    acc.push(PropValidation(nOptions));
+    acc.push(ApiProperty(toApiPropertyOptions(nOptions)));
+    if (options.exclude !== true) {
+      acc.push(Expose({ groups: options.groups }));
+    }
 
     acc.forEach((d) => d(...args));
   };

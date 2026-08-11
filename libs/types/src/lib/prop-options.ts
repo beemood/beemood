@@ -1,91 +1,105 @@
-import { Any, Casing, ObjectType, TypeOrFactory } from './types.js';
+import { Any, DateFactory, KeyOf, ObjectType, ToAnyRecord } from './types.js';
 
-export type PropType =
-  | 'String'
-  | 'Number'
-  | 'Boolean'
-  | 'Date'
-  | 'Buffer'
-  | 'Object';
+export const PropTypes = {
+  String: 'String',
+  Number: 'Number',
+  Boolean: 'Boolean',
+  Date: 'Date',
+  Buffer: 'Buffer',
+  BigInt: 'BigInt',
+  Array: 'Array',
+} as const;
 
-export type PropCommonOptions = {
-  /**
-   * Primitive type of the property or array-property such as ()=>String, ()=>Number, ()=>SampleObject
-   * @returns
-   */
-  type?: () => ObjectType;
-  required?: boolean;
-  exclude?: boolean;
-
-  minArraySize?: number;
-  maxArraySize?: number;
-
-  dependencies?: Record<string, Any>;
-
-  moreThanProperty?: string;
-  lessThanProperty?: string;
-  moreThanOrEqualToProperty?: string;
-  lessThanOrEqualToProperty?: string;
-};
-
-export type PropDateOptions = {
-  minDate?: TypeOrFactory<Date>;
-  maxDate?: TypeOrFactory<Date>;
-  future?: boolean;
-  past?: boolean;
-};
-
-export type PropBufferOptions = {
-  minBufferSize?: number;
-  maxBufferSize?: number;
-};
-
-export type PropObjectOptions = {
-  target?: ObjectType;
-};
-
-export type PropBooleanOptions = {};
-
-export type PropNumberFormatType = 'int';
-export type PropNumberOptions = {
-  minimum?: number;
-  maximum?: number;
-  numberFormat?: PropNumberFormatType;
-};
+export type PropType = KeyOf<typeof PropTypes>;
 
 export type PropStringFormat =
+  | 'json'
   | 'email'
   | 'password'
-  | 'uuid'
   | 'uuid4'
   | 'uuid7'
-  | 'iso8601';
+  | 'iso8601'
+  | 'date'
+  | 'time';
 
-export type PropStringOptions = {
-  minLength?: number;
-  maxLength?: number;
-  stringFormat?: PropStringFormat;
-  casing?: Casing;
+export type PropNumberFormat = 'int' | 'rate' | 'percent' | 'fraction';
+
+export type PropFormat = PropStringFormat | PropNumberFormat;
+
+export type PropValidationOptions = {
+  /**
+   * By default all properties are optional
+   */
+  required?: boolean;
+
+  /**
+   * String or number format such as email, password, rate, percent etc.
+   */
+  format?: PropFormat;
+
+  /**
+   * Check the property value is equal to the given value
+   */
+  equalsTo?: string | number | DateFactory;
+
+  /**
+   * Defiens minimum number, string length, date, or if the option is set property name, then it checks the property value is more than the given property value.
+   */
+  moreThan?: string | number | DateFactory;
+
+  /**
+   * Defiens maximum number, string length, date, or if the option is set property name, then it checks the property value is less than the given property value.
+   */
+  lessThan?: string | number | DateFactory;
+
+  /**
+   * Defiens minimum number, string length, date, or if the option is set property name, then it checks the property value is more than or equal to the given property value.
+   */
+  moreThanOrEqualTo?: string | number | DateFactory;
+
+  /**
+   * Defiens maximum number, string length, date, or if the option is set property name, then it checks the property value is less than or equal to the given property value.
+   */
+  lessThanOrEqualTo?: string | number | DateFactory;
+
+  /**
+   * Check the value is in the given list
+   */
+  isIn?: (string | number)[];
+
+  /**
+   * Check the value is not validate with the given options
+   */
+  not?: PropValidationOptions;
 };
+export type PropOptions = {
+  /**
+   * Type is infered by reflection but array item type is required
+   */
+  type?: () => ObjectType;
 
-export type NormalizedPropOptions = PropCommonOptions &
-  PropStringOptions &
-  PropNumberOptions &
-  PropBooleanOptions &
-  PropDateOptions &
-  PropBufferOptions &
-  PropObjectOptions & {
-    /**
-     * Name of the type
-     */
-    __typeName: string;
+  /**
+   * @internal
+   * The array type is inferred by reflection.
+   */
+  isArray?: boolean;
 
-    /**
-     * Class reference of the property type such as String, Number, Boolean, SampleObject, Array etc.
-     */
-    __type: ObjectType;
-  };
+  /**
+   * Dependencies
+   */
+  dependencies?: ToAnyRecord<Any>;
 
-export type PropOptions = Partial<NormalizedPropOptions> & {
-  not?: Partial<NormalizedPropOptions>;
-};
+  /**
+   * Validation and tranformation groups
+   */
+  groups?: string[];
+
+  /**
+   * By default all properties are exposed
+   */
+  exclude?: boolean;
+} & PropValidationOptions;
+
+export function propOptions(options: PropOptions): PropOptions {
+  return options;
+}
