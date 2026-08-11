@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "@beemood/prisma-plugins": "workspace:*",
+    "@beemood/prop": "workspace:*",
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {

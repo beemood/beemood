@@ -29,6 +29,12 @@ enum Role {
   MANAGER
 }
 
+model Manager {
+  id Int @id @default(autoincrement())
+
+  userProfiles UserProfile[]
+}
+
 /// Represents a core user profile with comprehensive data types
 model UserProfile {
   // ==========================================
@@ -36,6 +42,8 @@ model UserProfile {
   // ==========================================
   // Int autoincrement (Standard 4-byte integer)
   id Int @id @default(autoincrement())
+
+  manager Manager @relation(fields: [managerId], references: [id])
 
   // UUID v4 alternative (Recommended for distributed systems/API exposure)
   uuid String @unique @default(uuid()) @db.Uuid
@@ -109,8 +117,9 @@ model UserProfile {
   // ==========================================
   // 6. ARRAYS (Postgres Native Arrays)
   // ==========================================
-  tags   String[] @db.Text
-  scores Int[]    @db.Integer
+  tags      String[] @db.Text
+  scores    Int[]    @db.Integer
+  managerId Int
 
   // ==========================================
   // 7. INDEXES & CONSTRAINTS

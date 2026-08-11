@@ -12,6 +12,7 @@ import {
   PropStringOptions,
 } from '@beemood/types';
 import { isDefined, isNotDefined } from '@beemood/utils';
+import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
 import {
   IsArray,
@@ -43,7 +44,6 @@ import { DateTransformer } from './transformers/date-transformer.js';
 import { NumberTransformer } from './transformers/number-transformer.js';
 import { BufferMaxLength } from './validations/buffer-max-length.js';
 import { BufferMinLength } from './validations/buffer-min-length.js';
-
 export function PropCommon(
   options: PropCommonOptions,
   validationOptions: ValidationOptions = {},
@@ -315,6 +315,8 @@ export function Prop(options: PropOptions = {}): PropertyDecorator {
     acc.push(PropCommon(options, validationOptions));
 
     acc.push(__Prop(nOptions));
+
+    acc.push(ApiProperty());
 
     acc.forEach((d) => d(...args));
   };

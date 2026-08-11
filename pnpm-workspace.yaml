@@ -32,3 +32,7 @@ minimumReleaseAgeExclude:
   - '@nx/vitest@23.1.1'
   - '@nx/workspace@23.1.1'
   - nx@23.1.1
+  - '@prisma/debug@7.9.1'
+  - '@prisma/dmmf@7.9.1'
+  - '@prisma/generator-helper@7.9.1'
+  - '@prisma/generator@7.9.1'

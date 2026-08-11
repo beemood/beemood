@@ -45,6 +45,7 @@
     }
   },
   "dependencies": {
+    "@beemood/utils": "workspace:*",
     "@prisma/generator-helper": "^7.9.1",
     "@swc/helpers": "~0.5.23"
   },

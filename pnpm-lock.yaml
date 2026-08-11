@@ -108,6 +108,9 @@ importers:
 
   clis/prisma-plugins:
     dependencies:
+      '@beemood/utils':
+        specifier: workspace:*
+        version: link:../../libs/utils
       '@prisma/generator-helper':
         specifier: ^7.9.1
         version: 7.9.1
@@ -124,6 +127,9 @@ importers:
       '@beemood/prisma-plugins':
         specifier: workspace:*
         version: link:../../clis/prisma-plugins
+      '@beemood/prop':
+        specifier: workspace:*
+        version: link:../../libs/prop
       '@swc/helpers':
         specifier: ~0.5.23
         version: 0.5.23

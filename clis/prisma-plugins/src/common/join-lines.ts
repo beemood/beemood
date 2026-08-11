@@ -1,4 +1,4 @@
-export function joinLines(...args: (string | string[])[]): string {
+export function ___joinLines(...args: (string | string[])[]): string {
   return args
     .flat()
     .map((e) => e.replace(/\s{1,}/g, ' '))

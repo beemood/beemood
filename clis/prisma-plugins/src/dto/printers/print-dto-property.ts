@@ -3,5 +3,5 @@ export function printDtoProperty(
   type: string,
   isRequried?: boolean,
 ) {
-  return `${name}${isRequried ? '' : '?'}${type};`;
+  return `${name}${isRequried ? '' : '?'}: ${type};`;
 }
