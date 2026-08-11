@@ -45,6 +45,11 @@
       "types": "./dist/generated/prisma/enums.d.ts",
       "import": "./dist/generated/prisma/enums.js",
       "default": "./dist/generated/prisma/enums.js"
+    },
+    "./dto": {
+      "types": "./dist/generated/dto/index.ts.d.ts",
+      "import": "./dist/generated/dto/index.ts.js",
+      "default": "./dist/generated/dto/index.ts.js"
     }
   },
   "files": [

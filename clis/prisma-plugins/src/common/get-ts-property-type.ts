@@ -1,7 +1,7 @@
 import { toDtoClassName } from './to-dto-class-name.js';
 import { Field } from './types.js';
 
-export function getPropertyType(field: Field) {
+export function getTsPropertyType(field: Field) {
   let type = '';
   switch (field.kind) {
     case 'scalar': {

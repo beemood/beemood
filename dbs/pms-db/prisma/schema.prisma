@@ -72,6 +72,7 @@ model UserProfile {
   email String @unique @db.VarChar(255)
 
   // Explicit length limits for names/short strings
+  /// @required() @minLength(3) @maxLength(4)
   firstName String @db.VarChar(100)
   lastName  String @db.VarChar(100)
 
@@ -128,4 +129,66 @@ model UserProfile {
   @@index([createdAt])
   @@index([deletedAt, isActive]) // Composite index for soft-delete queries
   @@map("user_profiles") // Maps model name to snake_case DB table
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+  isActive  Boolean?  @default(true)
+
+  uuid String @unique @db.Uuid
+}
+
+model Project {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+  isActive  Boolean?  @default(true)
+
+  name        String  @unique @db.VarChar(255)
+  description String? @db.Text
+
+  /// @future()
+  startedAt DateTime @db.Timestamptz(6)
+
+  /// @after(startedAt)
+  endedAt DateTime? @db.Timestamptz(6)
+
+  /// @after(startedAt)
+  dueAt DateTime? @db.Timestamptz(6)
+
+  sprints Sprint[]
+
+  // Indexes for query performance
+  @@index([startedAt])
+  @@index([dueAt])
+}
+
+model Sprint {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+  isActive  Boolean?  @default(true)
+
+  name        String  @unique @db.VarChar(255)
+  description String? @db.Text
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+}
+
+model Task {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+  isActive  Boolean?  @default(true)
 }

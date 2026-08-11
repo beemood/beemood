@@ -1,4 +1,4 @@
-import { Casing, ObjectType, TypeOrFactory } from './types.js';
+import { Any, Casing, ObjectType, TypeOrFactory } from './types.js';
 
 export type PropType =
   | 'String'
@@ -16,14 +16,25 @@ export type PropCommonOptions = {
   type?: () => ObjectType;
   required?: boolean;
   exclude?: boolean;
+
   minArraySize?: number;
   maxArraySize?: number;
+
+  dependencies?: Record<string, Any>;
+
+  moreThanProperty?: string;
+  lessThanProperty?: string;
+  moreThanOrEqualToProperty?: string;
+  lessThanOrEqualToProperty?: string;
 };
 
 export type PropDateOptions = {
   minDate?: TypeOrFactory<Date>;
   maxDate?: TypeOrFactory<Date>;
+  future?: boolean;
+  past?: boolean;
 };
+
 export type PropBufferOptions = {
   minBufferSize?: number;
   maxBufferSize?: number;
@@ -75,4 +86,6 @@ export type NormalizedPropOptions = PropCommonOptions &
     __type: ObjectType;
   };
 
-export type PropOptions = Partial<NormalizedPropOptions>;
+export type PropOptions = Partial<NormalizedPropOptions> & {
+  not?: Partial<NormalizedPropOptions>;
+};

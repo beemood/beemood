@@ -9,11 +9,12 @@ export type Keys<T> = Array<KeyOf<T>>;
 export type Obj = Any;
 
 export type MapRecord<T, V> = Record<KeyOf<T>, V>;
-export type StringRecord<T> = MapRecord<T, string>;
-export type DateRecord<T> = MapRecord<T, Date>;
-export type NumberRecord<T> = MapRecord<T, number>;
-export type BooleanRecord<T> = MapRecord<T, boolean>;
-export type BinaryRecord<T> = MapRecord<T, 1 | 0>;
+
+export type StringRecord<T = string> = MapRecord<T, string>;
+export type DateRecord<T = string> = MapRecord<T, Date>;
+export type NumberRecord<T = string> = MapRecord<T, number>;
+export type BooleanRecord<T = string> = MapRecord<T, boolean>;
+export type BinaryRecord<T = string> = MapRecord<T, 1 | 0>;
 export type ObjectRecord<T, O extends Obj> = MapRecord<T, O>;
 
 export type PickRequired<T, K extends KeyOf<T>> = T & Required<Pick<T, K>>;

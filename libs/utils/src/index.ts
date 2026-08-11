@@ -1,5 +1,7 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
 export * from './lib/accumulator.js';
+export * from './lib/codify-object.js';
+export * from './lib/extract-annotations.js';
 export * from './lib/is-defined-then.js';
 export * from './lib/is-defined.js';
 export * from './lib/is-empty-string.js';

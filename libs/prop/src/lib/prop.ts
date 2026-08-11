@@ -44,6 +44,7 @@ import { DateTransformer } from './transformers/date-transformer.js';
 import { NumberTransformer } from './transformers/number-transformer.js';
 import { BufferMaxLength } from './validations/buffer-max-length.js';
 import { BufferMinLength } from './validations/buffer-min-length.js';
+
 export function PropCommon(
   options: PropCommonOptions,
   validationOptions: ValidationOptions = {},
