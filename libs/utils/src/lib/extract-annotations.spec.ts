@@ -1,4 +1,5 @@
 import { extractAnnotations } from './extract-annotations.js';
+
 describe('extractAnnotaions', () => {
   it('should extract annotations', () => {
     const documentation = `
@@ -11,7 +12,6 @@ describe('extractAnnotaions', () => {
       maxlength: string;
     }>(documentation);
 
-    console.log(result);
-    expect(result.required).toBe('');
+    expect(result.required).toBe(true);
   });
 });

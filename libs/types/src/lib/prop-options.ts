@@ -26,7 +26,7 @@ export type PropNumberFormat = 'int' | 'rate' | 'percent' | 'fraction';
 
 export type PropFormat = PropStringFormat | PropNumberFormat;
 
-export type PropValidationOptions = {
+export abstract class PropValidationOptions {
   /**
    * By default all properties are optional
    */
@@ -68,26 +68,27 @@ export type PropValidationOptions = {
   isIn?: (string | number)[];
 
   /**
+   * Dependencies
+   */
+  dependencies?: ToAnyRecord<Any>;
+
+  /**
    * Check the value is not validate with the given options
    */
   not?: PropValidationOptions;
-};
-export type PropOptions = {
+}
+
+export abstract class PropOptions extends PropValidationOptions {
   /**
    * Type is infered by reflection but array item type is required
    */
-  type?: () => ObjectType;
+  type?(): ObjectType;
 
   /**
    * @internal
    * The array type is inferred by reflection.
    */
   isArray?: boolean;
-
-  /**
-   * Dependencies
-   */
-  dependencies?: ToAnyRecord<Any>;
 
   /**
    * Validation and tranformation groups
@@ -98,7 +99,7 @@ export type PropOptions = {
    * By default all properties are exposed
    */
   exclude?: boolean;
-} & PropValidationOptions;
+}
 
 export function propOptions(options: PropOptions): PropOptions {
   return options;

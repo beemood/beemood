@@ -1,18 +1,6 @@
 import { PropOptions } from '@beemood/types';
 import { trim } from '@beemood/utils';
 
-export function normalizeDtoPropertyOptions(
-  options: PropOptions,
-  isRequired: boolean,
-) {
-  if (isRequired) {
-    if (options.required !== false) {
-      options.required = true;
-    }
-  }
-
-  return options;
-}
 export function printDtoPropertyDecoratorOptions(options: PropOptions): string {
   const acc: string[] = [];
 

@@ -1,6 +1,6 @@
 import { readTextFile } from './read-text-file.js';
 
-export async function readJsonFile<T>(
+export async function readJsonFile<T extends object>(
   filePath: string,
   abortController?: AbortController,
 ): Promise<T> {
