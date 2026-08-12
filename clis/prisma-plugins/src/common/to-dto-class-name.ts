@@ -1,4 +1,5 @@
 export const ClassSuffixes = {
+  ReadDto: 'ReadDto',
   CreateDto: 'CreateDto',
   CreateManyDto: 'CreateManyDto',
   UdpateDto: 'UdpateDto',

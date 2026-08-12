@@ -20,7 +20,8 @@ export type PropStringFormat =
   | 'uuid7'
   | 'iso8601'
   | 'date'
-  | 'time';
+  | 'time'
+  | 'url';
 
 export type PropNumberFormat = 'int' | 'rate' | 'percent' | 'fraction';
 

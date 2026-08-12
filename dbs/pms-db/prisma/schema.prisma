@@ -22,124 +22,22 @@ datasource db {
   provider = "postgresql"
 }
 
-/// System-level role mapping
-enum Role {
-  USER
-  ADMIN
-  MANAGER
-}
-
-model Manager {
-  id Int @id @default(autoincrement())
-
-  userProfiles UserProfile[]
-}
-
-/// Represents a core user profile with comprehensive data types
-model UserProfile {
-  // ==========================================
-  // 1. PRIMARY KEYS & IDENTIFIERS
-  // ==========================================
-  // Int autoincrement (Standard 4-byte integer)
-  id Int @id @default(autoincrement())
-
-  manager Manager @relation(fields: [managerId], references: [id])
-
-  // UUID v4 alternative (Recommended for distributed systems/API exposure)
-  uuid String @unique @default(uuid()) @db.Uuid
-
-  // BigInt for high-volume sequence counters or external IDs
-  externalId String @db.Uuid
-
-  // ==========================================
-  // 2. TIMESTAMPS & DATES
-  // ==========================================
-  // Automated record lifecycles (Stored as TIMESTAMPTZ in Postgres)
-  createdAt DateTime  @default(now()) @db.Timestamptz(6)
-  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
-  deletedAt DateTime? @db.Timestamptz(6)
-
-  // Pure date without time (ideal for birthdays, anniversaries)
-  dob DateTime @db.Date
-
-  // Pure time of day without date
-  shiftStart DateTime? @db.Time(0)
-
-  // ==========================================
-  // 3. STRINGS & TEXT DATA
-  // ==========================================
-  // Standard varchar(255) equivalent
-  email String @unique @db.VarChar(255)
-
-  // Explicit length limits for names/short strings
-  /// @required() @minLength(3) @maxLength(4)
-  firstName String @db.VarChar(100)
-  lastName  String @db.VarChar(100)
-
-  // Unlimited length text block for bios, notes, long content
-  bio String? @db.Text
-
-  // ==========================================
-  // 4. NUMERIC & MONETARY TYPES
-  // ==========================================
-  // Booleans
-  isActive Boolean @default(true)
-
-  // SmallInt (-32,768 to 32,767) - perfect for small ranges like age or status codes
-  age Int? @db.SmallInt
-
-  // Standard Int (height in cm, weight in grams, counts)
-  heightCm    Int
-  weightGrams Int
-
-  // Decimal / Numeric (Exact Precision)
-  // Price/Salary: Decimal(12, 2) allows up to 9,999,10,000,000,000.00 with 2 decimal places
-  salary Decimal @db.Decimal(12, 2)
-
-  // Rates/Percentages: Decimal(5, 4) supports formats like 99.9999%
-  commissionRate Decimal @default(0.0000) @db.Decimal(5, 4)
-
-  // Floating point numbers (Inexact precision - use ONLY for scientific data/metrics)
-  latitude  Float? @db.DoublePrecision
-  longitude Float? @db.DoublePrecision
-
-  // ==========================================
-  // 5. ENUMS, JSON & BINARY
-  // ==========================================
-  // Native Postgres Enum
-  role Role @default(USER)
-
-  // JSONB for schemaless key-value storage (queryable & indexed in Postgres)
-  settings Json @default("{}") @db.JsonB
-
-  // Bytea for raw binary data (avatars, key pairs, documents under ~1MB)
-  avatar Bytes? @db.ByteA
-
-  // ==========================================
-  // 6. ARRAYS (Postgres Native Arrays)
-  // ==========================================
-  tags      String[] @db.Text
-  scores    Int[]    @db.Integer
-  managerId Int
-
-  // ==========================================
-  // 7. INDEXES & CONSTRAINTS
-  // ==========================================
-  @@index([email])
-  @@index([createdAt])
-  @@index([deletedAt, isActive]) // Composite index for soft-delete queries
-  @@map("user_profiles") // Maps model name to snake_case DB table
-}
-
 model User {
-  id Int @id @default(autoincrement())
-
+  id        Int       @id @default(autoincrement())
+  /// @readonly()
+  uuid      String    @unique @db.Uuid
   createdAt DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt DateTime  @updatedAt @db.Timestamptz(6)
   deletedAt DateTime? @db.Timestamptz(6)
   isActive  Boolean?  @default(true)
 
-  uuid String @unique @db.Uuid
+  tasks    UserTask[] @relation("asiggnedTasks")
+  comments Comment[]
+
+  createdTasks     Task[]     @relation("createdTasks")
+  createdUserTasks UserTask[] @relation("createdUserTasks")
+  createdProjects  Project[]  @relation("createdProjects")
+  createdSprints   Sprint[]   @relation("createdSprints")
 }
 
 model Project {
@@ -153,16 +51,19 @@ model Project {
   name        String  @unique @db.VarChar(255)
   description String? @db.Text
 
-  /// @future()
+  /// @moreThan(()=>new Date())
   startedAt DateTime @db.Timestamptz(6)
 
-  /// @after(startedAt)
+  /// @moreThan(startedAt)
   endedAt DateTime? @db.Timestamptz(6)
 
-  /// @after(startedAt)
+  /// @moreThan(startedAt)
   dueAt DateTime? @db.Timestamptz(6)
 
   sprints Sprint[]
+
+  createdBy   User @relation("createdProjects", fields: [createdById], references: [id])
+  createdById Int
 
   // Indexes for query performance
   @@index([startedAt])
@@ -182,6 +83,36 @@ model Sprint {
 
   project   Project @relation(fields: [projectId], references: [id])
   projectId Int
+
+  createdBy   User @relation("createdSprints", fields: [createdById], references: [id])
+  createdById Int
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+  isActive  Boolean?  @default(true)
+
+  comment String @db.Text
+
+  parent   Comment   @relation("parent", fields: [parentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  parentId Int
+  comments Comment[] @relation("parent")
+
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId Int
+
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  taskId Int
+}
+
+enum TaskStatus {
+  OPEN
+  IN_PROGRESS
+  CLOSE
 }
 
 model Task {
@@ -192,5 +123,153 @@ model Task {
   deletedAt DateTime? @db.Timestamptz(6)
   isActive  Boolean?  @default(true)
 
-  notes Json
+  name        String     @unique @db.VarChar(255)
+  description String?    @db.Text
+  score       Int        @default(1)
+  status      TaskStatus
+
+  /// @moreThan(()=>new Date())
+  startedAt DateTime @db.Timestamptz(6)
+
+  /// @moreThan(startedAt)
+  endedAt DateTime? @db.Timestamptz(6)
+
+  /// @moreThan(startedAt)
+  dueAt DateTime? @db.Timestamptz(6)
+
+  parentTask   Task? @relation("parentTask", fields: [parentTaskId], references: [id])
+  parentTaskId Int?
+
+  subTasks Task[]    @relation("parentTask")
+  comments Comment[]
+
+  createdBy   User @relation("createdTasks", fields: [createdById], references: [id])
+  createdById Int
+
+  userTasks UserTask[]
 }
+
+model UserTask {
+  id Int @id @default(autoincrement())
+
+  task   Task @relation(fields: [taskId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  taskId Int
+
+  user   User @relation("asiggnedTasks", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId Int
+
+  createdBy   User @relation("createdUserTasks", fields: [createdById], references: [id])
+  createdById Int
+
+  @@unique([userId, taskId])
+  @@index([taskId])
+}
+
+// /// System-level role mapping
+// enum Role {
+//   USER
+//   ADMIN
+//   MANAGER
+// }
+
+// model Manager {
+//   id Int @id @default(autoincrement())
+
+//   userProfiles UserProfile[]
+// }
+
+// /// Represents a core user profile with comprehensive data types
+// model UserProfile {
+//   // ==========================================
+//   // 1. PRIMARY KEYS & IDENTIFIERS
+//   // ==========================================
+//   // Int autoincrement (Standard 4-byte integer)
+//   id Int @id @default(autoincrement())
+
+//   manager Manager @relation(fields: [managerId], references: [id])
+
+//   // UUID v4 alternative (Recommended for distributed systems/API exposure)
+//   uuid String @unique @default(uuid()) @db.Uuid
+
+//   // BigInt for high-volume sequence counters or external IDs
+//   externalId String @db.Uuid
+
+//   // ==========================================
+//   // 2. TIMESTAMPS & DATES
+//   // ==========================================
+//   // Automated record lifecycles (Stored as TIMESTAMPTZ in Postgres)
+//   createdAt DateTime  @default(now()) @db.Timestamptz(6)
+//   updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+//   deletedAt DateTime? @db.Timestamptz(6)
+
+//   // Pure date without time (ideal for birthdays, anniversaries)
+//   dob DateTime @db.Date
+
+//   // Pure time of day without date
+//   shiftStart DateTime? @db.Time(0)
+
+//   // ==========================================
+//   // 3. STRINGS & TEXT DATA
+//   // ==========================================
+//   // Standard varchar(255) equivalent
+//   email String @unique @db.VarChar(255)
+
+//   // Explicit length limits for names/short strings
+//   /// @required() @minLength(3) @maxLength(4)
+//   firstName String @db.VarChar(100)
+//   lastName  String @db.VarChar(100)
+
+//   // Unlimited length text block for bios, notes, long content
+//   bio String? @db.Text
+
+//   // ==========================================
+//   // 4. NUMERIC & MONETARY TYPES
+//   // ==========================================
+//   // Booleans
+//   isActive Boolean @default(true) 
+
+//   // SmallInt (-32,768 to 32,767) - perfect for small ranges like age or status codes
+//   age Int? @db.SmallInt
+
+//   // Standard Int (height in cm, weight in grams, counts)
+//   heightCm    Int
+//   weightGrams Int
+
+//   // Decimal / Numeric (Exact Precision)
+//   // Price/Salary: Decimal(12, 2) allows up to 9,999,10,000,000,000.00 with 2 decimal places
+//   salary Decimal @db.Decimal(12, 2)
+
+//   // Rates/Percentages: Decimal(5, 4) supports formats like 99.9999%
+//   commissionRate Decimal @default(0.0000) @db.Decimal(5, 4)
+
+//   // Floating point numbers (Inexact precision - use ONLY for scientific data/metrics)
+//   latitude  Float? @db.DoublePrecision
+//   longitude Float? @db.DoublePrecision
+
+//   // ==========================================
+//   // 5. ENUMS, JSON & BINARY
+//   // ==========================================
+//   // Native Postgres Enum
+//   role Role @default(USER)
+
+//   // JSONB for schemaless key-value storage (queryable & indexed in Postgres)
+//   settings Json @default("{}") @db.JsonB
+
+//   // Bytea for raw binary data (avatars, key pairs, documents under ~1MB)
+//   avatar Bytes? @db.ByteA
+
+//   // ==========================================
+//   // 6. ARRAYS (Postgres Native Arrays)
+//   // ==========================================
+//   tags      String[] @db.Text
+//   scores    Int[]    @db.Integer
+//   managerId Int
+
+//   // ==========================================
+//   // 7. INDEXES & CONSTRAINTS
+//   // ==========================================
+//   @@index([email])
+//   @@index([createdAt])
+//   @@index([deletedAt, isActive]) // Composite index for soft-delete queries 
+//   @@map("user_profiles") // Maps model name to snake_case DB table
+// }

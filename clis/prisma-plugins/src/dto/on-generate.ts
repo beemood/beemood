@@ -2,6 +2,8 @@ import { GeneratorOptions } from '@prisma/generator-helper';
 import { mkdir, writeFile } from 'fs/promises';
 import { join } from 'path';
 import { printCreateDtoClass } from './printers/print-create-dto-class.js';
+import { printReadDtoClass } from './printers/print-read-dto-class.js';
+import { printUpdateDtoClass } from './printers/print-update-dto-class.js';
 
 export default async function onGenerate(options: GeneratorOptions) {
   const output = options.generator.output?.value ?? '../src/generated/dto';
@@ -15,7 +17,16 @@ export default async function onGenerate(options: GeneratorOptions) {
 
   for (const model of datamodel.models) {
     {
+      const code = printReadDtoClass(model);
+      contents.push(code);
+    }
+    {
       const code = printCreateDtoClass(model);
+      contents.push(code);
+    }
+
+    {
+      const code = printUpdateDtoClass(model);
       contents.push(code);
     }
   }

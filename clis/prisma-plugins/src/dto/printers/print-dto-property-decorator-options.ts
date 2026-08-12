@@ -1,26 +1,40 @@
-import { PropOptions, ToStringRecord } from '@beemood/types';
-import { extractAnnotations, isDefined, toInstance } from '@beemood/utils';
-import { getTsPrimiteWrapperType } from '../../common/get-ts-property-type.js';
-import { isReadonlyField } from '../../common/is-readonly-field.js';
+import {
+  Any,
+  DateFactory,
+  ObjectType,
+  PropFormat,
+  PropOptions,
+  PropValidationOptions,
+  ToAnyRecord,
+} from '@beemood/types';
+import {
+  codifyObject,
+  extractAnnotations,
+  isDefined,
+  toInstance,
+} from '@beemood/utils';
+import { isRequiredField } from '../../common/is-required-field.js';
 import { Field } from '../../common/types.js';
 
-class PropOptionsClass implements ToStringRecord<PropOptions> {
-  type: string;
-  format: string;
-  computed: string;
-  defaultValue: string;
-  isArray: string;
-  groups: string;
-  exclude: string;
-  required: string;
-  equalsTo: string;
-  moreThan: string;
-  lessThan: string;
-  moreThanOrEqualTo: string;
-  lessThanOrEqualTo: string;
-  isIn: string;
-  dependencies: string;
-  not: string;
+class PropOptionsClass implements Required<PropOptions> {
+  type(): ObjectType {
+    throw new Error('Method not implemented.');
+  }
+  computed: (value: Any) => Any;
+  defaultValue: any;
+  isArray: boolean;
+  groups: string[];
+  exclude: boolean;
+  required: boolean;
+  format: PropFormat;
+  equalsTo: string | number | DateFactory;
+  moreThan: string | number | DateFactory;
+  lessThan: string | number | DateFactory;
+  moreThanOrEqualTo: string | number | DateFactory;
+  lessThanOrEqualTo: string | number | DateFactory;
+  isIn: (string | number)[];
+  dependencies: ToAnyRecord<any>;
+  not: PropValidationOptions;
 }
 
 export function printDtoPropertyDecoratorOptions(
@@ -28,38 +42,41 @@ export function printDtoPropertyDecoratorOptions(
   explicitlyRequired?: boolean,
 ): string {
   const annotations = extractAnnotations(field.documentation ?? '');
-  const instance = toInstance<Partial<PropOptionsClass>>(
+
+  const propOptions = toInstance<Partial<PropOptionsClass>>(
     PropOptionsClass,
     annotations,
   );
 
-  if (isDefined(explicitlyRequired)) {
-    instance.required = `${explicitlyRequired}`;
-  } else {
-    instance.required ??= `${isReadonlyField(field)}`;
-  }
+  delete propOptions.type;
 
-  if (instance.required === 'false') {
-    delete instance.required;
+  // Configure the required option
+
+  if (isDefined(explicitlyRequired) || isDefined(propOptions.required)) {
+    propOptions.required = explicitlyRequired ?? propOptions.required;
+  } else if (isRequiredField(field)) {
+    propOptions.required = true;
   }
 
   if (field.isList) {
-    instance.isArray = 'true';
-    delete instance.required;
-    instance.type = `()=>${getTsPrimiteWrapperType(field)}`;
+    propOptions.isArray = true;
+  }
+
+  if (field.isList || propOptions.required === false) {
+    delete propOptions.required;
   }
 
   switch (field.name) {
     case 'email': {
-      instance.format = "'email'";
+      propOptions.format = 'email';
       break;
     }
     case 'url': {
-      instance.format = "'url'";
+      propOptions.format = 'url';
       break;
     }
     case 'uuid': {
-      instance.format = "'uuid7'";
+      propOptions.format = 'uuid7';
       break;
     }
   }
@@ -67,38 +84,25 @@ export function printDtoPropertyDecoratorOptions(
   if (field.nativeType?.[0])
     switch (field.nativeType[0]) {
       case 'Uuid': {
-        instance.format = "'uuid7'";
+        propOptions.format = 'uuid7';
         break;
       }
       case 'Text': {
-        instance.lessThanOrEqualTo = '1000';
+        propOptions.lessThanOrEqualTo = '1000';
         break;
       }
       case 'VarChar': {
         if (field.nativeType[1][0]) {
-          instance.lessThanOrEqualTo = `${parseInt(field.nativeType[1][0])}`;
+          propOptions.lessThanOrEqualTo = `${parseInt(field.nativeType[1][0])}`;
         }
       }
     }
 
   if (field.kind == 'scalar') {
     if (field.type === 'Json') {
-      instance.format = "'json'";
+      propOptions.format = 'json';
     }
   }
 
-  const acc = new Set<string>();
-
-  const entries = Object.entries(instance);
-
-  for (const [key, value] of entries) {
-    acc.add(`${key}: ${value}`);
-  }
-
-  const preContent = [...acc].join(',').trim();
-
-  if (preContent === '') {
-    return '';
-  }
-  return `{${preContent}}`;
+  return codifyObject(propOptions);
 }
