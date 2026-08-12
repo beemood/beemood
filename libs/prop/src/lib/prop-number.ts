@@ -6,7 +6,7 @@ import { LessThanOrEqualTo } from './validations/less-than-or-equal-to.js';
 import { LessThan } from './validations/less-than.js';
 import { MoreThanOrEqualTo } from './validations/more-than-or-equal-to.js';
 import { MoreThan } from './validations/more-than.js';
-import { __RangeValidation } from './validations/range.js';
+import { Range } from './validations/range.js';
 
 export function __PropNumber(
   options: NormalizedOptions,
@@ -22,7 +22,7 @@ export function __PropNumber(
     // Minlegnth
     if (isDefined(options.moreThan)) {
       if (typeof options.moreThan === 'number') {
-        acc.add(Min(options.moreThan - 1, validationOptions));
+        acc.add(Min(options.moreThan + 1, validationOptions));
       } else if (typeof options.moreThan === 'string') {
         acc.add(MoreThan(options.moreThan, validationOptions));
       }
@@ -67,16 +67,16 @@ export function __PropNumber(
           break;
         }
         case 'rate': {
-          acc.add(__RangeValidation(0, 5, validationOptions));
+          acc.add(Range(0, 5, validationOptions));
 
           break;
         }
         case 'percent': {
-          acc.add(__RangeValidation(0, 100, validationOptions));
+          acc.add(Range(0, 100, validationOptions));
           break;
         }
         case 'fraction': {
-          acc.add(__RangeValidation(0, 1, validationOptions));
+          acc.add(Range(0, 1, validationOptions));
           break;
         }
 

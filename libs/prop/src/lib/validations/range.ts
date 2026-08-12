@@ -1,6 +1,6 @@
-import { ValidationOptions, Min, Max } from "class-validator";
+import { Max, Min, ValidationOptions } from 'class-validator';
 
-export function __RangeValidation(
+export function Range(
   min: number,
   max: number,
   validationOptions: ValidationOptions,

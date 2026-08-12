@@ -28,7 +28,7 @@ export function MoreThanOrEqualTo(
               typeof value === 'bigint' ||
               value instanceof Date
             ) {
-              return value <= targetValue;
+              return value >= targetValue;
             }
           }
           return false;
