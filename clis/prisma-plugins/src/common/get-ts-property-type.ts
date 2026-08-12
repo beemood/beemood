@@ -1,58 +1,94 @@
-import { toDtoClassName } from './to-dto-class-name.js';
 import { Field } from './types.js';
 
-export function getTsPropertyType(field: Field) {
-  let type = '';
+export function getTsPrimiteWrapperType(field: Field) {
   switch (field.kind) {
     case 'scalar': {
       switch (field.type) {
+        case 'Date':
+        case 'BigInt':
         case 'String':
-          type = 'string';
-          break;
         case 'Boolean': {
-          type = 'boolean ';
-          break;
+          return field.type;
         }
         case 'Number':
         case 'Float':
         case 'Decimal':
         case 'Int': {
-          type = 'number';
-          break;
-        }
-        case 'BigInt': {
-          type = 'BigInt';
-          break;
+          return 'Number';
         }
         case 'Bytes': {
-          type = 'Buffer';
-          break;
+          return 'Buffer';
         }
         case 'DateTime': {
-          type = 'Date';
-          break;
+          return 'Date';
+        }
+        default: {
+          return 'any';
+        }
+      }
+    }
+    case 'enum': {
+      return `P.$Enums.${field.type};`;
+    }
+
+    case 'object':
+    case 'unsupported': {
+      return 'any';
+    }
+  }
+}
+export function getTsPrimitiveType(field: Field): string {
+  switch (field.kind) {
+    case 'scalar': {
+      switch (field.type) {
+        case 'String':
+          return 'string';
+
+        case 'Boolean': {
+          return 'boolean ';
+        }
+        case 'Number':
+        case 'Float':
+        case 'Decimal':
+        case 'Int': {
+          return 'number';
+        }
+        case 'BigInt': {
+          return 'BigInt';
+        }
+        case 'Bytes': {
+          return 'Buffer';
+        }
+        case 'DateTime': {
+          return 'Date';
         }
         case 'Json': {
-          type = 'P.Prisma.InputJsonValue';
-
           if (field.isList) {
             return `P.Prisma.InputJsonValue`;
           }
-          break;
+          return 'P.Prisma.InputJsonValue';
+        }
+
+        default: {
+          return 'any';
         }
       }
-      break;
-    }
-    case 'object': {
-      const objectDtoName = toDtoClassName(field.name, 'CreateDto');
-      type = objectDtoName;
-      break;
     }
     case 'enum': {
-      type = `P.$Enums.${field.type};`;
-      break;
+      return `P.$Enums.${field.type};`;
     }
-    case 'unsupported':
+
+    case 'object':
+    case 'unsupported': {
+      return 'any';
+    }
+  }
+}
+export function getTsPropertyType(field: Field): string {
+  let type = getTsPrimitiveType(field);
+
+  if (field.type === 'Json') {
+    return type;
   }
 
   return `${type}${field.isList ? '[]' : ''}`;

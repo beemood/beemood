@@ -41,6 +41,13 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.23"
+    "@swc/helpers": "~0.5.23",
+    "js-yaml": "^5.2.3"
+  },
+  "devDependencies": {
+    "@beemood/errors": "workspace:*"
+  },
+  "peerDependencies": {
+    "@beemood/errors": "workspace:*"
   }
 }

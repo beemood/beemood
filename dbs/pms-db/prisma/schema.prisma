@@ -191,4 +191,6 @@ model Task {
   updatedAt DateTime  @updatedAt @db.Timestamptz(6)
   deletedAt DateTime? @db.Timestamptz(6)
   isActive  Boolean?  @default(true)
+
+  notes Json
 }

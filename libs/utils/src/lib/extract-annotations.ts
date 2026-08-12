@@ -1,4 +1,4 @@
-import { ToStringRecord } from '@beemood/types';
+import { Any, ToAnyRecord, ToStringRecord } from '@beemood/types';
 
 export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\((\w{0,})\)/gi;
 
@@ -8,7 +8,9 @@ export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\((\w{0,})\)/gi;
  * @param text
  * @returns
  */
-export function extractAnnotations<T extends object>(text: string) {
+export function extractAnnotations<T extends ToAnyRecord<Any>>(
+  text: string,
+): T {
   return [...text.matchAll(ANNOTATION_EXP_WITH_PARAM)].reduce(
     (acc, [, key, value]) => {
       value = value.trim();

@@ -22,6 +22,7 @@ const ERROR_PREFIX = [
   'MaxLength',
   'Pattern',
   'NotSupported',
+  'InvalidJson',
 ] as const;
 
 type ErrorClassName<T extends string> = `${T}Error`;
@@ -74,4 +75,5 @@ export const {
   MinLengthError,
   PatternError,
   NotSupportedError,
+  InvalidJsonError,
 } = Errors;

@@ -9,19 +9,19 @@ import { keys } from './keys.js';
  * @param defaultValues default values to set if the target {@link value} does not define them.
  * @returns
  */
-export function setDefualtValue<T extends object>(
+export function setDefualtValue<T extends object, D extends object>(
   value: T,
-  defaultValues: Partial<T>,
-): T {
+  defaultValues: D,
+): T & Required<D> {
   const __keys = keys(defaultValues);
   for (const k of __keys) {
     const defaultValue = defaultValues[k] as Any;
 
     if (isDefined(defaultValue)) {
-      value[k] ??= defaultValue;
+      (value as any)[k] ??= defaultValue;
     } else {
     }
   }
 
-  return value;
+  return value as any;
 }
