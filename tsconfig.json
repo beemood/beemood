@@ -23,6 +23,9 @@
     },
     {
       "path": "./clis/prisma-plugins"
+    },
+    {
+      "path": "./libs/errors"
     }
   ]
 }

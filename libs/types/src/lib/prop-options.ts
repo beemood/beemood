@@ -84,6 +84,9 @@ export abstract class PropOptions extends PropValidationOptions {
    */
   type?(): ObjectType;
 
+  computed?: (value: Any) => Any;
+
+  defaultValue?: Any;
   /**
    * @internal
    * The array type is inferred by reflection.

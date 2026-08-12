@@ -1,7 +1,15 @@
+//
+import createDebug from 'debug';
+export const debug = createDebug('@beemood/utils');
+//
+
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
-export * from './lib/accumulator.js';
+export * from './global.d.js';
 export * from './lib/codify-object.js';
+export * from './lib/collector.js';
+export * from './lib/defined-or-throw.js';
 export * from './lib/extract-annotations.js';
+export * from './lib/factory-collector.js';
 export * from './lib/is-defined-then.js';
 export * from './lib/is-defined.js';
 export * from './lib/is-empty-string.js';
@@ -10,6 +18,7 @@ export * from './lib/is-type.js';
 export * from './lib/keys.js';
 export * from './lib/lowercase-first.js';
 export * from './lib/names.js';
+export * from './lib/set-default.js';
 export * from './lib/to-brand-email.js';
 export * from './lib/to-camel-case.js';
 export * from './lib/to-constant-case.js';

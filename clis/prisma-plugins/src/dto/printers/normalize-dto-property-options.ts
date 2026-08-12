@@ -10,6 +10,8 @@ import {
 import { toInstance } from '@beemood/utils';
 
 export class PropOptionsClass implements Required<PropOptions> {
+  defaultValue: Any;
+  computed: (value: Any) => Any;
   type: () => ObjectType;
   isArray: boolean;
   dependencies: ToAnyRecord<any>;

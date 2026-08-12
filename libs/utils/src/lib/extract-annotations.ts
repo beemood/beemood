@@ -2,9 +2,16 @@ import { ToStringRecord } from '@beemood/types';
 
 export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\((\w{0,})\)/gi;
 
-export function extractAnnotations<T extends object>(documentation: string) {
-  return [...documentation.matchAll(ANNOTATION_EXP_WITH_PARAM)].reduce(
+/**
+ * Extract annotations matching the pattern `@name(options) | @name() ` from the {@link text}
+ *
+ * @param text
+ * @returns
+ */
+export function extractAnnotations<T extends object>(text: string) {
+  return [...text.matchAll(ANNOTATION_EXP_WITH_PARAM)].reduce(
     (acc, [, key, value]) => {
+      value = value.trim();
       value = value === '' ? 'true' : value;
 
       try {

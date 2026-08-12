@@ -1,0 +1,17 @@
+{
+    "def utility class": {
+        "prefix": "def utility class",
+        "body": [
+            "class $1 {",
+            "  constructor(value: Any) {",
+            "    const keys = new Set(Object.keys(this));",
+            "    Object.assign(this, value);",
+            "    const assignedKeys = new Set(Object.keys(this));",
+            "    assignedKeys.forEach((k) => keys.has(k) || delete (this as Any)[k]);",
+            "  }",
+            "}",
+            "",
+        ],
+        "scope": "typescript"
+    }
+}

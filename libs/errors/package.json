@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/prop",
+  "name": "@beemood/errors",
   "version": "0.0.1",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus+beemood-prop@gmail.com",
+    "email": "aemrebasus+beemood-errors@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -34,7 +34,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/prop/src",
+    "sourceRoot": "libs/errors/src",
     "targets": {
       "build": {},
       "doc": {}
@@ -42,21 +42,5 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.23"
-  },
-  "devDependencies": {
-    "@beemood/types": "workspace:*",
-    "@beemood/utils": "workspace:*",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1",
-    "reflect-metadata": "^0.2.2",
-    "@beemood/errors": "workspace:*"
-  },
-  "peerDependencies": {
-    "@beemood/types": "workspace:*",
-    "@beemood/utils": "workspace:*",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1",
-    "reflect-metadata": "^0.2.2",
-    "@beemood/errors": "workspace:*"
   }
 }

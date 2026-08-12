@@ -17,6 +17,8 @@ export type ToBooleanRecord<T extends object> = MapRecord<T, boolean>;
 export type ToBinaryRecord<T extends object> = MapRecord<T, 1 | 0>;
 export type ToObjectRecord<T extends object, O extends Obj> = MapRecord<T, O>;
 
+export type ToNonNullable<T extends object> = MapRecord<T, NonNullable<T>>;
+
 export type ToAnyRecord<T extends object> = MapRecord<T, Any>;
 
 export type PickRequired<T, K extends KeyOf<T>> = T & Required<Pick<T, K>>;
