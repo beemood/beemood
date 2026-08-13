@@ -95,7 +95,7 @@
         "executor": "nx:run-commands",
         "options": {
           "commands": [
-            "pnpm prisma reset"
+            "pnpm prisma migrate reset"
           ],
           "cwd": "{projectRoot}"
         }
