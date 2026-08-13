@@ -19,7 +19,7 @@ export function toNormalizedOptions(
 ): NormalizedOptions {
   const inferedType = getPropType(...args);
   const inferedTypeName = inferedType.name;
-  const nOptions = setDefualtValue<NormalizedOptions>(
+  const nOptions = setDefualtValue(
     {
       ...options,
       type: mustDefined<ObjectType>(),

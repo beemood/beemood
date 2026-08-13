@@ -2,7 +2,7 @@ import { PropOptions } from '@beemood/types';
 import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { v4 as uuidv4, v7 as uuidv7 } from 'uuid';
-import { Prop } from './prop.js';
+import { PropValidation } from './prop.js';
 const p = (o: PropOptions) => o;
 
 describe('Prop String', () => {
@@ -21,7 +21,7 @@ describe('Prop String', () => {
       ${p({ format: 'password' })}   | ${'!Password123.'}
     `('should validate $value with $options', ({ options, value }) => {
       class Sample {
-        @Prop(options) value: string;
+        @PropValidation(options) value: string;
       }
       const instance = plainToInstance(
         Sample,
@@ -41,7 +41,7 @@ describe('Prop String', () => {
       ${p({ lessThan: 3 })} | ${'some'}
     `('should NOT validate $value with $options', ({ options, value }) => {
       class Sample {
-        @Prop(options) value: string;
+        @PropValidation(options) value: string;
       }
       const instance = plainToInstance(
         Sample,

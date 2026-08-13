@@ -13,7 +13,7 @@ import {
   toNormalizedOptions,
 } from './to-normalized-options.js';
 
-export function PropValidation(
+export function __PropValidation0(
   options: NormalizedOptions,
   validationOptions: ValidationOptions = {},
 ): PropertyDecorator {
@@ -51,21 +51,28 @@ export function PropValidation(
   };
 }
 
-export function Prop(options: PropOptions = {}): PropertyDecorator {
+export function __PropValidation(
+  options: NormalizedOptions,
+): PropertyDecorator {
   return (...args) => {
     const acc = new FactoryCollector<PropertyDecorator>();
-    const nOptions = toNormalizedOptions(options, ...args);
 
-    const validationOptions: ValidationOptions = { each: nOptions.isArray };
+    const validationOptions: ValidationOptions = { each: options.isArray };
 
-    acc.add(__PropCommon(nOptions, validationOptions));
+    acc.add(__PropCommon(options, validationOptions));
 
-    acc.add(PropValidation(nOptions));
+    acc.add(__PropValidation0(options));
 
     if (options.exclude !== true) {
       acc.add(Expose({ groups: options.groups }));
     }
 
     acc.collect.forEach((d) => d(...args));
+  };
+}
+
+export function PropValidation(options: PropOptions): PropertyDecorator {
+  return (...args) => {
+    __PropValidation(toNormalizedOptions(options, ...args))(...args);
   };
 }

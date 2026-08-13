@@ -13,6 +13,7 @@ export * from './lib/factory-collector.js';
 export * from './lib/is-defined-then.js';
 export * from './lib/is-defined.js';
 export * from './lib/is-empty-string.js';
+export * from './lib/is-in-or-throw.js';
 export * from './lib/is-true-then.js';
 export * from './lib/is-type.js';
 export * from './lib/keys.js';

@@ -1,7 +1,7 @@
 import { PropOptions } from '@beemood/types';
 import { plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
-import { Prop } from './prop.js';
+import { PropValidation } from './prop.js';
 
 const p = (o: PropOptions) => o;
 
@@ -23,8 +23,8 @@ describe('Prop Number', () => {
       ${p({ lessThanOrEqualTo: 'other' })} | ${10}
     `('should validate $value with $options', ({ options, value }) => {
       class Sample {
-        @Prop() other: number;
-        @Prop(options) value: number;
+        @PropValidation() other: number;
+        @PropValidation(options) value: number;
       }
       const instance = plainToInstance(
         Sample,
@@ -46,7 +46,7 @@ describe('Prop Number', () => {
       ${p({ lessThanOrEqualTo: 3 })} | ${4}
     `('should NOT validate $value with $options', ({ options, value }) => {
       class Sample {
-        @Prop(options) value: number;
+        @PropValidation(options) value: number;
       }
       const instance = plainToInstance(
         Sample,
