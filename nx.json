@@ -66,6 +66,13 @@
     "test": {
       "dependsOn": ["^build"]
     },
+    "serve": {
+      "executor": "@nx/js:node",
+      "options": {
+        "buildTarget": "build",
+        "watch": true
+      }
+    },
     "doc": {
       "executor": "nx:run-commands",
       "options": {

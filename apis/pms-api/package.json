@@ -25,6 +25,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./graphql": {
+      "types": "./dist/graphql/index.d.ts",
+      "import": "./dist/graphql/index.js",
+      "default": "./dist/graphql/index.js"
+    },
+    "./restapi": {
+      "types": "./dist/restapi/index.d.ts",
+      "import": "./dist/restapi/index.js",
+      "default": "./dist/restapi/index.js"
     }
   },
   "files": [
@@ -36,29 +46,48 @@
   "nx": {
     "sourceRoot": "apis/pms-api/src",
     "targets": {
-      "build": {},
-      "doc": {}
+      "build": {
+        "options": {
+          "main": "{projectRoot}/src/main.ts"
+        }
+      },
+      "doc": {},
+      "serve": {}
     }
   },
   "dependencies": {
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/express5": "^1.1.2",
+    "@nestjs/apollo": "^13.4.4",
     "@nestjs/common": "^11.1.29",
+    "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.29",
+    "@nestjs/graphql": "^13.4.4",
     "@nestjs/platform-express": "^11.1.29",
     "@nestjs/swagger": "^11.4.6",
+    "@prisma/client": "^7.9.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
+    "graphql": "^17.0.2",
     "reflect-metadata": "^0.2.2"
   },
   "peerDependencies": {
+    "@apollo/server": "^5.5.1",
+    "@as-integrations/express5": "^1.1.2",
+    "@nestjs/apollo": "^13.4.4",
     "@nestjs/common": "^11.1.29",
+    "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.29",
+    "@nestjs/graphql": "^13.4.4",
     "@nestjs/platform-express": "^11.1.29",
     "@nestjs/swagger": "^11.4.6",
+    "@prisma/client": "^7.9.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
+    "graphql": "^17.0.2",
     "reflect-metadata": "^0.2.2"
   }
 }

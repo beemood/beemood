@@ -24,18 +24,6 @@ datasource db {
   provider = "postgresql"
 }
 
-model Role {
-  id Int @id @default(autoincrement())
-
-  createdAt DateTime  @default(now()) @db.Timestamptz(6)
-  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
-  deletedAt DateTime? @db.Timestamptz(6)
-  isActive  Boolean?  @default(true)
-
-  name  String @unique @db.VarChar(255)
-  users User[]
-}
-
 model User {
   id        Int       @id @default(autoincrement())
   /// @readonly()
@@ -44,13 +32,6 @@ model User {
   updatedAt DateTime  @updatedAt @db.Timestamptz(6)
   deletedAt DateTime? @db.Timestamptz(6)
   isActive  Boolean?  @default(true)
-
-  firstName  String  @db.VarChar(255)
-  lastName   String  @db.VarChar(255)
-  middleName String? @db.VarChar(255)
-
-  role   Role? @relation(fields: [roleId], references: [id], onDelete: SetNull, onUpdate: Cascade)
-  roleId Int?
 
   tasks    UserTask[] @relation("asiggnedTasks")
   comments Comment[]

@@ -6,9 +6,11 @@ packages:
   - "libs/*"
 autoInstallPeers: true
 allowBuilds:
+  '@apollo/protobufjs': true
   '@prisma/engines': true
   "@scarf/scarf": true
   "@swc/core": true
+  better-sqlite3: true
   nx: true
   prisma: true
   unrs-resolver: true
@@ -36,3 +38,10 @@ minimumReleaseAgeExclude:
   - '@prisma/dmmf@7.9.1'
   - '@prisma/generator-helper@7.9.1'
   - '@prisma/generator@7.9.1'
+  - '@nestjs/common@11.1.29'
+  - '@nestjs/core@11.1.29'
+  - '@nestjs/graphql@13.4.4'
+  - '@nestjs/platform-express@11.1.29'
+  - graphql-ws@6.2.1
+  - js-yaml@5.2.3
+  - ws@8.21.3

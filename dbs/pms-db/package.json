@@ -47,19 +47,19 @@
       "default": "./dist/generated/prisma/enums.js"
     },
     "./restapi": {
-      "types": "./dist/generated/restapi/index.ts.d.ts",
-      "import": "./dist/generated/restapi/index.ts.js",
-      "default": "./dist/generated/restapi/index.ts.js"
+      "types": "./dist/generated/restapi/index.d.ts",
+      "import": "./dist/generated/restapi/index.js",
+      "default": "./dist/generated/restapi/index.js"
     },
     "./graphql": {
-      "types": "./dist/generated/graphql/index.ts.d.ts",
-      "import": "./dist/generated/graphql/index.ts.js",
-      "default": "./dist/generated/graphql/index.ts.js"
+      "types": "./dist/generated/graphql/index.d.ts",
+      "import": "./dist/generated/graphql/index.js",
+      "default": "./dist/generated/graphql/index.js"
     },
     "./service": {
-      "types": "./dist/generated/service/index.ts.d.ts",
-      "import": "./dist/generated/service/index.ts.js",
-      "default": "./dist/generated/service/index.ts.js"
+      "types": "./dist/generated/service/index.d.ts",
+      "import": "./dist/generated/service/index.js",
+      "default": "./dist/generated/service/index.js"
     }
   },
   "files": [
