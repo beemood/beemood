@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/fs",
+  "name": "@beemood/pms-api",
   "version": "0.0.1",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus+beemood-fs@gmail.com",
+    "email": "aemrebasus+beemood-pms-api@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -34,7 +34,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/fs/src",
+    "sourceRoot": "apis/pms-api/src",
     "targets": {
       "build": {},
       "doc": {}
@@ -44,11 +44,21 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
-    "@beemood/errors": "workspace:*",
-    "js-yaml": "^5.2.3"
+    "@nestjs/common": "^11.1.29",
+    "@nestjs/core": "^11.1.29",
+    "@nestjs/platform-express": "^11.1.29",
+    "@nestjs/swagger": "^11.4.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "reflect-metadata": "^0.2.2"
   },
   "peerDependencies": {
-    "@beemood/errors": "workspace:*",
-    "js-yaml": "^5.2.3"
+    "@nestjs/common": "^11.1.29",
+    "@nestjs/core": "^11.1.29",
+    "@nestjs/platform-express": "^11.1.29",
+    "@nestjs/swagger": "^11.4.6",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.15.1",
+    "reflect-metadata": "^0.2.2"
   }
 }

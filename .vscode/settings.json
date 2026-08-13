@@ -1,5 +1,7 @@
 {
-  "eslint.validate": ["json"],
+  "eslint.validate": [
+    "json"
+  ],
   "github.copilot.enable": {
     "*": false
   },
