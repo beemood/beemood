@@ -55,6 +55,11 @@
       "types": "./dist/generated/graphql/index.ts.d.ts",
       "import": "./dist/generated/graphql/index.ts.js",
       "default": "./dist/generated/graphql/index.ts.js"
+    },
+    "./service": {
+      "types": "./dist/generated/service/index.ts.d.ts",
+      "import": "./dist/generated/service/index.ts.js",
+      "default": "./dist/generated/service/index.ts.js"
     }
   },
   "files": [

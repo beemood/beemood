@@ -29,7 +29,7 @@
   },
   "bin": {
     "dto": "./bin/dto.mjs",
-    "base-service": "./bin/base-service.mjs"
+    "service": "./bin/service.mjs"
   },
   "files": [
     "dist",
