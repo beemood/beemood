@@ -1,4 +1,3 @@
-import { toDtoClassName } from '../../common/to-dto-class-name.js';
 import { Field } from '../../common/types.js';
 
 export function printProjectionDtoProperty(field: Field) {
@@ -8,13 +7,8 @@ export function printProjectionDtoProperty(field: Field) {
       case 'enum': {
         return `boolean`;
       }
-      case 'object': {
-        if (field.isList) {
-          return `${toDtoClassName(field.type, 'FindManyDto')}`;
-        } else {
-          return `${toDtoClassName(field.type, 'FindManyDto')}`;
-        }
-      }
+      case 'object':
+        return true;
       case 'unsupported': {
         return `boolean`;
       }

@@ -45,7 +45,7 @@ export function providePgPoolOptionsEnv(
     inject: [ConfigService],
     provide: getPgPoolOptionsToken(name, profile),
     useFactory(config: ConfigService) {
-      const connectionString = config.get(Env.DB.URL);
+      const connectionString = config.getOrThrow(Env.DB.URL);
 
       const max = config.get(Env.DB.POOL.MAX, 20);
 
@@ -95,9 +95,10 @@ export function provideDefaultPgPoolOptions(
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
+    inject: [ConfigService],
     provide: getPgPoolOptionsToken(name, profile),
     useFactory(config: ConfigService) {
-      const connectionString = config.get(Env.DB.URL);
+      const connectionString = config.getOrThrow(Env.DB.URL);
 
       return {
         connectionString,

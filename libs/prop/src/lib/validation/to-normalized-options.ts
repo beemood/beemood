@@ -1,5 +1,4 @@
-import { mustDefined } from '@beemood/errors';
-import { ObjectType, PropOptions, PropTypes } from '@beemood/types';
+import { Any, ObjectType, PropOptions, PropTypes } from '@beemood/types';
 import { setDefualtValue } from '@beemood/utils';
 import { getPropType } from './get-prop-type.js';
 export type NormalizedOptions = PropOptions & {
@@ -17,12 +16,13 @@ export function toNormalizedOptions(
   options: Readonly<PropOptions>,
   ...args: Parameters<PropertyDecorator>
 ): NormalizedOptions {
-  const inferedType = getPropType(...args);
+  const inferedType = options.type ?? (() => getPropType(...args));
   const inferedTypeName = inferedType.name;
   const nOptions = setDefualtValue(
     {
       ...options,
-      type: mustDefined<ObjectType>(),
+      // - [ ] fix this
+      type: () => String as Any,
       __typeName: inferedTypeName,
     },
     { required: false },

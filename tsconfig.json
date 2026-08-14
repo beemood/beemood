@@ -35,6 +35,9 @@
     },
     {
       "path": "./libs/constants"
+    },
+    {
+      "path": "./libs/prop-validation"
     }
   ]
 }

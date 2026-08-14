@@ -61,6 +61,8 @@
   "devDependencies": {
     "@apollo/server": "^5.5.1",
     "@as-integrations/express5": "^1.1.2",
+    "@beemood/prisma": "workspace:*",
+    "@beemood/prop": "workspace:*",
     "@nestjs/apollo": "^13.4.4",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",
@@ -77,6 +79,8 @@
   "peerDependencies": {
     "@apollo/server": "^5.5.1",
     "@as-integrations/express5": "^1.1.2",
+    "@beemood/prisma": "workspace:*",
+    "@beemood/prop": "workspace:*",
     "@nestjs/apollo": "^13.4.4",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",

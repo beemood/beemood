@@ -78,7 +78,9 @@ export function getTsPrimitiveType(field: Field): string {
       return `P.$Enums.${field.type};`;
     }
 
-    case 'object':
+    case 'object': {
+      return field.type;
+    }
     case 'unsupported': {
       return 'any';
     }

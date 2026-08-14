@@ -1,0 +1,9 @@
+- String	string	Textual data
+- Boolean	boolean	true or false values
+- Int	    number	32-bit signed integer
+- Float	    number	Floating-point number
+- BigInt	bigint	64-bit signed integer (uses native JS BigInt)
+- DateTime	Date	Timestamp / ISO-8601 date (uses native JS Date object)
+- Bytes	    Buffer / Uint8Array	Raw binary data (defaults to Node.js Buffer)
+- Decimal	Prisma.Decimal	High-precision decimal numbers (backed by decimal.js)
+- Json	    Prisma.JsonValue	Any valid JSON structure (string, number, boolean, object, array, null)

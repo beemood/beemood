@@ -1,5 +1,11 @@
 import { DtoClassName } from '../../common/to-dto-class-name.js';
 
+export type PrintDtoClassOptions = {
+  name: DtoClassName;
+  classDecorator?: string;
+  properties?: string;
+  extending?: string;
+};
 export function printDtoClass(
   dtoClassName: DtoClassName,
   properties: string,
@@ -7,10 +13,7 @@ export function printDtoClass(
 ) {
   extendings = extendings ? `extends ${extendings}` : '';
 
-  return [
-    '@Dto()',
-    `export class ${dtoClassName} ${extendings} {`,
-    properties,
-    '}',
-  ].join('\n');
+  return [`export class ${dtoClassName} ${extendings} {`, properties, '}'].join(
+    '\n',
+  );
 }

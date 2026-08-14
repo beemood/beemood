@@ -1,5 +1,6 @@
 import { PropOptions } from '@beemood/types';
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Exclude } from 'class-transformer';
 import { __PropValidation } from '../validation/prop.js';
 import {
   NormalizedOptions,
@@ -30,8 +31,15 @@ export function Prop(options: PropOptions = {}): PropertyDecorator {
   };
 }
 
-export function Dto(): ClassDecorator {
+export function InputDto(): ClassDecorator {
   return (...args) => {
     InputType()(...args);
+    Exclude()(...args);
+  };
+}
+export function Dto(): ClassDecorator {
+  return (...args) => {
+    ObjectType()(...args);
+    Exclude()(...args);
   };
 }

@@ -24,3 +24,9 @@ export const CommonDtoClassNames = {
   DateFilterDto: 'DateFilterDto',
   BooleanFilterDto: 'BooleanFilterDto',
 } as const;
+
+export const DtoClassDecoratorNames = {
+  Dto: 'Dto',
+  ObjectDto: 'ObjectDto',
+  InputDto: 'InputDto',
+} as const;

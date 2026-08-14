@@ -10,6 +10,7 @@ import { toSnakeCase } from './to-snake-case.js';
 import { toTitleCase } from './to-title-case.js';
 
 export function names(name: string): Casings {
+  name = toNormalCase(name);
   return {
     normal: toNormalCase(name),
     lower: name.toLowerCase(),

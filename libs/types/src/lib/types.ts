@@ -54,6 +54,16 @@ export type Casings = {
   dot: string;
 };
 
+export const PrimitivePropertyType = {
+  String: 'String',
+  Number: 'Number',
+  Boolean: 'Boolean',
+  Date: 'Date',
+  Buffer: 'Buffer',
+};
+
+export type PrimitivePropertyType = keyof typeof PrimitivePropertyType;
+
 export type Casing = KeyOf<Casings>;
 
 export type ValueFactory<T> = () => T;

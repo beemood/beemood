@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@beemood/constants": "workspace:*",
+    "@beemood/utils": "workspace:*",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",
     "@prisma/adapter-better-sqlite3": "^7.9.1",
@@ -57,6 +58,7 @@
   },
   "peerDependencies": {
     "@beemood/constants": "workspace:*",
+    "@beemood/utils": "workspace:*",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",
     "@prisma/adapter-better-sqlite3": "^7.9.1",

@@ -19,6 +19,7 @@ export * from './lib/is-type.js';
 export * from './lib/keys.js';
 export * from './lib/lowercase-first.js';
 export * from './lib/names.js';
+export * from './lib/nestjs-names.js';
 export * from './lib/set-default.js';
 export * from './lib/to-brand-email.js';
 export * from './lib/to-camel-case.js';

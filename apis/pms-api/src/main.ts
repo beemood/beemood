@@ -1,7 +1,8 @@
-import { Logger } from '@nestjs/common';
+import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
 import { MainModule } from './main.module.js';
 
 function config(configService: ConfigService) {
@@ -22,12 +23,26 @@ export async function main() {
   const { APP_ID, PORT } = config(app.get(ConfigService));
 
   AppConfigs: {
+    app.setGlobalPrefix('api');
     app.enableCors();
     app.enableShutdownHooks();
   }
 
   AppInterceptors: {
-    //
+    app.useGlobalPipes(
+      new ValidationPipe({
+        transform: true,
+        transformOptions: {
+          excludeExtraneousValues: true,
+          strategy: 'excludeAll',
+          exposeUnsetFields: false,
+          exposeDefaultValues: true,
+        },
+        exceptionFactory(errors) {
+          throw new BadRequestException({ errors });
+        },
+      }),
+    );
   }
 
   SwaggerConfigs: {

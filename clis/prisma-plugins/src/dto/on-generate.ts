@@ -31,7 +31,7 @@ export default async function onGenerate(options: GeneratorOptions) {
   contents.push(`import * as C from '../prisma/commonInputTypes.js';`);
 
   {
-    const code = printCommonDto();
+    const code = printCommonDto('Dto');
     contents.push(code);
   }
 
@@ -41,14 +41,6 @@ export default async function onGenerate(options: GeneratorOptions) {
   }
 
   for (const model of datamodel.models) {
-    {
-      const code = printProjectionDto(model);
-      contents.push(code);
-    }
-    {
-      const code = printWhereManyRelationDto(model);
-      contents.push(code);
-    }
     {
       const code = printReadDtoClass(model);
       contents.push(code);
@@ -63,10 +55,6 @@ export default async function onGenerate(options: GeneratorOptions) {
       contents.push(code);
     }
     {
-      const code = printFindManyDto(model);
-      contents.push(code);
-    }
-    {
       const code = printWhereUniqueDto(model);
       contents.push(code);
     }
@@ -74,10 +62,17 @@ export default async function onGenerate(options: GeneratorOptions) {
       const code = printWhereDto(model);
       contents.push(code);
     }
+
     {
-      const code = printFindUniquedto(model);
+      const code = printOrderByDto(model);
       contents.push(code);
     }
+
+    {
+      const code = printWhereManyRelationDto(model);
+      contents.push(code);
+    }
+
     {
       const code = printSelectDto(model);
       contents.push(code);
@@ -92,7 +87,17 @@ export default async function onGenerate(options: GeneratorOptions) {
     }
 
     {
-      const code = printOrderByDto(model);
+      const code = printProjectionDto(model);
+      contents.push(code);
+    }
+
+    {
+      const code = printFindManyDto(model);
+      contents.push(code);
+    }
+
+    {
+      const code = printFindUniquedto(model);
       contents.push(code);
     }
   }

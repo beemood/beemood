@@ -1,13 +1,8 @@
-import { ProjectReadDto } from '@beemood/pms-db/graphql';
-import { Query, Resolver } from '@nestjs/graphql';
+import { Prisma } from '@beemood/pms-db/client';
+import { InjectDelegate } from '@beemood/prisma';
 
-@Resolver()
 export class ProjectResolver {
-  @Query(() => ProjectReadDto, {
-    name: 'findManyProject',
-    description: 'Find many projects',
-  })
-  findMany() {
-    return;
-  }
+  constructor(
+    @InjectDelegate() protected readonly delegate: Prisma.ProjectDelegate,
+  ) {}
 }

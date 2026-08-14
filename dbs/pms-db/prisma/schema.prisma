@@ -35,11 +35,6 @@ model User {
 
   tasks    UserTask[] @relation("asiggnedTasks")
   comments Comment[]
-
-  createdTasks     Task[]     @relation("createdTasks")
-  createdUserTasks UserTask[] @relation("createdUserTasks")
-  createdProjects  Project[]  @relation("createdProjects")
-  createdSprints   Sprint[]   @relation("createdSprints")
 }
 
 model Project {
@@ -54,7 +49,7 @@ model Project {
   description String? @db.Text
 
   /// @moreThan(()=>new Date())
-  startedAt DateTime @db.Timestamptz(6)
+  startedAt DateTime? @db.Timestamptz(6)
 
   /// @moreThan(startedAt)
   endedAt DateTime? @db.Timestamptz(6)
@@ -63,9 +58,6 @@ model Project {
   dueAt DateTime? @db.Timestamptz(6)
 
   sprints Sprint[]
-
-  createdBy   User @relation("createdProjects", fields: [createdById], references: [id])
-  createdById Int
 
   // Indexes for query performance
   @@index([startedAt])
@@ -85,9 +77,6 @@ model Sprint {
 
   project   Project @relation(fields: [projectId], references: [id])
   projectId Int
-
-  createdBy   User @relation("createdSprints", fields: [createdById], references: [id])
-  createdById Int
 }
 
 model Comment {
@@ -131,7 +120,7 @@ model Task {
   status      TaskStatus
 
   /// @moreThan(()=>new Date())
-  startedAt DateTime @db.Timestamptz(6)
+  startedAt DateTime? @db.Timestamptz(6)
 
   /// @moreThan(startedAt)
   endedAt DateTime? @db.Timestamptz(6)
@@ -145,9 +134,6 @@ model Task {
   subTasks Task[]    @relation("parentTask")
   comments Comment[]
 
-  createdBy   User @relation("createdTasks", fields: [createdById], references: [id])
-  createdById Int
-
   userTasks UserTask[]
 }
 
@@ -160,25 +146,9 @@ model UserTask {
   user   User @relation("asiggnedTasks", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId Int
 
-  createdBy   User @relation("createdUserTasks", fields: [createdById], references: [id])
-  createdById Int
-
   @@unique([userId, taskId])
   @@index([taskId])
 }
-
-// /// System-level role mapping
-// enum Role {
-//   USER
-//   ADMIN
-//   MANAGER
-// }
-
-// model Manager {
-//   id Int @id @default(autoincrement())
-
-//   userProfiles UserProfile[]
-// }
 
 // /// Represents a core user profile with comprehensive data types
 // model UserProfile {
