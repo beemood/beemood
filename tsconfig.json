@@ -38,6 +38,9 @@
     },
     {
       "path": "./libs/prop-validation"
+    },
+    {
+      "path": "./libs/matcher"
     }
   ]
 }

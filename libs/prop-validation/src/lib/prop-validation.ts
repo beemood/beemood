@@ -1,84 +1,64 @@
-import { ApiPropertyOptions } from '@nestjs/swagger';
-import { ClassConstructor } from 'class-transformer';
+import { EnumMatcher, PropertyMatcher } from '@beemood/matcher';
+import * as CT from 'class-transformer';
+import * as CV from 'class-validator';
+import { normalizePropValidationOptions } from './normalize-prop-validation-options.js';
 import {
-    IsArray,
-    IsEnum,
-    Max,
-    MaxLength,
-    Min,
-    MinLength,
-    ValidationOptions,
-} from 'class-validator';
-
-export type DependencyValidationOptions = {
-  moreThan?: string[];
-  lessThan?: string[];
-  equalTo?: string[];
-  notEqualTo?: string[];
-  isDefined?: string[];
-  isNotDefined?: string[];
-};
-
-export type CustomPropValidationOptions = {
-  dependencies?: DependencyValidationOptions;
-};
-
-export type PropValidationOptions = Omit<ApiPropertyOptions, 'type'> &
-  CustomPropValidationOptions & {
-    type?: <T>() => ClassConstructor<T>;
-  };
-
-export function validatePropValidationOptions(
-  options: PropValidationOptions,
-  ...args: Parameters<PropertyDecorator>
-) {
-  // If options.type is undefined
-  if (options.type == undefined) {
-    // Then get the type from reflection
-    const inferedType = Reflect.getMetadata('design:type', args[0], args[1]);
-
-    const primitiveTypes = new Set([String, Number, Boolean, Date, Buffer]);
-
-    // If the infered type is not one of the allowed primitive types,
-    // then throw error.
-    if (!primitiveTypes.has(inferedType)) {
-      throw new Error(
-        `Unkown type, ${inferedType.name}, must be provided in options.type.`,
-      );
-    }
-  } else {
-    // Type must be function
-    if (typeof options.type != 'function') {
-      throw new Error('type must be a function');
-    }
-  }
-}
+  NormalizedPropValidationOptions,
+  PropValidationOptions,
+} from './prop-validation-options.js';
 
 function __PropValidation(
-  options: PropValidationOptions = {},
-  validationOptions: ValidationOptions = {},
+  options: NormalizedPropValidationOptions = {},
+  validationOptions: CV.ValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
-    const acc: PropertyDecorator[] = [];
+    const o = options;
+    const vo = validationOptions;
 
-    const push = (...decorators: PropertyDecorator[]) =>
-      acc.push(...decorators);
+    const matcher = new PropertyMatcher<
+      NormalizedPropValidationOptions,
+      PropertyDecorator
+    >(o);
 
-    if (options.minLength != undefined)
-      push(MinLength(options.minLength, validationOptions));
-
-    if (options.maxLength != undefined)
-      push(MaxLength(options.maxLength, validationOptions));
-
-    if (options.minimum != undefined)
-      push(Min(options.minimum, validationOptions));
-
-    if (options.maximum != undefined)
-      push(Max(options.maximum, validationOptions));
-
-    if (options.enum) push(IsEnum(options.enum, validationOptions));
-
-    acc.forEach((d) => d(...args));
+    matcher
+      .isDefined('default', (v) =>
+        CT.Transform(({ value }) => (value ??= v), o.transformOptions),
+      )
+      .isDefined('__primitiveTypeName', (v) =>
+        new EnumMatcher<
+          'String' | 'Number' | 'Boolean' | 'Date' | 'Buffer',
+          PropertyDecorator
+        >(v)
+          .isEqual('String', () => CV.IsString(vo))
+          .isEqual('Number', () => CV.IsNumber(undefined, vo))
+          .isEqual('Boolean', () => CV.IsBoolean(vo))
+          .isEqual('Date', () => CV.IsDateString(undefined, vo))
+          .isEqual('Buffer', () => CV.IsInstance(Buffer, vo))
+          .collect(),
+      )
+      .isDefined('minLength', (v) => CV.MinLength(v, vo))
+      .isDefined('maxLength', (v) => CV.MaxLength(v, vo))
+      .isDefined('minimum', (v) => CV.Min(v, vo))
+      .isDefined('maximum', (v) => CV.Max(v, vo))
+      .isDefined('enum', (v) => CV.IsEnum(v, vo))
+      .isDefined('maxItems', (v) => CV.ArrayMaxSize(v))
+      .isDefined('minItems', (v) => CV.ArrayMinSize(v))
+      .isDefined('pattern', (v) => CV.Matches(new RegExp(v), vo))
+      .isDefined('format', (v) =>
+        new EnumMatcher<PropValidationOptions['format'], PropertyDecorator>(v)
+          .isEqual('email', () => CV.IsEmail(undefined, vo))
+          .isEqual('password', () => CV.IsStrongPassword(undefined, vo))
+          .isEqual('ean', () => CV.IsEAN(vo))
+          .isEqual('uuid', () => CV.IsUUID('all', vo))
+          .isEqual('uuid7', () => CV.IsUUID('4', vo))
+          .isEqual('uuid4', () => CV.IsUUID('7', vo))
+          .isEqual('date', () => CV.IsDateString(undefined, vo))
+          .isEqual('date-time', () => CV.IsDateString(undefined, vo))
+          .isEqual('time', () => CV.IsDateString(undefined, vo))
+          .collect(),
+      )
+      .collect()
+      .forEach((d) => d(...args));
   };
 }
 
@@ -86,20 +66,27 @@ export function PropValidation(
   options: PropValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
-    validatePropValidationOptions(options, ...args);
+    const o = normalizePropValidationOptions(options, ...args);
+    const isArray = o.isArray;
 
-    const acc: PropertyDecorator[] = [];
-    const push = (decorator: PropertyDecorator) => acc.push(decorator);
-
-    const { isArray } = options;
-
-    if (isArray) {
-      push(IsArray());
-      push(__PropValidation(options, { each: true }));
-    } else {
-      push(__PropValidation(options));
+    if (o.exlude !== true) {
+      CT.Expose(o.transformOptions)(...args);
     }
 
-    acc.forEach((d) => d(...args));
+    if (o.required == true) {
+      if (isArray !== true) {
+        CV.IsDefined()(...args);
+        CV.IsNotEmpty()(...args);
+      }
+    } else {
+      CV.IsOptional()(...args);
+    }
+
+    if (isArray === true) {
+      CV.IsArray()(...args);
+      __PropValidation(o, { each: true })(...args);
+    } else {
+      __PropValidation(o)(...args);
+    }
   };
 }

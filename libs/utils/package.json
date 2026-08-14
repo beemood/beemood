@@ -45,11 +45,13 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
+    "@beemood/matcher": "workspace:*",
     "@beemood/types": "workspace:*",
     "@types/debug": "^4.1.13",
     "debug": "^4.4.3"
   },
   "peerDependencies": {
+    "@beemood/matcher": "workspace:*",
     "@beemood/types": "workspace:*",
     "debug": "^4.4.3"
   }
