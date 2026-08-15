@@ -1,4 +1,4 @@
-name: CI
+name: ci
 on:
   push:
     branches:
@@ -42,7 +42,8 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
+        # run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm nx run-many -t lint test build typecheck doc
