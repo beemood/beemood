@@ -35,27 +35,8 @@
   "nx": {
     "sourceRoot": "libs/types/src",
     "targets": {
-      "build": {
-        "executor": "@nx/js:swc",
-        "outputs": [
-          "{options.outputPath}"
-        ],
-        "options": {
-          "outputPath": "libs/types/dist",
-          "main": "libs/types/src/index.ts",
-          "tsConfig": "libs/types/tsconfig.lib.json",
-          "skipTypeCheck": true,
-          "stripLeadingPaths": true
-        }
-      },
-      "doc": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "typedoc {projectRoot}/src/index.ts --out public/libs/types --tsconfig {projectRoot}/tsconfig.lib.json --favicon {projectRoot}/assets/favicon.svg"
-          ]
-        }
-      }
+      "build": {},
+      "doc": {}
     }
   },
   "dependencies": {

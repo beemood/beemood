@@ -45,7 +45,19 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm nx run-many -t lint test build typecheck
+        run: pnpm nx run-many -t lint test build typecheck doc
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
       - name: Publish to NPM
         run: pnpm nx release publish
