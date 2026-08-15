@@ -6,6 +6,7 @@ packages:
   - 'libs/*'
 autoInstallPeers: true
 allowBuilds:
+  '@scarf/scarf': true
   '@swc/core': true
   nx: true
   unrs-resolver: true

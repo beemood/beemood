@@ -1,0 +1,80 @@
+{
+  "name": "@beemood/nestjs",
+  "version": "0.0.1",
+  "description": "- [ ] add project description",
+  "homepage": "https://beemood.github.io",
+  "author": {
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus+beemood-nestjs@gmail.com",
+    "url": "https://beemood.github.io/profile"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./common": {
+      "types": "./dist/common.d.ts",
+      "import": "./dist/common.js",
+      "default": "./dist/common.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "default": "./dist/core.js"
+    },
+    "./swagger": {
+      "types": "./dist/swagger.d.ts",
+      "import": "./dist/swagger.js",
+      "default": "./dist/swagger.js"
+    },
+    "./platform-express": {
+      "types": "./dist/platform-express.d.ts",
+      "import": "./dist/platform-express.js",
+      "default": "./dist/platform-express.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/nestjs/src",
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.23"
+  },
+  "devDependencies": {
+    "@nestjs/common": "^11.1.28",
+    "@nestjs/core": "^11.1.28",
+    "@nestjs/platform-express": "^11.1.28",
+    "@nestjs/swagger": "^11.4.6",
+    "reflect-metadata": "^0.2.2"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.28",
+    "@nestjs/core": "^11.1.28",
+    "@nestjs/platform-express": "^11.1.28",
+    "@nestjs/swagger": "^11.4.6",
+    "reflect-metadata": "^0.2.2"
+  }
+}

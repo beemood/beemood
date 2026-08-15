@@ -14,6 +14,12 @@
     },
     {
       "path": "./libs/fs"
+    },
+    {
+      "path": "./libs/prop"
+    },
+    {
+      "path": "./libs/nestjs"
     }
   ]
 }

@@ -4,9 +4,12 @@ import { PropNumberOptions } from './prop-number-options.js';
 import { PropObjectOptions } from './prop-object-options.js';
 import { PropStringOptions } from './prop-string-options.js';
 
-export type PropOptions =
-  | PropStringOptions
-  | PropNumberOptions
-  | PropBooleanOptions
-  | PropObjectOptions
-  | PropArrayOptions;
+export type PropOptions = Readonly<
+  Partial<
+    | PropStringOptions
+    | PropNumberOptions
+    | PropBooleanOptions
+    | PropObjectOptions
+    | PropArrayOptions
+  >
+>;

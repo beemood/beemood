@@ -1,0 +1,54 @@
+{
+  "name": "@beemood/prop",
+  "version": "0.0.1",
+  "description": "- [ ] add project description",
+  "homepage": "https://beemood.github.io",
+  "author": {
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus+beemood-prop@gmail.com",
+    "url": "https://beemood.github.io/profile"
+  },
+  "funding": [
+    "https://cash.app/$puqlib"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "assets",
+    "!**/*.tsbuildinfo"
+  ],
+  "nx": {
+    "sourceRoot": "libs/prop/src",
+    "targets": {
+      "build": {},
+      "doc": {}
+    }
+  },
+  "dependencies": {
+    "@swc/helpers": "~0.5.23"
+  },
+  "devDependencies": {
+    "@beemood/nestjs": "workspace:*",
+    "@beemood/types": "workspace:*"
+  },
+  "peerDependencies": {
+    "@beemood/nestjs": "workspace:*",
+    "@beemood/types": "workspace:*"
+  }
+}
