@@ -4,18 +4,11 @@
 dist
 tmp
 out-tsc
+public
 
 # dependencies
 node_modules
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
 
 # IDE - VSCode
 .vscode/*
@@ -43,3 +36,5 @@ Thumbs.db
 .nx/migrate-runs
 .claude/worktrees
 .claude/settings.local.json
+
+vitest.config.*.timestamp*

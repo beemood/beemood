@@ -1,9 +1,10 @@
 packages:
-  - "apis/*"
-  - "dbs/*"
-  - "mods/*"
-  - "clis/*"
-
+  - 'apis/*'
+  - 'dbs/*'
+  - 'mods/*'
+  - 'clis/*'
+  - 'libs/*'
 autoInstallPeers: true
 allowBuilds:
+  '@swc/core': true
   nx: true
