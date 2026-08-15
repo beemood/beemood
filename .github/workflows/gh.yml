@@ -1,4 +1,4 @@
-name: ci
+name: gh
 on:
   push:
     branches:
@@ -39,18 +39,21 @@ jobs:
         with:
           node-version: 24
           cache: "pnpm"
-          registry-url: "https://registry.npmjs.org"
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Generate docs
+        run: pnpm dlx nx run-many -t doc
 
-      - name: Build
-        run: pnpm nx run-many -t lint test build typecheck
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-      - name: Publish to NPM
-        run: pnpm nx release publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
 
-      - run: pnpm nx fix-ci
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - run: pnpm dlx nx fix-ci
         if: always()
