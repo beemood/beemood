@@ -7,7 +7,7 @@
 
 
 <p align="center">
-  <img   srcset="./assets/favicon.png, https://beemood.github.io/libs/types/assets/favicon.png" alt="Logo" height="200" style="border-radius: 20px"/>
+  <img   srcset="./assets/favicon.svg, https://beemood.github.io/libs/types/assets/favicon.svg" alt="Logo" height="200" style="border-radius: 20px"/>
 </p>
 
 ## @beemood/types

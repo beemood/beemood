@@ -29,6 +29,7 @@
   },
   "files": [
     "dist",
+    "assets",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
@@ -45,6 +46,14 @@
           "tsConfig": "libs/types/tsconfig.lib.json",
           "skipTypeCheck": true,
           "stripLeadingPaths": true
+        }
+      },
+      "doc": {
+        "executor": "nx:run-commands",
+        "options": {
+          "commands": [
+            "typedoc {projectRoot}/src/index.ts --out public/libs/types --tsconfig {projectRoot}/tsconfig.lib.json --favicon {projectRoot}/assets/favicon.svg"
+          ]
         }
       }
     }
