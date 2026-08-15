@@ -1,5 +1,5 @@
 export class PropertyMatcher<O extends Record<string, any>, R> {
-  protected readonly acc: (R | undefined)[] = [];
+  protected readonly acc: (R[] | R | undefined)[] = [];
 
   constructor(protected readonly record: O) {}
 
@@ -40,7 +40,9 @@ export class PropertyMatcher<O extends Record<string, any>, R> {
 
   isDefined<K extends keyof O>(
     key: K,
-    ...handlers: ((value: Exclude<O[K], undefined | null>) => R | undefined)[]
+    ...handlers: ((
+      value: Exclude<O[K], undefined | null>,
+    ) => R[] | R | undefined)[]
   ): PropertyMatcher<Omit<O, K>, R> {
     const value = this.record[key];
     if (value != undefined) {
@@ -50,6 +52,6 @@ export class PropertyMatcher<O extends Record<string, any>, R> {
   }
 
   collect() {
-    return this.acc.filter((e) => e != undefined);
+    return this.acc.flat().filter((e) => e != undefined);
   }
 }

@@ -3,43 +3,42 @@ import { PropValidationOptions as O } from './prop-validation-options.js';
 import { PropValidation } from './prop-validation.js';
 import { transformAndValidate } from './transform-and-validate.js';
 
-describe('Date Validation', () => {
+describe('Object Validation', () => {
+  class SubSample {
+    @PropValidation() name: string;
+  }
+
   describe('Valid', () => {
-    const dateValue = new Date();
     it.each`
-      options    | value
-      ${{} as O} | ${{ value: dateValue.toISOString() }}
-      ${{} as O} | ${{ value: dateValue.getTime() }}
+      options                           | value
+      ${{ type: () => SubSample } as O} | ${{ value: { name: 'some' } }}
     `('$options | $value', ({ options, value }) => {
       class Sample {
-        @PropValidation(options) value: Date;
+        @PropValidation(options) value: SubSample;
       }
 
       const { errors, instance } = transformAndValidate(Sample, value);
-      expect(instance).toEqual({ value: dateValue });
+      expect({ ...instance }).toEqual(value);
       expect(errors).toEqual([]);
     });
   });
-
-  describe('Invalid Date', () => {
+  describe('Invalid Object', () => {
     it.each`
-      options    | value
-      ${{} as O} | ${{ value: 1 }}
-      ${{} as O} | ${{ value: true }}
-      ${{} as O} | ${{ value: false }}
-      ${{} as O} | ${{ value: 'some' }}
-      ${{} as O} | ${{ value: {} }}
+      options                           | value
+      ${{ type: () => SubSample } as O} | ${{ value: 'some' }}
+      ${{ type: () => SubSample } as O} | ${{ value: {} }}
     `('$options | $value', ({ options, value }) => {
       class Sample {
-        @PropValidation(options) value: Date;
+        @PropValidation(options) value: SubSample;
       }
 
       const { errors } = transformAndValidate(Sample, value);
+
       const constraints = errors.flatMap((e) =>
         Object.keys(e.constraints ?? {}),
       );
       for (const constraint of constraints) {
-        expect(['isDate']).include(constraint);
+        expect(['isObject', 'nestedValidation']).include(constraint);
       }
     });
   });

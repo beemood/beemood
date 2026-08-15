@@ -3,13 +3,17 @@ import * as CT from 'class-transformer';
 import * as CV from 'class-validator';
 import { normalizePropValidationOptions } from './normalize-prop-validation-options.js';
 import {
+  DependencyValidationOptions,
   NormalizedPropValidationOptions,
   PropValidationOptions,
 } from './prop-validation-options.js';
+import { MoreThan } from './validators/more-than.js';
 
-function __IsString(vo: CV.ValidationOptions): PropertyDecorator {
+function __IsString(
+  validationOptions: CV.ValidationOptions,
+): PropertyDecorator {
   return (...args) => {
-    CV.IsString(vo)(...args);
+    CV.IsString(validationOptions)(...args);
     CT.Transform(({ value }) => {
       if (typeof value === 'string') {
         return value.replace(/[\s]{1,}/g, ' ').trim();
@@ -35,11 +39,16 @@ function __IsNumber(vo: CV.ValidationOptions): PropertyDecorator {
 function __IsBoolean(vo: CV.ValidationOptions): PropertyDecorator {
   return (...args) => {
     CT.Transform(({ value }) => {
-      if (typeof value === 'string') {
-        if (/^y|true|[1-9]\d+?$/i.test(value)) {
+      if (typeof value === 'boolean') {
+        return value;
+      } else if (typeof value === 'string') {
+        value = value.trim();
+        if (/^y|true$/i.test(value)) {
           return true;
-        } else if (/^n|false|-\d+$/i.test(value)) {
+        } else if (/^n|false$/i.test(value)) {
           return false;
+        } else if (!isNaN(Number(value))) {
+          return Number(value) > 0;
         }
       } else if (typeof value === 'number') {
         return value > 0;
@@ -47,7 +56,7 @@ function __IsBoolean(vo: CV.ValidationOptions): PropertyDecorator {
       return value;
     })(...args);
 
-    CV.IsNumber({ allowNaN: false, allowInfinity: false }, vo)(...args);
+    CV.IsBoolean(vo)(...args);
   };
 }
 
@@ -55,6 +64,9 @@ function __IsDate(vo: CV.ValidationOptions): PropertyDecorator {
   return (...args) => {
     CT.Transform(({ value }) => {
       if (typeof value === 'string') {
+        if (/^now$/i.test(value)) {
+          return new Date();
+        }
         return new Date(value);
       } else if (
         typeof value === 'number' &&
@@ -82,6 +94,22 @@ function __PropValidation(
       PropertyDecorator
     >(o);
 
+    if (o.type != undefined) {
+      CV.ValidateNested(vo)(...args);
+
+      if (o.__primitiveTypeName) {
+        if (
+          !['String', 'Number', 'Boolean', 'Date', 'Buffer'].includes(
+            o.__primitiveTypeName,
+          )
+        ) {
+          CT.Type(o.type)(...args);
+        }
+      } else {
+        CT.Type(o.type)(...args);
+      }
+    }
+
     matcher
       .isDefined('default', (v) =>
         CT.Transform(({ value }) => (value ??= v), o.transformOptions),
@@ -96,6 +124,20 @@ function __PropValidation(
           .isEqual('Boolean', () => __IsBoolean(vo))
           .isEqual('Date', () => __IsDate(vo))
           .isEqual('Buffer', () => CV.IsInstance(Buffer, vo))
+          .collect();
+      })
+      .isDefined('dependencies', (dependencies) => {
+        return new PropertyMatcher<
+          DependencyValidationOptions,
+          PropertyDecorator
+        >(dependencies)
+          .isDefined('moreThan', (properties: string[]) =>
+            properties.map((e) => MoreThan(e, vo)),
+          )
+          .isDefined('lessThan', (properties: string[]) =>
+            properties.map((e) => MoreThan(e, vo)),
+          )
+
           .collect();
       })
       .isDefined('minLength', (v) => CV.MinLength(v, vo))
@@ -170,7 +212,6 @@ export function PropValidation(
     }
 
     if (isArray === true) {
-      CV.IsArray()(...args);
       __PropValidation(o, { each: true })(...args);
     } else {
       __PropValidation(o)(...args);

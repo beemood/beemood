@@ -19,7 +19,7 @@ export function LessThanOrEqualTo(
       validator: {
         validate(value: any, args: ValidationArguments) {
           const [propertyName] = args.constraints;
-          const targetValue = (args.object as Any)[propertyName];
+          const targetValue = (args.object as any)[propertyName];
 
           if (isDefined(targetValue)) {
             if (

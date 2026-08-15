@@ -11,13 +11,14 @@ describe('Number Validation', () => {
       ${{ minimum: 1 } as O}   | ${{ value: 1 }}
       ${{ maximum: 1 } as O}   | ${{ value: 1 }}
       ${{ enum: [1, 2] } as O} | ${{ value: 1 }}
+      ${{ enum: [1, 2] } as O} | ${{ value: '1' }}
     `('$options | $value', ({ options, value }) => {
       class Sample {
         @PropValidation(options) value: number;
       }
 
       const { errors, instance } = transformAndValidate(Sample, value);
-      expect(instance).toEqual(value);
+      expect(instance).toEqual({ value: parseInt(value.value) });
       expect(errors).toEqual([]);
     });
   });
