@@ -1,4 +1,9 @@
-import { UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
+import {
+  Provider,
+  UnprocessableEntityException,
+  ValidationPipe,
+} from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 import { GraphQLError } from 'graphql';
 
 export class InputValidationPipe extends ValidationPipe {
@@ -17,4 +22,11 @@ export class InputValidationPipe extends ValidationPipe {
       },
     });
   }
+}
+
+export function provdeGlobalInputValidationPipe(): Provider {
+  return {
+    provide: APP_PIPE,
+    useClass: InputValidationPipe,
+  };
 }

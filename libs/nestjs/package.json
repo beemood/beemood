@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/pms-api",
+  "name": "@beemood/nestjs",
   "version": "0.0.1",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus+beemood-pms-api@gmail.com",
+    "email": "aemrebasus+beemood-nestjs@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -27,14 +27,9 @@
       "default": "./dist/index.js"
     },
     "./graphql": {
-      "types": "./dist/graphql/index.d.ts",
-      "import": "./dist/graphql/index.js",
-      "default": "./dist/graphql/index.js"
-    },
-    "./restapi": {
-      "types": "./dist/restapi/index.d.ts",
-      "import": "./dist/restapi/index.js",
-      "default": "./dist/restapi/index.js"
+      "types": "./dist/lib/graphql/index.d.ts",
+      "import": "./dist/lib/graphql/index.js",
+      "default": "./dist/lib/graphql/index.js"
     }
   },
   "files": [
@@ -44,15 +39,10 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "apis/pms-api/src",
+    "sourceRoot": "libs/nestjs/src",
     "targets": {
-      "build": {
-        "options": {
-          "main": "{projectRoot}/src/main.ts"
-        }
-      },
-      "doc": {},
-      "serve": {}
+      "build": {},
+      "doc": {}
     }
   },
   "dependencies": {
@@ -60,8 +50,6 @@
   },
   "devDependencies": {
     "@apollo/server": "^5.5.1",
-    "@as-integrations/express5": "^1.1.2",
-    "@beemood/nestjs": "workspace:*",
     "@beemood/prisma": "workspace:*",
     "@beemood/prop": "workspace:*",
     "@nestjs/apollo": "^13.4.4",
@@ -70,19 +58,11 @@
     "@nestjs/core": "^11.1.29",
     "@nestjs/event-emitter": "^3.1.0",
     "@nestjs/graphql": "^13.4.4",
-    "@nestjs/platform-express": "^11.1.29",
-    "@nestjs/swagger": "^11.4.6",
-    "@prisma/client": "^7.9.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1",
-    "graphql": "^17.0.2",
-    "graphql-subscriptions": "^3.0.0",
-    "reflect-metadata": "^0.2.2"
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/schedule": "^6.1.3"
   },
   "peerDependencies": {
     "@apollo/server": "^5.5.1",
-    "@as-integrations/express5": "^1.1.2",
-    "@beemood/nestjs": "workspace:*",
     "@beemood/prisma": "workspace:*",
     "@beemood/prop": "workspace:*",
     "@nestjs/apollo": "^13.4.4",
@@ -91,13 +71,7 @@
     "@nestjs/core": "^11.1.29",
     "@nestjs/event-emitter": "^3.1.0",
     "@nestjs/graphql": "^13.4.4",
-    "@nestjs/platform-express": "^11.1.29",
-    "@nestjs/swagger": "^11.4.6",
-    "@prisma/client": "^7.9.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1",
-    "graphql": "^17.0.2",
-    "graphql-subscriptions": "^3.0.0",
-    "reflect-metadata": "^0.2.2"
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/schedule": "^6.1.3"
   }
 }

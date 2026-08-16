@@ -1,7 +1,17 @@
-import { Module } from '@nestjs/common';
-import { AppModule } from './graphql/app.module.js';
+import { Module } from '@beemood/nestjs';
+import { AppModule } from '@beemood/nestjs/graphql';
+import { PrismaClient } from '@beemood/pms-db/client';
+import { ClientModule } from '@beemood/prisma';
+import { ProjectModule } from './graphql/index.js';
 
 @Module({
-  imports: [AppModule],
+  imports: [
+    AppModule.register({
+      imports: [
+        ClientModule.forRoot({ prismaClient: PrismaClient }),
+        ProjectModule,
+      ],
+    }),
+  ],
 })
 export class MainModule {}

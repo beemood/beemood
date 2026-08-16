@@ -1,8 +1,7 @@
-import { Prisma } from '@beemood/pms-db/client';
-import { InputType, Prop } from '@beemood/prop/graphql';
+import { InputType, Prop } from '@beemood/nestjs/graphql';
 
 @InputType()
-export class ProjectSelectDto implements Required<Prisma.ProjectSelect> {
+export class ProjectSelectDto {
   @Prop() id: boolean;
   @Prop() createdAt: boolean;
   @Prop() updatedAt: boolean;
@@ -18,7 +17,7 @@ export class ProjectSelectDto implements Required<Prisma.ProjectSelect> {
 }
 
 @InputType()
-export class ProjectFindManyDto implements Prisma.ProjectFindManyArgs {
+export class ProjectFindManyDto {
   @Prop({ maximum: 1000 }) take?: number;
   @Prop() skip?: number;
   @Prop({ type: () => ProjectSelectDto }) select?: ProjectSelectDto;

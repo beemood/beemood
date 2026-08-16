@@ -41,6 +41,9 @@
     },
     {
       "path": "./libs/matcher"
+    },
+    {
+      "path": "./libs/nestjs"
     }
   ]
 }

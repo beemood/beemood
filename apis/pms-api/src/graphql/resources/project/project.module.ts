@@ -1,6 +1,6 @@
+import { Module, OnModuleInit } from '@beemood/nestjs';
 import { Prisma } from '@beemood/pms-db/client';
 import { ClientModule, InjectDelegate } from '@beemood/prisma';
-import { Module, OnModuleInit } from '@nestjs/common';
 import { ProjectResolver } from './project.resolver.js';
 
 @Module({
@@ -13,6 +13,5 @@ export class ProjectModule implements OnModuleInit {
     protected readonly delegate: Prisma.ProjectDelegate,
   ) {}
 
-  async onModuleInit() {
-  }
+  async onModuleInit() {}
 }

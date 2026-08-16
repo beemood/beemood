@@ -1,4 +1,4 @@
-import { InputType, Prop } from '@beemood/prop/graphql';
+import { InputType, Prop } from '@beemood/nestjs/graphql';
 
 @InputType()
 export class ProjectCreateDto {

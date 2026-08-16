@@ -1,3 +1,4 @@
+import { AutoResolver, FindArgs, FindMany } from '@beemood/nestjs/graphql';
 import { Prisma } from '@beemood/pms-db/client';
 import { InjectDelegate } from '@beemood/prisma';
 import { ParseIntPipe } from '@nestjs/common';
@@ -8,6 +9,9 @@ import { ProjectFindManyDto } from './input/project-find-many.dto.js';
 import { ProjectUpdateDto } from './input/project-update.dto.js';
 import { ProjectDto } from './input/project.dto.js';
 
+@AutoResolver({
+  type: () => ProjectDto,
+})
 export class ProjectResolver {
   protected readonly pubSub = new PubSub();
   constructor(
@@ -15,10 +19,9 @@ export class ProjectResolver {
     protected readonly delegate: Prisma.ProjectDelegate,
   ) {}
 
-  @Query(() => [ProjectDto], { name: 'findManyProject' })
+  @FindMany(() => [ProjectDto], 'findManyProjects')
   async findMany(
-    @Args({ type: () => ProjectFindManyDto, name: 'query', nullable: true })
-    query: ProjectFindManyDto,
+    @FindArgs(() => ProjectFindManyDto) query: ProjectFindManyDto,
   ) {
     return await this.delegate.findMany(query);
   }
@@ -50,6 +53,6 @@ export class ProjectResolver {
 
   @Subscription(() => ProjectDto, { name: 'onProjectCreated' })
   async onCreated() {
-    return this.pubSub.asyncIterableIterator('PROJECT_CREATED');
+    return this.pubSub.asyncIterableIterator('onProjectCreated');
   }
 }

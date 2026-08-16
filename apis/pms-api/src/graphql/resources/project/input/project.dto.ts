@@ -1,8 +1,7 @@
-import { Prisma } from '@beemood/pms-db/client';
 import { ObjectType, Prop } from '@beemood/prop/graphql';
 
 @ObjectType()
-export class ProjectDto implements Partial<Prisma.ProjectModel> {
+export class ProjectDto {
   @Prop() name?: string;
   @Prop() id?: number;
   @Prop() createdAt?: Date;
