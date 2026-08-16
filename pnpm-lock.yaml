@@ -424,6 +424,9 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
+      '@beemood/is':
+        specifier: workspace:*
+        version: link:../is
       '@beemood/types':
         specifier: workspace:*
         version: link:../../libs/types

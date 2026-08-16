@@ -1,24 +1,66 @@
-import { type Optional, type Undefined } from '@beemood/types';
+import { type Optional } from '@beemood/types';
 import { boxedTypes } from './box-types.js';
 
+/**
+ * Typescript indentifier regular expression
+ */
 export const INDENTIFIER_EXP = /^[a-zA-Z_$]{1}[a-zA-Z0-9_$]{0,}$/;
 
-export function isUndefined(value: unknown): value is Undefined {
+/**
+ * Check the {@link key} is a valid typescript identifier
+ *
+ * @param key
+ * @returns
+ */
+export const isValidIdentifier = (key: string): boolean =>
+  INDENTIFIER_EXP.test(key);
+
+/**
+ * Determines if the {@link value} strictly equals to `undefined`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
+export function isUndefined(value: unknown): value is undefined {
   return value === undefined;
 }
 
+/**
+ * Determines if the {@link value} strictly equals to `null`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isNull(value: unknown): value is null {
   return value === null;
 }
 
+/**
+ * Determines if the {@link value} strictly neither `undefined nor `null`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isDefined<T>(value: Optional<T>): value is T {
   return !isUndefined(value) && !isNull(value);
 }
 
+/**
+ * Determines if the {@link value} is a type of `string`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isString(value: unknown): value is string {
   return typeof value === 'string';
 }
 
+/**
+ * Determines if the {@link value} is a type of `number`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isNumber(value: unknown): value is number {
   if (typeof value === 'number') {
     return !isNaN(value);
@@ -26,22 +68,52 @@ export function isNumber(value: unknown): value is number {
   return false;
 }
 
+/**
+ * Determines if the {@link value} is a type of `bigint`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isBigInt(value: unknown): value is bigint {
   return typeof value === 'bigint';
 }
 
+/**
+ * Determines if the {@link value} is a type of `boolean`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isBoolean(value: unknown): value is boolean {
   return typeof value === 'boolean';
 }
 
+/**
+ * Determines if the {@link value} is a type of `symbol`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isSymbol(value: unknown): value is symbol {
   return typeof value === 'symbol';
 }
 
+/**
+ * Determines if the {@link value} is a type of `function`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isTypeOfFunction(value: unknown): value is FunctionConstructor {
   return typeof value === 'function';
 }
 
+/**
+ * Determines if the {@link value} is a type of `object`, yielding a boolean result.
+ *
+ * @param value
+ * @returns
+ */
 export function isTypeOfObject(value: unknown): value is object {
   if (typeof value === 'object') {
     return true;
@@ -51,20 +123,17 @@ export function isTypeOfObject(value: unknown): value is object {
 }
 
 /**
- * Check the {@link value} is an arrow function
+ * Determines if the {@link value} is a type of arrow function, `(...args:T[])=>R`,, yielding a boolean result.
  *
  * @param value
  * @returns
  */
 export function isArrowFunction(value: unknown): value is FunctionConstructor {
-  if (typeof value === 'function') {
-    console.log(value.toString());
-  }
   return isTypeOfFunction(value) && /^\(.*\)\s{0,}=>/.test(value.toString());
 }
 
 /**
- * Check the {@link value} is a named function (no-arrow function)
+ * Determines if the {@link value} is a type of named-function,`function *(...args:T[])=>R`, yielding a boolean result.
  *
  * @param value
  * @returns
@@ -74,7 +143,8 @@ export function isNamedFunction(value: unknown): value is FunctionConstructor {
 }
 
 /**
- * Check the {@link value} is a class method
+ * Determines if the {@link value} is a type of class method(function),`methodName(...args:T[]):R{ }`, yielding a boolean result.
+ *
  * @param value
  * @returns
  */
@@ -83,7 +153,8 @@ export function isMethod(value: unknown): value is FunctionConstructor {
 }
 
 /**
- * Check the {@link value} is a regular or arrow function like `function some(...ags):*` or `()=>*`
+ * Determines if the {@link value} is a type of {@link isArrowFunction } or {@link isNamedFunction}, yielding a boolean result.
+ *
  * @param value
  * @returns
  */
@@ -95,9 +166,7 @@ export function isFunction(value: unknown): value is FunctionConstructor {
 }
 
 /**
- * Check the {@link value} is a class constructor (class type) such as `class A { }`,
- *
- * * Boxed types are NOT class so isClassConstructor(String | Number...) will return false
+ * Determines if the {@link value} is a class constructor, exluding {@link boxedTypes}, yielding a boolean result.
  *
  * @param value
  * @returns
@@ -113,7 +182,8 @@ export function isClassConstructor(
 }
 
 /**
- * Check the {@link value} is one of {@link boxedTypes}) constructor
+ * Determines if the {@link value} is one of the {@link boxedTypes} type, yielding a boolean result.
+ *
  * @param value
  * @returns
  */
@@ -127,51 +197,26 @@ export function isBoxedTypeConstructor<T extends FunctionConstructor>(
   return false;
 }
 
-/**
- * Check the {@link value} is an instance of the native Object constructor
- * @param value
- * @returns
- */
-export function isObject(value: unknown): value is object {
-  return value instanceof Object;
-}
-
-/**
- * Check the {@link value} is an instance of Date
- *
- * @param value
- * @returns
- */
-export function isDate(value: unknown): value is Date {
-  return value instanceof Date;
-}
-
-/**
- * Check the {@link value} is an instance of RegExp
- *
- * @param value
- * @returns
- */
-export function isRegExp(value: unknown): value is RegExp {
-  return value instanceof RegExp;
-}
-
-export function isArray(value: unknown): value is unknown[] {
-  if (Array.isArray(value)) {
-    return true;
+export function isBoxedInstance<T extends FunctionConstructor>(
+  value: unknown,
+): value is T {
+  for (const b of boxedTypes) {
+    if (value instanceof b) {
+      return true;
+    }
   }
 
   return false;
 }
 
 /**
- * Check the {@link key} is a valid typescript identifier
- *
- * @param key
+ * Determines if the {@link value} is an instance of {@link Object}, yielding a boolean result.
+ * @param value
  * @returns
  */
-export const isValidIdentifier = (key: string): boolean =>
-  INDENTIFIER_EXP.test(key);
+export function isObjectInstance(value: unknown): value is object {
+  return value instanceof Object && value.constructor.name === Object.name;
+}
 
 // export function toCode(value: unknown, indentLevel = 0): string {
 //   const pad = '  '.repeat(indentLevel);

@@ -47,9 +47,11 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
+    "@beemood/is": "workspace:*",
     "@beemood/types": "workspace:*"
   },
   "peerDependencies": {
+    "@beemood/is": "workspace:*",
     "@beemood/types": "workspace:*"
   }
 }
