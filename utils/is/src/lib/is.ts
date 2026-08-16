@@ -54,7 +54,10 @@ export function isTypeOfObject(value: unknown): value is object {
  * @returns
  */
 export function isArrowFunction(value: unknown): value is FunctionConstructor {
-  return isTypeOfFunction(value) && /^()=>/.test(value.toString());
+  if (typeof value === 'function') {
+    console.log(value.toString());
+  }
+  return isTypeOfFunction(value) && /^\(.*\)\s{0,}=>/.test(value.toString());
 }
 
 /**
@@ -100,6 +103,18 @@ export function isClassConstructor(
   };
 
   return isTypeOfFunction(value) && __isClassConsturctor(value);
+}
+
+export function isObject(value: unknown): value is object {
+  return value instanceof Object;
+}
+
+export function isDate(value: unknown): value is Date {
+  return value instanceof Date;
+}
+
+export function isRegExp(value: unknown): value is RegExp {
+  return value instanceof RegExp;
 }
 
 export const isValidIdentifier = (key: string): boolean =>

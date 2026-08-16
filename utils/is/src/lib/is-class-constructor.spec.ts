@@ -1,23 +1,4 @@
-import { isClassConstructor, isFunction } from './is.js';
-
-describe('isFunction', () => {
-  it('should check the value is a type of object', () => {
-    expect(isFunction(() => ({}))).toBeTruthy();
-    expect(
-      isFunction(function some() {
-        return 1;
-      }),
-    ).toBeTruthy();
-
-    class Sample {
-      method() {
-        return 1;
-      }
-    }
-
-    expect(isFunction(Sample.prototype.method)).toBeTruthy();
-  });
-});
+import { isClassConstructor } from './is.js';
 
 describe('isClassConstructor', () => {
   it('should check the value is a class type', () => {
@@ -39,11 +20,5 @@ describe('isClassConstructor', () => {
     ).toBeFalsy();
 
     expect(isClassConstructor(AbstractClass)).toBeTruthy();
-  });
-});
-
-describe('isObject', () => {
-  it('should check the value is a type of object', () => {
-    expect({} instanceof Object).toBeTruthy();
   });
 });

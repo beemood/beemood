@@ -11,7 +11,11 @@
     ],
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["vitest.config.mts", "src/**/*.spec.ts"],
+  "include": [
+    "vitest.config.mts",
+    "src/**/*.spec.ts",
+    "src/lib/is-arrow-function.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"
