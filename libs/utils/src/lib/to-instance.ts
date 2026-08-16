@@ -1,9 +1,6 @@
-import { Any, ObjectType } from '@beemood/types';
+import { Any, Type } from '@beemood/types';
 
-export function toInstance<T extends object>(
-  target: ObjectType<T>,
-  value: Any,
-): T {
+export function toInstance<T extends object>(target: Type<T>, value: Any): T {
   const instance = new target(value);
   const ownKeys = new Set(Object.keys(instance));
   Object.assign(instance, value);

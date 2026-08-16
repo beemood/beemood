@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/types",
+  "name": "@beemood/codify",
   "version": "0.0.1",
-  "description": "Common types",
+  "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus@gmail.com",
+    "email": "aemrebasus+beemood-codify@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -29,13 +29,14 @@
   },
   "files": [
     "dist",
+    "bin",
     "assets",
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/types/src",
+    "sourceRoot": "utils/codify/src",
     "tags": [
-      "lib:types"
+      "lib:shared"
     ],
     "targets": {
       "build": {},
@@ -44,5 +45,11 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.23"
+  },
+  "devDependencies": {
+    "@beemood/types": "workspace:*"
+  },
+  "peerDependencies": {
+    "@beemood/types": "workspace:*"
   }
 }

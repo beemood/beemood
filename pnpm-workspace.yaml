@@ -4,6 +4,7 @@ packages:
   - "mods/*"
   - "clis/*"
   - "libs/*"
+  - "utils/*"
 autoInstallPeers: true
 allowBuilds:
   '@apollo/protobufjs': true
