@@ -13,6 +13,7 @@ export const NestjsNameSuffix = {
 export type NestjsNameSuffix = keyof typeof NestjsNameSuffix;
 export const NestjsNameSuffixExp = RegExp(
   `/${Object.keys(NestjsNameSuffix).join('|')}/`,
+  'i',
 );
 
 export function nestjsNames(className: string) {

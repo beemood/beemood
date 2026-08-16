@@ -5,11 +5,17 @@ import {
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { toApiProperyOptions } from './to-api-property-options.js';
 
+/**
+ * Rest api dto property decorator
+ *
+ * @param options
+ * @returns
+ */
 export function Prop(options: PropValidationOptions = {}): PropertyDecorator {
   return (...args) => {
     const { required } = options;
 
-    const isRequried = !required == true;
+    const isRequried = required == true;
 
     PropValidation(options)(...args);
 

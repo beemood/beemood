@@ -19,7 +19,7 @@ export type CustomPropValidationOptions = {
 
 export type NormalizedPropValidationOptions = Omit<ApiPropertyOptions, 'type'> &
   CustomPropValidationOptions & {
-    type?: <T>() => CT.ClassConstructor<T>;
+    type?: () => CT.ClassConstructor<any>;
   };
 
 export type PropValidationOptions = Omit<

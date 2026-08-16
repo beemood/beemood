@@ -1,4 +1,4 @@
 // @index(['./**/*.ts', '!./**/*.spec.ts'], f => `export * from '${f.path}.js'`)
-export * from './global-validation-pipe.js';
+export * from './input-validation.pipe.js';
 export * from './prop.js';
 

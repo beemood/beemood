@@ -4,27 +4,37 @@ import {
   provideDefaultPgPoolOptions,
   providePgAdapter,
 } from '@beemood/prisma';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { ApolloDriver } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AppResolver } from './app.resolver.js';
 import { ProjectModule } from './resources/project/project.module.js';
+
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { InputValidationPipe } from '@beemood/prop/graphql';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: true,
-      playground: true,
+      playground: false,
+      plugins: [ApolloServerPluginLandingPageLocalDefault()],
     }),
     ClientModule.forRoot({
       prismaClient: PrismaClient,
-      providers: [provideDefaultPgPoolOptions(), providePgAdapter()],
     }),
     ProjectModule,
   ],
-  providers: [AppResolver],
+  providers: [
+    provideDefaultPgPoolOptions(),
+    providePgAdapter(),
+    {
+      provide: APP_PIPE,
+      useClass: InputValidationPipe,
+    },
+  ],
 })
 export class AppModule {}
