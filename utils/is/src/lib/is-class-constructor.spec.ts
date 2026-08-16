@@ -1,7 +1,12 @@
 import { boxedTypes } from './box-types.js';
-import { isClassConstructor } from './is.js';
+import { isBoxedTypeConstructor, isClassConstructor } from './is.js';
 
 describe('isClassConstructor', () => {
+  it('should check boxedtypes', () => {
+    for (const b of boxedTypes) {
+      expect(isBoxedTypeConstructor(b)).toEqual(true);
+    }
+  });
   describe('valid class constructor', () => {
     it.each`
       fn

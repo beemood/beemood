@@ -1,4 +1,4 @@
-export const boxedTypes = [
+export const boxedTypes: InstanceType<FunctionConstructor>[] = [
   String,
   Number,
   Boolean,

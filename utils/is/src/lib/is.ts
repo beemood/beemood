@@ -1,4 +1,5 @@
 import { type Optional, type Undefined } from '@beemood/types';
+import { boxedTypes } from './box-types.js';
 
 export const INDENTIFIER_EXP = /^[a-zA-Z_$]{1}[a-zA-Z0-9_$]{0,}$/;
 
@@ -109,6 +110,21 @@ export function isClassConstructor(
   };
 
   return isTypeOfFunction(value) && __isClassConsturctor(value);
+}
+
+/**
+ * Check the {@link value} is one of {@link boxedTypes}) constructor
+ * @param value
+ * @returns
+ */
+export function isBoxedTypeConstructor<T extends FunctionConstructor>(
+  value: unknown,
+): value is InstanceType<T> {
+  if (boxedTypes.includes(value as InstanceType<FunctionConstructor>)) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
