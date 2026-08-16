@@ -22,6 +22,10 @@ import { APP_PIPE } from '@nestjs/core';
       autoSchemaFile: true,
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      installSubscriptionHandlers: true,
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     ClientModule.forRoot({
       prismaClient: PrismaClient,

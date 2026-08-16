@@ -1,14 +1,15 @@
 import { Prisma } from '@beemood/pms-db/client';
 import { InjectDelegate } from '@beemood/prisma';
 import { ParseIntPipe } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Subscription } from '@nestjs/graphql';
+import { PubSub } from 'graphql-subscriptions';
 import { ProjectCreateDto } from './input/project-create.dto.js';
 import { ProjectFindManyDto } from './input/project-find-many.dto.js';
 import { ProjectUpdateDto } from './input/project-update.dto.js';
 import { ProjectDto } from './input/project.dto.js';
 
-@Resolver(() => ProjectDto)
 export class ProjectResolver {
+  protected readonly pubSub = new PubSub();
   constructor(
     @InjectDelegate('project')
     protected readonly delegate: Prisma.ProjectDelegate,
@@ -32,7 +33,10 @@ export class ProjectResolver {
     @Args({ name: 'projectData', type: () => ProjectCreateDto })
     data: ProjectCreateDto,
   ) {
-    return await this.delegate.create({ data });
+    const onProjectCreated = await this.delegate.create({ data });
+    await this.pubSub.publish('PROJECT_CREATED', { onProjectCreated });
+
+    return onProjectCreated;
   }
 
   @Mutation(() => ProjectDto, { name: 'updateOneProject' })
@@ -42,5 +46,10 @@ export class ProjectResolver {
     data: ProjectUpdateDto,
   ) {
     return await this.delegate.update({ where: { id }, data });
+  }
+
+  @Subscription(() => ProjectDto, { name: 'onProjectCreated' })
+  async onCreated() {
+    return this.pubSub.asyncIterableIterator('PROJECT_CREATED');
   }
 }
