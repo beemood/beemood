@@ -1,34 +1,43 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Any = any;
-export type Obj = object;
+export type Optional<T> = T | undefined;
 
-export type Undefined = undefined | null;
+export type Nullable<T> = T | null;
 
-export type Some<T> = T | Undefined;
-
-export type Optional<T> = T | Undefined;
+export type Some<T> = T | null | undefined;
 
 export type KeyOf<T> = keyof T;
 
 export type Keys<T> = Array<KeyOf<T>>;
 
-export type MapRecord<T extends object, V> = Record<KeyOf<T>, V>;
+export type ToRecord<T extends object, V> = {
+  [K in keyof T]: V;
+};
 
-export type ToStringRecord<T extends object> = MapRecord<T, string>;
-export type ToDateRecord<T extends object> = MapRecord<T, Date>;
-export type ToNumberRecord<T extends object> = MapRecord<T, number>;
-export type ToBooleanRecord<T extends object> = MapRecord<T, boolean>;
-export type ToBinaryRecord<T extends object> = MapRecord<T, 1 | 0>;
-export type ToObjectRecord<T extends object, O extends Obj> = MapRecord<T, O>;
+export type SymbolRecord<T extends object> = ToRecord<T, symbol>;
+export type BigIntRecord<T extends object> = ToRecord<T, bigint>;
+export type StringRecord<T extends object> = ToRecord<T, string>;
+export type DateRecord<T extends object> = ToRecord<T, Date>;
+export type NumberRecord<T extends object> = ToRecord<T, number>;
+export type BooleanRecord<T extends object> = ToRecord<T, boolean>;
+export type BinaryRecord<T extends object> = ToRecord<T, 1 | 0>;
+export type ObjectRecord<T extends object, O extends object> = ToRecord<T, O>;
 
-export type ToNonNullable<T extends object> = MapRecord<T, NonNullable<T>>;
+export type ToNonNullable<T extends object> = ToRecord<T, NonNullable<T>>;
 
-export type ToAnyRecord<T extends object> = MapRecord<T, Any>;
+export type ToAnyRecord<T extends object> = ToRecord<T, unknown>;
 
-export type PickRequired<T, K extends KeyOf<T>> = T & Required<Pick<T, K>>;
+/**
+ * Make some properties requried
+ */
+export type RequiredProperties<T, K extends KeyOf<T>> = Omit<T, K> & {
+  [P in K]-?: T[P];
+};
 
-export type PickPartial<T, K extends KeyOf<T>> = Omit<T, K> &
-  Partial<Pick<T, K>>;
+/**
+ * Make some properties optional
+ */
+export type OptionalProperties<T, K extends KeyOf<T>> = Omit<T, K> & {
+  [P in K]?: T[P];
+};
 
 export type Mutable<T> = {
   -readonly [P in keyof T]: T[P];
@@ -45,10 +54,6 @@ export type MethodDecoratorTarget = Parameters<MethodDecorator>[0];
 export type MethodDecoratorPropertyKey = Parameters<MethodDecorator>[1];
 
 export type ClassDecoratorTarget = Parameters<ClassDecorator>[0];
-
-export interface Type<T = Any> {
-  new (...args: Any[]): T;
-}
 
 /**
  * Case types

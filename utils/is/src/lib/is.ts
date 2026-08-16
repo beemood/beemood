@@ -1,18 +1,20 @@
 import { type Optional, type Undefined } from '@beemood/types';
 
-export function isDefined<T>(value: Optional<T>): value is T {
-  return value != undefined;
+export const INDENTIFIER_EXP = /^[a-zA-Z_$]{1}[a-zA-Z0-9_$]{0,}$/;
+export function isUndefined(value: unknown): value is Undefined {
+  return value === undefined;
 }
 
-export function isNotDefined<T>(value: Optional<T>): value is Undefined {
-  return value == undefined;
+export function isNull(value: unknown): value is null {
+  return value === null;
+}
+
+export function isDefined<T>(value: Optional<T>): value is T {
+  return !isUndefined(value) && !isNull(value);
 }
 
 export function isString(value: unknown): value is string {
-  if (typeof value === 'string') {
-    return true;
-  }
-  return false;
+  return typeof value === 'string';
 }
 
 export function isNumber(value: unknown): value is number {
@@ -22,8 +24,86 @@ export function isNumber(value: unknown): value is number {
   return false;
 }
 
-// const isValidIdentifier = (key: string): boolean =>
-//   /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(key);
+export function isBigInt(value: unknown): value is bigint {
+  return typeof value === 'bigint';
+}
+
+export function isBoolean(value: unknown): value is boolean {
+  return typeof value === 'boolean';
+}
+
+export function isSymbol(value: unknown): value is symbol {
+  return typeof value === 'symbol';
+}
+
+export function isTypeOfFunction(value: unknown): value is FunctionConstructor {
+  return typeof value === 'function';
+}
+
+export function isTypeOfObject(value: unknown): value is object {
+  if (typeof value === 'object') {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Check the {@link value} is an arrow function
+ * @param value
+ * @returns
+ */
+export function isArrowFunction(value: unknown): value is FunctionConstructor {
+  return isTypeOfFunction(value) && /^()=>/.test(value.toString());
+}
+
+/**
+ * Check the {@link value} is a named function (no-arrow function)
+ * @param value
+ * @returns
+ */
+export function isNamedFunction(value: unknown): value is FunctionConstructor {
+  return isTypeOfFunction(value) && /^function/.test(value.toString());
+}
+
+/**
+ * Check the {@link value} is a class method
+ * @param value
+ * @returns
+ */
+export function isMethod(value: unknown): value is FunctionConstructor {
+  return isTypeOfFunction(value) && INDENTIFIER_EXP.test(value.name);
+}
+
+/**
+ * Check the {@link value} is a regular or arrow function like `function some(...ags):*` or `()=>*`
+ * @param value
+ * @returns
+ */
+export function isFunction(value: unknown): value is FunctionConstructor {
+  if (isTypeOfFunction(value)) {
+    return isArrowFunction(value) || isNamedFunction(value);
+  }
+  return false;
+}
+
+/**
+ * Check the {@link value} is a class constructor (class type) such as `class A { }`
+ * @param value
+ * @returns
+ */
+export function isClassConstructor(
+  value: unknown,
+): value is InstanceType<FunctionConstructor> {
+  const __isClassConsturctor = (value: FunctionConstructor) => {
+    return /^class/.test(value.toString());
+  };
+
+  return isTypeOfFunction(value) && __isClassConsturctor(value);
+}
+
+export const isValidIdentifier = (key: string): boolean =>
+  INDENTIFIER_EXP.test(key);
 
 // export function toCode(value: unknown, indentLevel = 0): string {
 //   const pad = '  '.repeat(indentLevel);
