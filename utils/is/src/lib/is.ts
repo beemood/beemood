@@ -12,12 +12,11 @@ export function isString(value: unknown): value is string {
   if (typeof value === 'string') {
     return true;
   }
-
   return false;
 }
 
 export function isNumber(value: unknown): value is number {
-  if (typeof value == 'number') {
+  if (typeof value === 'number') {
     return !isNaN(value);
   }
   return false;
@@ -30,37 +29,37 @@ export function isNumber(value: unknown): value is number {
 //   const pad = '  '.repeat(indentLevel);
 //   const nextPad = '  '.repeat(indentLevel + 1);
 
-//   if (value === undefined) return 'undefined';
-//   if (value === null) return 'null';
+//   if (value == undefined) return 'undefined';
+//   if (value == null) return 'null';
 
 //   const type = typeof value;
 
-//   if (type === 'number' || type === 'boolean') {
+//   if (type == 'number' || type == 'boolean') {
 //     return String(value);
 //   }
 
-//   if (type === 'bigint') {
+//   if (type == 'bigint') {
 //     return `${value}n`;
 //   }
 
-//   if (type === 'string') {
+//   if (type == 'string') {
 //     return JSON.stringify(value);
 //   }
 
-//   if (type === 'symbol') {
+//   if (type == 'symbol') {
 //     const key = Symbol.keyFor(value);
-//     if (key !== undefined) {
+//     if (key != undefined) {
 //       return `Symbol.for(${JSON.stringify(key)})`;
 //     }
 //     const description = value.description;
-//     return `Symbol(${description !== undefined ? JSON.stringify(description) : ''})`;
+//     return `Symbol(${description != undefined ? JSON.stringify(description) : ''})`;
 //   }
 
-//   if (type === 'function') {
+//   if (type == 'function') {
 //     return value.toString();
 //   }
 
-//   if (type === 'object') {
+//   if (type == 'object') {
 //     // Dates
 //     if (value instanceof Date) {
 //       return `new Date(${JSON.stringify(value.toISOString())})`;
@@ -73,7 +72,7 @@ export function isNumber(value: unknown): value is number {
 
 //     // Arrays
 //     if (Array.isArray(value)) {
-//       if (value.length === 0) return '[]';
+//       if (value.length == 0) return '[]';
 //       const items = value
 //         .map((item) => `${nextPad}${toCode(item, indentLevel + 1)}`)
 //         .join(',\n');
@@ -101,13 +100,13 @@ export function isNumber(value: unknown): value is number {
 
 //     // Plain / Custom Objects
 //     const keys = Reflect.ownKeys(value);
-//     if (keys.length === 0) return '{}';
+//     if (keys.length == 0) return '{}';
 
 //     const entries = keys
 //       .map((key) => {
 //         const val = (value as Record<string | symbol, unknown>)[key];
 //         const formattedKey =
-//           typeof key === 'symbol'
+//           typeof key == 'symbol'
 //             ? `[${toCode(key)}]`
 //             : isValidIdentifier(key)
 //               ? key

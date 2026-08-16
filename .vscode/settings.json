@@ -4,9 +4,7 @@
   "eslint.validate": [
     "json",
     "javascript",
-    "javascriptreact",
     "typescript",
-    "typescriptreact"
   ],
   "eslint.workingDirectories": [
     {
@@ -29,7 +27,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.eslint": "always",
     "eslint.fixAll": "always",
     "source.organizeImports": "always",
     "source.sortImports": "always",
