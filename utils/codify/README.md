@@ -9,7 +9,30 @@
 
 ## @beemood/codify
 
-- [ ] add project description
+Transofrm typescript object into a exact valid typescript code string.
+
+
+## Example 
+
+```ts 
+/**
+ * Returns '{ 
+ *  str:'str', 
+ *   num: 1, 
+ *   bool: true, 
+ *   strArr: ['1','2'],  
+ *   arrNum: [1, 2],  
+ *  }'
+ */
+codify({ 
+  str:'str', 
+  num: 1, 
+  bool: true, 
+  strArr:['1','2'],  
+  arrNum:[1,2],  
+})
+
+```
 
 ## 💖 Support My Work
 

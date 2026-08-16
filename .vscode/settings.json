@@ -1,8 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
+  "eslint.enable": true,
   "eslint.validate": [
     "json",
     "javascript",
@@ -29,12 +27,13 @@
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
-      "source.organizeImports": "never",
-      "source.sortImports": "never",
-      "source.removeUnused.ts": "never",
-      "source.addMissingImports.ts": "never"
-    }
-  }
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "eslint.fixAll": "always",
+    "source.organizeImports": "always",
+    "source.sortImports": "always",
+    "source.removeUnused.ts": "always",
+    "source.addMissingImports.ts": "always"
+  },
 }

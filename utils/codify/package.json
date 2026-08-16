@@ -1,7 +1,7 @@
 {
   "name": "@beemood/codify",
   "version": "0.0.1",
-  "description": "- [ ] add project description",
+  "description": "Transform object into a valid typescript code",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
