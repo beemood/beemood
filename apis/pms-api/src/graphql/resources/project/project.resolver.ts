@@ -1,8 +1,10 @@
 import { Prisma } from '@beemood/pms-db/client';
 import { InjectDelegate } from '@beemood/prisma';
 import { ParseIntPipe } from '@nestjs/common';
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { ProjectCreateDto } from './input/project-create.dto.js';
 import { ProjectFindManyDto } from './input/project-find-many.dto.js';
+import { ProjectUpdateDto } from './input/project-update.dto.js';
 import { ProjectDto } from './input/project.dto.js';
 
 @Resolver(() => ProjectDto)
@@ -23,5 +25,22 @@ export class ProjectResolver {
   @Query(() => ProjectDto, { name: 'findOneProjectById', nullable: true })
   async findOneById(@Args({ name: 'projectId' }, ParseIntPipe) id: number) {
     return await this.delegate.findUnique({ where: { id } });
+  }
+
+  @Mutation(() => ProjectDto, { name: 'createOneProject' })
+  async createOne(
+    @Args({ name: 'projectData', type: () => ProjectCreateDto })
+    data: ProjectCreateDto,
+  ) {
+    return await this.delegate.create({ data });
+  }
+
+  @Mutation(() => ProjectDto, { name: 'updateOneProject' })
+  async updateOne(
+    @Args({ name: 'projectId' }) id: number,
+    @Args({ name: 'projectData', type: () => ProjectUpdateDto })
+    data: ProjectUpdateDto,
+  ) {
+    return await this.delegate.update({ where: { id }, data });
   }
 }
