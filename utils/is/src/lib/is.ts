@@ -1,6 +1,7 @@
 import { type Optional, type Undefined } from '@beemood/types';
 
 export const INDENTIFIER_EXP = /^[a-zA-Z_$]{1}[a-zA-Z0-9_$]{0,}$/;
+
 export function isUndefined(value: unknown): value is Undefined {
   return value === undefined;
 }
@@ -50,6 +51,7 @@ export function isTypeOfObject(value: unknown): value is object {
 
 /**
  * Check the {@link value} is an arrow function
+ *
  * @param value
  * @returns
  */
@@ -62,6 +64,7 @@ export function isArrowFunction(value: unknown): value is FunctionConstructor {
 
 /**
  * Check the {@link value} is a named function (no-arrow function)
+ *
  * @param value
  * @returns
  */
@@ -91,7 +94,10 @@ export function isFunction(value: unknown): value is FunctionConstructor {
 }
 
 /**
- * Check the {@link value} is a class constructor (class type) such as `class A { }`
+ * Check the {@link value} is a class constructor (class type) such as `class A { }`,
+ *
+ * * Boxed types are NOT class so isClassConstructor(String | Number...) will return false
+ *
  * @param value
  * @returns
  */
@@ -105,18 +111,49 @@ export function isClassConstructor(
   return isTypeOfFunction(value) && __isClassConsturctor(value);
 }
 
+/**
+ * Check the {@link value} is an instance of the native Object constructor
+ * @param value
+ * @returns
+ */
 export function isObject(value: unknown): value is object {
   return value instanceof Object;
 }
 
+/**
+ * Check the {@link value} is an instance of Date
+ *
+ * @param value
+ * @returns
+ */
 export function isDate(value: unknown): value is Date {
   return value instanceof Date;
 }
 
+/**
+ * Check the {@link value} is an instance of RegExp
+ *
+ * @param value
+ * @returns
+ */
 export function isRegExp(value: unknown): value is RegExp {
   return value instanceof RegExp;
 }
 
+export function isArray(value: unknown): value is unknown[] {
+  if (Array.isArray(value)) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Check the {@link key} is a valid typescript identifier
+ *
+ * @param key
+ * @returns
+ */
 export const isValidIdentifier = (key: string): boolean =>
   INDENTIFIER_EXP.test(key);
 
