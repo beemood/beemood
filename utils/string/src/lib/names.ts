@@ -1,4 +1,4 @@
-import { Casings } from '@beemood/types';
+import { type Casings } from '@beemood/types';
 import { toCamelCase } from './to-camel-case.js';
 import { toConstantCase } from './to-constant-case.js';
 import { toDotCase } from './to-dot-case.js';

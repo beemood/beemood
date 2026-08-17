@@ -1,7 +1,5 @@
-export function isEmptyString(value: string): value is '' {
-  if (value === '') {
-    return true;
-  }
+import { trim } from './trim.js';
 
-  return false;
+export function isEmptyString(value: string): value is '' {
+  return trim(value) === '';
 }

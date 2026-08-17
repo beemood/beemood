@@ -53,6 +53,9 @@
     },
     {
       "path": "./utils/codify"
+    },
+    {
+      "path": "./utils/object"
     }
   ]
 }

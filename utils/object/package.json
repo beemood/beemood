@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/string",
+  "name": "@beemood/object",
   "version": "0.0.1",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus+beemood-string@gmail.com",
+    "email": "aemrebasus+beemood-object@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -34,10 +34,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "utils/string/src",
-    "tags": [
-      "lib:shared"
-    ],
+    "sourceRoot": "utils/object/src",
     "targets": {
       "build": {},
       "doc": {}
@@ -45,11 +42,5 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.23"
-  },
-  "devDependencies": {
-    "@beemood/types": "workspace:*"
-  },
-  "peerDependencies": {
-    "@beemood/types": "workspace:*"
   }
 }
