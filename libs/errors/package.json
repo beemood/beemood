@@ -35,6 +35,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/errors/src",
+    "tags": [
+      "lib:types"
+    ],
     "targets": {
       "build": {},
       "doc": {}

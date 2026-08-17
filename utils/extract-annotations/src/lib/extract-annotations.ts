@@ -1,7 +1,7 @@
 import { isDefined } from '@beemood/is';
 import { type AnyRecord } from '@beemood/types';
 
-export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\((\w{0,})\)/gi;
+export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\(?(\w{0,})\)?/gi;
 
 /**
  * Extract annotations matching the pattern `@name(options) | @name() ` from the {@link text}

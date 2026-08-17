@@ -27,11 +27,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
     "eslint.fixAll": "always",
     "source.organizeImports": "always",
     "source.sortImports": "always",
-    "source.removeUnused.ts": "always",
+    "source.removeUnused.ts": "explicit",
     "source.addMissingImports.ts": "always"
   },
 }

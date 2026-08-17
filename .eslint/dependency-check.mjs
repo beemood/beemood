@@ -12,6 +12,7 @@ export default [
             '{projectRoot}/prisma.config.ts',
             '{projectRoot}/vitest.config.mts',
           ],
+          fixStyle: 'none',
         },
       ],
     },
