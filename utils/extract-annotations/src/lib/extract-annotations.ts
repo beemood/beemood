@@ -1,3 +1,4 @@
+import { isDefined } from '@beemood/is';
 import { type AnyRecord } from '@beemood/types';
 
 export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\((\w{0,})\)/gi;
@@ -16,11 +17,13 @@ export function extractAnnotations<T extends object>(
       value = value?.trim() ?? '';
       value = value === '' ? 'true' : value;
 
-      try {
-        const parsedValue = JSON.parse(value);
-        Object.assign(acc, { [key!]: parsedValue });
-      } catch {
-        Object.assign(acc, { [key!]: value });
+      if (isDefined(key)) {
+        try {
+          const parsedValue = JSON.parse(value);
+          Object.assign(acc, { [key]: parsedValue });
+        } catch {
+          Object.assign(acc, { [key]: value });
+        }
       }
 
       return acc;
