@@ -1,11 +1,11 @@
 {
-  "name": "@beemood/utils",
-  "version": "0.0.2",
+  "name": "@beemood/extract-annotations",
+  "version": "0.0.1",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
     "name": "Ahmet Emrebas",
-    "email": "aemrebasus+beemood-utils@gmail.com",
+    "email": "aemrebasus+beemood-extract-annotations@gmail.com",
     "url": "https://beemood.github.io/profile"
   },
   "funding": [
@@ -34,7 +34,7 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "libs/utils/src",
+    "sourceRoot": "utils/extract-annotations/src",
     "tags": [
       "lib:shared"
     ],
@@ -44,18 +44,13 @@
     }
   },
   "dependencies": {
-    "@beemood/errors": "workspace:*",
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
-    "@beemood/matcher": "workspace:*",
-    "@beemood/types": "workspace:*",
-    "@types/debug": "^4.1.13",
-    "debug": "^4.4.3"
+    "@beemood/is": "workspace:*",
+    "@beemood/types": "workspace:*"
   },
   "peerDependencies": {
-    "@beemood/matcher": "workspace:*",
-    "@beemood/types": "workspace:*",
-    "debug": "^4.4.3"
+    "@beemood/types": "workspace:*"
   }
 }

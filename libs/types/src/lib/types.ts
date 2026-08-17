@@ -21,9 +21,9 @@ export type BooleanRecord<T extends object> = ToRecord<T, boolean>;
 export type BinaryRecord<T extends object> = ToRecord<T, 1 | 0>;
 export type ObjectRecord<T extends object, O extends object> = ToRecord<T, O>;
 
-export type ToNonNullable<T extends object> = ToRecord<T, NonNullable<T>>;
+export type NonNullableRecord<T extends object> = ToRecord<T, NonNullable<T>>;
 
-export type ToAnyRecord<T extends object> = ToRecord<T, unknown>;
+export type AnyRecord<T extends object> = ToRecord<T, unknown>;
 
 /**
  * Make some properties requried
@@ -89,3 +89,7 @@ export type ValueFactory<T> = () => T;
 export type ValueOrFactory<T> = T | (() => T);
 
 export type EmptyString = '';
+
+export interface ClassConstructor<T extends object> {
+  new (...args: any[]): T;
+}
