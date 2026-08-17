@@ -1,11 +1,12 @@
 import { Env } from '@beemood/constants';
-import { Inject, Provider } from '@nestjs/common';
+import { type StrictConstructorParameterDecorator } from '@beemood/types';
+import { Inject, type Provider } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PrismaPg } from '@prisma/adapter-pg';
-import { PoolOptions } from 'pg';
+import { type PoolOptions } from 'pg';
 import {
-    DEFAULT_PRISMA_CLIENT_NAME,
-    DEFAULT_PRISMA_CLIENT_PROFILE,
+  DEFAULT_PRISMA_CLIENT_NAME,
+  DEFAULT_PRISMA_CLIENT_PROFILE,
 } from './constants.js';
 import { getPgPoolOptionsToken } from './provide-pg-pool-options.js';
 
@@ -16,6 +17,13 @@ export function getPgAdapterToken(
   return `${name}_${profile}_PG_ADAPTER`;
 }
 
+/**
+ * Provides pg adapter.
+ *
+ * @param name
+ * @param profile
+ * @returns
+ */
 export function providePgAdapter(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
@@ -33,7 +41,7 @@ export function providePgAdapter(
 export function InjectPgAdapter(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
-): ParameterDecorator {
+): StrictConstructorParameterDecorator {
   return (...args) => {
     Inject(getPgAdapterToken(name, profile))(...args);
   };

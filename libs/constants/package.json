@@ -35,6 +35,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/constants/src",
+    "tags": [
+      "lib:shared"
+    ],
     "targets": {
       "build": {},
       "doc": {}

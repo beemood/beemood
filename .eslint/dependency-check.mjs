@@ -6,13 +6,12 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
-          ignoredDependencies: ['@swc/helpers', 'tslib', '@beemood/types'],
+          ignoredDependencies: ['@swc/helpers', 'tslib'],
           ignoredFiles: [
             '{projectRoot}/eslint.config.mjs',
             '{projectRoot}/prisma.config.ts',
             '{projectRoot}/vitest.config.mts',
           ],
-          fixStyle: 'none',
         },
       ],
     },

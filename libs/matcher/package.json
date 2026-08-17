@@ -35,6 +35,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/matcher/src",
+    "tags": [
+      "lib:shared"
+    ],
     "targets": {
       "build": {},
       "doc": {}

@@ -45,6 +45,9 @@
   ],
   "nx": {
     "sourceRoot": "apis/pms-api/src",
+    "tags": [
+      "app:api"
+    ],
     "targets": {
       "build": {
         "options": {

@@ -23,8 +23,6 @@ export const ClassNameSuffixExp = RegExp(
   `${Object.keys(ClassNameSuffix).join('|')}`,
 );
 
-export function extractResourceName(
-  name: `${string}${ClassNameSuffix}`,
-): string {
+export function extractResourceName(name: string): string {
   return name.replace(ClassNameSuffixExp, '');
 }

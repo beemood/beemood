@@ -35,6 +35,9 @@
   ],
   "nx": {
     "sourceRoot": "mods/prisma/src",
+    "tags": [
+      "lib:module"
+    ],
     "targets": {
       "build": {},
       "doc": {}
@@ -45,6 +48,7 @@
   },
   "devDependencies": {
     "@beemood/constants": "workspace:*",
+    "@beemood/types": "workspace:*",
     "@beemood/utils": "workspace:*",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",
@@ -58,6 +62,7 @@
   },
   "peerDependencies": {
     "@beemood/constants": "workspace:*",
+    "@beemood/types": "workspace:*",
     "@beemood/utils": "workspace:*",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",

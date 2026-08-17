@@ -1,5 +1,5 @@
 import { Duration } from '@beemood/constants';
-import Database, { Database as DatabaseType } from 'better-sqlite3';
+import Database, { type Database as DatabaseType } from 'better-sqlite3';
 import fs from 'node:fs';
 import path from 'node:path';
 

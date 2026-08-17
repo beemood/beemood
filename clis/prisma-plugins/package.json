@@ -39,6 +39,9 @@
   ],
   "nx": {
     "sourceRoot": "clis/prisma-plugins/src",
+    "tags": [
+      "app:plugin"
+    ],
     "targets": {
       "build": {},
       "doc": {}

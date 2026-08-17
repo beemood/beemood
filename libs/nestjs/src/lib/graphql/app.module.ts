@@ -1,9 +1,10 @@
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { provdeGlobalInputValidationPipe } from '@beemood/prop/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
-import { DynamicModule, Module } from '@nestjs/common';
+import { type DynamicModule, Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { CommonModule } from '../common/common.module.js';
+import { provideGlobalCacheInterceptor } from './gql-cache.interceptor.js';
 
 @Module({
   imports: [
@@ -19,7 +20,10 @@ import { CommonModule } from '../common/common.module.js';
       },
     }),
   ],
-  providers: [provdeGlobalInputValidationPipe()],
+  providers: [
+    provdeGlobalInputValidationPipe(),
+    provideGlobalCacheInterceptor(),
+  ],
 })
 export class AppModule {
   static register(options: Omit<DynamicModule, 'module'>): DynamicModule {

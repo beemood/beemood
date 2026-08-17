@@ -1,5 +1,5 @@
 import {
-  Provider,
+  type Provider,
   UnprocessableEntityException,
   ValidationPipe,
 } from '@nestjs/common';

@@ -6,4 +6,3 @@ export * from './lib/provide-delegate.js';
 export * from './lib/provide-pg-adapter.js';
 export * from './lib/provide-pg-pool-options.js';
 export * from './lib/provide-sqlite-pool-options.js';
-

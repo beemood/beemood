@@ -1,8 +1,8 @@
-import { Inject, Provider } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { PoolOptions } from 'pg';
-
 import { Duration, Env } from '@beemood/constants';
+import { type StrictConstructorParameterDecorator } from '@beemood/types';
+import { Inject, type Provider } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { type PoolOptions } from 'pg';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   DEFAULT_PRISMA_CLIENT_PROFILE,
@@ -27,12 +27,13 @@ export function providePgPoolOptions(
 }
 
 export function providePgPoolOptionsFactory(
-  useFactory: (...args: any[]) => PoolOptions,
+  useFactory: (config: ConfigService) => PoolOptions,
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
     provide: getPgPoolOptionsToken(name, profile),
+    inject: [ConfigService],
     useFactory,
   };
 }
@@ -117,7 +118,7 @@ export function provideDefaultPgPoolOptions(
 export function InjectPgPoolOptions(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
-): ParameterDecorator {
+): StrictConstructorParameterDecorator {
   return (...args) => {
     Inject(getPgPoolOptionsToken(name, profile))(...args);
   };

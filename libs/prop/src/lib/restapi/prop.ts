@@ -1,6 +1,6 @@
 import {
   PropValidation,
-  PropValidationOptions,
+  type PropValidationOptions,
 } from '@beemood/prop-validation';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { toApiProperyOptions } from './to-api-property-options.js';

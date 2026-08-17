@@ -1,11 +1,11 @@
 import {
-  Any,
-  DateFactory,
-  ObjectType,
-  PropFormat,
-  PropOptions,
-  PropValidationOptions,
-  ToAnyRecord,
+  type Any,
+  type DateFactory,
+  type ObjectType,
+  type PropFormat,
+  type PropOptions,
+  type PropValidationOptions,
+  type ToAnyRecord,
 } from '@beemood/types';
 import {
   codifyObject,
@@ -14,7 +14,7 @@ import {
   toInstance,
 } from '@beemood/utils';
 import { isRequiredField } from '../../common/is-required-field.js';
-import { Field } from '../../common/types.js';
+import { type Field } from '../../common/types.js';
 
 class PropOptionsClass implements Required<PropOptions> {
   type(): ObjectType {

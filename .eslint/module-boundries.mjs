@@ -10,24 +10,66 @@ export default [
           depConstraints: [
             {
               sourceTag: 'app:db',
-              onlyDependOnLibsWithTags: ['app:db', 'lib:core', 'lib:module', 'lib:shared', 'lib:types'],
+              onlyDependOnLibsWithTags: [
+                'app:db',
+                'app:plugin',
+                'app:cli',
+                'lib:core',
+                'lib:module',
+                'lib:shared',
+                'lib:types',
+              ],
             },
 
             {
               sourceTag: 'app:api',
-              onlyDependOnLibsWithTags: ['app:db', 'lib:core', 'lib:module', 'lib:shared', 'lib:types'],
+              onlyDependOnLibsWithTags: [
+                'app:db',
+                'app:plugin',
+                'app:cli',
+                'lib:core',
+                'lib:module',
+                'lib:shared',
+                'lib:types',
+              ],
             },
             {
               sourceTag: 'app:cli',
-              onlyDependOnLibsWithTags: ['lib:core', 'lib:module', 'lib:shared', 'lib:types'],
+              onlyDependOnLibsWithTags: [
+                'app:cli',
+                'app:plugin',
+                'lib:core',
+                'lib:module',
+                'lib:shared',
+                'lib:types',
+              ],
+            },
+            {
+              sourceTag: 'app:plugin',
+              onlyDependOnLibsWithTags: [
+                'app:cli',
+                'app:plugin',
+                'lib:core',
+                'lib:module',
+                'lib:shared',
+                'lib:types',
+              ],
             },
             {
               sourceTag: 'lib:core',
-              onlyDependOnLibsWithTags: ['lib:module', 'lib:shared', 'lib:types'],
+              onlyDependOnLibsWithTags: [
+                'lib:module',
+                'lib:shared',
+                'lib:types',
+              ],
             },
             {
               sourceTag: 'lib:module',
-              onlyDependOnLibsWithTags: ['lib:module', 'lib:shared', 'lib:types'],
+              onlyDependOnLibsWithTags: [
+                'lib:module',
+                'lib:shared',
+                'lib:types',
+              ],
             },
             {
               sourceTag: 'lib:shared',

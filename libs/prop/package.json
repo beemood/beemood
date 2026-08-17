@@ -50,6 +50,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/prop/src",
+    "tags": [
+      "lib:shared"
+    ],
     "targets": {
       "build": {},
       "doc": {}

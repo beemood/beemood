@@ -35,6 +35,9 @@
   ],
   "nx": {
     "sourceRoot": "libs/prop-validation/src",
+    "tags": [
+      "lib:shared"
+    ],
     "targets": {
       "build": {},
       "doc": {}

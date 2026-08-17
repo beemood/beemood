@@ -1,4 +1,5 @@
-import { Inject, Provider, Type } from '@nestjs/common';
+import { type StrictConstructorParameterDecorator } from '@beemood/types';
+import { Inject, type Provider, type Type } from '@nestjs/common';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   DEFAULT_PRISMA_CLIENT_PROFILE,
@@ -29,7 +30,7 @@ export function provideClient(
 export function InjectClient(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
-): ParameterDecorator {
+): StrictConstructorParameterDecorator {
   return (...args) => {
     Inject(getClientToken(name, profile))(...args);
   };

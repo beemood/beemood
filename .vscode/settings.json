@@ -28,6 +28,7 @@
   },
   "editor.codeActionsOnSave": {
     "eslint.fixAll": "always",
+    "source.fixAll.eslint": "always",
     "source.organizeImports": "always",
     "source.sortImports": "always",
     "source.removeUnused.ts": "explicit",
