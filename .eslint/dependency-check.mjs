@@ -6,7 +6,7 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
-          ignoredDependencies: ['@swc/helpers', 'tslib'],
+          ignoredDependencies: ['@swc/helpers', 'tslib', '@beemood/types'],
           ignoredFiles: [
             '{projectRoot}/eslint.config.mjs',
             '{projectRoot}/prisma.config.ts',

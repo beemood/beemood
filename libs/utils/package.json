@@ -48,13 +48,17 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
+    "@beemood/is": "workspace:*",
     "@beemood/matcher": "workspace:*",
+    "@beemood/string": "workspace:*",
     "@beemood/types": "workspace:*",
     "@types/debug": "^4.1.13",
     "debug": "^4.4.3"
   },
   "peerDependencies": {
+    "@beemood/is": "workspace:*",
     "@beemood/matcher": "workspace:*",
+    "@beemood/string": "workspace:*",
     "@beemood/types": "workspace:*",
     "debug": "^4.4.3"
   }

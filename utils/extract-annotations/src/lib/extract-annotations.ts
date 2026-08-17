@@ -4,7 +4,9 @@ import { type AnyRecord } from '@beemood/types';
 export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\(?(\w{0,})\)?/gi;
 
 /**
- * Extract annotations matching the pattern `@name(options) | @name() ` from the {@link text}
+ * Scans the provided {@link text} to discover, capture, and extract custom annotation tags
+ * following the @<anotation-name>(options) or zero-argument @<anotation-name>() or @<annotation-name> syntax.
+ * Silently ignores unmatched patterns while preserving structural options data.
  *
  * @param text
  * @returns
@@ -28,6 +30,6 @@ export function extractAnnotations<T extends object>(
 
       return acc;
     },
-    {} as AnyRecord<T>,
-  ) as T;
+    {} as AnyRecord<any>,
+  );
 }

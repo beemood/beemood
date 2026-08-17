@@ -1,3 +1,6 @@
+/**
+ * List of all typescript builtin types (box types)
+ */
 export const boxedTypes: InstanceType<FunctionConstructor>[] = [
   String,
   Number,

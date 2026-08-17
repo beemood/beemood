@@ -54,7 +54,11 @@ export function createErrorClasses<T extends readonly string[]>(
       },
     }[className];
 
-    errorMap[className] = DynamicClass;
+    if (DynamicClass) {
+      errorMap[className] = DynamicClass;
+    } else {
+      throw new Error(`DynamicClass is not defined`);
+    }
   }
 
   return errorMap as any;

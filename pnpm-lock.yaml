@@ -365,9 +365,15 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
+      '@beemood/is':
+        specifier: workspace:*
+        version: link:../../utils/is
       '@beemood/matcher':
         specifier: workspace:*
         version: link:../matcher
+      '@beemood/string':
+        specifier: workspace:*
+        version: link:../../utils/string
       '@beemood/types':
         specifier: workspace:*
         version: link:../types
@@ -459,6 +465,10 @@ importers:
       '@swc/helpers':
         specifier: ~0.5.23
         version: 0.5.23
+    devDependencies:
+      '@beemood/types':
+        specifier: workspace:*
+        version: link:../../libs/types
 
   utils/string:
     dependencies:

@@ -1,4 +1,3 @@
-import { Any } from '@beemood/types';
 import { isDefined } from './is-defined.js';
 import { keys } from './keys.js';
 
@@ -15,11 +14,10 @@ export function setDefualtValue<T extends object, D extends object>(
 ): T & Required<D> {
   const __keys = keys(defaultValues);
   for (const k of __keys) {
-    const defaultValue = defaultValues[k] as Any;
+    const defaultValue = defaultValues[k] as any;
 
     if (isDefined(defaultValue)) {
       (value as any)[k] ??= defaultValue;
-    } else {
     }
   }
 
