@@ -1,5 +1,5 @@
-import { ValidationError } from '@nestjs/common';
-import { ClassConstructor, plainToInstance } from 'class-transformer';
+import { type ValidationError } from '@nestjs/common';
+import { type ClassConstructor, plainToInstance } from 'class-transformer';
 import { validateSync } from 'class-validator';
 import { CLASS_TRANSFORM_OPTIONS } from './class-transform-options.js';
 

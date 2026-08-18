@@ -1,6 +1,6 @@
 import {
-    NormalizedPropValidationOptions,
-    PropValidationOptions,
+  type NormalizedPropValidationOptions,
+  type PropValidationOptions,
 } from './prop-validation-options.js';
 
 export function normalizePropValidationOptions(
@@ -10,7 +10,7 @@ export function normalizePropValidationOptions(
   const o: NormalizedPropValidationOptions = { ...propValidationOptions };
 
   // If options.type is undefined
-  if (o.type == undefined) {
+  if (o.type === undefined) {
     // Then get the type from reflection
     const inferedType = Reflect.getMetadata('design:type', args[0], args[1]);
 
@@ -26,7 +26,7 @@ export function normalizePropValidationOptions(
     o.__primitiveTypeName = inferedType.name;
   } else {
     // Type must be function
-    if (typeof o.type != 'function') {
+    if (typeof o.type !== 'function') {
       throw new Error('type must be a function');
     }
   }

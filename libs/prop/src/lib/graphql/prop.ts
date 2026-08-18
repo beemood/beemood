@@ -1,10 +1,8 @@
 import {
   PropValidation,
-  PropValidationOptions,
+  type PropValidationOptions,
 } from '@beemood/prop-validation';
 import { Field } from '@nestjs/graphql';
-
-export { ArgsType, InputType, ObjectType } from '@nestjs/graphql';
 
 /**
  * Graphql input field decorator
@@ -15,7 +13,7 @@ export { ArgsType, InputType, ObjectType } from '@nestjs/graphql';
 export function Prop(options: PropValidationOptions = {}): PropertyDecorator {
   return (...args) => {
     PropValidation(options)(...args);
-    Field(() => Reflect.getMetadata('design:type', args[0], args[1]) as any, {
+    Field(options.type ?? (() => Reflect.getMetadata('design:type', ...args)), {
       nullable: options.required === true ? false : true,
       defaultValue: options.default,
     })(...args);

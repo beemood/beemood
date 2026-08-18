@@ -12,7 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     ConfigModule.forRoot({ isGlobal: true }),
     EventEmitterModule.forRoot({ global: true }),
     ScheduleModule.forRoot({}),
-    CacheModule.register({ ttl: 5_000 }),
+    CacheModule.register({ isGlobal: true, ttl: 5_000 }),
   ],
 })
 export class CommonModule {}

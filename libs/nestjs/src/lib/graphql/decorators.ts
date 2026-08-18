@@ -1,19 +1,19 @@
-import {
-  type StrictClassDecorator,
-  type StrictMethodDecorator,
-  type StrictParameterDecorator,
-} from '@beemood/types';
+import { extractResourceName } from '@beemood/string';
 import { ParseIntPipe, ParseUUIDPipe, type Type } from '@nestjs/common';
 import { Args, Query, Resolver } from '@nestjs/graphql';
 
 /**
  * GraphQl find-many method decorator
+ *
  * @param type
  * @returns
  */
-export function FindMany(type: () => [Type]): StrictMethodDecorator {
+export function FindMany(type: () => [Type]): MethodDecorator {
   return (...args) => {
-    Query(type)(...args);
+    const className = args[0].constructor.name;
+    const resourceName = extractResourceName(className);
+    const operationName = `findMany${resourceName}`;
+    Query(type, { name: operationName })(...args);
   };
 }
 
@@ -22,9 +22,12 @@ export function FindMany(type: () => [Type]): StrictMethodDecorator {
  * @param type
  * @returns
  */
-export function FindOne(type: () => Type): StrictMethodDecorator {
+export function FindOneById(type: () => Type): MethodDecorator {
   return (...args) => {
-    Query(type, { nullable: true })(...args);
+    const className = args[0].constructor.name;
+    const resourceName = extractResourceName(className);
+    const operationName = `findOne${resourceName}ById`;
+    Query(type, { name: operationName, nullable: true })(...args);
   };
 }
 
@@ -33,9 +36,9 @@ export function FindOne(type: () => Type): StrictMethodDecorator {
  * @param type
  * @returns
  */
-export function FindArgs(type: () => Type): StrictParameterDecorator {
+export function FindArgs(type: () => Type): ParameterDecorator {
   return (...args) => {
-    Args({ type, nullable: true })(...args);
+    Args({ type, nullable: true, name: 'findArgs' })(...args);
   };
 }
 
@@ -44,9 +47,9 @@ export function FindArgs(type: () => Type): StrictParameterDecorator {
  *
  * @returns
  */
-export function ArgsId(): StrictParameterDecorator {
+export function ArgsId(): ParameterDecorator {
   return (...args) => {
-    Args({ name: 'id' }, ParseIntPipe)(...args);
+    Args({ type: () => Number, name: 'entityId' }, ParseIntPipe)(...args);
   };
 }
 
@@ -55,14 +58,14 @@ export function ArgsId(): StrictParameterDecorator {
  *
  * @returns
  */
-export function ArgsUuid(): StrictParameterDecorator {
+export function ArgsUuid(): ParameterDecorator {
   return (...args) => {
-    Args({ name: 'uuid' }, ParseUUIDPipe)(...args);
+    Args({ type: () => String, name: 'entityId' }, ParseUUIDPipe)(...args);
   };
 }
 
-export function AutoResolver(type: () => Type): StrictClassDecorator {
+export function AutoResolver(type: () => Type): ClassDecorator {
   return (...args) => {
-    Resolver(type)(...args);
+    Resolver(type, {})(...args);
   };
 }

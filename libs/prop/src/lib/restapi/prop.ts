@@ -15,7 +15,7 @@ export function Prop(options: PropValidationOptions = {}): PropertyDecorator {
   return (...args) => {
     const { required } = options;
 
-    const isRequried = required == true;
+    const isRequried = required === true;
 
     PropValidation(options)(...args);
 

@@ -1,15 +1,15 @@
-import { ObjectType, Prop } from '@beemood/prop/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class ProjectDto {
-  @Prop() name?: string;
-  @Prop() id?: number;
-  @Prop() createdAt?: Date;
-  @Prop() updatedAt?: Date;
-  @Prop() deletedAt?: Date;
-  @Prop() isActive?: boolean;
-  @Prop() description?: string;
-  @Prop() startedAt?: Date;
-  @Prop() endedAt?: Date;
-  @Prop() dueAt?: Date;
+  @Field() name?: string;
+  @Field() id?: number;
+  @Field() createdAt?: Date;
+  @Field() updatedAt?: Date;
+  @Field() deletedAt?: Date;
+  @Field() isActive?: boolean;
+  @Field() description?: string;
+  @Field() startedAt?: Date;
+  @Field() endedAt?: Date;
+  @Field() dueAt?: Date;
 }

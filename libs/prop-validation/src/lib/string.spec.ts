@@ -1,6 +1,6 @@
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 import 'reflect-metadata';
-import { PropValidationOptions as O } from './prop-validation-options.js';
+import { type PropValidationOptions as O } from './prop-validation-options.js';
 import { PropValidation } from './prop-validation.js';
 import { transformAndValidate } from './transform-and-validate.js';
 

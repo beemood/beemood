@@ -1,33 +1,36 @@
-import { AutoResolver, FindArgs, FindMany } from '@beemood/nestjs/graphql';
-import { Prisma } from '@beemood/pms-db/client';
+import {
+  ArgsId,
+  AutoResolver,
+  FindArgs,
+  FindMany,
+  FindOneById,
+} from '@beemood/nestjs/graphql';
+import { type Prisma } from '@beemood/pms-db/client';
 import { InjectDelegate } from '@beemood/prisma';
-import { ParseIntPipe } from '@nestjs/common';
-import { Args, Mutation, Query, Subscription } from '@nestjs/graphql';
+import { Args, Mutation, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 import { ProjectCreateDto } from './input/project-create.dto.js';
 import { ProjectFindManyDto } from './input/project-find-many.dto.js';
 import { ProjectUpdateDto } from './input/project-update.dto.js';
 import { ProjectDto } from './input/project.dto.js';
 
-@AutoResolver({
-  type: () => ProjectDto,
-})
+@AutoResolver(() => ProjectDto)
 export class ProjectResolver {
   protected readonly pubSub = new PubSub();
   constructor(
-    @InjectDelegate('project')
+    @InjectDelegate()
     protected readonly delegate: Prisma.ProjectDelegate,
   ) {}
 
-  @FindMany(() => [ProjectDto], 'findManyProjects')
+  @FindMany(() => [ProjectDto])
   async findMany(
     @FindArgs(() => ProjectFindManyDto) query: ProjectFindManyDto,
   ) {
     return await this.delegate.findMany(query);
   }
 
-  @Query(() => ProjectDto, { name: 'findOneProjectById', nullable: true })
-  async findOneById(@Args({ name: 'projectId' }, ParseIntPipe) id: number) {
+  @FindOneById(() => ProjectDto)
+  async findOneById(@ArgsId() id: number) {
     return await this.delegate.findUnique({ where: { id } });
   }
 

@@ -8,7 +8,7 @@ import { ProjectModule } from './graphql/index.js';
   imports: [
     AppModule.register({
       imports: [
-        ClientModule.forRoot({ prismaClient: PrismaClient }),
+        ClientModule.forRoot({ client: () => PrismaClient }),
         ProjectModule,
       ],
     }),

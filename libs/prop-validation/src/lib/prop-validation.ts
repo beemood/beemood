@@ -3,9 +3,9 @@ import * as CT from 'class-transformer';
 import * as CV from 'class-validator';
 import { normalizePropValidationOptions } from './normalize-prop-validation-options.js';
 import {
-  DependencyValidationOptions,
-  NormalizedPropValidationOptions,
-  PropValidationOptions,
+  type DependencyValidationOptions,
+  type NormalizedPropValidationOptions,
+  type PropValidationOptions,
 } from './prop-validation-options.js';
 import { MoreThan } from './validators/more-than.js';
 
@@ -94,7 +94,7 @@ function __PropValidation(
       PropertyDecorator
     >(o);
 
-    if (o.type != undefined) {
+    if (o.type !== undefined) {
       CV.ValidateNested(vo)(...args);
 
       if (o.__primitiveTypeName) {
@@ -202,7 +202,7 @@ export function PropValidation(
       CT.Expose(o.transformOptions)(...args);
     }
 
-    if (o.required == true) {
+    if (o.required === true) {
       if (isArray !== true) {
         CV.IsDefined()(...args);
         CV.IsNotEmpty()(...args);

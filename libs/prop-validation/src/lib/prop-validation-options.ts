@@ -1,5 +1,5 @@
-import { ApiPropertyOptions } from '@nestjs/swagger';
-import * as CT from 'class-transformer';
+import { type ApiPropertyOptions } from '@nestjs/swagger';
+import type * as CT from 'class-transformer';
 
 export type DependencyValidationOptions = {
   moreThan?: string[];

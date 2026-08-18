@@ -1,4 +1,3 @@
-import { type StrictConstructorParameterDecorator } from '@beemood/types';
 import { Inject, type Provider, type Type } from '@nestjs/common';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
@@ -14,7 +13,7 @@ export function getClientToken(
 }
 
 export function provideClient(
-  prismaClient: Type,
+  prismaClient: () => Type,
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
@@ -22,7 +21,7 @@ export function provideClient(
     inject: [getPgAdapterToken(name, profile)],
     provide: getClientToken(name, profile),
     useFactory(adapter: any) {
-      return new prismaClient({ adapter });
+      return new (prismaClient())({ adapter });
     },
   };
 }
@@ -30,7 +29,7 @@ export function provideClient(
 export function InjectClient(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
-): StrictConstructorParameterDecorator {
+): ParameterDecorator {
   return (...args) => {
     Inject(getClientToken(name, profile))(...args);
   };

@@ -1,13 +1,13 @@
 import {
   isDefined,
   registerDecorator,
-  ValidationArguments,
-  ValidationOptions,
+  type ValidationArguments,
+  type ValidationOptions,
 } from 'class-validator';
 
 export function MoreThan(
   propertyName: string,
-  validationOptions?: ValidationOptions,
+  validationOptions: ValidationOptions = {},
 ): PropertyDecorator {
   return (...args) => {
     registerDecorator({
