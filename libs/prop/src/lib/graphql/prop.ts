@@ -13,7 +13,14 @@ import { Field } from '@nestjs/graphql';
 export function Prop(options: PropValidationOptions = {}): PropertyDecorator {
   return (...args) => {
     PropValidation(options)(...args);
-    Field(options.type ?? (() => Reflect.getMetadata('design:type', ...args)), {
+
+    const type = options.type
+      ? options.isArray
+        ? () => [options.type?.()]
+        : options.type
+      : () => Reflect.getMetadata('design:type', ...args);
+
+    Field(type, {
       nullable: options.required === true ? false : true,
       defaultValue: options.default,
     })(...args);

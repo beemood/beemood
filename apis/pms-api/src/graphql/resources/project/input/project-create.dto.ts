@@ -1,7 +1,7 @@
-import { InputType, Prop } from '@beemood/nestjs/graphql';
+import * as G from '@beemood/nestjs/graphql';
 
-@InputType()
+@G.InputType()
 export class ProjectCreateDto {
-  @Prop({ required: true }) name: string;
-  @Prop() description?: string;
+  @G.Prop({ required: true }) name: string;
+  @G.Prop() description?: string;
 }

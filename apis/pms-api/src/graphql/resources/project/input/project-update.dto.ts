@@ -1,7 +1,7 @@
-import { InputType, PartialType, PickType } from '@beemood/nestjs/graphql';
+import * as G from '@beemood/nestjs/graphql';
 import { ProjectCreateDto } from './project-create.dto.js';
 
-@InputType()
-export class ProjectUpdateDto extends PartialType(
-  PickType(ProjectCreateDto, ['name', 'description']),
+@G.InputType()
+export class ProjectUpdateDto extends G.PartialType(
+  G.PickType(ProjectCreateDto, ['name', 'description']),
 ) {}
