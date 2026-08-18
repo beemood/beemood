@@ -1,6 +1,6 @@
-import { DMMF } from '@prisma/generator-helper';
+import { type DMMF } from '@prisma/generator-helper';
 import { isTimestampField } from './is-timestamp-field.js';
-import { Field } from './types.js';
+import { type Field } from './types.js';
 
 export function isInternalField(field: Field) {
   return /@internal/gi.test(field.documentation ?? '');

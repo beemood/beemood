@@ -1,6 +1,6 @@
 import { getTsPropertyType } from '../../common/get-ts-property-type.js';
 import { isRequiredField } from '../../common/is-required-field.js';
-import { Field } from '../../common/types.js';
+import { type Field } from '../../common/types.js';
 import { printDtoPropertyDecoratorOptions } from './print-dto-property-decorator-options.js';
 import { printDtoPropertyDecorator } from './print-dto-property-decorator.js';
 import { printDtoPropertyDefinition } from './print-dto-property-definitinon.js';

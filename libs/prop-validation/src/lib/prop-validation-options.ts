@@ -17,9 +17,13 @@ export type CustomPropValidationOptions = {
   exlude?: boolean;
 };
 
-export type NormalizedPropValidationOptions = Omit<ApiPropertyOptions, 'type'> &
+export type NormalizedPropValidationOptions = Omit<
+  ApiPropertyOptions,
+  'type' | 'required' | 'nullable'
+> &
   CustomPropValidationOptions & {
     type?: () => CT.ClassConstructor<any>;
+    required?: boolean;
   };
 
 export type PropValidationOptions = Omit<

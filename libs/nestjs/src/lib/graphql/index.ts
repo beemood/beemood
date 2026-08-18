@@ -3,4 +3,5 @@ export * from './app.module.js';
 export * from './decorators.js';
 export * from './gql-cache.interceptor.js';
 export * from './graphql.js';
+export * from './prisma-filter-dtos.js';
 export * from './prop.js';

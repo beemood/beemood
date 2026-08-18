@@ -1,4 +1,4 @@
-import { DatamodelEnum } from '../../common/types.js';
+import { type DatamodelEnum } from '../../common/types.js';
 
 export function printEnumFilterDto(enumModel: DatamodelEnum) {
   const modelName = enumModel.name;

@@ -1,4 +1,4 @@
-import { Field } from './types.js';
+import { type Field } from './types.js';
 
 export function getTsPrimiteWrapperType(field: Field) {
   switch (field.kind) {
@@ -87,7 +87,7 @@ export function getTsPrimitiveType(field: Field): string {
   }
 }
 export function getTsPropertyType(field: Field): string {
-  let type = getTsPrimitiveType(field);
+  const type = getTsPrimitiveType(field);
 
   if (field.type === 'Json') {
     return type;

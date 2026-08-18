@@ -1,6 +1,6 @@
 import { isReadDtoField } from '../../common/is-read-dto-field.js';
 import { toDtoClassName } from '../../common/to-dto-class-name.js';
-import { Model } from '../../common/types.js';
+import { type Model } from '../../common/types.js';
 import { printDtoClass } from './print-dto-class.js';
 import { printDtoProperty } from './print-dto-property.js';
 

@@ -1,4 +1,4 @@
-import { Field } from '../../common/types.js';
+import { type Field } from '../../common/types.js';
 
 export function printProjectionDtoProperty(field: Field) {
   const type = () => {

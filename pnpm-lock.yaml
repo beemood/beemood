@@ -194,6 +194,12 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
+      '@beemood/prop':
+        specifier: workspace:*
+        version: link:../../libs/prop
+      '@beemood/prop-validation':
+        specifier: workspace:*
+        version: link:../../libs/prop-validation
       '@beemood/types':
         specifier: workspace:*
         version: link:../../libs/types
@@ -380,12 +386,21 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
+      '@beemood/codify':
+        specifier: workspace:*
+        version: link:../../utils/codify
+      '@beemood/extract-annotations':
+        specifier: workspace:*
+        version: link:../../utils/extract-annotations
       '@beemood/is':
         specifier: workspace:*
         version: link:../../utils/is
       '@beemood/matcher':
         specifier: workspace:*
         version: link:../matcher
+      '@beemood/object':
+        specifier: workspace:*
+        version: link:../../utils/object
       '@beemood/string':
         specifier: workspace:*
         version: link:../../utils/string

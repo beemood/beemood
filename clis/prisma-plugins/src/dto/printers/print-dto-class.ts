@@ -1,4 +1,4 @@
-import { DtoClassName } from '../../common/to-dto-class-name.js';
+import { type DtoClassName } from '../../common/to-dto-class-name.js';
 
 export type PrintDtoClassOptions = {
   name: DtoClassName;
@@ -9,7 +9,7 @@ export type PrintDtoClassOptions = {
 export function printDtoClass(
   dtoClassName: DtoClassName,
   properties: string,
-  extendings: string = '',
+  extendings = '',
 ) {
   extendings = extendings ? `extends ${extendings}` : '';
 

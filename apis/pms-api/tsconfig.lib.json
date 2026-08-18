@@ -6,7 +6,6 @@
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
-    "verbatimModuleSyntax": false,
     "types": [
       "node"
     ]

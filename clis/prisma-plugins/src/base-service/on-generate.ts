@@ -1,4 +1,4 @@
-import { GeneratorOptions } from '@prisma/generator-helper';
+import { type GeneratorOptions } from '@prisma/generator-helper';
 
 export default async function onGenerate(options: GeneratorOptions) {
   const output = options.generator.output?.value;

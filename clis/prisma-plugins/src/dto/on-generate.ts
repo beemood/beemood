@@ -1,7 +1,6 @@
-import { definedOrThrow, isInOrThrow } from '@beemood/utils';
-import { GeneratorOptions } from '@prisma/generator-helper';
-import { mkdir, writeFile } from 'fs/promises';
-import { join } from 'path';
+import { type GeneratorOptions } from '@prisma/generator-helper';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { printCommonDto } from './printers/print-common-dto.js';
 import { printCreateDtoClass } from './printers/print-create-dto-class.js';
 import { printEnumFilterDto } from './printers/print-enum-filter-dto.js';
@@ -20,8 +19,12 @@ import { printWhereUniqueDto } from './printers/print-where-unique-dto.js';
 
 export default async function onGenerate(options: GeneratorOptions) {
   const output = options.generator.output?.value ?? '../src/generated/dto';
-  const type = definedOrThrow(options.generator.config.type);
-  isInOrThrow(type, ['restapi', 'graphql']);
+  const type = options.generator.config.type;
+
+  if (type !== 'resapi' && type !== 'graphql') {
+    throw new Error(`Type must be one of restapi or graphql`);
+  }
+
   const datamodel = options.dmmf.datamodel;
 
   const contents: string[] = [];

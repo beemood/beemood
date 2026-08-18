@@ -1,5 +1,5 @@
 import { isInternalOperationField } from './is-internal-field.js';
-import { Field } from './types.js';
+import { type Field } from './types.js';
 
 export function isRequiredField(field: Field) {
   if (

@@ -1,8 +1,8 @@
 import { toDtoClassName } from '../../common/to-dto-class-name.js';
 import {
   CommonDtoClassNames,
-  Field,
-  ScalarFieldType,
+  type Field,
+  type ScalarFieldType,
 } from '../../common/types.js';
 
 export function printWhereDtoProperty(field: Field) {
@@ -35,6 +35,7 @@ export function printWhereDtoProperty(field: Field) {
             throw new Error('Not supported!');
           }
         }
+        break;
       }
       case 'enum': {
         return `Enum${field.type}FilterDto`;
