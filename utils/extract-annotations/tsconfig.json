@@ -2,6 +2,12 @@
   "extends": "../../tsconfig.base.json",
   "references": [
     {
+      "path": "../is"
+    },
+    {
+      "path": "../../libs/types"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

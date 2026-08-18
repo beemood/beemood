@@ -76,33 +76,9 @@
     "targets": {
       "build": {},
       "doc": {},
-      "prisma:migrate": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "pnpm prisma migrate dev --name=updated"
-          ],
-          "cwd": "{projectRoot}"
-        }
-      },
-      "prisma:generate": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "pnpm prisma generate"
-          ],
-          "cwd": "{projectRoot}"
-        }
-      },
-      "prisma:reset": {
-        "executor": "nx:run-commands",
-        "options": {
-          "commands": [
-            "pnpm prisma migrate reset"
-          ],
-          "cwd": "{projectRoot}"
-        }
-      }
+      "prisma:migrate": {},
+      "prisma:generate": {},
+      "prisma:reset": {}
     }
   },
   "dependencies": {
@@ -113,8 +89,5 @@
     "@prisma/client": "^7.9.0",
     "@beemood/prop": "workspace:*"
   },
-  "peerDependencies": {
-    "@prisma/client": "^7.9.0",
-    "@beemood/prop": "workspace:*"
-  }
+  "peerDependencies": {}
 }

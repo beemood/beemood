@@ -25,6 +25,16 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./pg": {
+      "types": "./dist/lib/pg/index.d.ts",
+      "import": "./dist/lib/pg/index.js",
+      "default": "./dist/lib/pg/index.js"
+    },
+    "./sqlite": {
+      "types": "./dist/lib/sqlite/index.d.ts",
+      "import": "./dist/lib/sqlite/index.js",
+      "default": "./dist/lib/sqlite/index.js"
     }
   },
   "files": [
@@ -68,9 +78,6 @@
     "@nestjs/config": "^4.0.4",
     "@prisma/adapter-better-sqlite3": "^7.9.1",
     "@prisma/adapter-pg": "^7.9.1",
-    "@prisma/client": "^7.9.0",
-    "@types/better-sqlite3": "^9.6.0",
-    "@types/pg": "^8.21.0",
     "better-sqlite3": "^13.0.3",
     "pg": "^8.23.0"
   }

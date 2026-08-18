@@ -5,45 +5,45 @@ import { type PoolOptions } from 'pg';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   DEFAULT_PRISMA_CLIENT_PROFILE,
-} from './constants.js';
+} from '../common/constants.js';
 
-export function getPgPoolOptionsToken(
+export function getPoolOptionsToken(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ) {
   return `${name}_${profile}_PG_POOL_OPTIONS`;
 }
 
-export function providePgPoolOptions(
+export function providePoolOptions(
   useValue: PoolOptions,
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
-    provide: getPgPoolOptionsToken(name, profile),
+    provide: getPoolOptionsToken(name, profile),
     useValue,
   };
 }
 
-export function providePgPoolOptionsFactory(
+export function providePoolOptionsFactory(
   useFactory: (config: ConfigService) => PoolOptions,
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
-    provide: getPgPoolOptionsToken(name, profile),
+    provide: getPoolOptionsToken(name, profile),
     inject: [ConfigService],
     useFactory,
   };
 }
 
-export function providePgPoolOptionsEnv(
+export function providePoolOptionsEnv(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
     inject: [ConfigService],
-    provide: getPgPoolOptionsToken(name, profile),
+    provide: getPoolOptionsToken(name, profile),
     useFactory(config: ConfigService) {
       const connectionString = config.getOrThrow(Env.DB.URL);
 
@@ -90,13 +90,13 @@ export function providePgPoolOptionsEnv(
   };
 }
 
-export function provideDefaultPgPoolOptions(
+export function provideDefaultPoolOptions(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
     inject: [ConfigService],
-    provide: getPgPoolOptionsToken(name, profile),
+    provide: getPoolOptionsToken(name, profile),
     useFactory(config: ConfigService) {
       const connectionString = config.getOrThrow(Env.DB.URL);
 
@@ -114,11 +114,11 @@ export function provideDefaultPgPoolOptions(
   };
 }
 
-export function InjectPgPoolOptions(
+export function InjectPoolOptions(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): ParameterDecorator {
   return (...args) => {
-    Inject(getPgPoolOptionsToken(name, profile))(...args);
+    Inject(getPoolOptionsToken(name, profile))(...args);
   };
 }

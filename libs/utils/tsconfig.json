@@ -2,7 +2,22 @@
   "extends": "../../tsconfig.base.json",
   "references": [
     {
-      "path": "../types"
+      "path": "../errors"
+    },
+    {
+      "path": "../../utils/string"
+    },
+    {
+      "path": "../../utils/object"
+    },
+    {
+      "path": "../../utils/is"
+    },
+    {
+      "path": "../../utils/extract-annotations"
+    },
+    {
+      "path": "../../utils/codify"
     },
     {
       "path": "./tsconfig.lib.json"

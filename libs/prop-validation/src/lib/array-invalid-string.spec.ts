@@ -8,14 +8,14 @@ describe('Array string invalid input', () => {
     options                                                            | value                          | exp
     ${{ type: () => String, isArray: true } as O}                      | ${{ value: undefined }}        | ${[]}
     ${{ type: () => String, isArray: true } as O}                      | ${{ value: [] }}               | ${[]}
-    ${{ type: () => String, isArray: true, minLength: 1 } as O}        | ${{ value: [''] }}             | ${['nestedValidation', 'minLength']}
-    ${{ type: () => String, isArray: true, maxLength: 1 } as O}        | ${{ value: ['12'] }}           | ${['nestedValidation', 'maxLength']}
-    ${{ type: () => String, isArray: true, format: 'email' } as O}     | ${{ value: ['invalid'] }}      | ${['nestedValidation', 'isEmail']}
-    ${{ type: () => String, isArray: true, format: 'uuid' } as O}      | ${{ value: ['invalid'] }}      | ${['nestedValidation', 'isUuid']}
-    ${{ type: () => String, isArray: true, format: 'password' } as O}  | ${{ value: ['invalid'] }}      | ${['nestedValidation', 'isStrongPassword']}
-    ${{ type: () => String, isArray: true, format: 'date' } as O}      | ${{ value: ['invalid date'] }} | ${['nestedValidation', 'isDateString']}
-    ${{ type: () => String, isArray: true, format: 'date-time' } as O} | ${{ value: ['invalid date'] }} | ${['nestedValidation', 'isDateString']}
-    ${{ type: () => String, isArray: true, format: 'time' } as O}      | ${{ value: ['invalid date'] }} | ${['nestedValidation', 'isDateString']}
+    ${{ type: () => String, isArray: true, minLength: 1 } as O}        | ${{ value: [''] }}             | ${['minLength']}
+    ${{ type: () => String, isArray: true, maxLength: 1 } as O}        | ${{ value: ['12'] }}           | ${['maxLength']}
+    ${{ type: () => String, isArray: true, format: 'email' } as O}     | ${{ value: ['invalid'] }}      | ${['isEmail']}
+    ${{ type: () => String, isArray: true, format: 'uuid' } as O}      | ${{ value: ['invalid'] }}      | ${['isUuid']}
+    ${{ type: () => String, isArray: true, format: 'password' } as O}  | ${{ value: ['invalid'] }}      | ${['isStrongPassword']}
+    ${{ type: () => String, isArray: true, format: 'date' } as O}      | ${{ value: ['invalid date'] }} | ${['isDateString']}
+    ${{ type: () => String, isArray: true, format: 'date-time' } as O} | ${{ value: ['invalid date'] }} | ${['isDateString']}
+    ${{ type: () => String, isArray: true, format: 'time' } as O}      | ${{ value: ['invalid date'] }} | ${['isDateString']}
   `(`$value | $options`, ({ options, value, exp }) => {
     class Sample {
       @PropValidation(options) value: string[];

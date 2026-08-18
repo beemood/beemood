@@ -5,9 +5,12 @@ dist
 tmp
 out-tsc
 public
+tsconfig.tsbuildinfo
 
 # dependencies
 node_modules
+
+
 
 
 # IDE - VSCode

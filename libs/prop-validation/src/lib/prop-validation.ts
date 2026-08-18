@@ -95,18 +95,17 @@ function __PropValidation(
     >(o);
 
     if (o.type !== undefined) {
-      CV.ValidateNested(vo)(...args);
-
       if (o.__primitiveTypeName) {
         if (
           !['String', 'Number', 'Boolean', 'Date', 'Buffer'].includes(
             o.__primitiveTypeName,
           )
         ) {
+          CV.ValidateNested(vo)(...args);
+          CT.Type(o.type)(...args);
+        } else {
           CT.Type(o.type)(...args);
         }
-      } else {
-        CT.Type(o.type)(...args);
       }
     }
 
@@ -163,7 +162,7 @@ function __PropValidation(
           .isEqual('url', () => CV.IsUrl(undefined, vo))
           .isEqual('iban', () => CV.IsIBAN(undefined, vo))
           .isEqual('alpha', () => CV.IsAlpha(undefined, vo))
-          .isEqual('Alphanumeric', () => CV.IsAlphanumeric(undefined, vo))
+          .isEqual('alphanumeric', () => CV.IsAlphanumeric(undefined, vo))
           .isEqual('boolean', () => CV.IsBooleanString(vo))
           .isEqual('btc', () => CV.IsBtcAddress(vo))
           .isEqual('credit-card', () => CV.IsCreditCard(vo))
@@ -203,10 +202,7 @@ export function PropValidation(
     }
 
     if (o.required === true) {
-      if (isArray !== true) {
-        CV.IsDefined()(...args);
-        CV.IsNotEmpty()(...args);
-      }
+      CV.IsDefined()(...args);
     } else {
       CV.IsOptional()(...args);
     }

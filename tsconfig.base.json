@@ -24,11 +24,11 @@
     "exactOptionalPropertyTypes": true,
     "allowUnusedLabels": true,
     "alwaysStrict": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
     "customConditions": [
       "@beemood/source"
     ],
-  }
+  },
 }

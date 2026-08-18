@@ -12,7 +12,22 @@
   "exclude": ["vitest.config.mts", "src/**/*.spec.ts"],
   "references": [
     {
-      "path": "../types/tsconfig.lib.json"
+      "path": "../errors/tsconfig.lib.json"
+    },
+    {
+      "path": "../../utils/string/tsconfig.lib.json"
+    },
+    {
+      "path": "../../utils/object/tsconfig.lib.json"
+    },
+    {
+      "path": "../../utils/is/tsconfig.lib.json"
+    },
+    {
+      "path": "../../utils/extract-annotations/tsconfig.lib.json"
+    },
+    {
+      "path": "../../utils/codify/tsconfig.lib.json"
     }
   ]
 }

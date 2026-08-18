@@ -2,6 +2,7 @@ import { Prop } from '@beemood/prop/graphql';
 import { InputType } from '@nestjs/graphql';
 
 export type StringQueryMode = 'default' | 'insensitive';
+
 @InputType()
 export class StringFilterDto {
   @Prop() equals?: string;

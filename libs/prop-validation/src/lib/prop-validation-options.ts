@@ -19,11 +19,12 @@ export type CustomPropValidationOptions = {
 
 export type NormalizedPropValidationOptions = Omit<
   ApiPropertyOptions,
-  'type' | 'required' | 'nullable'
+  'type' | 'required' | 'nullable' | 'enum'
 > &
   CustomPropValidationOptions & {
     type?: () => CT.ClassConstructor<any>;
     required?: boolean;
+    enum?: number[] | string[];
   };
 
 export type PropValidationOptions = Omit<

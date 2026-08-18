@@ -1,10 +1,10 @@
 import { Inject, type Provider, type Type } from '@nestjs/common';
+import { type PrismaPg } from '@prisma/adapter-pg';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   DEFAULT_PRISMA_CLIENT_PROFILE,
-} from './constants.js';
-import { getPgAdapterToken } from './provide-pg-adapter.js';
-
+} from '../common/constants.js';
+import { getAdapterToken } from './provide-adapter.js';
 export function getClientToken(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
@@ -18,9 +18,9 @@ export function provideClient(
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
-    inject: [getPgAdapterToken(name, profile)],
+    inject: [getAdapterToken(name, profile)],
     provide: getClientToken(name, profile),
-    useFactory(adapter: any) {
+    useFactory(adapter: PrismaPg) {
       return new (prismaClient())({ adapter });
     },
   };

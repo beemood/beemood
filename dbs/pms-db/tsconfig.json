@@ -2,6 +2,12 @@
   "extends": "../../tsconfig.base.json",
   "references": [
     {
+      "path": "../../clis/prisma-plugins"
+    },
+    {
+      "path": "../../libs/prop"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

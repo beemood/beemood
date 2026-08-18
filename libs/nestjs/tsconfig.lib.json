@@ -9,5 +9,19 @@
     "types": ["node"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["vitest.config.mts", "src/**/*.spec.ts"]
+  "exclude": ["vitest.config.mts", "src/**/*.spec.ts"],
+  "references": [
+    {
+      "path": "../types/tsconfig.lib.json"
+    },
+    {
+      "path": "../../utils/string/tsconfig.lib.json"
+    },
+    {
+      "path": "../prop/tsconfig.lib.json"
+    },
+    {
+      "path": "../../mods/prisma/tsconfig.lib.json"
+    }
+  ]
 }

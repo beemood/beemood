@@ -4,7 +4,7 @@ import { Inject, type Provider } from '@nestjs/common';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   DEFAULT_PRISMA_CLIENT_PROFILE,
-} from './constants.js';
+} from '../common/constants.js';
 import { getClientToken } from './provide-client.js';
 
 export function getDelegateToken(
@@ -12,7 +12,7 @@ export function getDelegateToken(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ) {
-  return `${names(modelName).contant}_${name}_${profile}_PRISMA_DELEGATE`;
+  return `${names(modelName).contant}_${name}_${profile}_SQLITE_PRISMA_DELEGATE`;
 }
 
 export function provideDelegate(

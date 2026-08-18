@@ -6,10 +6,10 @@ import { type PoolOptions } from 'pg';
 import {
   DEFAULT_PRISMA_CLIENT_NAME,
   DEFAULT_PRISMA_CLIENT_PROFILE,
-} from './constants.js';
-import { getPgPoolOptionsToken } from './provide-pg-pool-options.js';
+} from '../common/constants.js';
+import { getPoolOptionsToken } from './provide-pool-options.js';
 
-export function getPgAdapterToken(
+export function getAdapterToken(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ) {
@@ -23,13 +23,13 @@ export function getPgAdapterToken(
  * @param profile
  * @returns
  */
-export function providePgAdapter(
+export function provideAdapter(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): Provider {
   return {
-    inject: [ConfigService, getPgPoolOptionsToken(name, profile)],
-    provide: getPgAdapterToken(name, profile),
+    inject: [ConfigService, getPoolOptionsToken(name, profile)],
+    provide: getAdapterToken(name, profile),
     useFactory(config: ConfigService, options: PoolOptions) {
       const schema = config.get(Env.DB.SCHEMA);
       return new PrismaPg(options, { schema });
@@ -37,11 +37,11 @@ export function providePgAdapter(
   };
 }
 
-export function InjectPgAdapter(
+export function InjectAdapter(
   name = DEFAULT_PRISMA_CLIENT_NAME,
   profile = DEFAULT_PRISMA_CLIENT_PROFILE,
 ): ParameterDecorator {
   return (...args) => {
-    Inject(getPgAdapterToken(name, profile))(...args);
+    Inject(getAdapterToken(name, profile))(...args);
   };
 }

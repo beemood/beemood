@@ -1,26 +1,12 @@
-import { type RequiredProperties } from '@beemood/types';
-import { type DynamicModule, Module, type Type } from '@nestjs/common';
+import { Module, type DynamicModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import {
+  type FeatureModuleOptions,
+  type RootModuleOptions,
+} from '../common/module-types.js';
+import { provideAdapter } from './provide-adapter.js';
 import { getClientToken, provideClient } from './provide-client.js';
 import { getDelegateToken, provideDelegate } from './provide-delegate.js';
-import { providePgAdapter } from './provide-pg-adapter.js';
-import { providePgPoolOptionsEnv } from './provide-pg-pool-options.js';
-
-export type ModuleCommonOptions = {
-  name?: string;
-  profile?: string;
-  models?: string[];
-};
-
-export type RootModuleOptions = {
-  client: () => Type;
-  features?: Type[];
-} & ModuleCommonOptions;
-
-export type FeatureModuleOptions = RequiredProperties<
-  ModuleCommonOptions,
-  'models'
->;
 
 @Module({ imports: [ConfigModule] })
 export class ClientModule {
@@ -44,8 +30,7 @@ export class ClientModule {
       global: true,
       imports: [...(options.features ?? [])],
       providers: [
-        providePgPoolOptionsEnv(options.name, options.profile),
-        providePgAdapter(options.name, options.profile),
+        provideAdapter(options.name, options.profile),
         provideClient(options.client, options.name, options.profile),
         ...(delegates[0] ?? []),
       ],

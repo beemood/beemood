@@ -17,7 +17,8 @@
       "plugin": "@nx/js/typescript",
       "options": {
         "typecheck": {
-          "targetName": "typecheck"
+          "targetName": "typecheck",
+          "configName": "tsconfig.lib.json"
         },
         "buildtypes": {
           "targetName": "buildtypes",
@@ -71,6 +72,28 @@
       "options": {
         "buildTarget": "build",
         "watch": true
+      }
+    },
+
+    "prisma:migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["pnpm prisma migrate dev --name=updated"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma:generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["pnpm prisma generate"],
+        "cwd": "{projectRoot}"
+      }
+    },
+    "prisma:reset": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["pnpm prisma migrate reset"],
+        "cwd": "{projectRoot}"
       }
     },
     "doc": {

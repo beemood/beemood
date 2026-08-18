@@ -30,15 +30,15 @@ export function configureBetterSqlite3(config: DbConfig): DatabaseType {
   });
 
   // 3. Apply Production Pragmas
-  configurePragmas(db);
+  configureSqlitePragmas(db);
 
   // 4. Register Process Termination Handlers to prevent corrupt WAL files
-  registerShutdownHooks(db);
+  registerSqliteShutdownHooks(db);
 
   return db;
 }
 
-function configurePragmas(db: DatabaseType): void {
+export function configureSqlitePragmas(db: DatabaseType): void {
   // Enables Write-Ahead Logging. Allows concurrent reads while a write is occurring.
   db.pragma('journal_mode = WAL');
 
@@ -65,7 +65,7 @@ function configurePragmas(db: DatabaseType): void {
   db.pragma('foreign_keys = ON');
 }
 
-function registerShutdownHooks(db: DatabaseType): void {
+export function registerSqliteShutdownHooks(db: DatabaseType): void {
   const gracefulShutdown = () => {
     if (db.open) {
       try {

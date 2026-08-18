@@ -8,6 +8,12 @@
       "path": "../types"
     },
     {
+      "path": "../prop-validation"
+    },
+    {
+      "path": "../errors"
+    },
+    {
       "path": "./tsconfig.lib.json"
     },
     {

@@ -6,23 +6,22 @@
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "vitest.config.mts",
-    "src/**/*.spec.ts"
-  ],
+  "include": ["src/**/*.ts"],
+  "exclude": ["vitest.config.mts", "src/**/*.spec.ts"],
   "references": [
     {
       "path": "../utils/tsconfig.lib.json"
     },
     {
       "path": "../types/tsconfig.lib.json"
+    },
+    {
+      "path": "../prop-validation/tsconfig.lib.json"
+    },
+    {
+      "path": "../errors/tsconfig.lib.json"
     }
   ]
 }

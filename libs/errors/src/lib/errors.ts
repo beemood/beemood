@@ -26,6 +26,7 @@ export enum ErrorPrefix {
   Undefined = 'Undefined',
   NotAllowed = 'NotAllowed',
   NotImplemented = 'NotImplemented',
+  UnkownType = 'UnkownType',
 }
 
 type ErrorClassName<T extends string> = `${T}Error`;
@@ -88,4 +89,5 @@ export const {
   PatternError,
   RequiredError,
   UndefinedError,
+  UnkownTypeError,
 } = Errors;
