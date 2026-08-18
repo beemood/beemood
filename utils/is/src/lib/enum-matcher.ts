@@ -15,6 +15,6 @@ export class EnumMatcher<F, R> {
   }
 
   collect(): R[] {
-    return this.acc.flat().filter((e) => e != undefined) as R[];
+    return this.acc.flat().filter((e) => e !== undefined) as R[];
   }
 }

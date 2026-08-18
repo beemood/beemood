@@ -1,4 +1,3 @@
-import nx from '@nx/eslint-plugin';
-import eslintBase from './.eslint/eslint.base.mjs';
+import base from './.eslint/base.mjs';
 
-export default [...eslintBase];
+export default [...base];

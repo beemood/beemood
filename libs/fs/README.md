@@ -9,7 +9,7 @@
 
 ## @beemood/fs
 
-- [ ] add project description
+IO library
 
 ## 💖 Support My Work
 

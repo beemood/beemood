@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 export class UserInfo {
@@ -7,7 +7,9 @@ export class UserInfo {
 
 @Controller('main')
 export class AppController {
-  constructor(protected readonly config: ConfigService) {}
+  constructor(
+    @Inject(ConfigService) protected readonly config: ConfigService,
+  ) {}
 
   @Get('app-id')
   appId() {

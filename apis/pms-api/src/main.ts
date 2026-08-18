@@ -22,13 +22,13 @@ export async function main() {
 
   const { APP_ID, PORT } = config(app.get(ConfigService));
 
-  AppConfigs: {
+  {
     app.setGlobalPrefix('api');
     app.enableCors();
     app.enableShutdownHooks();
   }
 
-  SwaggerConfigs: {
+  {
     const swaggerConfig = new DocumentBuilder()
       .setTitle(APP_ID)
       .addBearerAuth()
@@ -42,7 +42,7 @@ export async function main() {
     SwaggerModule.setup('api', app, swaggerDoc);
   }
 
-  Start: {
+  {
     await app.listen(PORT);
     const url = await app.getUrl();
     logger.log(`${APP_ID} is up and running at ${url}`);

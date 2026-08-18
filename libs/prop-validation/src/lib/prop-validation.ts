@@ -1,4 +1,4 @@
-import { EnumMatcher, PropertyMatcher } from '@beemood/matcher';
+import { EnumMatcher, PropertyMatcher } from '@beemood/utils';
 import * as CT from 'class-transformer';
 import * as CV from 'class-validator';
 import { normalizePropValidationOptions } from './normalize-prop-validation-options.js';

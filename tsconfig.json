@@ -40,9 +40,6 @@
       "path": "./libs/prop-validation"
     },
     {
-      "path": "./libs/matcher"
-    },
-    {
       "path": "./libs/nestjs"
     },
     {

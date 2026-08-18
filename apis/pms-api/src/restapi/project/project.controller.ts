@@ -1,4 +1,4 @@
-import { Prisma } from '@beemood/pms-db/client';
+import { type Prisma } from '@beemood/pms-db/client';
 import { InjectDelegate } from '@beemood/prisma';
 import {
   Body,
@@ -8,9 +8,9 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ProjectCreateDto } from './dots/project-create.dto.js';
-import { ProjectFindManyDto } from './dots/project-find-many.dto.js';
-import { ProjectUpdateDto } from './dots/project-update.dto.js';
+import { type ProjectCreateDto } from './dots/project-create.dto.js';
+import { type ProjectFindManyDto } from './dots/project-find-many.dto.js';
+import { type ProjectUpdateDto } from './dots/project-update.dto.js';
 
 @Controller('project')
 export class ProjectController {

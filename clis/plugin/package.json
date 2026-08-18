@@ -22,6 +22,9 @@
   ],
   "nx": {
     "sourceRoot": "clis/plugin/src",
+    "tags": [
+      "app:plugin"
+    ],
     "targets": {
       "build": {
         "executor": "@nx/js:swc",

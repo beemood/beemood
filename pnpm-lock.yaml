@@ -121,6 +121,9 @@ importers:
       '@beemood/nestjs':
         specifier: workspace:*
         version: link:../../libs/nestjs
+      '@beemood/pms-db':
+        specifier: workspace:*
+        version: link:../../dbs/pms-db
       '@beemood/prisma':
         specifier: workspace:*
         version: link:../../mods/prisma
@@ -245,12 +248,6 @@ importers:
         specifier: ^5.2.3
         version: 5.2.3
 
-  libs/matcher:
-    dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.23
-        version: 0.5.23
-
   libs/nestjs:
     dependencies:
       '@swc/helpers':
@@ -352,9 +349,9 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
-      '@beemood/matcher':
+      '@beemood/utils':
         specifier: workspace:*
-        version: link:../matcher
+        version: link:../utils
       '@nestjs/common':
         specifier: ^11.1.29
         version: 11.1.29(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -379,9 +376,6 @@ importers:
 
   libs/utils:
     dependencies:
-      '@beemood/errors':
-        specifier: workspace:*
-        version: link:../errors
       '@swc/helpers':
         specifier: ~0.5.23
         version: 0.5.23
@@ -389,27 +383,21 @@ importers:
       '@beemood/codify':
         specifier: workspace:*
         version: link:../../utils/codify
+      '@beemood/errors':
+        specifier: workspace:*
+        version: link:../errors
       '@beemood/extract-annotations':
         specifier: workspace:*
         version: link:../../utils/extract-annotations
       '@beemood/is':
         specifier: workspace:*
         version: link:../../utils/is
-      '@beemood/matcher':
-        specifier: workspace:*
-        version: link:../matcher
       '@beemood/object':
         specifier: workspace:*
         version: link:../../utils/object
       '@beemood/string':
         specifier: workspace:*
         version: link:../../utils/string
-      '@types/debug':
-        specifier: ^4.1.13
-        version: 4.1.13
-      debug:
-        specifier: ^4.4.3
-        version: 4.4.3(supports-color@7.2.0)
 
   mods/prisma:
     dependencies:
@@ -460,9 +448,15 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
+      '@beemood/errors':
+        specifier: workspace:*
+        version: link:../../libs/errors
       '@beemood/is':
         specifier: workspace:*
         version: link:../is
+      '@beemood/string':
+        specifier: workspace:*
+        version: link:../string
       '@beemood/types':
         specifier: workspace:*
         version: link:../../libs/types
@@ -2585,9 +2579,6 @@ packages:
 
   '@types/d3-time@3.0.0':
     resolution: {integrity: sha512-sZLCdHvBUcNby1cB6Fd3ZBrABbjz3v1Vm90nysCQ6Vt7vd6e/h9Lt7SiJUoEX0l4Dzc7P5llKyhqSi1ycSf1Hg==}
-
-  '@types/debug@4.1.13':
-    resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
 
   '@types/deep-eql@4.0.2':
     resolution: {integrity: sha512-c9h9dVVMigMPc4bwTvC5dxqtqJZwQPePsWjPlpSOnojbor6pGqdk541lfA7AqFQr5pB1BRdq0juY9db81BwyFw==}
@@ -9118,10 +9109,6 @@ snapshots:
   '@types/d3-time-format@2.1.0': {}
 
   '@types/d3-time@3.0.0': {}
-
-  '@types/debug@4.1.13':
-    dependencies:
-      '@types/ms': 2.1.0
 
   '@types/deep-eql@4.0.2': {}
 

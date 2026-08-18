@@ -9,7 +9,7 @@
 
 ## @beemood/pms-api
 
-- [ ] add project description
+Project management api
 
 ## 💖 Support My Work
 

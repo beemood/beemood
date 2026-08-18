@@ -1,17 +1,11 @@
 {
-    "def utility class": {
-        "prefix": "def utility class",
+    "import test target": {
+        "prefix": "import test target",
         "body": [
-            "class $1 {",
-            "  constructor(value: Any) {",
-            "    const keys = new Set(Object.keys(this));",
-            "    Object.assign(this, value);",
-            "    const assignedKeys = new Set(Object.keys(this));",
-            "    assignedKeys.forEach((k) => keys.has(k) || delete (this as Any)[k]);",
-            "  }",
-            "}",
-            "",
+            "import { $2 } from './${TM_FILENAME/(.*)\\.spec\\.ts$/$1/}.js';",
+            "$0"
         ],
+        "description": "Import the test target file",
         "scope": "typescript"
     }
 }

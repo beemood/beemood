@@ -1,4 +1,4 @@
-import { names } from '@nx/devkit';
+import { type names } from '@nx/devkit';
 
 export type ProjectType = 'lib' | 'cli' | 'api' | 'workspace' | 'prisma';
 

@@ -3,7 +3,7 @@ import {
   formatFiles,
   generateFiles,
   names,
-  Tree,
+  type Tree,
   updateJson,
 } from '@nx/devkit';
 import { basename, dirname, join } from 'node:path';

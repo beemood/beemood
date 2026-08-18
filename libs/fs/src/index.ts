@@ -9,4 +9,3 @@ export * from './lib/update-yaml-file.js';
 export * from './lib/write-json-file.js';
 export * from './lib/write-text-file.js';
 export * from './lib/write-yaml-file.js';
-

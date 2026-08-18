@@ -44,26 +44,22 @@
     }
   },
   "dependencies": {
-    "@beemood/errors": "workspace:*",
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
     "@beemood/codify": "workspace:*",
     "@beemood/extract-annotations": "workspace:*",
     "@beemood/is": "workspace:*",
-    "@beemood/matcher": "workspace:*",
     "@beemood/object": "workspace:*",
     "@beemood/string": "workspace:*",
-    "@types/debug": "^4.1.13",
-    "debug": "^4.4.3"
+    "@beemood/errors": "workspace:*"
   },
   "peerDependencies": {
     "@beemood/codify": "workspace:*",
     "@beemood/extract-annotations": "workspace:*",
     "@beemood/is": "workspace:*",
-    "@beemood/matcher": "workspace:*",
     "@beemood/object": "workspace:*",
     "@beemood/string": "workspace:*",
-    "debug": "^4.4.3"
+    "@beemood/errors": "workspace:*"
   }
 }

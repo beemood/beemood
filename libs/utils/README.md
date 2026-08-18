@@ -9,7 +9,8 @@
 
 ## @beemood/utils
 
-- [ ] add project description
+Common utilitites 
+
 
 ## 💖 Support My Work
 

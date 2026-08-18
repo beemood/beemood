@@ -45,13 +45,13 @@ export class PropertyMatcher<O extends Record<string, any>, R> {
     ) => R[] | R | undefined)[]
   ): PropertyMatcher<Omit<O, K>, R> {
     const value = this.record[key];
-    if (value != undefined) {
+    if (value !== undefined) {
       this.acc.push(...handlers.map((e) => e(value)));
     }
     return this;
   }
 
   collect() {
-    return this.acc.flat().filter((e) => e != undefined);
+    return this.acc.flat().filter((e) => e !== undefined);
   }
 }

@@ -80,27 +80,21 @@
     "class-validator": "^0.15.1",
     "graphql": "^17.0.2",
     "graphql-subscriptions": "^3.0.0",
-    "reflect-metadata": "^0.2.2"
+    "reflect-metadata": "^0.2.2",
+    "@beemood/pms-db": "workspace:*"
   },
   "peerDependencies": {
-    "@apollo/server": "^5.5.1",
-    "@as-integrations/express5": "^1.1.2",
     "@beemood/nestjs": "workspace:*",
     "@beemood/prisma": "workspace:*",
     "@beemood/prop": "workspace:*",
-    "@nestjs/apollo": "^13.4.4",
+    "@beemood/pms-db": "workspace:*",
     "@nestjs/common": "^11.1.29",
     "@nestjs/config": "^4.0.4",
     "@nestjs/core": "^11.1.29",
-    "@nestjs/event-emitter": "^3.1.0",
     "@nestjs/graphql": "^13.4.4",
-    "@nestjs/platform-express": "^11.1.29",
     "@nestjs/swagger": "^11.4.6",
-    "@prisma/client": "^7.9.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",
-    "graphql": "^17.0.2",
-    "graphql-subscriptions": "^3.0.0",
-    "reflect-metadata": "^0.2.2"
+    "graphql-subscriptions": "^3.0.0"
   }
 }

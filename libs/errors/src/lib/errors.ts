@@ -10,20 +10,23 @@ export class BaseCustomError extends Error {
   }
 }
 
-const ERROR_PREFIX = [
-  'Required',
-  'Null',
-  'Undefined',
-  'EmptyString',
-  'EmptyArray',
-  'InvalidInput',
-  'AccessDenied',
-  'MinLength',
-  'MaxLength',
-  'Pattern',
-  'NotSupported',
-  'InvalidJson',
-] as const;
+export enum ErrorPrefix {
+  AccessDenied = 'AccessDenied',
+  EmptyArray = 'EmptyArray',
+  EmptyString = 'EmptyString',
+  InvalidIdentifier = 'InvalidIdentifier',
+  InvalidInput = 'InvalidInput',
+  InvalidJson = 'InvalidJson',
+  MaxLength = 'MaxLength',
+  MinLength = 'MinLength',
+  NotSupported = 'NotSupported',
+  Null = 'Null',
+  Pattern = 'Pattern',
+  Required = 'Required',
+  Undefined = 'Undefined',
+  NotAllowed = 'NotAllowed',
+  NotImplemented = 'NotImplemented',
+}
 
 type ErrorClassName<T extends string> = `${T}Error`;
 
@@ -65,19 +68,24 @@ export function createErrorClasses<T extends readonly string[]>(
 }
 
 // Instantiate the classes map
-export const Errors = createErrorClasses(ERROR_PREFIX);
+export const Errors = createErrorClasses(
+  Object.keys(ErrorPrefix) as ErrorPrefix[],
+);
 
 export const {
+  AccessDeniedError,
   EmptyArrayError,
   EmptyStringError,
+  InvalidIdentifierError,
   InvalidInputError,
-  NullError,
-  RequiredError,
-  UndefinedError,
-  AccessDeniedError,
+  InvalidJsonError,
   MaxLengthError,
   MinLengthError,
-  PatternError,
+  NotAllowedError,
+  NotImplementedError,
   NotSupportedError,
-  InvalidJsonError,
+  NullError,
+  PatternError,
+  RequiredError,
+  UndefinedError,
 } = Errors;

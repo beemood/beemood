@@ -1,4 +1,4 @@
-import { Prisma } from '@beemood/pms-db/client';
+import { type Prisma } from '@beemood/pms-db/client';
 import { Prop } from '@beemood/prop/restapi';
 
 export class ProjectCreateDto implements Prisma.ProjectUncheckedCreateInput {
