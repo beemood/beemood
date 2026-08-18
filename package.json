@@ -27,7 +27,9 @@
     },
     "vscode": "^1.131.0"
   },
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",

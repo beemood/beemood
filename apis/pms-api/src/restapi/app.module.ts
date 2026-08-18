@@ -8,7 +8,7 @@ import { ProjectModule } from './project/project.module.js';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    ClientModule.forRoot({ client: PrismaClient }),
+    ClientModule.forRoot({ client: () => PrismaClient }),
     ProjectModule,
   ],
   controllers: [AppController],

@@ -5,6 +5,7 @@ import { ProjectWhereDto, ProjectWhereUnqiueDto } from './project-where.dto.js';
 export class ProjectFindManyDto {
   @G.Prop({ type: () => ProjectWhereUnqiueDto, default: {} })
   cursor?: ProjectWhereUnqiueDto;
+
   @G.Prop({ maximum: 1000 }) take?: number;
   @G.Prop() skip?: number;
   @G.Prop({ type: () => ProjectWhereDto }) where?: ProjectWhereDto;

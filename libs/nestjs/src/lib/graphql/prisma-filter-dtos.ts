@@ -1,6 +1,7 @@
 import { Prop } from '@beemood/prop/graphql';
 import { InputType } from '@nestjs/graphql';
 
+export type StringQueryMode = 'default' | 'insensitive';
 @InputType()
 export class StringFilterDto {
   @Prop() equals?: string;
@@ -11,7 +12,7 @@ export class StringFilterDto {
   @Prop() contains?: string;
   @Prop() startsWith?: string;
   @Prop() endsWith?: string;
-  @Prop({ enum: ['default', 'insensitive'] }) mode?: string;
+  @Prop({ enum: ['default', 'insensitive'] }) mode?: StringQueryMode;
 
   @Prop({ type: () => String, isArray: true }) in?: string[];
   @Prop({ type: () => String, isArray: true }) notIn?: string[];
