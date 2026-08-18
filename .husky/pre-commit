@@ -1,38 +1,17 @@
 #!/bin/sh
 
-# # Count staged files (excluding deleted/renamed flags, strictly staged paths)
-# STAGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
+# Count staged files (excluding deleted/renamed flags, strictly staged paths)
+STAGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
 
-# if [ "$STAGED_COUNT" -gt 1 ]; then
-#   echo "\031[31m[ERROR] Commit rejected: You are trying to commit $STAGED_COUNT files.\033[0m"
-#   echo "This repository restricts commits to a maximum of 1 file at a time."
-#   echo ""
-#   echo "Staged files:"
-#   git diff --cached --name-only | sed 's/^/  - /'
-#   exit 1
-# fi
-
-
-
-
-set -e
-
-# Fetch top-level directory names of all staged files
-# Strips filenames to leave only top-level folders (or "." for root files)
-directories=$(git diff --cached --name-only | awk -F'/' '{ if (NF > 1) print $1; else print "." }' | sort -u)
-
-# Count unique top-level directories
-dir_count=$(echo "$directories" | wc -l | tr -d ' ')
-
-if [ "$dir_count" -gt 1 ]; then
-  echo -e "\033[0;31m[ERROR] Single-directory commit policy violation.\033[0m"
-  echo "Your commit modifies files across multiple directories:"
-  echo "$directories" | sed 's/^/  - /'
+if [ "$STAGED_COUNT" -gt 1 ]; then
+  echo "\031[31m[ERROR] Commit rejected: You are trying to commit $STAGED_COUNT files.\033[0m"
+  echo "This repository restricts commits to a maximum of 1 file at a time."
   echo ""
-  echo "Please split your staged changes into separate commits per directory."
+  echo "Staged files:"
+  git diff --cached --name-only | sed 's/^/  - /'
   exit 1
 fi
 
-exit 0
+
 
 pnpm nx run-many -t test lint build typecheck --affected
