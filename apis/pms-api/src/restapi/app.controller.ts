@@ -5,7 +5,6 @@ export class UserInfo {
   userId: number;
 }
 
-/** Change  3 */
 @Controller('main')
 export class AppController {
   constructor(
