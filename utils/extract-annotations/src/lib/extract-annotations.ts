@@ -1,7 +1,7 @@
 import { isDefined } from '@beemood/is';
-import { type AnyRecord } from '@beemood/types';
 
-export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\(?(\w{0,})\)?/gi;
+export const ANNOTATION_EXP_WITH_PARAM =
+  /@(\w+)\(?([A-Za-z0-9,"\s[\]]{0,})\)?/gi;
 
 /**
  * Scans the provided {@link text} to discover, capture, and extract custom annotation tags
@@ -11,9 +11,7 @@ export const ANNOTATION_EXP_WITH_PARAM = /@(\w+)\(?(\w{0,})\)?/gi;
  * @param text
  * @returns
  */
-export function extractAnnotations<T extends object>(
-  text: string,
-): AnyRecord<T> {
+export function extractAnnotations<T extends object>(text: string): T {
   return [...text.matchAll(ANNOTATION_EXP_WITH_PARAM)].reduce(
     (acc, [, key, value]) => {
       value = value?.trim() ?? '';
@@ -30,6 +28,6 @@ export function extractAnnotations<T extends object>(
 
       return acc;
     },
-    {} as AnyRecord<any>,
+    {} as T,
   );
 }

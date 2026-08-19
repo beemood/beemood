@@ -1,17 +1,17 @@
 import { type ClassConstructor } from '@beemood/types';
-import { type BasePropertyPrinterOptions } from './base-printer.js';
 import { type Printer } from './printer.js';
-import { type PropertyPrinter } from './property-printer.js';
 
-export type ClassPrinterOptions = {
+export type ClassPrinterOptions<PP extends ClassConstructor<Printer>> = {
   name: string;
-  propertyPrinter: ClassConstructor<PropertyPrinter>;
-  properties?: BasePropertyPrinterOptions[];
+  propertyPrinter: PP;
+  properties?: ConstructorParameters<PP>;
   extends?: string;
 };
 
-export class ClassPrinter implements Printer {
-  constructor(protected readonly options: ClassPrinterOptions) {
+export class ClassPrinter<PP extends ClassConstructor<Printer>>
+  implements Printer
+{
+  constructor(protected readonly options: ClassPrinterOptions<PP>) {
     this.options.extends ??= '';
   }
 

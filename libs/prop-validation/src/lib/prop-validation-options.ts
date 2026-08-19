@@ -24,7 +24,8 @@ export type NormalizedPropValidationOptions = Omit<
   CustomPropValidationOptions & {
     type?: () => CT.ClassConstructor<any>;
     required?: boolean;
-    enum?: number[] | string[];
+    isIn?: object;
+    isNotIn?: object;
   };
 
 export type PropValidationOptions = Omit<

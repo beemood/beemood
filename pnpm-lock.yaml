@@ -188,6 +188,9 @@ importers:
         specifier: ~0.5.23
         version: 0.5.23
     devDependencies:
+      '@beemood/prop-validation':
+        specifier: workspace:*
+        version: link:../../libs/prop-validation
       '@beemood/types':
         specifier: workspace:*
         version: link:../../libs/types

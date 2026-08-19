@@ -1,9 +1,5 @@
-import {
-  isBoolean,
-  isBoxedTypeConstructor,
-  UnkownTypeError,
-} from '@beemood/utils';
-import { isDefined, isNumber, isString } from 'class-validator';
+import { isBoxedTypeConstructor, UnkownTypeError } from '@beemood/utils';
+import { isDefined } from 'class-validator';
 import {
   type NormalizedPropValidationOptions,
   type PropValidationOptions,
@@ -20,29 +16,19 @@ export function normalizePropValidationOptions(
     // Then get the type from reflection
     const inferedType = Reflect.getMetadata('design:type', args[0], args[1]);
 
-    if (isDefined(propValidationOptions.enum)) {
-      // If the infered type is not one of the allowed primitive types,
-      // then throw error.
-
-      const firstValue = propValidationOptions.enum[0];
-      if (isString(firstValue)) {
-        o.__primitiveTypeName = String.name;
-      } else if (isNumber(firstValue)) {
-        o.__primitiveTypeName = Number.name;
-      } else if (isBoolean(firstValue)) {
-        o.__primitiveTypeName = Boolean.name;
-      }
-    } else {
-      if (!isBoxedTypeConstructor(inferedType)) {
-        throw new UnkownTypeError(
-          [
-            `if property type is not defined, the property type must be a ts box type or an enum ( which must be pvovided through enum property).`,
-            `But, ${args[0].constructor.name}.${args[0].toString()} does not have a valid property options! `,
-            `Optoins: ${JSON.stringify(propValidationOptions)}`,
-          ].join('\n'),
-        );
-      }
+    if (
+      !isDefined(propValidationOptions.isIn) &&
+      !isBoxedTypeConstructor(inferedType)
+    ) {
+      throw new UnkownTypeError(
+        [
+          `if property type is not defined, the property type must be a ts box type or an enum ( which must be pvovided through enum property).`,
+          `But, ${args[0].constructor.name}.${args[0].toString()} does not have a valid property options! `,
+          `Optoins: ${JSON.stringify(propValidationOptions)}`,
+        ].join('\n'),
+      );
     }
+
     o.__primitiveTypeName ??= inferedType.name;
   } else {
     // Type must be function

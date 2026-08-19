@@ -19,9 +19,10 @@ datasource db {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   /// @readonly()
-  uuid      String    @unique @db.Uuid
+  uuid String @unique @db.Uuid
+
   createdAt DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt DateTime  @updatedAt @db.Timestamptz(6)
   deletedAt DateTime? @db.Timestamptz(6)
@@ -29,6 +30,7 @@ model User {
 
   tasks    UserTask[] @relation("asiggnedTasks")
   comments Comment[]
+  samples  Sample[]
 }
 
 model Project {
@@ -129,6 +131,8 @@ model Task {
   comments Comment[]
 
   userTasks UserTask[]
+  sample    Sample?    @relation(fields: [sampleId], references: [id])
+  sampleId  Int?
 }
 
 model UserTask {
@@ -142,6 +146,50 @@ model UserTask {
 
   @@unique([userId, taskId])
   @@index([taskId])
+}
+
+model Sample {
+  id Int @id @default(autoincrement())
+
+  createdAt DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime  @updatedAt @db.Timestamptz(6)
+  deletedAt DateTime? @db.Timestamptz(6)
+  isActive  Boolean?  @default(true)
+
+  uuid       String   @default(uuid(7))
+  bit        String   @db.Bit(1)
+  char       String   @db.Char(3)
+  citext     String   @db.Citext
+  inet       String   @db.Inet
+  text       String   @db.Text
+  uuid4      String   @db.Uuid
+  varBit     String   @db.VarBit(1)
+  varChar    String   @db.VarChar(255)
+  xml        String   @db.Xml
+  date       DateTime @db.Date
+  time       DateTime @db.Time(6)
+  timez      DateTime @db.Timetz(6)
+  timestamp  DateTime @db.Timestamp(6)
+  timestampz DateTime @db.Timestamptz(6)
+  decimal    Decimal  @db.Decimal(16, 6)
+  money      Decimal  @db.Money
+  float      Float    @db.DoublePrecision
+  real       Float    @db.Real
+  json       Json     @db.Json
+  jsonb      Json     @db.JsonB
+  binary     Bytes?   @db.ByteA
+
+  /// @isIn(["new", "in_progress", "done"])
+  status String
+
+  strArray String[]
+  intArray Int[]
+  decArray Decimal[]
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  tasks Task[]
 }
 
 // /// Represents a core user profile with comprehensive data types

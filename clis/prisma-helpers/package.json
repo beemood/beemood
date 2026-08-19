@@ -47,9 +47,13 @@
     "@swc/helpers": "~0.5.23"
   },
   "peerDependencies": {
+    "@beemood/prop-validation": "workspace:*",
+    "@beemood/types": "workspace:*",
+    "@beemood/utils": "workspace:*",
     "@prisma/generator-helper": "^7.9.1"
   },
   "devDependencies": {
+    "@beemood/prop-validation": "workspace:*",
     "@beemood/types": "workspace:*",
     "@beemood/utils": "workspace:*",
     "@prisma/generator-helper": "^7.9.1"

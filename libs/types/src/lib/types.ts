@@ -99,16 +99,6 @@ export type Casings = {
   dot: string;
 };
 
-export const PrimitiveType = {
-  String: 'String',
-  Number: 'Number',
-  Boolean: 'Boolean',
-  Date: 'Date',
-  Buffer: 'Buffer',
-};
-
-export type PrimitiveType = keyof typeof PrimitiveType;
-
 export type Casing = KeyOf<Casings>;
 
 export type ValueFactory<T> = () => T;

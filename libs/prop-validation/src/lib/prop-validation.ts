@@ -145,7 +145,20 @@ function __PropValidation(
       .isDefined('maxLength', (v) => CV.MaxLength(v, vo))
       .isDefined('minimum', (v) => CV.Min(v, vo))
       .isDefined('maximum', (v) => CV.Max(v, vo))
-      .isDefined('enum', (v) => CV.IsEnum(v, vo))
+      .isDefined('isIn', (v) => {
+        if (Array.isArray(v)) {
+          return CV.IsIn(v, vo);
+        } else {
+          return CV.IsIn(Object.values(v));
+        }
+      })
+      .isDefined('isNotIn', (v) => {
+        if (Array.isArray(v)) {
+          return CV.IsNotIn(v, vo);
+        } else {
+          return CV.IsNotIn(Object.values(v));
+        }
+      })
       .isDefined('pattern', (v) => CV.Matches(new RegExp(v), vo))
       .isDefined('format', (v) =>
         new EnumMatcher<PropValidationOptions['format'], PropertyDecorator>(v)
