@@ -3,12 +3,6 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
-generator RestApiDtoGenerator {
-  provider = "dto"
-  type     = "restapi"
-  output   = "../src/generated/restapi"
-}
-
 generator GraphqlInputGenerator {
   type     = "graphql"
   provider = "dto"

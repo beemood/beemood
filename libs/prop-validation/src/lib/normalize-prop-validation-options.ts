@@ -1,4 +1,8 @@
-import { isBoxedTypeConstructor, UnkownTypeError } from '@beemood/utils';
+import {
+  isBoolean,
+  isBoxedTypeConstructor,
+  UnkownTypeError,
+} from '@beemood/utils';
 import { isDefined, isNumber, isString } from 'class-validator';
 import {
   type NormalizedPropValidationOptions,
@@ -22,9 +26,11 @@ export function normalizePropValidationOptions(
 
       const firstValue = propValidationOptions.enum[0];
       if (isString(firstValue)) {
-        o.__primitiveTypeName = 'String';
+        o.__primitiveTypeName = String.name;
       } else if (isNumber(firstValue)) {
-        o.__primitiveTypeName = 'Number';
+        o.__primitiveTypeName = Number.name;
+      } else if (isBoolean(firstValue)) {
+        o.__primitiveTypeName = Boolean.name;
       }
     } else {
       if (!isBoxedTypeConstructor(inferedType)) {

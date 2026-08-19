@@ -53,11 +53,13 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
+    "@beemood/prisma-helpers": "workspace:*",
     "@beemood/prop": "workspace:*",
     "@beemood/prop-validation": "workspace:*",
     "@beemood/types": "workspace:*"
   },
   "peerDependencies": {
+    "@beemood/prisma-helpers": "workspace:*",
     "@beemood/prop-validation": "workspace:*"
   }
 }

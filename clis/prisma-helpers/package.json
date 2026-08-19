@@ -1,12 +1,12 @@
 {
-  "name": "<%- projectName %>",
-  "version": "<%- version %>",
+  "name": "@beemood/prisma-helpers",
+  "version": "0.0.1",
   "description": "- [ ] add project description",
-  "homepage": "<%- homePage %>",
+  "homepage": "https://beemood.github.io",
   "author": {
-    "name": "<%- fullName %>",
-    "email": "<%- email %>",
-    "url": "<%- homePage %>/profile"
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus+beemood-prisma-helpers@gmail.com",
+    "url": "https://beemood.github.io/profile"
   },
   "funding": [
     "https://cash.app/$puqlib"
@@ -34,8 +34,10 @@
     "!**/*.tsbuildinfo"
   ],
   "nx": {
-    "sourceRoot": "<%- directory %>/src",
-    "tags":["lib:shared"],
+    "sourceRoot": "clis/prisma-helpers/src",
+    "tags": [
+      "lib:shared"
+    ],
     "targets": {
       "build": {},
       "doc": {}
@@ -43,13 +45,13 @@
   },
   "dependencies": {
     "@swc/helpers": "~0.5.23"
-  }, 
-  "peerDependencies":{
-    "@beemood/types":"workspace:*",
-    "@beemood/utils":"workspace:*"
   },
-  "devDependencies":{
-    "@beemood/types":"workspace:*",
-    "@beemood/utils":"workspace:*"
+  "peerDependencies": {
+    "@prisma/generator-helper": "^7.9.1"
   },
+  "devDependencies": {
+    "@beemood/types": "workspace:*",
+    "@beemood/utils": "workspace:*",
+    "@prisma/generator-helper": "^7.9.1"
+  }
 }

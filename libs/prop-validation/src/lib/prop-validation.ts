@@ -110,6 +110,8 @@ function __PropValidation(
     }
 
     matcher
+      .isDefined('maxItems', (v) => CV.ArrayMaxSize(v))
+      .isDefined('minItems', (v) => CV.ArrayMinSize(v))
       .isDefined('default', (v) =>
         CT.Transform(({ value }) => (value ??= v), o.transformOptions),
       )
@@ -144,8 +146,6 @@ function __PropValidation(
       .isDefined('minimum', (v) => CV.Min(v, vo))
       .isDefined('maximum', (v) => CV.Max(v, vo))
       .isDefined('enum', (v) => CV.IsEnum(v, vo))
-      .isDefined('maxItems', (v) => CV.ArrayMaxSize(v))
-      .isDefined('minItems', (v) => CV.ArrayMinSize(v))
       .isDefined('pattern', (v) => CV.Matches(new RegExp(v), vo))
       .isDefined('format', (v) =>
         new EnumMatcher<PropValidationOptions['format'], PropertyDecorator>(v)

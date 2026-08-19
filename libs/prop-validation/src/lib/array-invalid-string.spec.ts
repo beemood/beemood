@@ -18,7 +18,7 @@ describe('Array string invalid input', () => {
     ${{ type: () => String, isArray: true, format: 'time' } as O}      | ${{ value: ['invalid date'] }} | ${['isDateString']}
   `(`$value | $options`, ({ options, value, exp }) => {
     class Sample {
-      @PropValidation(options) value: string[];
+      @PropValidation(options) value: any;
     }
 
     const { errors, instance } = transformAndValidate(Sample, value);

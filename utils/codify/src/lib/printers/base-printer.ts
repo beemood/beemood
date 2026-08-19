@@ -14,6 +14,8 @@ export type BasePrinterOptions = {
   readonly?: boolean;
   required?: boolean;
   padding?: number;
+  isArray?: boolean;
+  defaultValue?: string;
 };
 
 export abstract class BasePrinter<T extends BasePrinterOptions>
@@ -42,8 +44,14 @@ export abstract class BasePrinter<T extends BasePrinterOptions>
     return this.options.comment ?? '';
   }
 
+  protected printDefaultValue(): string {
+    return this.options.defaultValue !== undefined
+      ? ` = ${this.options.defaultValue}`
+      : '';
+  }
+
   protected printType(): string {
-    return this.options.type ?? '';
+    return this.options.type ?? 'unkown';
   }
 
   protected printName(): string {
@@ -58,6 +66,9 @@ export abstract class BasePrinter<T extends BasePrinterOptions>
     return '';
   }
 
+  protected printIsArray(): '' | '[]' {
+    return this.options.isArray === true ? '[]' : '';
+  }
   protected printRequired(): '' | '?' {
     return this.options.required === true ? '' : '?';
   }
@@ -79,16 +90,7 @@ export abstract class BasePrinter<T extends BasePrinterOptions>
   }
 }
 
-export type BasePropertyPrinterOptions = Pick<
-  BasePrinterOptions,
-  | 'name'
-  | 'type'
-  | 'comment'
-  | 'decorator'
-  | 'padding'
-  | 'readonly'
-  | 'required'
->;
+export type BasePropertyPrinterOptions = BasePrinterOptions;
 
 export class BasePropertyPrinter<
   T extends BasePropertyPrinterOptions = BasePropertyPrinterOptions,
@@ -107,7 +109,7 @@ export class BasePropertyPrinter<
   }
 
   protected override printDefinition(): string {
-    return `${this.printAccessModifier()}${this.printReadonly()}${this.printPadding()}${this.printName()}${this.printRequired()}: ${this.printType()}${this.printEOL()}`;
+    return `${this.printAccessModifier()}${this.printReadonly()}${this.printPadding()}${this.printName()}${this.printRequired()}: ${this.printType()}${this.printIsArray()}${this.printDefaultValue()}${this.printEOL()}`;
   }
 
   override print(): string {

@@ -13,7 +13,6 @@ export type ClassPrinterOptions = {
 export class ClassPrinter implements Printer {
   constructor(protected readonly options: ClassPrinterOptions) {
     this.options.extends ??= '';
-    this.options.extends ??= '';
   }
 
   protected printProperties() {
@@ -21,14 +20,15 @@ export class ClassPrinter implements Printer {
       ?.map(
         (propertyOptions) => new this.options.propertyPrinter(propertyOptions),
       )
-      .map((e) => e.print());
+      .map((e) => e.print())
+      .join('\n');
   }
 
   print(): string {
     return [
       `export class ${this.options.name}${this.options.extends} {`,
-
+      this.printProperties(),
       `}`,
-    ].join('');
+    ].join('\n');
   }
 }
