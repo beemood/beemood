@@ -13,7 +13,7 @@ export class StringFilterDto {
   @Prop() contains?: string;
   @Prop() startsWith?: string;
   @Prop() endsWith?: string;
-  @Prop({ enum: ['default', 'insensitive'] }) mode?: StringQueryMode;
+  @Prop({ isIn: ['default', 'insensitive'] }) mode?: StringQueryMode;
 
   @Prop({ type: () => String, isArray: true }) in?: string[];
   @Prop({ type: () => String, isArray: true }) notIn?: string[];

@@ -2,13 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "references": [
     {
-      "path": "../../dbs/pms-db"
-    },
-    {
-      "path": "../../libs/prop"
-    },
-    {
       "path": "../../mods/prisma"
+    },
+    {
+      "path": "../../dbs/pms-db"
     },
     {
       "path": "../../libs/nestjs"

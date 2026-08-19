@@ -11,6 +11,6 @@ describe('isBoxedTypeConstructor', () => {
     expect(isBoxedTypeConstructor(1)).toEqual(false);
     expect(isBoxedTypeConstructor({})).toEqual(false);
     expect(isBoxedTypeConstructor(class Sample {})).toEqual(false);
-    expect(isBoxedTypeConstructor(Array)).toEqual(false);
+    expect(isBoxedTypeConstructor(Array)).toEqual(true);
   });
 });

@@ -22,6 +22,9 @@
     },
     {
       "path": "../../libs/prop-validation/tsconfig.lib.json"
+    },
+    {
+      "path": "../prisma-helpers/tsconfig.lib.json"
     }
   ]
 }

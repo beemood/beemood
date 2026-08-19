@@ -51,7 +51,6 @@
     "@beemood/types": "workspace:*"
   },
   "peerDependencies": {
-    "@beemood/types": "workspace:*",
     "@beemood/is": "0.0.1"
   }
 }

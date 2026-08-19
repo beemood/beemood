@@ -14,7 +14,7 @@ describe('String validation', () => {
       ${{ required: true } as O}     | ${{ value: 's' }}
       ${{ minLength: 1 } as O}       | ${{ value: 's' }}
       ${{ maxLength: 1 } as O}       | ${{ value: 's' }}
-      ${{ enum: ['s', 'v'] } as O}   | ${{ value: 's' }}
+      ${{ isIn: ['s', 'v'] } as O}   | ${{ value: 's' }}
       ${{ format: 'email' } as O}    | ${{ value: 'some@email.com' }}
       ${{ format: 'uuid' } as O}     | ${{ value: randomUUID() }}
       ${{ format: 'password' } as O} | ${{ value: '?SomePassword12.' }}
@@ -35,7 +35,7 @@ describe('String validation', () => {
       options                         | value              | exp
       ${{ minLength: 3 } as O}        | ${{ value: '12' }} | ${['minLength']}
       ${{ maxLength: 1 } as O}        | ${{ value: '12' }} | ${['maxLength']}
-      ${{ enum: ['s', 'v'] } as O}    | ${{ value: 'd' }}  | ${['isEnum']}
+      ${{ isIn: ['s', 'v'] } as O}    | ${{ value: 'd' }}  | ${['isIn']}
       ${{ format: 'email' } as O}     | ${{ value: '12' }} | ${['isEmail']}
       ${{ format: 'uuid' } as O}      | ${{ value: '12' }} | ${['isUuid']}
       ${{ format: 'uri' } as O}       | ${{ value: '12' }} | ${['isUrl']}

@@ -22,9 +22,9 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./dist/generated/prisma/index.d.ts",
+      "import": "./dist/generated/prisma/index.js",
+      "default": "./dist/generated/prisma/index.js"
     },
     "./client": {
       "types": "./dist/generated/prisma/client.d.ts",
@@ -78,7 +78,14 @@
       "doc": {},
       "prisma:migrate": {},
       "prisma:generate": {},
-      "prisma:reset": {}
+      "prisma:reset": {},
+      "prisma:clean": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "rm -rf ./src/generated/*",
+          "cwd": "{projectRoot}"
+        }
+      }
     }
   },
   "dependencies": {

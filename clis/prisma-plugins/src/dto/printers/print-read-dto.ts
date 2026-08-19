@@ -64,7 +64,9 @@ export function printReadDto(model: Model): string {
     `import { Prop } from '@beemood/prop/graphql';`,
 
     `export class ${model.name}ReadDto {`,
-    model.fields.map((field) => printReadDtoProperty(field)).join('\n  '),
+    model.fields
+      .map((field) => printReadDtoProperty(field, false))
+      .join('\n  '),
     `}`,
   ].join('\n');
 }

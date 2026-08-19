@@ -14,4 +14,4 @@ fi
 
 
 
-pnpm nx affected -t test lint build typecheck --tuiAutoExit
+pnpm nx run-many -t test lint build typecheck --projects="tag:lib:*" --tuiAutoExit

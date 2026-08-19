@@ -59,7 +59,6 @@
     "@beemood/types": "workspace:*"
   },
   "peerDependencies": {
-    "@beemood/prisma-helpers": "workspace:*",
-    "@beemood/prop-validation": "workspace:*"
+    "@beemood/prisma-helpers": "workspace:*"
   }
 }

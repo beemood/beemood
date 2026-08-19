@@ -179,7 +179,7 @@ model Sample {
   jsonb      Json     @db.JsonB
   binary     Bytes?   @db.ByteA
 
-  /// @isIn(["new", "in_progress", "done"])
+  /// @isIn(new, in_progress, done)
   status String
 
   strArray String[]
