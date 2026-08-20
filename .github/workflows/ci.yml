@@ -51,9 +51,9 @@ jobs:
           max_attempts: 3
           retry_wait_seconds: 5
           command: |
-            pnpm nx run-many -t lint      --projects="tag:lib:*,tag:app:plugin"
             pnpm nx run-many -t typecheck --projects="tag:lib:*,tag:app:plugin"
             pnpm nx run-many -t build     --projects="tag:lib:*,tag:app:plugin"
+            pnpm nx run-many -t lint      --projects="tag:lib:*,tag:app:plugin"
             pnpm nx run-many -t test      --projects="tag:lib:*,tag:app:plugin"
             pnpm nx run-many -t doc       --projects="tag:lib:*,tag:app:plugin"
 
@@ -70,7 +70,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Publish to NPM
-        run: pnpm nx release publish
+        run: pnpm nx release publish --projects="tag:lib:*,tag:app:plugin"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

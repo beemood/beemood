@@ -1,6 +1,6 @@
 {
   "name": "@beemood/codify",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Transform object into a valid typescript code",
   "homepage": "https://beemood.github.io",
   "author": {

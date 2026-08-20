@@ -1,6 +1,6 @@
 {
   "name": "@beemood/extract-annotations",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "- [ ] add project description",
   "homepage": "https://beemood.github.io",
   "author": {
@@ -51,6 +51,6 @@
     "@beemood/types": "workspace:*"
   },
   "peerDependencies": {
-    "@beemood/is": "0.0.1"
+    "@beemood/is": "0.0.3"
   }
 }
