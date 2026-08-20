@@ -148,7 +148,7 @@ export class BaseClassPrinter<
       this.options.propertyOptions.length > 0
     ) {
       const propertiesContent = this.options.propertyOptions
-        .map(this.printProperty)
+        .map((e) => this.printProperty(e))
         .join('\n');
 
       return [`{`, propertiesContent, `}`].join('\n');

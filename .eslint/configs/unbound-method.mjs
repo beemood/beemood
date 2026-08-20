@@ -10,5 +10,6 @@ export default [
     rules: {
       '@typescript-eslint/unbound-method': 'error',
     },
+    ignores: ['**/*.spec.ts'],
   },
 ];

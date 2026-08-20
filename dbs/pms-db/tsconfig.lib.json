@@ -5,24 +5,16 @@
     "outDir": "dist",
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "include": [
-    "src/**/*.ts"
-  ],
-  "exclude": [
-    "vitest.config.mts",
-    "prisma.config.ts",
-    "src/**/*.spec.ts"
-  ],
+  "include": ["src/**/*.ts"],
+  "exclude": ["vitest.config.mts", "prisma.config.ts", "src/**/*.spec.ts"],
   "references": [
     {
       "path": "../../clis/prisma-plugins/tsconfig.lib.json"
     },
     {
-      "path": "../../libs/prop/tsconfig.lib.json"
+      "path": "../../libs/nestjs/tsconfig.lib.json"
     }
   ]
 }

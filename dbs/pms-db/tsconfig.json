@@ -5,7 +5,7 @@
       "path": "../../clis/prisma-plugins"
     },
     {
-      "path": "../../libs/prop"
+      "path": "../../libs/nestjs"
     },
     {
       "path": "./tsconfig.lib.json"

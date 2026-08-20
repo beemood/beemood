@@ -80,6 +80,7 @@
     "@nestjs/common": "^11.1.29",
     "@nestjs/core": "^11.1.29",
     "@nestjs/graphql": "^13.4.4",
-    "graphql": "^17.0.2"
+    "graphql": "^17.0.2",
+    "@nestjs/swagger": "11.4.6"
   }
 }

@@ -22,9 +22,9 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/generated/prisma/index.d.ts",
-      "import": "./dist/generated/prisma/index.js",
-      "default": "./dist/generated/prisma/index.js"
+      "types": "./dist/generated/prisma/client.d.ts",
+      "import": "./dist/generated/prisma/client.js",
+      "default": "./dist/generated/prisma/client.js"
     },
     "./client": {
       "types": "./dist/generated/prisma/client.d.ts",
