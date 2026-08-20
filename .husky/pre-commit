@@ -3,7 +3,7 @@
 # Count staged files (excluding deleted/renamed flags, strictly staged paths)
 STAGED_COUNT=$(git diff --cached --name-only | wc -l | tr -d ' ')
 
-if [ "$STAGED_COUNT" -gt 100 ]; then
+if [ "$STAGED_COUNT" -gt 5 ]; then
   echo "\031[31m[ERROR] Commit rejected: You are trying to commit $STAGED_COUNT files.\033[0m"
   echo "This repository restricts commits to a maximum of 1 file at a time."
   echo ""
