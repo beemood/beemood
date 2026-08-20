@@ -78,7 +78,7 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Publish to NPM
-        run: pnpm nx release publish --projects="tag:lib:*,tag:app:plugin"
+        run: pnpm nx release publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
