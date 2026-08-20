@@ -1,4 +1,4 @@
-## 0.0.3 (2026-08-20)
+## 0.0.99 (2026-08-20)
 
 ### 🚀 Features
 
@@ -57,6 +57,7 @@
 - working on the field resolver ([eeb441c](https://github.com/beemood/beemood/commit/eeb441c))
 - fixed the extract-annotaiton ([97af520](https://github.com/beemood/beemood/commit/97af520))
 - created read and create dto generators ([e16af4f](https://github.com/beemood/beemood/commit/e16af4f))
+- initial release ([d1d8132](https://github.com/beemood/beemood/commit/d1d8132))
 - **pms-api:** initialize PMS API library with basic structure and configuration ([17149f8](https://github.com/beemood/beemood/commit/17149f8))
 
 ### 🩹 Fixes

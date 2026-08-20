@@ -1,6 +1,6 @@
 {
   "name": "@beemood/plugin",
-  "version": "0.0.3",
+  "version": "0.0.99",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
