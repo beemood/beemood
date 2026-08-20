@@ -78,7 +78,8 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Publish to NPM
-        run: pnpm nx release publish --first-release
+        run: pnpm nx release publish --projects=@beemood/errors
+        # run: pnpm nx release publish --first-release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

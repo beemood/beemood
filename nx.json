@@ -118,6 +118,9 @@
     }
   },
   "release": {
+    "changelog": {
+      "automaticFromRef": true
+    },
     "groups": {
       "publishable": {
         "projects": ["tag:lib:*", "tag:app:plugin"]
