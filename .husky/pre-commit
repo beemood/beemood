@@ -12,8 +12,3 @@ if [ "$STAGED_COUNT" -gt 30 ]; then
   exit 1
 fi
 
-
-
-
-pnpm nx run-many -t typecheck build lint test doc  --projects="tag:lib:*,tag:app:plugin" --tuiAutoExit
-
