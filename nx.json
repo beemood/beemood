@@ -118,6 +118,11 @@
     }
   },
   "release": {
+    "groups": {
+      "publishable": {
+        "projects": ["tag:lib:*", "tag:app:plugin"]
+      }
+    },
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build"
     }
