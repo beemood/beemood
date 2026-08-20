@@ -92,9 +92,9 @@
     "@swc/helpers": "~0.5.23"
   },
   "devDependencies": {
+    "@beemood/nestjs": "workspace:*",
     "@beemood/prisma-plugins": "workspace:*",
-    "@prisma/client": "^7.9.0",
-    "@beemood/prop": "workspace:*"
+    "@prisma/client": "^7.9.0"
   },
   "peerDependencies": {}
 }

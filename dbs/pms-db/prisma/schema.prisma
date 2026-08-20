@@ -21,7 +21,7 @@ datasource db {
 model User {
   id   Int    @id @default(autoincrement())
   /// @readonly()
-  uuid String @unique @db.Uuid
+  uuid String @unique @default(uuid()) @db.Uuid
 
   createdAt DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt DateTime  @updatedAt @db.Timestamptz(6)

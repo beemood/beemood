@@ -53,7 +53,9 @@ export function parsePropertyValidationOptions(
       break;
     }
     case 'scalar': {
-      if (field.isList) {
+      if (field.type === 'Json' || field.type === 'Jsonb') {
+        result.format = "'json'";
+      } else if (field.isList) {
         result.type = `()=>${toBoxType(field)}`;
       }
       break;

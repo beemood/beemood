@@ -164,6 +164,7 @@ function __PropValidation(
         new EnumMatcher<PropValidationOptions['format'], PropertyDecorator>(v)
           .isEqual('email', () => CV.IsEmail(undefined, vo))
           .isEqual('password', () => CV.IsStrongPassword(undefined, vo))
+          .isEqual('json', () => CV.IsJSON(vo))
           .isEqual('ean', () => CV.IsEAN(vo))
           .isEqual('uuid', () => CV.IsUUID('all', vo))
           .isEqual('uuid7', () => CV.IsUUID('4', vo))

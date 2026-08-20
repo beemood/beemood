@@ -1,1 +1,1 @@
-export * from '@beemood/prop/restapi';
+export * from '@beemood/prop/nestjs';

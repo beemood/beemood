@@ -26,6 +26,7 @@
     "alwaysStrict": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictBindCallApply": true,
     "target": "es2022",
     "customConditions": [
       "@beemood/source"

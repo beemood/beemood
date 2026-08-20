@@ -31,10 +31,10 @@
       "import": "./dist/lib/validation/index.js",
       "default": "./dist/lib/validation/index.js"
     },
-    "./restapi": {
-      "types": "./dist/lib/restapi/index.d.ts",
-      "import": "./dist/lib/restapi/index.js",
-      "default": "./dist/lib/restapi/index.js"
+    "./nestjs": {
+      "types": "./dist/lib/nestjs/index.d.ts",
+      "import": "./dist/lib/nestjs/index.js",
+      "default": "./dist/lib/nestjs/index.js"
     },
     "./graphql": {
       "types": "./dist/lib/graphql/index.d.ts",
@@ -80,7 +80,6 @@
     "@nestjs/common": "^11.1.29",
     "@nestjs/core": "^11.1.29",
     "@nestjs/graphql": "^13.4.4",
-    "@nestjs/swagger": "^11.4.6",
     "graphql": "^17.0.2"
   }
 }
