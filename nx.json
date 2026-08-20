@@ -118,13 +118,9 @@
     }
   },
   "release": {
+    "projects": ["@beemood/types", "@beemood/constants", "@beemood/errors"],
     "changelog": {
       "automaticFromRef": true
-    },
-    "groups": {
-      "publishable": {
-        "projects": ["tag:lib:*", "tag:app:plugin"]
-      }
     },
     "version": {
       "preVersionCommand": "pnpm dlx nx run-many -t build"
