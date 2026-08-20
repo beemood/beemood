@@ -14,4 +14,9 @@ fi
 
 
 
-pnpm nx run-many -t test lint build typecheck --projects="tag:lib:*" --tuiAutoExit
+
+pnpm nx run-many -t lint      --projects="tag:lib:*,tag:app:plugin" --tuiAutoExit
+pnpm nx run-many -t typecheck --projects="tag:lib:*,tag:app:plugin" --tuiAutoExit
+pnpm nx run-many -t build     --projects="tag:lib:*,tag:app:plugin" --tuiAutoExit
+pnpm nx run-many -t test      --projects="tag:lib:*,tag:app:plugin" --tuiAutoExit
+pnpm nx run-many -t doc       --projects="tag:lib:*,tag:app:plugin" --tuiAutoExit
